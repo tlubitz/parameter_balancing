@@ -1,0 +1,13 @@
+!!SBtab TableName='Parameter balancing configuration file' TableType='PbConfig'	
+!Option	!Value
+use_pseudo_values	False
+ph	7
+temperature	300
+overwrite_kinetics	True
+cell_volume	43
+parametrisation	hal
+enzyme_prefactor	True
+default_inhibition	complete
+default_activation	complete
+model_name	outputname
+boundary_values	ignore

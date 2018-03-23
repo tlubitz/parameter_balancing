@@ -1,0 +1,89 @@
+!!SBtab SBtabVersion='1.0' Document='BIOMD0000000064' TableType='Compartment' TableName='Compartment'														
+!ID	!Size													
+extracellular	1													
+cytosol	1													
+														
+!!SBtab SBtabVersion='1.0' Document='BIOMD0000000064' TableType='Compound' TableName='Compound'														
+!ID	!Name	!Location	!Charge	!IsConstant	!InitialConcentration	!hasOnlySubstanceUnits	!Identifiers:kegg.compound							
+GLCi	Glucose in Cytosol	cytosol	0	False	0.1	False	C00293							
+G6P	Glucose 6 Phosphate	cytosol	0	False	2.5	False	C00668							
+F6P	Fructose 6 Phosphate	cytosol	0	False	0.6	False	C05345							
+F16P	Fructose-1,6 bisphosphate	cytosol	0	False	5.5	False	C00354							
+TRIO	Triose-phosphate	cytosol	0	False	1	False	C00118							
+BPG	1,3-bisphosphoglycerate	cytosol	0	False	0	False	C00236							
+P3G	3-phosphoglycerate	cytosol	0	False	0.9	False	C00197							
+P2G	2-phosphoglycerate	cytosol	0	False	0.1	False	C00631							
+PEP	Phosphoenolpyruvate	cytosol	0	False	0.1	False	C00074							
+PYR	Pyruvate	cytosol	0	False	1.9	False	C00022							
+ACE	Acetaldehyde	cytosol	0	False	0.2	False	C00084							
+P	High energy phosphates	cytosol	0	False	6.3	False	C00008							
+NAD	NAD	cytosol	0	False	1.2	False	C00003							
+NADH	NADH	cytosol	0	False	0.4	False	C00004							
+Glyc	Glycogen	cytosol	0	False	0	False	C00182							
+Trh	Trehalose	cytosol	0	False	0	False	C01083							
+CO2	CO2	cytosol	0	False	1	False	C00011							
+SUCC	Succinate	cytosol	0	False	0	False								
+GLCo	Extracellular Glucose	extracellular	0	False	50	False	C00293							
+ETOH	Ethanol	cytosol	0	False	50	False	C00469							
+GLY	Glycerol	cytosol	0	False	0.2	False	C00116							
+ATP	ATP concentration	cytosol	0	False	0	False	C00002							
+ADP	ADP concentration	cytosol	0	False	0	False	C00008							
+AMP	AMP concentration	cytosol	0	False	0	False	C00020							
+SUM_P	sum of AXP conc	cytosol	0	True	4.1	False	C00002							
+F26BP	F2,6P	cytosol	0	True	0	False	C00665							
+														
+!!SBtab SBtabVersion='1.0' Document='BIOMD0000000064' TableType='Reaction' TableName='Reaction'														
+!ID	!Name	!ReactionFormula	!Regulator	!KineticLaw	!IsReversible	!Identifiers:ec-code								
+vGLK	Hexokinase	GLCi + P <=> G6P	ATP|ADP	cytosol * VmGLK / (KmGLKGLCi * KmGLKATP) * (GLCi * ATP - G6P * ADP / KeqGLK) / ((1 + GLCi / KmGLKGLCi + G6P / KmGLKG6P) * (1 + ATP / KmGLKATP + ADP / KmGLKADP))	True	2.7.1.2								
+vPGI	Glucose-6-phosphate isomerase	G6P <=> F6P		cytosol * VmPGI_2 / KmPGIG6P_2 * (G6P - F6P / KeqPGI_2) / (1 + G6P / KmPGIG6P_2 + F6P / KmPGIF6P_2)	True	5.3.1.9								
+vGLYCO	Glycogen synthesis	G6P + P <=> Glyc		cytosol * KGLYCOGEN_3	False									
+vTreha	Trehalose 6-phosphate synthase	2.0 G6P + P <=> Trh		cytosol * KTREHALOSE	False									
+vPFK	Phosphofructokinase	F6P + P <=> F16P	AMP|ATP|F26BP	cytosol * VmPFK * gR * (F6P / KmPFKF6P) * (ATP / KmPFKATP) * R_PFK(KmPFKF6P, KmPFKATP, gR, ATP, F6P) / (pow(R_PFK(KmPFKF6P, KmPFKATP, gR, ATP, F6P), 2) + L_PFK(Lzero, CiPFKATP, KiPFKATP, CPFKAMP, KPFKAMP, CPFKF26BP, KPFKF26BP, CPFKF16BP, KPFKF16BP, ATP, AMP, F16P, F26BP) * pow(T_PFK(CPFKATP, KmPFKATP, ATP), 2))	False	2.7.1.11								
+vALD	Aldolase	F16P <=> 2.0 TRIO		cytosol * VmALD / KmALDF16P * (F16P - KeqTPI / (1 + KeqTPI) * TRIO * (1 / (1 + KeqTPI)) * TRIO / KeqALD) / (1 + F16P / KmALDF16P + KeqTPI / (1 + KeqTPI) * TRIO / KmALDGAP + 1 / (1 + KeqTPI) * TRIO / KmALDDHAP + KeqTPI / (1 + KeqTPI) * TRIO * (1 / (1 + KeqTPI)) * TRIO / (KmALDGAP * KmALDDHAP) + F16P * (KeqTPI / (1 + KeqTPI)) * TRIO / (KmALDGAPi * KmALDF16P))	True	4.1.2.13								
+vGAPDH	Glyceraldehyde 3-phosphate dehydrogenase	TRIO + NAD <=> BPG + NADH		cytosol * (VmGAPDHf * (KeqTPI / (1 + KeqTPI)) * TRIO * NAD / (KmGAPDHGAP * KmGAPDHNAD) - VmGAPDHr * BPG * NADH / (KmGAPDHBPG * KmGAPDHNADH)) / ((1 + KeqTPI / (1 + KeqTPI) * TRIO / KmGAPDHGAP + BPG / KmGAPDHBPG) * (1 + NAD / KmGAPDHNAD + NADH / KmGAPDHNADH))	True	1.2.1.12								
+vPGK	Phosphoglycerate kinase	BPG <=> P3G + P	ATP|ADP	cytosol * VmPGK / (KmPGKP3G * KmPGKATP) * (KeqPGK * BPG * ADP - P3G * ATP) / ((1 + BPG / KmPGKBPG + P3G / KmPGKP3G) * (1 + ATP / KmPGKATP + ADP / KmPGKADP))	True	2.7.2.3								
+vPGM	Phosphoglycerate mutase	P3G <=> P2G		cytosol * VmPGM / KmPGMP3G * (P3G - P2G / KeqPGM) / (1 + P3G / KmPGMP3G + P2G / KmPGMP2G)	True	5.4.2.1								
+vENO	Enolase	P2G <=> PEP		cytosol * VmENO / KmENOP2G * (P2G - PEP / KeqENO) / (1 + P2G / KmENOP2G + PEP / KmENOPEP)	True	4.2.1.11								
+vPYK	Pyruvate kinase	PEP <=> PYR + P	ATP|ADP	cytosol * VmPYK / (KmPYKPEP * KmPYKADP) * (PEP * ADP - PYR * ATP / KeqPYK) / ((1 + PEP / KmPYKPEP + PYR / KmPYKPYR) * (1 + ATP / KmPYKATP + ADP / KmPYKADP))	True	2.7.1.40								
+vPDC	Pyruvate decarboxylase	PYR <=> ACE + CO2		cytosol * VmPDC * (pow(PYR, nPDC) / pow(KmPDCPYR, nPDC)) / (1 + pow(PYR, nPDC) / pow(KmPDCPYR, nPDC))	False	4.1.1.1								
+vSUC	Succinate synthesis	2.0 ACE + 3.0 NAD + 4.0 P <=> 3.0 NADH + SUCC		cytosol * KSUCC * ACE	False									
+vGLT	Glucose transport	GLCo <=> GLCi		VmGLT / KmGLTGLCo * (GLCo - GLCi / KeqGLT) / (1 + GLCo / KmGLTGLCo + GLCi / KmGLTGLCi + 0.91 * GLCo * GLCi / (KmGLTGLCo * KmGLTGLCi))	True									
+vADH	Alcohol dehydrogenase	ACE + NADH <=> NAD + ETOH		-cytosol * (VmADH / (KiADHNAD * KmADHETOH) * (NAD * ETOH - NADH * ACE / KeqADH) / (1 + NAD / KiADHNAD + KmADHNAD * ETOH / (KiADHNAD * KmADHETOH) + KmADHNADH * ACE / (KiADHNADH * KmADHACE) + NADH / KiADHNADH + NAD * ETOH / (KiADHNAD * KmADHETOH) + KmADHNADH * NAD * ACE / (KiADHNAD * KiADHNADH * KmADHACE) + KmADHNAD * ETOH * NADH / (KiADHNAD * KmADHETOH * KiADHNADH) + NADH * ACE / (KiADHNADH * KmADHACE) + NAD * ETOH * ACE / (KiADHNAD * KmADHETOH * KiADHACE) + ETOH * NADH * ACE / (KiADHETOH * KiADHNADH * KmADHACE)))	True	1.1.1.2								
+vG3PDH	Glycerol 3-phosphate dehydrogenase	TRIO + NADH <=> NAD + GLY		cytosol * VmG3PDH / (KmG3PDHDHAP * KmG3PDHNADH) * (1 / (1 + KeqTPI) * TRIO * NADH - GLY * NAD / KeqG3PDH) / ((1 + 1 / (1 + KeqTPI) * TRIO / KmG3PDHDHAP + GLY / KmG3PDHGLY) * (1 + NADH / KmG3PDHNADH + NAD / KmG3PDHNAD))	False	1.1.1.8								
+vATP	ATPase activity	P <=>	ATP	cytosol * KATPASE * ATP	True	3.6.1.3								
+														
+!!SBtab TableName='Parameter balancing configuration file' TableType='PbConfig'														
+!Option	!Value													
+use_pseudos	True													
+pH	7													
+Temperature	300													
+overwrite_kinetics	True													
+cell_volume	43													
+parametrisation	hal													
+enzyme_prefactor	True													
+default_inhibition	complete_inh													
+default_activation	complete_act													
+model_name	outputname													
+boundary_values	ignore													
+														
+!!SBtab TableName='Quantity info' TableType='QuantityInfo'														
+!QuantityType	!Symbol	!Unit	!Constant	!RelatedElement	!Scaling	!Dependence	!PriorMode	!PriorStd	!LowerBound	!UpperBound	!ErrorStd	!SBMLElement 	!Abbreviation	!MatrixInfo
+standard chemical potential	mu0	kJ/mol	Thermodynamic	Species	Original	Basic	-880	1500	-3000	2000	10	Global parameter 	scp	[I_species, 0, 0, 0, 0, 0, 0]
+standard Gibbs energy of reaction	dmu0	kJ/mol	Thermodynamic	Reaction	Original	Derived	0	1500	-1000	1000	10	Global parameter 	dscp	[Nt, 0, 0, 0, 0, 0, 0]
+catalytic rate constant geometric mean	KV	1/s	Kinetic	Reaction	Logarithmic	Basic	10	1	0	10000	0.5	Local parameter	kcrg	[0, I_reaction, 0, 0, 0, 0, 0]
+Michaelis constant	KM	mM	Kinetic	Reaction/Species	Logarithmic	Basic	0.1	1	0	1000	0.5	Local parameter	kmc	[0, 0, I_KM, 0, 0, 0, 0]
+activation constant	KA	mM	Kinetic	Reaction/Species	Logarithmic	Basic	0.1	1	0	100	0.5	Local parameter	kac	[0, 0, 0, I_KA, 0, 0, 0]
+inhibitory constant	KI	mM	Kinetic	Reaction/Species	Logarithmic	Basic	0.1	1	0	100	0.5	Local parameter	kic	[0, 0, 0, 0, I_KI, 0, 0]
+equilibrium constant	Keq	dimensionless	Thermodynamic	Reaction	Logarithmic	Derived	1	1.5	0	10000000000	0.5	Local parameter	keq	[[-1/RT * Nt], 0, 0, 0, 0, 0, 0]
+substrate catalytic rate constant	Kcatf	1/s	Kinetic	Reaction	Logarithmic	Derived	10	1.5	0.1	10000	0.5	Local parameter  	kcrf	[[-0.5/RT * Nt], I_reaction, [-0.5 * Nkm], 0, 0, 0, 0]
+product catalytic rate constant	Kcatr	1/s	Kinetic	Reaction	Logarithmic	Derived	10	1.5	0	10000	0.5	Local parameter 	kcrr	[[0.5/RT * Nt], I_reaction, [0.5 * Nkm], 0, 0, 0, 0]
+concentration	c	mM	Dynamic	Species	Logarithmic	Basic	0.1	1.5	0	1000	0.5	Species (conc.)	c	[0, 0, 0, 0, 0, I_species, 0]
+concentration of enzyme	u	mM	Dynamic	Reaction	Logarithmic	Basic	0	1.5	0	2	0.5	Local parameter	eco	[0, 0, 0, 0, 0, 0, I_reaction]
+forward maximal velocity	Vmaxf	mM/s	Dynamic	Reaction	Logarithmic	Derived	1	2	0	1000000	0.5	Local parameter	vmaf	[[-0.5/RT * Nt], I_reaction, [-0.5 * Nkm], 0, 0, 0, I_reaction]
+reverse maximal velocity	Vmaxr	mM/s	Dynamic	Reaction	Logarithmic	Derived	1	2	0	1000000	0.5	Local parameter	vmar	[[0.5/RT * Nt], I_reaction, [0.5 * Nkm], 0, 0, 0, I_reaction]
+chemical potential	mu	kJ/mol	Dynamic	Species	Original	Derived	-880	1500	-3000	2000	20		cp	[I_species, 0, 0, 0, 0, [RT * I_species], 0]
+reaction affinity	A	kJ/mol	Dynamic	Reaction	Original	Derived	0	10	-60	60	10		raf	[[-1 * Nt], 0, 0, 0, 0, [-RT * Nt], 0]
+forward enzyme mass action term	tauf	mM/s	Dynamic	Reaction	Logarithmic	Derived	1	1.5	0	10000000	1		tauf	[[-1/(2*RT) * h * Nt], I_reaction, - 1/2 * h * abs(Nkm), 0, 0, h * Nft, I_reaction]
+reverse enzyme mass action term	taur	mM/s	Dynamic	Reaction	Logarithmic	Derived	1	1.5	0	10000000	1		taur	[[ 1/(2*RT) * h * Nt], I_reaction, - 1/2 * h * abs(Nkm), 0, 0, h * Nrt, I_reaction]
+pH	pH	1	Dynamic	None	Original	Basic	7	1	0	14	1	Global parameter	ph	[0, 0, 0, 0, 0, 0, 0]
+Michaelis constant product	KMprod	mM	Kinetic	Reaction	Logarithmic	Derived	0.1	1	0	1000	0.5	Local parameter	kmprod	[0, 0, Nkm, 0, 0, 0, 0]
