@@ -28,11 +28,6 @@ header_names = ['!QuantityType', '!Reaction:SBML:reaction:id',
                 '!UnconstrainedMean', '!UnconstrainedStd']
 inhibitory_sbos       = [20, 206, 207, 536, 537]
 activation_sbos       = [13, 21, 459, 461, 462]
-thermodynamic_indices = [0, 12, 13]
-thermodynamics        = ['standard chemical potential',
-                         'chemical potential',
-                         'reaction affinity']
-
 
 class ParameterBalancingError(Exception):
     '''
@@ -210,6 +205,7 @@ class ParameterBalancing:
         self.species_parameters = []
         self.reaction_parameters = []
         self.reaction_species_parameters = []
+        self.thermodynamics = []
         prior_list = []
         pseudo_list = []
         
@@ -240,6 +236,9 @@ class ParameterBalancing:
                     self.reaction_parameters.append(row[sbtab_prior.columns_dict['!QuantityType']])
                 elif row[sbtab_prior.columns_dict['!BiologicalElement']] == 'Reaction/Species':
                     self.reaction_species_parameters.append(row[sbtab_prior.columns_dict['!QuantityType']])
+
+                if row[sbtab_prior.columns_dict['!Unit']] == 'kJ/mol':
+                    self.thermodynamics.append(row[sbtab_prior.columns_dict['!QuantityType']])
 
         self.prior_list = self.sort_list(prior_list)
         self.pseudo_list = self.sort_list(pseudo_list)
@@ -586,7 +585,7 @@ class ParameterBalancing:
                         new_row[3] = str(round(numpy.exp(self.normal_to_log([float(new_row[5])],
                                                                             [float(new_row[6])],
                                                                             [new_row[0]])[0])[0],4))
-                    if quantity in thermodynamics: new_row[3] = new_row[5]
+                    if quantity in self.thermodynamics: new_row[3] = new_row[5]
                     new_row[4] = self.quantity_type2unit[row[self.sbtab.columns_dict['!QuantityType']]]
                     
                     # optional columns (columns 9 and more)
@@ -639,7 +638,7 @@ class ParameterBalancing:
         #Thusly, I am trying to use the arithmetic mean for all quantities now, also the thermodynamic ones.
         #######
         
-        #if quantity in thermodynamics:
+        #if quantity in self.thermodynamics:
         #    #build geometric mean
         #    import scipy.stats
         #    denominator = 0
@@ -650,7 +649,7 @@ class ParameterBalancing:
         #    if denominator == 0: denominator += 0.000000001
         #    mean   = scipy.stats.gmean(means)
         #    std    = numpy.exp(numpy.sqrt(1/denominator))
-        #    if not quantity in thermodynamics: median = numpy.exp(self.normal_to_log([mean],[std],False)[0])[0]
+        #    if not quantity in self.thermodynamics: median = numpy.exp(self.normal_to_log([mean],[std],False)[0])[0]
         #    else: median = mean
         #    value_dict = dict([('Mean',mean),('Std',std),('Median',median)])
         
@@ -669,7 +668,7 @@ class ParameterBalancing:
             denominator = denominator + 1 / stds[i] ** 2
         if denominator == 0: denominator += 0.000000001
         mean = numerator / denominator
-        if not quantity in thermodynamics:
+        if not quantity in self.thermodynamics:
             median = numpy.exp(self.normal_to_log([mean], [std], False)[0])[0]
         else: median = mean
         value_dict = dict([('Mean', mean), ('Std', std), ('Mode', median)])
@@ -688,7 +687,8 @@ class ParameterBalancing:
             # first fill parameter rows that have no value
             self.pseudo_used = True
             for row in sbtab.value_rows:
-                if row[sbtab.columns_dict['!Mode']] == '':
+                if row[sbtab.columns_dict['!Mode']] == '' \
+                   and row[sbtab.columns_dict['!QuantityType']] in self.pseudo_list:
                     try:
                         row[sbtab.columns_dict['!Mode']] = str(pseudos[row[0]][0])
                         row[sbtab.columns_dict['!UnconstrainedGeometricMean']] = str(pseudos[row[0]][0])
@@ -729,7 +729,7 @@ class ParameterBalancing:
         quantities = []
         counter = 0
         
-        for parameter_type in thermodynamics:
+        for parameter_type in self.thermodynamics:
             medians.append(self.quantity_type2mean_std[parameter_type][0])
             quantities.append(parameter_type)
             stds.append(self.quantity_type2mean_std[parameter_type][1])
@@ -755,7 +755,7 @@ class ParameterBalancing:
         log_stds  = []
 
         for i,mean in enumerate(means):
-            if types and types[i] in thermodynamics:  #kJ/mol
+            if types and types[i] in self.thermodynamics:  #kJ/mol
                 log_means.append(float(mean))
                 log_stds.append(float(stds[i]))
                 
@@ -778,7 +778,7 @@ class ParameterBalancing:
         stds  = []
 
         for i,log_mean in enumerate(log_means):
-            if types and types[i] in thermodynamics:
+            if types and types[i] in self.thermodynamics:
                 means.append(log_mean)
                 stds.append(log_stds[i])
             else:
@@ -796,7 +796,7 @@ class ParameterBalancing:
         log_stds  = []
 
         for i,median in enumerate(medians):
-            if types and types[i] in thermodynamics:
+            if types and types[i] in self.thermodynamics:
                 log_means.append(median)
                 log_stds.append(stdlogs[i])
             else:
@@ -877,7 +877,7 @@ class ParameterBalancing:
             (self.means_inc,self.stds_inc) = self.log_to_normal(self.means_post_inc,self.stds_log_inc,self.quantities_inc)
 
             for i,value in enumerate(self.means_inc):
-                if not self.quantities_inc[i] in thermodynamics:
+                if not self.quantities_inc[i] in self.thermodynamics:
                     (log_mean,log_std) = self.normal_to_log([self.means_inc[i]],[self.stds_inc[i]],self.quantities_inc[i])
                     medians.append(numpy.exp(log_mean[0]))
                 else:
@@ -894,6 +894,9 @@ class ParameterBalancing:
             for i,bound in enumerate(self.bounds_inc):
                 if bound == ('','') or bound == (None,None):
                     #setting boundaries for thermodynamic parameters (kJ/mol)
+                    # THIS NEEDS TO BE REWRITTEN DESPERATELY;
+                    # NO USAGE OF NAME2INDEX OR THERMODYNAMIC_INDICES;
+                    # THATS NOOB STUFF:
                     if name2index[self.quantities_inc[i]] in thermodynamic_indices:
                         is_logarithmic.append(False)
                         if (max(medians[i]-medstds[i]*2,-3000))<(min(3000,medians[i]+medstds[i]*2)):
@@ -1040,7 +1043,7 @@ class ParameterBalancing:
                     single_tuple.append(row[self.sbtab.columns_dict['!Compound:SBML:species:id']])
                     single_tuple.append(row[mean_column])
                     if not row[std_column] == '': single_tuple.append(row[std_column])
-                    elif row[self.sbtab.columns_dict['!QuantityType']] in thermodynamics: single_tuple.append('35.0')
+                    elif row[self.sbtab.columns_dict['!QuantityType']] in self.thermodynamics: single_tuple.append('35.0')
                     else: single_tuple.append(str(float(row[mean_column])*0.5))
                     single_tuple.append(self.make_identifier(row))
                     self.quantities.append(row[self.sbtab.columns_dict['!QuantityType']])
@@ -1110,21 +1113,23 @@ class ParameterBalancing:
                             self.parameter2bounds[row_identifier] = (None,None)
                     except: pass
                     value_tuples.append(single_tuple)
-                    #do we have to ask up here if the row_ident is already in parameter2bounds.keys?
 
         #generate logarithms
         means = []
-        stds  = []
+        stds = []
         types = []
-
+        vt = []
+        
         for single_tuple in value_tuples:
+            if single_tuple[3] == '': continue
             means.append(float(single_tuple[3]))
             stds.append(float(single_tuple[4]))
             types.append(single_tuple[0])
+            vt.append(single_tuple)
 
         (self.x_star,self.log_stds_x) = self.med10_std_to_log(means,stds,types)
 
-        return value_tuples
+        return vt
 
     def sort_list(self,qlist):
 
@@ -1485,6 +1490,7 @@ class ParameterBalancing:
         C_prior = numpy.array(C_prior_rows)
 
         #second, generate covariance matrix according to the input values in the x-vector
+
         C_x_rows = []
         for i,x_entry in enumerate(self.x_vector):
             row = [0.0]*len(self.x_vector)
@@ -1632,7 +1638,7 @@ class ParameterBalancing:
                 except: continue
 
                 # second: fill the row with the balanced values
-                if row[0] in thermodynamics:
+                if row[0] in self.thermodynamics:
                     row[3] = str(format(float(means[row_number]),'.4f'))
                     row[5] = 'NaN'
                     row[6] = 'NaN'

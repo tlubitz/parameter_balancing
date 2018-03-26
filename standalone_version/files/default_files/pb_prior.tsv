@@ -1,4 +1,4 @@
-!!SBtab TableName="Parameter prior" TableType="Quantity" Date="2018-03-21"															
+!!SBtab TableName="Parameter prior" TableType="Quantity" Date="2018-03-26"															
 !QuantityType	!Unit	!BiologicalElement	!MathematicalType	!PriorMedian	!PriorStd	!PriorGeometricStd	!LowerBound	!UpperBound	!DataStd	!Symbol	!PhysicalType	!Dependence	!UseAsPriorInformation	!SBMLElement 	!Abbreviation	!MatrixInfo
 standard chemical potential	kJ/mol	Species	Additive	-880	1500		-3000	2000	10	mu0	Thermodynamic	Basic	1	Global parameter 	scp	[I_species, 0, 0, 0, 0, 0, 0, 0]
 catalytic rate constant geometric mean	1/s	Reaction	Multiplicative	10		100	0.0000001	10000	0.5	KV	Kinetic	Basic	1	Local parameter	kcrg	[0, I_reaction, 0, 0, 0, 0, 0, 0]
@@ -12,10 +12,10 @@ standard Gibbs energy of reaction	kJ/mol	Reaction	Additive	0	1500		-1000	1000	10
 equilibrium constant	dimensionless	Reaction	Multiplicative	1		100	0.0000000001	100000000	0.5	Keq	Thermodynamic	Derived	1	Local parameter	keq	[[-1/RT * Nt], 0, 0, 0, 0, 0, 0, 0]
 substrate catalytic rate constant	1/s	Reaction	Multiplicative	10		100	0.01	10000000	0.5	Kcatf	Kinetic	Derived	1	Local parameter  	kcrf	[[-0.5/RT * Nt], I_reaction, [-0.5 * Nkm], 0, 0, 0, 0, 0]
 product catalytic rate constant	1/s	Reaction	Multiplicative	10		100	0.000000001	10000000	0.5	Kcatr	Kinetic	Derived	1	Local parameter 	kcrr	[[0.5/RT * Nt], I_reaction, [0.5 * Nkm], 0, 0, 0, 0, 0]
-chemical potential	kJ/mol	Species	Additive	-880	1500		-3000	2000	20	mu	Dynamic	Derived	1		cp	[I_species, 0, 0, 0, 0, [RT * I_species], 0, 0]
-reaction affinity	kJ/mol	Reaction	Additive	0	10		-60	60	10	A	Dynamic	Derived	1		raf	[[-1 * Nt], 0, 0, 0, 0, [-RT * Nt], 0, 0]
-forward maximal velocity	mM/s	Reaction	Multiplicative	0.01		100	0.00000001	1000000	0.5	Vmaxf	Dynamic	Derived	1	Local parameter	vmaf	[[-0.5/RT * Nt], I_reaction, [-0.5 * Nkm], 0, 0, 0, I_reaction, 0]
-reverse maximal velocity	mM/s	Reaction	Multiplicative	0.01		100	0.00000001	1000000	0.5	Vmaxr	Dynamic	Derived	1	Local parameter	vmar	[[0.5/RT * Nt], I_reaction, [0.5 * Nkm], 0, 0, 0, I_reaction, 0]
+chemical potential	kJ/mol	Species	Additive	-880	1500		-3000	2000	20	mu	Dynamic	Derived	0		cp	[I_species, 0, 0, 0, 0, [RT * I_species], 0, 0]
+reaction affinity	kJ/mol	Reaction	Additive	0	10		-60	60	10	A	Dynamic	Derived	0		raf	[[-1 * Nt], 0, 0, 0, 0, [-RT * Nt], 0, 0]
+forward maximal velocity	mM/s	Reaction	Multiplicative	0.01		100	0.00000001	1000000	0.5	Vmaxf	Dynamic	Derived	0	Local parameter	vmaf	[[-0.5/RT * Nt], I_reaction, [-0.5 * Nkm], 0, 0, 0, I_reaction, 0]
+reverse maximal velocity	mM/s	Reaction	Multiplicative	0.01		100	0.00000001	1000000	0.5	Vmaxr	Dynamic	Derived	0	Local parameter	vmar	[[0.5/RT * Nt], I_reaction, [0.5 * Nkm], 0, 0, 0, I_reaction, 0]
 forward mass action term	1/s	Reaction	Multiplicative	1		1000	0.0000001	10000000	1	thetaf	Dynamic	Derived	0		thtf	[[-1/(2*RT) * h * Nt], I_reaction, - 1/2 * h * abs(Nkm), 0, 0, h * Nft, 0, 0]
 reverse mass action term	1/s	Reaction	Multiplicative	1		1000	0.0000001	10000000	1	thetar	Dynamic	Derived	0		thtr	[[ 1/(2*RT) * h * Nt], I_reaction, - 1/2 * h * abs(Nkm), 0, 0, h * Nrt, 0, 0]
 forward enzyme mass action term	mM/s	Reaction	Multiplicative	1		1000	0.0000001	10000000	1	tauf	Dynamic	Derived	0		tauf	[[-1/(2*RT) * h * Nt], I_reaction, - 1/2 * h * abs(Nkm), 0, 0, h * Nft, I_reaction, 0]
