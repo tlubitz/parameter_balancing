@@ -8,7 +8,7 @@ inhibitory constant	mM	Reaction/Species	Multiplicative	0.1		10	0.0001	100	0.5	KI
 concentration	mM	Species	Multiplicative	0.1		10	0.000001	1000	0.5	c	Dynamic	Basic	1	Species (conc.)	c	[0, 0, 0, 0, 0, I_species, 0, 0]
 concentration of enzyme	mM	Reaction	Multiplicative	0.001		100	0.000001	0.5	0.05	u	Dynamic	Basic	1	Local parameter	eco	[0, 0, 0, 0, 0, 0, I_reaction, 0]
 pH	1	None	Additive	7	1		0	14	1	pH	Dynamic	Basic	1	Global parameter	ph	[0, 0, 0, 0, 0, 0, 0, 1]
-standard Gibbs energy of reaction	kJ/mol	Reaction	Additive	0	1500		-1000	1000	10	dmu0	Thermodynamic	Derived	1	Global parameter 	dscp	[Nt, 0, 0, 0, 0, 0, 0, 0]
+standard Gibbs energy of reaction	kJ/mol	Reaction	Additive	0	1500		-1000	1000	10	dmu0	Thermodynamic	Derived	0	Global parameter 	dscp	[Nt, 0, 0, 0, 0, 0, 0, 0]
 equilibrium constant	dimensionless	Reaction	Multiplicative	1		100	0.0000000001	100000000	0.5	Keq	Thermodynamic	Derived	1	Local parameter	keq	[[-1/RT * Nt], 0, 0, 0, 0, 0, 0, 0]
 substrate catalytic rate constant	1/s	Reaction	Multiplicative	10		100	0.01	10000000	0.5	Kcatf	Kinetic	Derived	1	Local parameter  	kcrf	[[-0.5/RT * Nt], I_reaction, [-0.5 * Nkm], 0, 0, 0, 0, 0]
 product catalytic rate constant	1/s	Reaction	Multiplicative	10		100	0.000000001	10000000	0.5	Kcatr	Kinetic	Derived	1	Local parameter 	kcrr	[[0.5/RT * Nt], I_reaction, [0.5 * Nkm], 0, 0, 0, 0, 0]

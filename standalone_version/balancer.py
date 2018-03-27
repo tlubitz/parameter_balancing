@@ -979,13 +979,13 @@ class ParameterBalancing:
         '''
         get the sheet that tells us, how to build up which matrix and further stuff
         '''
-        sheet = {"equilibrium constant":((-1/2.4942,"A"),0,0,0,0,0,0),
-                 "substrate catalytic rate constant":((-0.5/2.4942,"A"),1,(-0.5,"Z"),0,0,0,0),
-                 "product catalytic rate constant":((0.5/2.4942,"A"),1,(0.5,"Z"),0,0,0,0),
-                 "forward maximal velocity":((-0.5/2.4942,"A"),1,(-0.5,"Z"),0,0,1,0),
-                 "reverse maximal velocity":((0.5/2.4942,"A"),1,(0.5,"Z"),0,0,1,0),
-                 "chemical potential":(1,0,0,0,0,0,(2.4942,'1')),
-                 "reaction affinity":((-1,"A"),0,0,0,0,0,(-2.4942,"AB"))}
+        sheet = {"equilibrium constant":((-1/2.4790,"A"),0,0,0,0,0,0),
+                 "substrate catalytic rate constant":((-0.5/2.4790,"A"),1,(-0.5,"Z"),0,0,0,0),
+                 "product catalytic rate constant":((0.5/2.4790,"A"),1,(0.5,"Z"),0,0,0,0),
+                 "forward maximal velocity":((-0.5/2.4790,"A"),1,(-0.5,"Z"),0,0,1,0),
+                 "reverse maximal velocity":((0.5/2.4790,"A"),1,(0.5,"Z"),0,0,1,0),
+                 "chemical potential":(1,0,0,0,0,0,(2.790,'1')),
+                 "reaction affinity":((-1,"A"),0,0,0,0,0,(-2.4790,"AB"))}
 
         return sheet
 
@@ -1345,10 +1345,10 @@ class ParameterBalancing:
                                 else: factor = 1.0
                                 for michaelis_tuple in self.model_michaelis:
                                     if michaelis_tuple[2] in reactants:
-                                        row[column_index] = -1.0*factor        #rmv factor if wrong
+                                        row[column_index] = -0.5*factor        #rmv factor if wrong
                                         column_index += 1
                                     if michaelis_tuple[2] in products:
-                                        row[column_index] = 1.0*factor         #rmv factor if wrong
+                                        row[column_index] = 0.5*factor         #rmv factor if wrong
                                         column_index += 1
                                     if michaelis_tuple[2] not in reactants and michaelis_tuple[2] not in products:
                                         column_index += 1
