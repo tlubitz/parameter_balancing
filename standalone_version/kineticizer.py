@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 import libsbml, sys
-from . import misc
+try: from . import misc
+except: import misc
 
 
 class kineticizer(object):

@@ -3,10 +3,16 @@ import libsbml
 import os
 import re
 import sys
-from . import balancer
-from . import kineticizer
-from . import misc
-from . import SBtab
+try:
+    from . import balancer
+    from . import kineticizer
+    from . import misc
+    from . import SBtab
+except:
+    import balancer
+    import kineticizer
+    import misc
+    import SBtab 
 
 def parameter_balancing_wrapper(model_name, first = None,
                                 second = None, third = None):

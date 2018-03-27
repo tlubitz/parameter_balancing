@@ -16,8 +16,12 @@ See specification for further information.
 import re
 import copy
 import tablib
-from . import tablibIO
-from . import misc
+try:
+    from . import tablibIO
+    from . import misc
+except:
+    import tablibIO
+    import misc
 
 tables_without_name = []
 

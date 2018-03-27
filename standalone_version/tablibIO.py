@@ -6,13 +6,9 @@ import tablib
 import tablib.core
 import csv
 import os
-#import tablib.packages.odf.opendocument as opendocument
-#from . import tablib.packages.odf.table as Table, TableRow, TableColumn, TableCell
-#from . import tablib
 import tablib
-#from . import tablib.packages.odf.text as P
-#import . import tablib.packages.xlrd as xlrd
-from . import misc
+try: from . import misc
+except: import misc
 
 
 

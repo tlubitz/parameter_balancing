@@ -1,5 +1,8 @@
 #!/usr/bin/env python
-from . import SBtab
+try:
+    from . import SBtab
+except:
+    import SBtab
 import numpy
 import scipy.linalg
 import copy
