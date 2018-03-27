@@ -12,7 +12,8 @@ except:
     import balancer
     import kineticizer
     import misc
-    import SBtab 
+    import SBtab
+
 
 def parameter_balancing_wrapper(model_name, first = None,
                                 second = None, third = None):
@@ -22,7 +23,6 @@ def parameter_balancing_wrapper(model_name, first = None,
     of SBtabs that need to be determined
     '''
     log_file = 'Parameter balancing log file of model %s\n\n' % (model_name)
-
     # 1: open and prepare the files; then check for some rudimentary validity:
     # 1.1: SBML model
     reader = libsbml.SBMLReader()
@@ -46,23 +46,23 @@ def parameter_balancing_wrapper(model_name, first = None,
         '''
         assigns the sbtab to the correct table type
         '''
-        global sbtab
+        global sbtab_data
         global sbtab_name
         global prior
         global config
         if table_type == 'Quantity':
-            sbtab = sb
+            sbtab_data = sb
             sbtab_name = s
         elif table_type == 'QuantityInfo': prior = sb
         elif table_type == 'PbConfig': config = sb
         else: print('The provided SBtab file %s could not be assigned '\
                     'properly' % (table_type))
 
-    global sbtab
+    global sbtab_data
     global sbtab_name
     global prior
     global config
-    sbtab = False
+    sbtab_data = False
     sbtab_name = False
     prior = False
     config = False
@@ -84,12 +84,12 @@ def parameter_balancing_wrapper(model_name, first = None,
                       'integrated.' % (first))
 
     if sbtab_name is False: sbtab_name = 'output.csv'
-
+    
     # PARAMETER FILE
-    if sbtab:
+    if sbtab_data:
         try: sbtab_delimiter = misc.check_delimiter(sb)
         except: sbtab_delimiter = '\t'
-        sbtab = SBtab.SBtabTable(sbtab)
+        sbtab_data = SBtab.SBtabTable(sbtab_data, sbtab_name)
         no_sbtab = False
     else: no_sbtab = True
 
@@ -134,17 +134,18 @@ def parameter_balancing_wrapper(model_name, first = None,
                   'd not be found and not config file was provided by user; '\
                   'the values are set to default.')
             parameter_dict = {}
-    
-    # MAKE EMPTY SBTAB IF REQUIRED
+
+    # Make empty SBtab if required
+
     if no_sbtab:
         sbtab = pb.make_empty_sbtab(pmin, pmax, parameter_dict)
     else:
-        sbtab = pb.make_empty_sbtab(sbtab, sbtab_name, 'All organisms', 43, pmin, pmax, parameter_dict)
-        sbtabid2sbmlid = misc.id_checker(sbtab, sbml_model)
+        sbtab = pb.make_sbtab(sbtab_data, sbtab_name, 'All organisms', 43, pmin, pmax, parameter_dict)
+        sbtabid2sbmlid = misc.id_checker(sbtab.return_table_string(), sbml_model)
         if sbtabid2sbmlid != []:
             for element in sbtabid2sbmlid:
                 log_file.append(element)
-               
+
     if 'temperature' not in parameter_dict.keys():
         parameter_dict['temperature'] = 300
     if 'ph' not in parameter_dict.keys(): parameter_dict['ph'] = 7
@@ -252,6 +253,10 @@ if __name__ == '__main__':
               'your_sbml_file.xml \n')
         sys.exit()
 
+    first = False
+    second = False
+    third = False
+        
     try:
         first = sys.argv[2]
         try:
@@ -259,8 +264,13 @@ if __name__ == '__main__':
             try:
                 third = sys.argv[4]
                 parameter_balancing_wrapper(model_name, first, second, third)
-            except: parameter_balancing_wrapper(model_name, first, second)
-        except: parameter_balancing_wrapper(model_name, first)
-    except: parameter_balancing_wrapper(model_name)
-
+            except:
+                if not third:
+                    parameter_balancing_wrapper(model_name, first, second)
+        except:
+            if not second:
+                parameter_balancing_wrapper(model_name, first)
+    except:
+        if not first:
+            parameter_balancing_wrapper(model_name)
 

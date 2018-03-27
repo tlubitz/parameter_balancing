@@ -20,8 +20,8 @@ try:
     from . import tablibIO
     from . import misc
 except:
-    import tablibIO
-    import misc
+    from . import tablibIO
+    from . import misc
 
 tables_without_name = []
 

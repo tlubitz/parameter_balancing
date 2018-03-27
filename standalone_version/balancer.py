@@ -1,8 +1,6 @@
 #!/usr/bin/env python
-try:
-    from . import SBtab
-except:
-    import SBtab
+try: from . import SBtab
+except: import SBtab
 import numpy
 import scipy.linalg
 import copy
@@ -209,6 +207,8 @@ class ParameterBalancing:
         self.reaction_parameters = []
         self.reaction_species_parameters = []
         self.thermodynamics = []
+        self.matrix_info = {}
+        self.data_std = {}
         prior_list = []
         pseudo_list = []
         
@@ -242,6 +242,9 @@ class ParameterBalancing:
 
                 if row[sbtab_prior.columns_dict['!Unit']] == 'kJ/mol':
                     self.thermodynamics.append(row[sbtab_prior.columns_dict['!QuantityType']])
+
+                self.matrix_info[row[sbtab_prior.columns_dict['!QuantityType']]] = row[sbtab_prior.columns_dict['!MatrixInfo']]
+                self.data_std[row[sbtab_prior.columns_dict['!QuantityType']]] = row[sbtab_prior.columns_dict['!DataStd']]
 
         self.prior_list = self.sort_list(prior_list)
         self.pseudo_list = self.sort_list(pseudo_list)
@@ -321,20 +324,20 @@ class ParameterBalancing:
                                      parameter_dict)
         return value_rows
 
+
+    
     def make_sbtab(self, sbtab, file_name, organism, volume,
                    pmin, pmax, parameter_dict):
         '''
         makes an insertable SBtab-file out of a possibly erraneous SBtab-File
         '''
         self.sbtab = sbtab
-        
         self.organism = organism
         self.new_header = header_names
         self.new_rows = []
         self.pmin = pmin
         self.pmax = pmax
         self.parameter_dict = parameter_dict
-
         # the possibly messy user file needs to be tidied before computation
         self.rows = self.tidy_up_sbtab(False)
 
@@ -359,15 +362,16 @@ class ParameterBalancing:
             for quantity in self.species_parameters:
                 if [quantity, species] in self.available_parameters:
                     self.new_rows.append(self.existing_row(species, quantity))
-                else: self.new_rows.append(self.new_row(species, quantity))
-                
+                else:
+                    self.new_rows.append(self.new_row(species, quantity))
+
         for reaction in self.reaction_list:
             for quantity in self.reaction_parameters:
                 if [quantity, reaction] in self.available_parameters:
                     self.new_rows.append(self.existing_row(reaction, quantity))
                 else:
                     self.new_rows.append(self.new_row(reaction, quantity))
-                    
+
         tuple_list = [self.model_michaelis, self.model_activation,
                       self.model_inhibition]
         for i, t_list in enumerate(tuple_list):
@@ -400,8 +404,9 @@ class ParameterBalancing:
         # create new SBtab file from the collected information
         sbtab_string = '!!SBtab TableType="Quantity" Version="0.1" Level="1.0" '\
                        'TableName="%s"\n' % (file_name) + '\t'.join(self.new_header) + '\n'
+
         for row in self.new_rows:
-            sbtab_string += '\t'.join(row)+'\n'
+            sbtab_string += '\t'.join(row) + '\n'
         new_sbtab = SBtab.SBtabTable(sbtab_string, file_name)
 
         return new_sbtab
@@ -451,9 +456,7 @@ class ParameterBalancing:
                 # convert amount to concentration (for enzyme concentrations)
                 if row[self.sbtab.columns_dict['!QuantityType']] == 'concentration of enzyme':
                     if row[self.sbtab.columns_dict['!Unit']] == 'molecules/cell':
-                        row[mean_column] = str(float(row[mean_column])*0.00000004)
-                        row[std_column] = str(float(row[mean_column])*0.00000002)
-                        row[self.sbtab.columns_dict['!Unit']] = 'mM'
+                        continue
                         
                 # exclude values that lie outside of the given boundaries;
                 # this exclusion is triggered by flag ig_bounds
@@ -517,9 +520,9 @@ class ParameterBalancing:
                 elif row[self.sbtab.columns_dict['!QuantityType']] in self.reaction_parameters:
                     row[self.sbtab.columns_dict['!Compound:SBML:species:id']] = ''
 
-                # automatically set a broad default std if missing
+                # if the std is missing, use default std from prior file
                 if row[std_column] == '':
-                    row[std_column] = float(row[mean_column]) * 0.5
+                    row[std_column] = self.data_std[row[self.sbtab.columns_dict['!QuantityType']]]
 
                 consistent_rows.append(row)
                 
@@ -553,7 +556,7 @@ class ParameterBalancing:
                 value_dict = self.mean_row(name, quantity)
         elif self.available_parameters.count([quantity,name]) > 1:
             value_dict = self.mean_row(name,quantity)
-        
+
         # after the averaging, the row is built
         used_rows = []
         new_row = [''] * len(self.new_header)
@@ -583,23 +586,17 @@ class ParameterBalancing:
                         new_row[5] = str(value_dict['Mean'])
                         new_row[6] = str(value_dict['Std'])
                     else:
-                        new_row[5] = row[self.sbtab.columns_dict['!Mean']]
-                        new_row[6] = row[self.sbtab.columns_dict['!Std']]
+                        new_row[5] = str(row[self.sbtab.columns_dict['!Mean']])
+                        new_row[6] = str(row[self.sbtab.columns_dict['!Std']])
                         new_row[3] = str(round(numpy.exp(self.normal_to_log([float(new_row[5])],
                                                                             [float(new_row[6])],
                                                                             [new_row[0]])[0])[0],4))
                     if quantity in self.thermodynamics: new_row[3] = new_row[5]
                     new_row[4] = self.quantity_type2unit[row[self.sbtab.columns_dict['!QuantityType']]]
-                    
                     # optional columns (columns 9 and more)
-                    j = 9
-                    if self.sbtab.columns_dict['!Temperature']:
-                        new_row[j] = row[self.sbtab.columns_dict['!Temperature']]
-                        j += 1
-                    if self.sbtab.columns_dict['!pH']:
-                        new_row[j] = row[self.sbtab.columns_dict['!pH']]
-                        j += 1
-                    if self.sbtab.columns_dict['!Min'] and self.sbtab.columns_dict['!Max']:
+                    #j = 9
+                    # MIN and MAX is currently out of order. Reinstall later.
+                    if '!Min' in self.sbtab.columns_dict and '!Max' in self.sbtab.columns_dict:
                         new_row[j] = row[self.sbtab.columns_dict['!Min']]
                         new_row[j+1] = row[self.sbtab.columns_dict['!Max']]
 
@@ -633,48 +630,39 @@ class ParameterBalancing:
                         or row[self.sbtab.columns_dict['!Reaction:SBML:reaction:id']] == name):
                     means.append(float(row[self.sbtab.columns_dict['!Mean']]))
                     stds.append(float(row[self.sbtab.columns_dict['!Std']]))
-        #build the mean
-        #######
-        #we have a problem here: actually, for thermodynamic quantities, we want to use the geometric mean instead of the
-        #arithmetic mean. But, as it turns out, the .gmean() function of scipy employs the .log() function, causing a crash
-        #when faced with values lower than zero (which are common in thermodynamic quantities such as Gibbs energies.
-        #Thusly, I am trying to use the arithmetic mean for all quantities now, also the thermodynamic ones.
-        #######
-        
-        #if quantity in self.thermodynamics:
-        #    #build geometric mean
-        #    import scipy.stats
-        #    denominator = 0
-        #    for std in stds:
-        #        if std != 0.0: denominator = denominator + (1/std**2)
-        #        else: denominator = denominator + (1/numpy.log(2)**2)
-        #
-        #    if denominator == 0: denominator += 0.000000001
-        #    mean   = scipy.stats.gmean(means)
-        #    std    = numpy.exp(numpy.sqrt(1/denominator))
-        #    if not quantity in self.thermodynamics: median = numpy.exp(self.normal_to_log([mean],[std],False)[0])[0]
-        #    else: median = mean
-        #    value_dict = dict([('Mean',mean),('Std',std),('Median',median)])
-        
-        #build arithmetic mean
-        denominator = 0
-        for i,std in enumerate(stds):
-            if std != 0.0: denominator = denominator + (1 / std ** 2)
-            else: denominator = denominator + (1 / numpy.log(2) ** 2)
-        if denominator == 0: denominator += 0.000000001
-        std = numpy.sqrt(1/denominator)
 
-        numerator   = 0
-        denominator = 0
-        for i,mean in enumerate(means):
-            numerator   = numerator + mean / stds[i] ** 2
-            denominator = denominator + 1 / stds[i] ** 2
-        if denominator == 0: denominator += 0.000000001
-        mean = numerator / denominator
-        if not quantity in self.thermodynamics:
-            median = numpy.exp(self.normal_to_log([mean], [std], False)[0])[0]
-        else: median = mean
-        value_dict = dict([('Mean', mean), ('Std', std), ('Mode', median)])
+        # build the mean
+        if quantity in self.quantity_type2median_std:
+            # geometric mean for all multiplicative quantities
+            import scipy.stats
+            denominator = 0
+            for std in stds:
+                if std != 0.0: denominator = denominator + (1/std**2)
+                else: denominator = denominator + (1/numpy.log(2)**2)
+            mean   = scipy.stats.gmean(means)
+            std    = numpy.exp(numpy.sqrt(1/denominator))
+            if not quantity in self.thermodynamics: median = numpy.exp(self.normal_to_log([mean],[std],False)[0])[0]
+            else: median = mean
+            value_dict = dict([('Mean',mean),('Std',std),('Mode',median)])
+        else:
+            # arithmetic mean for all additive/thermodynamic quantities
+            denominator = 0
+            for i,std in enumerate(stds):
+                if std != 0.0: denominator = denominator + (1 / std ** 2)
+                else: denominator = denominator + (1 / numpy.log(2) ** 2)
+
+            std = numpy.sqrt(1/denominator)
+            numerator   = 0
+            denominator = 0
+            for i,mean in enumerate(means):
+                numerator   = numerator + mean / stds[i] ** 2
+                denominator = denominator + 1 / stds[i] ** 2
+
+            mean = numerator / denominator
+            if not quantity in self.thermodynamics:
+                median = numpy.exp(self.normal_to_log([mean], [std], False)[0])[0]
+            else: median = mean
+            value_dict = dict([('Mean', mean), ('Std', std), ('Mode', median)])
 
         return value_dict
 
@@ -844,8 +832,10 @@ class ParameterBalancing:
 
         new_rows = self.sbtab_new.value_rows
         self.new_rows = self.sort_list(new_rows)
-        
+
+        # get matrix information from hardcoded sheet
         self.sheet            = self.get_sheet()
+
         self.temperature      = float(self.parameter_dict['temperature'])
         self.pH               = float(self.parameter_dict['ph'])
 
@@ -1235,14 +1225,7 @@ class ParameterBalancing:
         #second, we check which bottom rows we have to build up
         for pseudo_quantity in self.pseudo_list:
             if self.parameter_dict[pseudo_quantity]:
-                #check, which submatrices are needed (are some priors excluded?)
-                all_submatrices    = self.sheet[pseudo_quantity]
-                needed_submatrices = []
-                for i,prior_quantity in enumerate(self.prior_list):
-                    if self.parameter_dict[prior_quantity]:
-                        needed_submatrices.append((prior_quantity,all_submatrices[i]))
-                #check, how many rows the quantity requires and build them via build_bottom_row
-                rows = self.build_bottom_row(pseudo_quantity,needed_submatrices)
+                rows = self.build_bottom_row(pseudo_quantity)
                 for row in rows:
                     D_matrix.append(row)
 
@@ -1271,17 +1254,32 @@ class ParameterBalancing:
                 
         self.matrix_row_counter = len(self.id_order)
         return unit_rows
- 
-    def build_bottom_row(self,pseudo_quantity,submatrices):
+
+    def create_row_specifics(self, row_specifics_str):
+        '''
+        create a computable list of row specifics from the given string
+        inherited from the prior file
+        '''
+        # print(row_specifics_str)
+        variable2value = {'RT':'2.4790','Nt':'A'}        
+    
+    def build_bottom_row(self,pseudo_quantity):
         '''
         builds one of the bottom rows of the dependence matrix D individually.
         of course, this function is not short. but the build up of the specific
         rows of D is extremely complex and shall be able to be generic.
         '''
-        use_list            = self.quantity2list[pseudo_quantity]
-        sheet               = self.sheet[pseudo_quantity]
+        #######################
+        # building matrix info dynamically
+        # let's try this later
+        row_specifics_str = self.matrix_info[pseudo_quantity]
+        row_specifics = self.create_row_specifics(row_specifics_str)
+        #######################
+        
+        use_list = self.quantity2list[pseudo_quantity]       
+        sheet = self.sheet[pseudo_quantity]
         self.remember_links = {}        #remember which parameter belongs to which row (important for generating D_x)
-        rows                = []
+        rows = []
 
         row_index = 0
         for i,element in enumerate(use_list):

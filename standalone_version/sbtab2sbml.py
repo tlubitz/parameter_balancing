@@ -6,8 +6,12 @@ Python script that converts SBtab file/s to SBML.
 """
 #!/usr/bin/env python
 import re, libsbml
-from . import SBtab
-from . import tablibIO
+try:
+    from . import SBtab
+    from . import tablibIO
+except:
+    import SBtab
+    import tablibIO
 import string
 import random
 import sys
