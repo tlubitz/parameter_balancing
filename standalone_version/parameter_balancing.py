@@ -3,6 +3,7 @@ import libsbml
 import os
 import re
 import sys
+import argparse
 try:
     from . import balancer
     from . import kineticizer
@@ -15,137 +16,155 @@ except:
     import SBtab
 
 
-def parameter_balancing_wrapper(model_name, first=None,
-                                second=None, third=None):
+def parameter_balancing_wrapper(parser_args):
     '''
     wrapper for the parameter balancing via the command line.
     receives the name of the SBML model and optional file names
     of SBtabs that need to be determined
     '''
+    model_name = args.sbml
+    parameter_dict = {}
     log_file = 'Parameter balancing log file of model %s\n\n' % (model_name)
+    
+    ###########################
     # 1: open and prepare the files; then check for some rudimentary validity:
     # 1.1: SBML model
     reader = libsbml.SBMLReader()
     try: sbml_file = reader.readSBML(model_name)
-    except: print('The SBML file %s could not be found.' % (sbml_name))
+    except:
+        print('The SBML file %s could not be found.' % (model_name))
+        sys.exit()
     try: sbml_model = sbml_file.getModel()
     except:
-        print('The SBML file %s is corrupt. I quit.' % (sbml_name))
+        print('The SBML file %s is corrupt. I quit.' % (model_name))
         sys.exit()
     valid_extension = misc.validate_file_extension(model_name, 'sbml')
     if not valid_extension:
         print('''The SBML file %s has not the correct
-                 xml extension. I quit.''' % (model_name))
+        xml extension. I quit.''' % (model_name))
         sys.exit()
 
     pb = balancer.ParameterBalancing(sbml_model)
 
-    # 1.2: If more arguments than the SBML file name are given, determine
-    # what SBtab files we have here
-    def assign_sbtab(sb, table_type, s):
-        '''
-        assigns the sbtab to the correct table type
-        '''
-        global sbtab_data
-        global sbtab_name
-        global prior
-        global config
-        if table_type == 'Quantity':
-            sbtab_data = sb
-            sbtab_name = s
-        elif table_type == 'QuantityInfo': prior = sb
-        elif table_type == 'PbConfig': config = sb
-        else: print('''The provided SBtab file %s could not be assigned
-                       properly''' % (table_type))
-
-    global sbtab_data
-    global sbtab_name
-    global prior
-    global config
-    sbtab_data = False
-    sbtab_name = False
-    prior = False
-    config = False
-    sbtabs = [first, second, third]
-
-    for s in sbtabs:
-        if s is not None:
-            try:
-                valid_extension = misc.validate_file_extension(s, 'sbtab')
-                if not valid_extension:
-                    print('''The SBtab file %s has not the correct tsv
-                             extension.''' % (first))
-                undetermined = open(s, 'r')
-                sb = undetermined.read()
-                table_type = misc.table_type(sb)
-                assign_sbtab(sb, table_type, s)
-            except:
-                print('''The file %s could not be read and can thus not be
-                         integrated.''' % (first))
-
-    if sbtab_name is False: sbtab_name = 'output.csv'
-
-    # PARAMETER FILE
-    if sbtab_data:
-        try: sbtab_delimiter = misc.check_delimiter(sb)
+    ###########################
+    # 1.2: open and prepare the optional SBtab data file
+    if args.sbtab_data:
+        valid_extension = misc.validate_file_extension(args.sbtab_data, 'sbtab')
+        if not valid_extension:
+            print('''The SBtab data file %s has not the correct file
+            extension.''' % (args.sbtab_data))
+        try:
+            f = open(args.sbtab_data,'r')
+            f_content = f.read()
+        except:
+            print('''The SBtab data file %s cannot be found or read.''' % args.sbtab_data)
+        try: sbtab_delimiter = misc.check_delimiter(f_content)
         except: sbtab_delimiter = '\t'
-        sbtab_data = SBtab.SBtabTable(sbtab_data, sbtab_name)
-        no_sbtab = False
-    else: no_sbtab = True
+        sbtab_data = SBtab.SBtabTable(f_content, args.sbtab_data)
+        # validate file and content?
 
-    # PRIOR FILE
-    if prior:
-        try: prior_delimiter = misc.check_delimiter(prior)
-        except: prior_delimiter = '\t'
-        valid_prior = misc.valid_prior(prior, prior_delimiter)
+    ###########################        
+    # 1.3: open and prepare an optional SBtab prior file;
+    #      if this is not provided, open the default prior file
+    if args.sbtab_prior:
+        valid_extension = misc.validate_file_extension(args.sbtab_prior, 'sbtab')
+        if not valid_extension:
+            print('''The SBtab prior file %s has not the correct file
+            extension.''' % (args.sbtab_prior))
+        try:
+            f = open(args.sbtab_prior,'r')
+            f_content = f.read()
+        except:
+            print('''The SBtab prior file %s cannot be found or read.''' % args.sbtab_prior)
+
+        try: sbtab_prior_d = misc.check_delimiter(f_content)
+        except: sbtab_prior_d = '\t'
+
+        # sbtab_prior = SBtab.SBtabTable(prior, args.sbtab_prior)
+        # validate file and content?
+        
+        valid_prior = misc.valid_prior(f_content, sbtab_prior_d)
         if valid_prior != []:
             for element in valid_prior:
                 log_file += str(element) + '\n'
+        prior = f_content
+        (pseudos, pmin, pmax) = misc.extract_pseudos(prior, sbtab_prior_d)
     else:
         p = os.path.dirname(os.path.abspath(__file__)) + '/files/default_'\
             'files/pb_prior.tsv'
-        try: prior_file = open(p, 'r')
+        try:
+            prior_file = open(p, 'r')
+            prior = prior_file.read()
         except:
             print('''The prior file (/files/default_files/pb_prior.tsv) coul
-                     d not be found. I quit.''')
+            d not be found. I quit.''')
             sys.exit()
-        prior = prior_file.read()
-        prior_delimiter = '\t'
-    (pseudos, pmin, pmax) = misc.extract_pseudos(prior,
-                                                 prior_delimiter)
 
-    # CONFIG FILE
-    if config:
-        config_delimiter = misc.check_delimiter(config)
-        (parameter_dict, log) = misc.readout_config(config, config_delimiter)
+        try: sbtab_prior_d = misc.check_delimiter(prior)
+        except: sbtab_prior_d = '\t'
+
+        # sbtab_prior = SBtab.SBtabTable(prior, 'pb_prior.tsv')
+        (pseudos, pmin, pmax) = misc.extract_pseudos(prior, sbtab_prior_d)
+
+    ###########################
+    # 1.4: open and prepare an optional SBtab options file;
+    #      if this is not provided, open the default options file
+    if args.sbtab_options:
+        valid_extension = misc.validate_file_extension(args.sbtab_options, 'sbtab')
+        if not valid_extension:
+            print('''The SBtab options file %s has not the correct file
+            extension.''' % (args.sbtab_options))
+        try:
+            f = open(args.sbtab_options,'r')
+            f_content = f.read()
+        except:
+            print('''The SBtab options file %s cannot be found or read.''' % args.sbtab_options)
+
+        try: sbtab_options_d = misc.check_delimiter(f_content)
+        except: sbtab_options_d = '\t'
+
+        # sbtab_options = SBtab.SBtabTable(f_content, args.sbtab_options)
+        # validate file and content?
+        
+        (parameter_dict, log) = misc.readout_config(f_content, sbtab_options_d)
         if log != []:
             for element in log:
                 log_file += str(element) + '\n'
     else:
+        o = os.path.dirname(os.path.abspath(__file__)) + '/files/default_'\
+            'files/pb_options.tsv'
         try:
-            c = os.path.dirname(os.path.abspath(__file__)) + '/files/default_'\
-                'files/pb_options.tsv'
-            cf = open(c, 'r')
-            config = cf.read()
-            config_delimiter = '\t'
-            (parameter_dict, log) = misc.readout_config(config, config_delimiter)
+            options_file = open(o, 'r')
+            f_content = options_file.read()
         except:
-            print('''The config file (/files/default_files/pb_config.tsv) coul
-                     d not be found and not config file was provided by user;
-                     the values are set to default.''')
-            parameter_dict = {}
+            print('''The options file (/files/default_files/pb_options.tsv) coul
+            d not be found. I quit.''')
+            sys.exit()
+
+        try: sbtab_options_d = misc.check_delimiter(f_content)
+        except: sbtab_options_d = '\t'
+
+        # sbtab_options = SBtab.SBtabTable(f_content, args.sbtab_options)
+        # validate file and content?
+        
+        (parameter_dict, log) = misc.readout_config(f_content, sbtab_options_d)
+        if log != []:
+            for element in log:
+                log_file += str(element) + '\n'           
 
     # Make empty SBtab if required
-
-    if no_sbtab:
-        sbtab = pb.make_empty_sbtab(pmin, pmax, parameter_dict)
-    else:
-        sbtab = pb.make_sbtab(sbtab_data, sbtab_name, 'All organisms', 43, pmin, pmax, parameter_dict)
+    if args.sbtab_data:
+        sbtab = pb.make_sbtab(sbtab_data, args.sbtab_data, 'All organisms', 43, pmin, pmax, parameter_dict)
         sbtabid2sbmlid = misc.id_checker(sbtab.return_table_string(), sbml_model)
         if sbtabid2sbmlid != []:
             for element in sbtabid2sbmlid:
                 log_file.append(element)
+    else:
+        sbtab = pb.make_empty_sbtab(pmin, pmax, parameter_dict)
 
+    # end of file read in and processing;
+    # now verify that all required keys are given for the parameter_dict;
+    # if not, add them
     if 'temperature' not in parameter_dict.keys():
         parameter_dict['temperature'] = 300
     if 'ph' not in parameter_dict.keys(): parameter_dict['ph'] = 7
@@ -246,30 +265,13 @@ def parameter_balancing_wrapper(model_name, first=None,
 
 if __name__ == '__main__':
 
-    try: model_name = sys.argv[1]
-    except:
-        print('''\nPlease provide at least an SBML model as argument for the
-                 script, i.e. \n >python parameter_balancing.py
-                 your_sbml_file.xml \n''')
-        sys.exit()
+    parser = argparse.ArgumentParser()
 
-    first = False
-    second = False
-    third = False
+    parser.add_argument('sbml', help='Please enter the path to an SBML file.')
+    parser.add_argument('--sbtab_data', help='Please enter the path to an SBtab data file.')
+    parser.add_argument('--sbtab_prior', help='Please enter the path to an SBtab prior file.')
+    parser.add_argument('--sbtab_options', help='Please enter the path to an SBtab options file.')
+   
+    args = parser.parse_args()
 
-    try:
-        first = sys.argv[2]
-        try:
-            second = sys.argv[3]
-            try:
-                third = sys.argv[4]
-                parameter_balancing_wrapper(model_name, first, second, third)
-            except:
-                if not third:
-                    parameter_balancing_wrapper(model_name, first, second)
-        except:
-            if not second:
-                parameter_balancing_wrapper(model_name, first)
-    except:
-        if not first:
-            parameter_balancing_wrapper(model_name)
+    parameter_balancing_wrapper(args)

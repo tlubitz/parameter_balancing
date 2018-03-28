@@ -50,20 +50,20 @@ class SBtabTable():
         self.filename = filename
         self.delimiter = misc.check_delimiter(table_string)
         table_list = self.cut_table_string(table_string)
-
+        
         # check if ascii stuff is violated
         try: (self.table, self.str_tab) = self.check_ascii(table_list)
         except: raise SBtabError('''This is not a valid SBtab file. Try to
         check your file with the SBtab validator or read the
         SBtab specification.''')
-
+        
         # Delete tablib header to avoid complications
         if self.table.headers: self.table.headers = None
 
         # Create all necessary variables
+        self.tables_without_name = []
         self.initialize_table()
         self.sbtab_dataset = []
-        self.tables_without_name = []
 
     def cut_table_string(self, table_string):
         '''
@@ -98,7 +98,7 @@ class SBtabTable():
          self.table_name,
          self.table_document,
          self.table_version) = self.get_table_information()
-
+        
         # Read the columns of the table
         (self.columns, self.columns_dict) = self.get_columns()
 

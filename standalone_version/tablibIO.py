@@ -1,4 +1,5 @@
 #!/usr/bin/python
+
 import mimetypes
 import sys
 import tablib
@@ -10,6 +11,8 @@ try: from . import misc
 except: import misc
 
 
+
+
 def sheets(self):  # Added to excess sheets of Databook
     return self._datasets
 try:
@@ -17,21 +20,31 @@ try:
 except:
     tablib.Databook.sheets = sheets
 
-
-def importSetNew(sbtabfile, filename, separator=None):
+def importSetNew(sbtabfile,filename,separator=None):
     mimetypes.init()
     file_mimetype = mimetypes.guess_type(filename)[0]
-
+    
     if separator:
-        return haveTSV(sbtabfile, separator)
-    elif file_mimetype == 'application/vnd.ms-excel' \
-         or file_mimetype == 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' \
-         or file_mimetype == 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet':
-        return haveXLS(sbtabfile, True, True)
+        return haveTSV(sbtabfile,separator)
+    elif file_mimetype == 'application/vnd.ms-excel' or file_mimetype == 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' or file_mimetype == 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet':
+        return haveXLS(sbtabfile, True, True)        
     else:
         separator = misc.check_delimiter(sbtabfile)
-        return haveTSV(sbtabfile, separator)
+        return haveTSV(sbtabfile, separator)            
 
+    '''
+    if file_mimetype == 'text/csv':
+        return haveTSV(sbtabfile,'c')
+    elif file_mimetype == 'text/tab-separated-values':
+        return haveTSV(sbtabfile, 't')
+    elif file_mimetype == 'text/tsv':
+        return haveTSV(sbtabfile, 't')    
+    elif file_mimetype == 'application/vnd.ms-excel' or file_mimetype == 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet':
+        return haveXLS(sbtabfile, True, True)
+    else:
+        return None
+        #raise TypeError("%s is not in a supported format" % fpath)
+    '''
 
 def importSet(fpath):
     if not os.path.isfile(fpath):
@@ -43,11 +56,10 @@ def importSet(fpath):
     elif file_mimetype == 'text/tab-separated-values':
         return loadTSV(fpath, False)
     elif file_mimetype == 'text/tsv':
-        return loadTSV(fpath, False)
+        return loadTSV(fpath, False)    
     elif file_mimetype == 'application/vnd.oasis.opendocument.spreadsheet':
-        return loadODS(fpath, False, True)  # Second flag is for set import
-    elif file_mimetype == 'application/vnd.ms-excel' \
-         or file_mimetype == 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet':
+        return loadODS(fpath, False, True)  # Second flag is for set import only
+    elif file_mimetype == 'application/vnd.ms-excel' or file_mimetype == 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet':
         return loadXLS(fpath, False, True)
     else:
         raise TypeError("%s is not in a supported format" % fpath)
@@ -59,9 +71,8 @@ def importBook(fpath):
     mimetypes.init()
     file_mimetype = mimetypes.guess_type(fpath)[0]
     if file_mimetype == 'application/vnd.oasis.opendocument.spreadsheet':
-        return loadODS(fpath, True, False)  # Second flag is for set import
-    elif file_mimetype == 'application/vnd.ms-excel' \
-         or file_mimetype == 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet':
+        return loadODS(fpath, True, False)  # Second flag is for set import only
+    elif file_mimetype == 'application/vnd.ms-excel' or file_mimetype == 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet':
         return loadXLS(fpath, True, False)
     else:
         raise TypeError("%s is not in a supported format" % fpath)
@@ -81,13 +92,15 @@ def loadCSV(fpath, headers):
     return dset
 
 
-def haveCSV(csvfile, headers):
+def haveCSV(csvfile,headers):
     '''
     not needed anymore?
     '''
+    #csvfile = open(fpath, 'r')
     in_stream = csvfile
+    #csvfile.close()
     dset = tablib.Dataset()
-    rows = csv.reader(in_stream.splitlines(), delimiter=',', quotechar='"')
+    rows = csv.reader(in_stream.splitlines(), delimiter=',',quotechar='"')
     try:
         longest = max([len(x) for x in rows])
     except:
@@ -98,7 +111,7 @@ def haveCSV(csvfile, headers):
             continue
         if len(row) < longest:
             for i in range(longest - len(row)):
-                row.append('')
+                row.append('')  # ro
         if (i == 0) and (headers):
             dset.headers = row
         else:
@@ -106,13 +119,12 @@ def haveCSV(csvfile, headers):
 
     return dset
 
+def haveTSV(tsvfile,separator):
+    
+    in_stream = tsvfile     #.read()
 
-def haveTSV(tsvfile, separator):
-
-    in_stream = tsvfile
     dset = tablib.Dataset()
-    rows = list(csv.reader(in_stream.splitlines(), delimiter=separator,
-                           quotechar='"'))
+    rows = list(csv.reader(in_stream.splitlines(), delimiter=separator, quotechar='"'))    
 
     try:
         longest = max([len(x) for x in rows])
@@ -124,19 +136,20 @@ def haveTSV(tsvfile, separator):
             continue
         if len(row) < longest:
             for i in range(longest - len(row)):
-                row.append('')
+                row.append('')  # ro
+        #if (i == 0) and (headers):
+        #    dset.headers = row
+        #else:
         dset.append(row)
 
-        return dset
-
+    return dset 
 
 def loadTSV(fpath, headers):
     tsvfile = open(fpath, 'r')
     in_stream = tsvfile.read()
     tsvfile.close()
     dset = tablib.Dataset()
-    rows = list(csv.reader(in_stream.splitlines(), delimiter='\t',
-                           quotechar='"'))
+    rows = list(csv.reader(in_stream.splitlines(), delimiter='\t', quotechar='"'))
     try:
         longest = max([len(x) for x in rows])
     except:
@@ -147,15 +160,14 @@ def loadTSV(fpath, headers):
             continue
         if len(row) < longest:
             for i in range(longest - len(row)):
-                row.append('')
+                row.append('')  # ro
         if (i == 0) and (headers):
             dset.headers = row
         else:
             dset.append(row)
     return dset
 
-
-def haveXLS(file, headers, set_only):
+def haveXLS(file,headers,set_only):
 
     dbook = tablib.Databook()
     xl = tablib.packages.xlrd.open_workbook(file_contents=file)
@@ -173,8 +185,7 @@ def haveXLS(file, headers, set_only):
     if set_only:
         return dbook.sheets()[0]
     else:
-        return dbook
-
+        return dbook   
 
 def loadXLS(fpath, headers, set_only):
     dbook = tablib.Databook()
@@ -197,8 +208,8 @@ def loadXLS(fpath, headers, set_only):
 
 
 def loadODS(fpath, headers, set_only):
-
     class ODSReader():
+
         # loads the file
         def __init__(self, file):
             self.doc = opendocument.load(file)
@@ -224,8 +235,7 @@ def loadODS(fpath, headers, set_only):
                 cells = row.getElementsByType(tablib.packages.odf.table.TableCell)
 
                 # for each cell
-                # get longestRow to not fill empty rows with blanks,
-                # shortens runtime
+                # get longestRow to not fill empty rows with blanks, shortens runtime
                 for cell in cells:
                     # repeated value?
                     repeat = cell.getAttribute("numbercolumnsrepeated")
@@ -240,10 +250,12 @@ def loadODS(fpath, headers, set_only):
                         for n in p.childNodes:
                             if (n.nodeType == 3):
                                 textContent = textContent + unicode(n.data)
+
                     if(textContent):
                         if(textContent[0] != "#"):  # ignore comments cells
                             for rr in range(int(repeat)):  # repeated?
                                 arrCells.append(textContent)
+
                         else:
                             row_comment = row_comment + textContent + " "
                     else:
@@ -256,19 +268,22 @@ def loadODS(fpath, headers, set_only):
                 # if row contained something
                 if(len(arrCells)):
                     arrRows.append(arrCells)
+
+                # else:
+                #   print "Empty or commented row (", row_comment, ")"
+
             self.SHEETS[name] = arrRows
 
         # returns a sheet as an array (rows) of arrays (columns)
         def getSheet(self, name):
             return self.SHEETS[name]
-
     from tablib.packages.xlrd import timemachine
     dbook = tablib.Databook()
     f = open(fpath, 'rb')
-    od = ODSReader(timemachine.BYTES_IO(f.read()))  # returns dict with
-    for sheet in sorted(od.SHEETS.iterkeys()):      # sheetnames as keys
+    od = ODSReader(timemachine.BYTES_IO(f.read()))  # returns dict with sheetnames as keys
+    for sheet in sorted(od.SHEETS.iterkeys()):
         dset = tablib.Dataset()
-        datals = []  # save in regular list, ODSReader doesnt fill with blanks
+        datals = []  # save in regular list first, ODSReader doesnt fill with blanks
         dset.title = sheet
         for row in od.getSheet(sheet):
             datals.append(row)
@@ -304,9 +319,9 @@ def writeCSV(data, fpath):
             outputfile.write(sheet.csv)
             outputfile.close()
 
-
 def writeTSV(data, fpath):
     outputfile = open(fpath + '.tsv', 'wb')
+
     try:
         outputfile.write(data.tsv)
         outputfile.close()
@@ -316,7 +331,6 @@ def writeTSV(data, fpath):
             outputfile = open(fpath + '_' + sheet.title + '.tsv', 'w')
             outputfile.write(sheet.tsv)
             outputfile.close()
-
 
 def writeXLS(data, fpath):
     outputfile = open(fpath + '.xls', 'wb')
@@ -335,7 +349,7 @@ def writeODS(data, fpath):
     outputfile.write(data.ods)
     outputfile.close()
 
-    '''example
+'''example
     import tablib
     from tablibIO import *
     dataset = importSet('test.csv') # or TSV, ODS, XLS, XLSX
@@ -344,7 +358,7 @@ def writeODS(data, fpath):
     dataset.csv  # a csv representation of the table
     writeCSV(dataset, 'myoutput')  # writes your table to 'myoutput.cvs'
     writeXLS(dataset, 'myoutput')  # writes your table to 'myoutput.xls'
-    '''
+'''
 
 if __name__ == '__main__':
     if len(sys.argv) < 2:

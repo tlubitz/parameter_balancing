@@ -588,9 +588,14 @@ class ParameterBalancing:
                     else:
                         new_row[5] = str(row[self.sbtab.columns_dict['!Mean']])
                         new_row[6] = str(row[self.sbtab.columns_dict['!Std']])
+                        '''
                         new_row[3] = str(round(numpy.exp(self.normal_to_log([float(new_row[5])],
                                                                             [float(new_row[6])],
                                                                             [new_row[0]])[0])[0],4))
+                        '''
+                        new_row[3] = str(round(self.med10_std_to_log([float(new_row[5])],[float(new_row[6])],[new_row[0]])[0][0],4))
+
+                        #print(new_row[3])
                     if quantity in self.thermodynamics: new_row[3] = new_row[5]
                     new_row[4] = self.quantity_type2unit[row[self.sbtab.columns_dict['!QuantityType']]]
                     # optional columns (columns 9 and more)
@@ -641,9 +646,11 @@ class ParameterBalancing:
                 else: denominator = denominator + (1/numpy.log(2)**2)
             mean   = scipy.stats.gmean(means)
             std    = numpy.exp(numpy.sqrt(1/denominator))
-            if not quantity in self.thermodynamics: median = numpy.exp(self.normal_to_log([mean],[std],False)[0])[0]
+            if not quantity in self.thermodynamics:
+                median = numpy.exp(self.med10_std_to_log([mean],[std],False)[0])[0]
             else: median = mean
             value_dict = dict([('Mean',mean),('Std',std),('Mode',median)])
+            #print(value_dict)
         else:
             # arithmetic mean for all additive/thermodynamic quantities
             denominator = 0
@@ -660,7 +667,7 @@ class ParameterBalancing:
 
             mean = numerator / denominator
             if not quantity in self.thermodynamics:
-                median = numpy.exp(self.normal_to_log([mean], [std], False)[0])[0]
+                median = numpy.exp(self.med10_std_to_log([mean], [std], False)[0])[0]
             else: median = mean
             value_dict = dict([('Mean', mean), ('Std', std), ('Mode', median)])
 
@@ -1524,7 +1531,7 @@ class ParameterBalancing:
 
         try: Q_star_trans = self.Q_star.transpose()
         except: Q_star_trans = 0
-                
+        
         # matrix inverse
         try: self.C_prior_inv = numpy.linalg.inv(self.C_prior)
         except:
