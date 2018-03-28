@@ -7,7 +7,6 @@ Python script that validates SBtab files
 
 See specification for further information.
 """
-
 try:
     from . import SBtab
     from . import tablibIO
@@ -19,6 +18,7 @@ except:
 import re
 import collections
 import sys
+import os
 
 
 class SBtabError(Exception):
@@ -37,44 +37,29 @@ class ValidateTable:
     Validator (version 0.9 06/10/2015).
     Checks SBtab file and SBtab object.
     '''
-    def __init__(self, table, sbtab_name, def_table=None, def_name=None):
+    def __init__(self, sbtab, sbtab_name, def_table=None):
         '''
         Initialises validator and starts check for file and table format.
 
         Parameters
         ----------
-        table: str
-            SBtab file as a string.
+        table: SBtab object
+            SBtab data file as SBtab object
         sbtab_name: str
-            File path of the SBtab file.
-        def_table: str
-            SBtab definition table as string representation.
-        def_name: str
-            SBtab definition table name.
+            File path of the SBtab data file
+        def_table: SBtab object
+            SBtab definition table as SBtab object
         '''
-        delimiter = misc.check_delimiter(table)
-        sbtab_tablib = tablibIO.importSetNew(table, sbtab_name, delimiter)
+        # initialize warning string
+        self.warnings = []
+        
+        # define self variables
+        self.sbtab = sbtab
+        self.filename = sbtab_name
 
-        if not def_name:
-            def_name = 'definitions.tsv'
-        if not def_table:
-            try:
-                default_def = open(def_name, 'r')
-                def_table = default_def.read()
-                default_def.close()
-            except:
-                print('''Definition file could not be loaded, so the validation
-                       could not be started. Please provide definition file
-                       as argument or make it is located in the same director
-                       y as this script.''')
-                sys.exit()
-
-        # import definitions from definition table
-        definition_table = tablibIO.importSetNew(def_table, def_name,
-                                                 separator='\t')
-        definition_sbtab = SBtab.SBtabTable(definition_table, def_name)
-        self.definitions = definition_sbtab.sbtab_list
-
+        # read definition table
+        self.read_definition(def_table)
+       
         # create set of valid table types
         self.allowed_table_types = list(set([row[2] for row in self.definitions[2:][0]]))
 
@@ -83,67 +68,67 @@ class ValidateTable:
         for table_type in self.allowed_table_types:
             self.allowed_columns[table_type] = [row[0] for row in self.definitions[2:][0] if row[2] == table_type]
 
-        # initialize warning string
-        self.warnings = []
-        # define self variables
-        self.table = sbtab_tablib
-        self.filename = sbtab_name
-
         # check file format and header row
-        self.check_table_format()
-
-        # try creating SBtab instance
-        self.sbtab = SBtab.SBtabTable(self.table, self.filename)
+        self.check_general_format()
 
         self.column2format = {}
         defs = self.definitions[2]
+        
         for row in defs:
-            if row[3] == self.sbtab.table_type:
-                self.column2format[row[1]] = row[4]
+            if row[2] == self.sbtab.table_type:
+                self.column2format[row[0]] = row[3]
 
         # remove empty column headers
-        f_columns = []
+        columns = []
         for element in self.sbtab.columns:
             if element == '': pass
-            else: f_columns.append(element)
-        self.sbtab.columns = f_columns
-
-        # determine headers
-        self.determine_headers()
+            else: columns.append(element)
+        self.sbtab.columns = columns
 
         # check SBtab object for validity
-        self.check_table()
+        self.check_table_content()
 
-    def check_table_format(self):
+    def read_definition(self, def_table):
+        '''
+        read the required definition file; either it is provided by the user
+        or the default definition file is read in; otherwise program exit
+        '''
+        # read in provided definition table or open default
+        if def_table:
+            try: self.definitions = def_table.sbtab_list
+            except:
+                print('''Definition file could not be loaded, so the validation
+                could not be started. Please provide definition file
+                as argument''')
+                sys.exit() 
+        else:
+            try:
+                d = os.path.dirname(os.path.abspath(__file__)) + '/files/default_'\
+                    'files/definitions.tsv'
+                def_file = open(d, 'r')
+                def_table = def_file.read()
+                sbtab_def = SBtab.SBtabTable(def_table, d)
+                self.definitions = sbtab_def.sbtab_list
+            except:
+                print('''Definition file could not be loaded, so the validation
+                could not be started. Please provide definition file
+                as argument''')
+                sys.exit()
+            
+    def check_general_format(self):
         '''
         Validates format of SBtab file, checks file format and header row.
         '''
-        # Check tablib heade
+        header = self.sbtab.header_row
 
-        if self.table.headers:
-            self.warnings.append('''Warning: Tablib header is set, will be remo
-                                  ved. This feature is not supported.''')
-            self.table.headers = None
-        # save table rows in variable
-        self.rows_file = self.table.dict
+        # Construct consistent quotes to make the header readable
+        quotes = ['"', '\xe2\x80\x9d', '\xe2\x80\x98', '\xe2\x80\x99',
+                  '\xe2\x80\x9b', '\xe2\x80\x9c', '\xe2\x80\x9f',
+                  '\xe2\x80\xb2', '\xe2\x80\xb3', '\xe2\x80\xb4',
+                  '\xe2\x80\xb5', '\xe2\x80\xb6', '\xe2\x80\xb7']
 
-        # save header row
-        header_row = self.rows_file[0]
-        while '' in header_row:
-            header_row.remove('')
-        header = ""
-        for x in header_row[:-1]:
-            header += x + ' '
-        header += header_row[-1]
-
-        # Replace double quotes by single quotes
-        stupid_quotes = ['"', '\xe2\x80\x9d', '\xe2\x80\x98', '\xe2\x80\x99',
-                         '\xe2\x80\x9b', '\xe2\x80\x9c', '\xe2\x80\x9f',
-                         '\xe2\x80\xb2', '\xe2\x80\xb3', '\xe2\x80\xb4',
-                         '\xe2\x80\xb5', '\xe2\x80\xb6', '\xe2\x80\xb7']
-
-        for squote in stupid_quotes:
-            try: header = header.replace(squote, "'")
+        for quote in quotes:
+            try: header = header.replace(quote, "'")
             except: pass
 
         # check for valid header row
@@ -159,73 +144,69 @@ class ValidateTable:
             self.warnings.append('''Warning: The (optional) attribute TableName
                                  is not defined in the SBtab table.''')
 
-        # check for possible table content and main columns
-        columns_row = self.rows_file[1]
-        columns = ""
-        for x in columns_row[:-1]:
-            columns += x + ' '
-        columns += columns_row[-1]
-        # check length of table
-        if len(self.rows_file) < 3:
-            self.warnings.append('''Warning: The table contains no information:
-                                  %s''' % (header))
-        else:
-            self.main_column_count = None
-            # checks for existing main column
-            if not columns.startswith('!'):
-                self.warnings.append('''Warning: The main column row of the tab
-                                     le does not start with "!":
-                                     %s''' % (columns))
+        # check columns for preceding exclamation mark
+        for column in self.sbtab.columns:
+            if not column.startswith('!') and column != '':
+                self.warnings.append('''Warning: Column %s does not start with
+                an exclamation mark. It will not be processed.''' % (column))
 
-    def determine_headers(self):
-        '''
-        determines the headers and saves their position
-        '''
-        self.id_column = None
-        for i, column in enumerate(self.sbtab.columns):
-            if column == '!ID':
-                self.id_column = i
+        # check if there are value rows
+        if len(self.sbtab.value_rows) < 1:
+            self.warnings.append('''Warning: Column %s does not start with
+            an exclamation mark. It will not be processed.''' % (column))
 
-    def check_table(self):
+        # check if length of value rows correspond to amount of columns
+        for vr in self.sbtab.value_rows:
+            if len(vr) != len(self.sbtab.columns):
+                self.warnings.append('''Warning: The length of row %s does not
+                correspond to the amount of columns,
+                which is %s.''' % (vr, len(self.sbtab.columns)))
+
+
+    def check_table_content(self):
         '''
         Validates the mandatory format of the SBtab in accordance to the
         TableType attribute.
         '''
-        column_check = True
-        # general stuff
         # 1st: check validity of table_type and save table type for later tests
         if self.sbtab.table_type not in self.allowed_table_types:
-            self.warnings.append('''Warning: The SBtab file has an invalid Tabl
-                                 eType in its header:
-                                 %s''' % (self.sbtab.table_type))
-            column_check = False
+            self.warnings.append('Warning: The SBtab file has an invalid Tabl'\
+                                 'eType in its header: %s. Thus, the validity'\
+                                 ' of its columns cannot'\
+                                 ' be checked' % (self.sbtab.table_type))
+            return
 
-        unique = []
         # 2nd: very important: check if the identifiers start with a digit;
         # this is not allowed in SBML!
+        # also check if the identifiers are unique throughout the table
+        unique = []
         for row in self.sbtab.value_rows:
-            if not self.id_column: break
-            identifier = row[self.id_column]
+            try: identifier = row[self.sbtab.columns_dict['!ID']]
+            except: break
+            
             if identifier not in unique: unique.append(identifier)
             else:
                 warning = 'Warning: There is an identifier that is not unique'\
-                          '. Please change that: %s' % (str(identifier))
+                          '. Please change that: %s' % identifier
                 self.warnings.append(warning)
+
             try:
                 int(identifier[0])
-                self.warnings.append('''Warning: There is an identifier that st
-                                     arts with a digit; this is not permitte
-                                     d for the SBML conversion:
-                                     %s''' % (identifier))
+                self.warnings.append('Warning: There is an identifier that st'\
+                                     'arts with a digit; this is not permitte'\
+                                     'd for the SBML conversion:'\
+                                     '%s' % (identifier))
             except: pass
 
-        # Check if there is at least a SumFormula or an identifier to
-        # characterise a Reaction
+        # if the SBtab is TableType="Reaction", check if there is at least a
+        # SumFormula or an identifier column to characterise the reaction
         if self.sbtab.table_type == 'Reaction':
-            if '!ReactionFormula' not in self.sbtab.columns_dict.keys():
-                for it in self.sbtab.columns_dict.keys():
-                    ident = False
-                    if it.startswith('!Identifier'): ident = True
+            if '!ReactionFormula' not in self.sbtab.columns_dict:
+                ident = False
+                for it in self.sbtab.columns_dict:
+                    if it.startswith('!Identifier'):
+                        ident = True
+                        break
                 if not ident:
                     warning = 'Error: A Reaction SBtab needs at least a colum'\
                               'n !ReactionFormula or an !Identifier column to'\
@@ -233,32 +214,30 @@ class ValidateTable:
                     self.warnings.append(warning)
 
         if self.sbtab.table_type == 'Quantity':
-            if '!Unit' not in self.sbtab.columns_dict.keys():
+            if '!Unit' not in self.sbtab.columns_dict:
                 warning = 'Error: A Quantity SBtab requires the column'\
                           ' "'"Unit"'". Please add this column to the'\
                           ' SBtab file.'
                 self.warnings.append(warning)
 
         # 3rd: check the validity of the given column names
-        if column_check:
-            for column in self.sbtab.columns:
-                if column.replace('!', '') not in self.allowed_columns[self.sbtab.table_type] \
-                   and ('Identifiers:') not in column \
-                   and ('ID:urn.') not in column:
-                    self.warnings.append('''Warning: The SBtab file has an unkn
-                                         own column: %s.\nPlease use only su
-                                         pported column types!''' % (column))
-        else:
-            self.warnings.append('''Error: The SBtab TableType is "unknown", th
-                                  erefore the main columns cannot be checked!''')
+        for column in self.sbtab.columns:
+            if column.replace('!', '') not in self.allowed_columns[self.sbtab.table_type] \
+               and ('Identifiers:') not in column \
+               and ('ID:urn.') not in column:
+                self.warnings.append('Warning: The SBtab file has an unknown '\
+                                     'column: %s.\nPlease use only supported '\
+                                     'column types!' % (column))
 
         # 4th: check the length of the different rows
         for row in self.sbtab.value_rows:
             # check the rows for entries starting with + or -
-            if str(row[0]).startswith('+') or str(row[0]).startswith('-'):
-                self.warnings.append('''Warning: An identifier for a data row m
-                                     ust not begin with "+" or "-": \n
-                                     %s''' % (row))
+            if '!ID' in self.sbtab.columns_dict:
+                if str(row[self.sbtab.columns_dict['!ID']]).startswith('+') \
+                   or str(row[self.sbtab.columns_dict['!ID']]).startswith('-'):
+                    self.warnings.append('Warning: An identifier for a data r'\
+                                         'ow must not begin with "+" or "-": '\
+                                         '\n%s''' % (row))
             if '!ReactionFormula' in self.sbtab.columns_dict:
                 if '<=>' not in row[self.sbtab.columns_dict['!ReactionFormula']]:
                     warning = 'There is a sum formula that does not adhere to'\
@@ -266,8 +245,8 @@ class ValidateTable:
                               'cation: %s' % (str(row[self.sbtab.columns_dict['!ReactionFormula']]))
                     self.warnings.append(warning)
 
-            for i, it in enumerate(row):
-                if it == '': continue
+            for i, entry in enumerate(row):
+                if entry == '': continue
                 if self.sbtab.columns[i][1:].startswith('Identifier'):
                     req_format = 'string'
                 else:
@@ -275,27 +254,27 @@ class ValidateTable:
                         req_format = self.column2format[self.sbtab.columns[i][1:]]
                     except: continue
                 if req_format == 'Boolean':
-                    if it != 'True' and it != 'False' and it != 'TRUE' \
-                       and it != 'FALSE' and it != '0' and it != '1':
+                    if entry != 'True' and entry != 'False' and entry != 'TRUE' \
+                       and entry != 'FALSE' and entry != '0' and entry != '1':
                         warning = 'Warning: The column %s holds a value that '\
                                   'does not conform with the assigned column '\
                                   'format %s: %s' % (self.sbtab.columns[i][1:],
-                                                     req_format, it)
+                                                     req_format, entry)
                         self.warnings.append(warning)
                 elif req_format == 'float':
-                    try: float(it)
+                    try: float(entry)
                     except:
                         warning = 'Warning: The column %s holds a value that '\
                                   'does not conform with the assigned column '\
                                   'format %s: %s' % (self.sbtab.columns[i][1:],
-                                                     req_format, it)
+                                                     req_format, entry)
                         self.warnings.append(warning)
                 elif req_format == '{+,-,0}':
-                    if it != '+' and it != '-' and it != '0':
+                    if entry != '+' and entry != '-' and entry != '0':
                         warning = 'Warning: The column %s holds a value that '\
                                   'does not conform with the assigned column '\
                                   'format %s: %s' % (self.sbtab.columns[i][1:],
-                                                     req_format, it)
+                                                     req_format, entry)
                         self.warnings.append(warning)
 
         # 5th: are there duplicate columns?
@@ -305,84 +284,7 @@ class ValidateTable:
                                      n this SBtab file. Please remove it:
                                      %s''' % (str(column[0])))
 
-    def return_output(self):
-        '''
-        Returns the warnings from the validation process.
-        '''
-        return self.warnings
-
-
-class ValidateFile:
-    '''
-    Validates file and checks for valid format.
-    '''
-    def __init__(self, sbtab_file, filename):
-        '''
-        Initialisation of file validation.
-
-        Parameters
-        ----------
-        sbtab_file: str
-           SBtab file as string representation.
-        filename: str
-           SBtab file name.
-        '''
-        # initialize warning string
-        self.warnings = []
-        self.sbtab_file = sbtab_file
-        self.filename = filename
-        self.validate_extension()
-
-    def validate_extension(self):
-        '''
-        Checks the extension of the file for invalid formats.
-        '''
-        valid_extensions = ['tsv', 'csv', 'xls', 'tab']
-        if self.filename[-3:] not in valid_extensions:
-            self.warnings.append('''Error: The file extension is not valid for
-                                 an SBtab file.''')
-
-    def validate_file(self, sbtab_file):
-        '''
-        Validates file format and checks for possible problems.
-
-        Parameters
-        ----------
-        sbtab_file: str
-           SBtab file as string representation.
-        '''
-        rows = []
-        for line in sbtab_file:
-            rows.append(line)
-
-        length = len(rows[0])
-        for i, row in enumerate(rows):
-            if not row:
-                self.warnings.append('''Warning: The file contains an empty row
-                                     in line: %s''' % (str(i)))
-            if not len(row) == length:
-                self.warnings.append('''Warning: The lengths of the rows are no
-                                     t identical.\n This will be adjusted au
-                                     tomatically.''')
-            length = len(row)
-
-    def check_separator(self):
-        '''
-        Finds the separator of the file.
-        '''
-        sep = False
-
-        for row in self.sbtab_file.split('\n'):
-            if row.startswith('!!'): continue
-            if row.startswith('!'):
-                s = re.search('(.)(!)', row[1:])
-                # if there is only one column, we have to define a default
-                # separator. Let's use a tab.
-                try: sep = s.group(1)
-                except: sep = '\t'
-
-        return sep
-
+                
     def return_output(self):
         '''
         Returns the warnings from the validation process.
@@ -414,7 +316,7 @@ if __name__ == '__main__':
         def_tab = None
 
     validator_output = []
-    Validate_file_class = Validate_file(sbtab_file, file_name)
+    Validate_file_class = ValidateFile(sbtab_file, file_name)
     validator_output.append(Validate_file_class.return_output())
     Validate_table_class = ValidateTable(sbtab_file, file_name, def_tab)
     validator_output.append(Validate_table_class.return_output())

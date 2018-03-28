@@ -9,11 +9,13 @@ try:
     from . import kineticizer
     from . import misc
     from . import SBtab
+    from . import validatorSBtab
 except:
     import balancer
     import kineticizer
     import misc
     import SBtab
+    import validatorSBtab
 
 
 def parameter_balancing_wrapper(parser_args):
@@ -40,8 +42,8 @@ def parameter_balancing_wrapper(parser_args):
         sys.exit()
     valid_extension = misc.validate_file_extension(model_name, 'sbml')
     if not valid_extension:
-        print('''The SBML file %s has not the correct
-        xml extension. I quit.''' % (model_name))
+        print('The SBML file %s has not the correct xml extension'\
+              '. I quit.''' % (model_name))
         sys.exit()
 
     pb = balancer.ParameterBalancing(sbml_model)
@@ -49,62 +51,101 @@ def parameter_balancing_wrapper(parser_args):
     ###########################
     # 1.2: open and prepare the optional SBtab data file
     if args.sbtab_data:
-        valid_extension = misc.validate_file_extension(args.sbtab_data, 'sbtab')
+        valid_extension = misc.validate_file_extension(args.sbtab_data,
+                                                       'sbtab')
         if not valid_extension:
-            print('''The SBtab data file %s has not the correct file
-            extension.''' % (args.sbtab_data))
+            print('The SBtab data file %s has not the correct file '\
+                  'extension.' % (args.sbtab_data))
         try:
             f = open(args.sbtab_data,'r')
             f_content = f.read()
         except:
-            print('''The SBtab data file %s cannot be found or read.''' % args.sbtab_data)
+            print('The SBtab data file %s cannot be found or'\
+                  'read.' % args.sbtab_data)
         try: sbtab_delimiter = misc.check_delimiter(f_content)
         except: sbtab_delimiter = '\t'
         sbtab_data = SBtab.SBtabTable(f_content, args.sbtab_data)
-        # validate file and content?
-
+        sbtab_data_validate = validatorSBtab.ValidateTable(sbtab_data,
+                                                           args.sbtab_data)
+        warnings = sbtab_data_validate.return_output()
+        if warnings != []:
+            log_file += 'Log warnings for SBtab data file: '\
+                        '%s\n\n' % args.sbtab_data
+            for warning in warnings:
+                log_file += warning + '\n'
+        
     ###########################        
     # 1.3: open and prepare an optional SBtab prior file;
     #      if this is not provided, open the default prior file
     if args.sbtab_prior:
-        valid_extension = misc.validate_file_extension(args.sbtab_prior, 'sbtab')
+        # try to open and read the file
+        valid_extension = misc.validate_file_extension(args.sbtab_prior,
+                                                       'sbtab')
         if not valid_extension:
-            print('''The SBtab prior file %s has not the correct file
-            extension.''' % (args.sbtab_prior))
+            print('The SBtab prior file %s has not the correct file'\
+                  'extension.' % (args.sbtab_prior))
         try:
             f = open(args.sbtab_prior,'r')
             f_content = f.read()
         except:
-            print('''The SBtab prior file %s cannot be found or read.''' % args.sbtab_prior)
+            print('The SBtab prior file %s cannot be found or'\
+                  'read.' % args.sbtab_prior)
 
-        try: sbtab_prior_d = misc.check_delimiter(f_content)
-        except: sbtab_prior_d = '\t'
+        # initialise an SBtab object with the content and check its validity
+        sbtab_prior = SBtab.SBtabTable(f_content, args.sbtab_prior)
+        sbtab_prior_validate = validatorSBtab.ValidateTable(sbtab_prior,
+                                                            args.sbtab_prior)
 
-        # sbtab_prior = SBtab.SBtabTable(prior, args.sbtab_prior)
-        # validate file and content?
+        # register warnings
+        warnings = sbtab_prior_validate.return_output()
+        if warnings != []:
+            log_file += 'Log warnings for SBtab prior file: '\
+                        '%s\n\n' % args.sbtab_prior
+            for warning in warnings:
+                log_file += warning + '\n'
         
-        valid_prior = misc.valid_prior(f_content, sbtab_prior_d)
+        valid_prior = misc.valid_prior(sbtab_prior)
         if valid_prior != []:
+            log_file += 'Log warnings for SBtab prior file: '\
+                        '%s\n\n' % args.sbtab_prior
             for element in valid_prior:
                 log_file += str(element) + '\n'
-        prior = f_content
-        (pseudos, pmin, pmax) = misc.extract_pseudos(prior, sbtab_prior_d)
+
+        # extract crucial information from prior
+        (pseudos, pmin, pmax) = misc.extract_pseudos(sbtab_prior)
     else:
+        # open default prior file
         p = os.path.dirname(os.path.abspath(__file__)) + '/files/default_'\
             'files/pb_prior.tsv'
         try:
             prior_file = open(p, 'r')
             prior = prior_file.read()
         except:
-            print('''The prior file (/files/default_files/pb_prior.tsv) coul
-            d not be found. I quit.''')
+            print('The prior file (/files/default_files/pb_prior.tsv) coul'\
+                  'd not be found. I quit.')
             sys.exit()
 
-        try: sbtab_prior_d = misc.check_delimiter(prior)
-        except: sbtab_prior_d = '\t'
+        sbtab_prior = SBtab.SBtabTable(prior, 'pb_prior.tsv')
+        sbtab_prior_validate = validatorSBtab.ValidateTable(sbtab_prior,
+                                                            'pb_prior.tsv')
 
-        # sbtab_prior = SBtab.SBtabTable(prior, 'pb_prior.tsv')
-        (pseudos, pmin, pmax) = misc.extract_pseudos(prior, sbtab_prior_d)
+        # register warnings
+        warnings = sbtab_prior_validate.return_output()
+        if warnings != []:
+            log_file += 'Log warnings for SBtab prior file: '\
+                        '%s\n\n' % args.sbtab_prior
+            for warning in warnings:
+                log_file += warning + '\n'
+        
+        valid_prior = misc.valid_prior(sbtab_prior)
+        if valid_prior != []:
+            log_file += 'Log warnings for SBtab prior file: '\
+                        '%s\n\n' % args.sbtab_prior
+            for element in valid_prior:
+                log_file += str(element) + '\n'
+
+        # extract crucial information from prior
+        (pseudos, pmin, pmax) = misc.extract_pseudos(sbtab_prior)
 
     ###########################
     # 1.4: open and prepare an optional SBtab options file;
@@ -112,22 +153,31 @@ def parameter_balancing_wrapper(parser_args):
     if args.sbtab_options:
         valid_extension = misc.validate_file_extension(args.sbtab_options, 'sbtab')
         if not valid_extension:
-            print('''The SBtab options file %s has not the correct file
-            extension.''' % (args.sbtab_options))
+            print('The SBtab options file %s has not the correct file'\
+                  ' extension.' % (args.sbtab_options))
         try:
             f = open(args.sbtab_options,'r')
             f_content = f.read()
         except:
-            print('''The SBtab options file %s cannot be found or read.''' % args.sbtab_options)
+            print('The SBtab options file %s cannot be found or'\
+                  'read.' % args.sbtab_options)
 
-        try: sbtab_options_d = misc.check_delimiter(f_content)
-        except: sbtab_options_d = '\t'
+        sbtab_options = SBtab.SBtabTable(f_content, args.sbtab_options)
+        sbtab_options_validate = validatorSBtab.ValidateTable(sbtab_options,
+                                                              args.sbtab_options)
 
-        # sbtab_options = SBtab.SBtabTable(f_content, args.sbtab_options)
-        # validate file and content?
+        # register warnings
+        warnings = sbtab_options_validate.return_output()
+        if warnings != []:
+            log_file += 'Log warnings for SBtab options file: '\
+                        '%s\n\n' % args.sbtab_options
+            for warning in warnings:
+                log_file += warning + '\n'
         
-        (parameter_dict, log) = misc.readout_config(f_content, sbtab_options_d)
+        (parameter_dict, log) = misc.readout_config(sbtab_options)
         if log != []:
+            log_file += 'Log warnings for SBtab options file: '\
+                        '%s\n\n' % args.sbtab_options
             for element in log:
                 log_file += str(element) + '\n'
     else:
@@ -137,28 +187,41 @@ def parameter_balancing_wrapper(parser_args):
             options_file = open(o, 'r')
             f_content = options_file.read()
         except:
-            print('''The options file (/files/default_files/pb_options.tsv) coul
-            d not be found. I quit.''')
+            print('The options file (/files/default_files/pb_options.tsv) coul'\
+                  'd not be found. I quit.')
             sys.exit()
 
-        try: sbtab_options_d = misc.check_delimiter(f_content)
-        except: sbtab_options_d = '\t'
+        sbtab_options = SBtab.SBtabTable(f_content, 'pb_options.tsv')
+        sbtab_options_validate = validatorSBtab.ValidateTable(sbtab_options,
+                                                              'pb_options.tsv')
 
-        # sbtab_options = SBtab.SBtabTable(f_content, args.sbtab_options)
-        # validate file and content?
+        # register warnings
+        warnings = sbtab_options_validate.return_output()
+        if warnings != []:
+            log_file += 'Log warnings for SBtab options file: '\
+                        'pb_options.tsv\n\n'
+            for warning in warnings:
+                log_file += warning + '\n'
         
-        (parameter_dict, log) = misc.readout_config(f_content, sbtab_options_d)
+        (parameter_dict, log) = misc.readout_config(sbtab_options)
         if log != []:
+            log_file += 'Log warnings for SBtab options file: '\
+                        '%s\n\n' % args.sbtab_options
             for element in log:
-                log_file += str(element) + '\n'           
+                log_file += str(element) + '\n'
+
 
     # Make empty SBtab if required
     if args.sbtab_data:
-        sbtab = pb.make_sbtab(sbtab_data, args.sbtab_data, 'All organisms', 43, pmin, pmax, parameter_dict)
-        sbtabid2sbmlid = misc.id_checker(sbtab.return_table_string(), sbml_model)
+        sbtab = pb.make_sbtab(sbtab_data, args.sbtab_data, 'All organisms', 43,
+                              pmin, pmax, parameter_dict)
+        sbtabid2sbmlid = misc.id_checker(sbtab.return_table_string(),
+                                         sbml_model)
         if sbtabid2sbmlid != []:
+            log_file += 'Log warnings for SBtab data file: '\
+                        '%s\n\n' % args.sbtab_data
             for element in sbtabid2sbmlid:
-                log_file.append(element)
+                log_file += element + '\n'
     else:
         sbtab = pb.make_empty_sbtab(pmin, pmax, parameter_dict)
 
@@ -236,16 +299,16 @@ def parameter_balancing_wrapper(parser_args):
                                                enzyme_prefac, def_inh,
                                                def_act, True)
 
-    output_name = input('''\nEnter optional name for output files. If you do
-                           not enter a name, the files are named after the
-                           input file.\n''')
+    output_name = input('\nEnter optional name for output files. If you do '\
+                        'not enter a name, the files are named after the '\
+                        'input file.\n')
     if output_name == '':
         try: rm = re.match('.*/(.*)', str(model_name)).group(1)[:-4]
         except: rm = str(model_name)[:-4]
         output_name = rm + '_balanced'
 
-    print('''\nDone... now writing output files to current working directory.
-          \n\nGoodbye!\n\n''')
+    print('\nDone... now writing output files to current working directory.'\
+          '\n\nGoodbye!\n\n')
 
     # 5: Write SBtab and SBML model
     model_name = str(model_name)[:-4]
@@ -258,19 +321,23 @@ def parameter_balancing_wrapper(parser_args):
     sbml_model_new.write(sbml_code)
     sbml_model_new.close()
 
-    try:
-        os.remove('cpost.txt')
-        os.remove('medians.txt')
-    except: pass
+    # 6: If requested write log file
+    if args.pb_log:
+        if log_file.count('\n') == 2:
+            log_file += 'No warnings detected. \n'
+        log = open(output_name + '_log.txt', 'w')
+        log.write(log_file)
+        log.close()    
 
 if __name__ == '__main__':
 
     parser = argparse.ArgumentParser()
 
-    parser.add_argument('sbml', help='Please enter the path to an SBML file.')
-    parser.add_argument('--sbtab_data', help='Please enter the path to an SBtab data file.')
-    parser.add_argument('--sbtab_prior', help='Please enter the path to an SBtab prior file.')
-    parser.add_argument('--sbtab_options', help='Please enter the path to an SBtab options file.')
+    parser.add_argument('sbml', help='Path to an SBML file.')
+    parser.add_argument('--sbtab_data', help='Path to an SBtab data file.')
+    parser.add_argument('--sbtab_prior', help='Path to an SBtab prior file.')
+    parser.add_argument('--sbtab_options', help='Path to an SBtab options file.')
+    parser.add_argument('-l', '--pb_log', help='Flag to print a log file.', action='store_true')
    
     args = parser.parse_args()
 

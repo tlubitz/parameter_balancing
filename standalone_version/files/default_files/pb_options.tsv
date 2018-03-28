@@ -1,6 +1,6 @@
 !!SBtab TableName="Parameter balancing configuration file" TableType="PbConfig" Date="2018-03-16"
 !Option	!Value
-use_pseudo_values	True
+use_pseudo_values	False
 ph	7
 temperature	300
 overwrite_kinetics	True

@@ -63,80 +63,68 @@ def check_delimiter(sbtab_file):
     return sep
 
 
-def extract_pseudos(prior_file, delimiter):
+def valid_prior(sbtab_prior):
+    '''
+    if the given SBtab file is a prior for parameter balancing, it needs to be
+    checked thorougly for the validity of several features
+    '''
+    validity = []
+
+    # check table type
+    if sbtab_prior.table_type != 'Quantity':
+        validity.append('Error: The TableType of the prior file is not '\
+                        'correct: %s. '\
+                        'It should be Quantity' % sbtab_prior.table_type)
+
+    # check for required columns
+    required_columns = ['!QuantityType', '!Unit', '!MathematicalType',
+                        '!PriorMedian', '!PriorStd', '!PriorGeometricStd',
+                        '!DataStd', '!Dependence',
+                        '!UseAsPriorInformation', '!MatrixInfo']
+    for column in required_columns:
+        if column not in sbtab_prior.columns_dict:
+            validity.append('Error: The crucial column %s is missing in'\
+                            ' the prior file.' % column)
+
+    # check for required row entries
+    required_rows = ['standard chemical potential',
+                     'catalytic rate constant geometric mean',
+                     'concentration', 'concentration of enzyme',
+                     'Michaelis constant', 'inhibitory constant',
+                     'activation constant', 'chemical potential',
+                     'product catalytic rate constant',
+                     'substrate catalytic rate constant',
+                     'equilibrium constant', 'forward maximal velocity',
+                     'reverse maximal velocity', 'reaction affinity']
+    for row in sbtab_prior.value_rows:
+        try: required_rows.remove(row[sbtab_prior.columns_dict['!QuantityType']])
+        except: pass
+
+    for row in required_rows:
+        validity.append('Error: The prior file is missing an entry for th'\
+                        'crucial value %s.' % row)
+
+    return validity
+
+
+def extract_pseudos(sbtab_prior):
     '''
     extracts the priors and pseudos of a given SBtab prior table
     '''
-    pmin = {'standard chemical potential': None,
-            'catalytic rate constant geometric mean': None,
-            'concentration': None, 'concentration of enzyme': None,
-            'Michaelis constant': None, 'inhibitory constant': None,
-            'activation constant': None, 'chemical potential': None,
-            'product catalytic rate constant': None,
-            'substrate catalytic rate constant': None,
-            'equilibrium constant': None,
-            'forward maximal velocity': None,
-            'reverse maximal velocity': None,
-            'reaction affinity': None}
-    pmax = {'standard chemical potential': None,
-            'catalytic rate constant geometric mean': None,
-            'concentration': None, 'concentration of enzyme': None,
-            'Michaelis constant': None, 'inhibitory constant': None,
-            'activation constant': None, 'chemical potential': None,
-            'product catalytic rate constant': None,
-            'substrate catalytic rate constant': None,
-            'equilibrium constant': None, 'forward maximal velocity': None,
-            'reverse maximal velocity': None, 'reaction affinity': None}
-    pseudos = {'standard chemical potential': [None] * 3,
-               'catalytic rate constant geometric mean': [None] * 3,
-               'concentration': [None] * 3,
-               'concentration of enzyme': [None] * 3,
-               'Michaelis constant': [None] * 3,
-               'inhibitory constant': [None] * 3,
-               'activation constant': [None] * 3,
-               'chemical potential': [None] * 3,
-               'product catalytic rate constant': [None] * 3,
-               'substrate catalytic rate constant': [None] * 3,
-               'equilibrium constant': [None] * 3,
-               'forward maximal velocity': [None] * 3,
-               'reverse maximal velocity': [None] * 3,
-               'reaction affinity': [None] * 3}
-
-    split_rows = prior_file.split('\n')
-    for row in split_rows:
-        split_row = row.split(delimiter)
-        if split_row[0].startswith('!!') or split_row[0].startswith('%') \
-           or row == '': continue
-        elif split_row[0].startswith('!'):
-            for i, element in enumerate(split_row):
-                if element == '!PriorMedian': m_column = i
-                elif element == '!PriorStd': s_column = i
-                elif element == '!PriorGeometricStd': pgs_column = i
-                elif element == '!LowerBound': lb_column = i
-                elif element == '!UpperBound': ub_column = i
-                elif element == '!MathematicalType': scale_column = i
+    pmin = {}
+    pmax = {}
+    pseudos = {}
+    
+    for row in sbtab_prior.value_rows:
+        pmin[row[sbtab_prior.columns_dict['!QuantityType']]] = float(row[sbtab_prior.columns_dict['!LowerBound']])
+        pmax[row[sbtab_prior.columns_dict['!QuantityType']]] = float(row[sbtab_prior.columns_dict['!UpperBound']])
+        if row[sbtab_prior.columns_dict['!MathematicalType']] == 'Additive':
+            std = row[sbtab_prior.columns_dict['!PriorStd']]
         else:
-            if split_row[scale_column] == 'Additive':
-                std = float(split_row[s_column])
-            elif split_row[scale_column] == 'Multiplicative':
-                std = float(split_row[pgs_column])
-            else: std = None
-
-            if split_row[0] in pseudos.keys() \
-               and split_row[0] != 'Michaelis constant':
-                pseudos[split_row[0].lower()] = [float(split_row[m_column]),
-                                                 std]
-                try:
-                    pmin[split_row[0].lower()] = float(split_row[lb_column])
-                    pmax[split_row[0].lower()] = float(split_row[ub_column])
-                except: pass
-            elif split_row[0] in pseudos.keys():
-                pseudos[split_row[0]] = [float(split_row[m_column]), std]
-                try:
-                    pmin[split_row[0]] = float(split_row[lb_column])
-                    pmax[split_row[0]] = float(split_row[ub_column])
-                except: pass
-
+            std = row[sbtab_prior.columns_dict['!PriorGeometricStd']]
+        median = row[sbtab_prior.columns_dict['!PriorMedian']]
+        pseudos[row[sbtab_prior.columns_dict['!QuantityType']]] = [float(median), float(std)]
+       
     return pseudos, pmin, pmax
 
 
@@ -195,7 +183,7 @@ def id_checker(sbtab, sbml):
     return sbtabid2sbmlid
 
 
-def readout_config(config, delimiter):
+def readout_config(sbtab_options):
     '''
     reads out the content of an optional config file and returns a parameter
     dictionary with many options for the balancing process
@@ -208,108 +196,26 @@ def readout_config(config, delimiter):
                        'default_activation', 'model_name', 'boundary_values',
                        'samples']
 
-    for row in config.split('\n'):
-        splitrow = row.split(delimiter)
-        if len(splitrow) < 2: continue
-        if row.startswith('!!'): continue
-        elif row.startswith('!'):
-            for i, element in enumerate(splitrow):
-                if element == '!Option': o_id = i
-                elif element == '!Value': v_id = i
-            if o_id is None:
-                log.append('''Error: The config file lacks the obligatory
-                column "'"!Option"'".''')
-            if v_id is None:
-                log.append('''Error: The config file lacks the obligatory
-                column "'"!Value"'".''')
+
+    if '!Option' not in sbtab_options.columns_dict:
+        log.append('Error: The crucial option column is missing from the'\
+                   'options file')
+    if '!Value' not in sbtab_options.columns_dict:
+            log.append('Error: The crucial value column is missing from the'\
+                       'options file')
+
+    for row in sbtab_options.value_rows:
+        if row[sbtab_options.columns_dict['!Option']] not in allowed_options:
+            log.append('There was an irregular option in the options file:'\
+                       '%s' % row[sbtab_options.columns_dict['!Option']])
         else:
-            if splitrow[o_id] == 'ph': pass
-            elif splitrow[o_id].lower() not in allowed_options \
-                 and splitrow[o_id] != '':
-                log.append('''Warning: There is an irregular option in your
-                options file: %s''' % (splitrow[o_id]))
-                continue
-            if splitrow[v_id] == '': continue
-            voption = splitrow[o_id].lower()
-            vvalue = splitrow[v_id]
-            if vvalue == 'True': vvalue = True
-            elif vvalue == 'False': vvalue = False
-            parameter_dict[voption] = vvalue
+            if row[sbtab_options.columns_dict['!Value']] == '':
+                log.append('There is no value set for option:'\
+                           '%s' % row[sbtab_options.columns_dict['!Option']])
+    
+        parameter_dict[sbtab_options.columns_dict['!Option']] = row[sbtab_options.columns_dict['!Value']]
 
     return parameter_dict, log
-
-
-def valid_prior(prior, delimiter):
-    '''
-    check, if the given prior file is valid and holds all required contents
-    '''
-    validity = []
-    qts = {'standard chemical potential': [-880, 1500],
-           'catalytic rate constant geometric mean': [10, 1],
-           'concentration': [0.1, 1.5],
-           'concentration of enzyme': [0.00001, 1.5],
-           'Michaelis constant': [0.1, 1], 'inhibitory constant': [0.1, 1],
-           'activation constant': [0.1, 1], 'chemical potential': [-880, 1500],
-           'product catalytic rate constant': [10, 1.5],
-           'substrate catalytic rate constant': [10, 1.5],
-           'equilibrium constant': [1, 1.5], 'forward maximal velocity': [1, 2],
-           'reverse maximal velocity': [1, 2], 'reaction affinity': [0, 10]}
-    qt_column = None
-    m_column = None
-    s_column = None
-    logs_column = None
-    lb_column = None
-    ub_column = None
-
-    split_rows = prior.split('\n')
-    for row in split_rows:
-        split_row = row.split(delimiter)
-        if split_row[0].startswith('!!'):
-            try: tabletype = re.search("TableType='([^']*)'", row).group(1)
-            except: tabletype = False
-            if tabletype != 'QuantityInfo':
-                validity.append('''Error: The TableType of the SBtab is incorre
-                ct: "'"%s"'". Should be "'"QuantityInfo"'".''' % (tabletype))
-        elif split_row[0].startswith('%'): continue
-        elif split_row[0].startswith('!'):
-            for i, element in enumerate(split_row):
-                if element == '!QuantityType': qt_column = i
-                elif element == '!MathematicalType': scale_column = i
-                elif element == '!PriorMedian': m_column = i
-                elif element == '!PriorStd': s_column = i
-                elif element == '!PriorGeometricStd': pgs_column = i
-                elif element == '!LowerBound': lb_column = i
-                elif element == '!UpperBound': ub_column = i
-        else: pass
-
-    if qt_column is None:
-        validity.append('''Error: The SBtab prior table does not have the requi
-        red "'"!QuantityType"'" column. Please add it to continue.''')
-        return prior, validity
-    if m_column is None:
-        validity.append('''Error: The SBtab prior table does not have the requi
-        red "'"!Mode"'" column. Please add it to continue.''')
-        return prior, validity
-    if s_column is None:
-        validity.append('''Error: The SBtab prior table does not have the requi
-        red "'"!PriorStd"'" column. Please add it to continue.''')
-        return prior, validity
-
-    for row in split_rows:
-        split_row = row.split(delimiter)
-        if split_row[0].startswith('!'): pass
-        elif split_row[0].startswith('%'): pass
-        else:
-            if split_row[0] in qts.keys():
-                del qts[split_row[0]]
-
-    for entry in qts.keys():
-        validity.append('''Warning: The SBtab prior table is missing an entry f
-        or %s. The missing value is set to the default prior distribution for t
-        his quantity.''' % qts[entry])
-        prior += entry + delimiter + qts[entry] + '\n'
-
-    return (prior, validity)
 
 
 def get_modifiers(reaction):

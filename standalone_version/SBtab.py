@@ -48,6 +48,11 @@ class SBtabTable():
         # Needed to be able to adress it from outside of the class for
         # writing and reading
         self.filename = filename
+
+        # validate file extension
+        self.validate_extension()
+
+        # process string
         self.delimiter = misc.check_delimiter(table_string)
         table_list = self.cut_table_string(table_string)
         
@@ -65,6 +70,14 @@ class SBtabTable():
         self.initialize_table()
         self.sbtab_dataset = []
 
+    def validate_extension(self):
+        '''
+        Checks the extension of the file for invalid formats.
+        '''
+        valid_extensions = ['tsv', 'csv', 'xls']
+        if self.filename[-3:] not in valid_extensions:
+            raise SBtabError('The file extension is not valid for an SBtab file.')
+        
     def cut_table_string(self, table_string):
         '''
         the SBtab is initially given as one long string;

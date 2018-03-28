@@ -165,6 +165,20 @@ Organism	Column	Quantity	string	Organism
 Provenance	Column	Quantity	string	Provenance of the entity
 SBOTerm	Column	Quantity	string	SBO term of the entity
 Identifiers	Column	Quantity	string	Annotation of the entity
+BiologicalElement	Column	Quantity	string	Biological element
+MathematicalType	Column	Quantity	string	Mathematical type
+PriorMedian	Column	Quantity	float	Prior Median
+PriorStd	Column	Quantity	float	Prior Std
+PriorGeometricStd	Column	Quantity	float	Prior Geometric Std
+LowerBound	Column	Quantity	float	Lower bound
+UpperBound	Column	Quantity	float	Lower bound
+DataStd	Column	Quantity	float	Data Standard Error
+PhysicalType	Column	Quantity	string	Physical Type
+Dependence	Column	Quantity	string	Dependence
+UseAsPriorInformation	Column	Quantity	Boolean	Use as prior information
+SBMLElement	Column	Quantity	string	SBML element
+Abbreviation	Column	Quantity	string	Abbreviation
+MatrixInfo	Column	Quantity	string	Matrix build up information
 Comment	Column	Regulator	string	Comment
 ReferenceName	Column	Regulator	string	Reference title, authors, etc. (as free text)
 ReferencePubMed	Column	Regulator	string	Reference PubMed ID
