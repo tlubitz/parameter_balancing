@@ -15,8 +15,8 @@ except:
     import SBtab
 
 
-def parameter_balancing_wrapper(model_name, first = None,
-                                second = None, third = None):
+def parameter_balancing_wrapper(model_name, first=None,
+                                second=None, third=None):
     '''
     wrapper for the parameter balancing via the command line.
     receives the name of the SBML model and optional file names
@@ -34,8 +34,8 @@ def parameter_balancing_wrapper(model_name, first = None,
         sys.exit()
     valid_extension = misc.validate_file_extension(model_name, 'sbml')
     if not valid_extension:
-        print('The SBML file %s has not the correct '\
-              'xml extension. I quit.' % (model_name))
+        print('''The SBML file %s has not the correct
+                 xml extension. I quit.''' % (model_name))
         sys.exit()
 
     pb = balancer.ParameterBalancing(sbml_model)
@@ -55,8 +55,8 @@ def parameter_balancing_wrapper(model_name, first = None,
             sbtab_name = s
         elif table_type == 'QuantityInfo': prior = sb
         elif table_type == 'PbConfig': config = sb
-        else: print('The provided SBtab file %s could not be assigned '\
-                    'properly' % (table_type))
+        else: print('''The provided SBtab file %s could not be assigned
+                       properly''' % (table_type))
 
     global sbtab_data
     global sbtab_name
@@ -73,18 +73,18 @@ def parameter_balancing_wrapper(model_name, first = None,
             try:
                 valid_extension = misc.validate_file_extension(s, 'sbtab')
                 if not valid_extension:
-                    print('The SBtab file %s has not the correct tsv '\
-                          'extension.' % (first))
+                    print('''The SBtab file %s has not the correct tsv
+                             extension.''' % (first))
                 undetermined = open(s, 'r')
                 sb = undetermined.read()
                 table_type = misc.table_type(sb)
                 assign_sbtab(sb, table_type, s)
             except:
-                print('The file %s could not be read and can thus not be'\
-                      'integrated.' % (first))
+                print('''The file %s could not be read and can thus not be
+                         integrated.''' % (first))
 
     if sbtab_name is False: sbtab_name = 'output.csv'
-    
+
     # PARAMETER FILE
     if sbtab_data:
         try: sbtab_delimiter = misc.check_delimiter(sb)
@@ -106,8 +106,8 @@ def parameter_balancing_wrapper(model_name, first = None,
             'files/pb_prior.tsv'
         try: prior_file = open(p, 'r')
         except:
-            print('The prior file (/files/default_files/pb_prior.tsv) coul'\
-                  'd not be found. I quit.')
+            print('''The prior file (/files/default_files/pb_prior.tsv) coul
+                     d not be found. I quit.''')
             sys.exit()
         prior = prior_file.read()
         prior_delimiter = '\t'
@@ -128,11 +128,11 @@ def parameter_balancing_wrapper(model_name, first = None,
             cf = open(c, 'r')
             config = cf.read()
             config_delimiter = '\t'
-            (parameter_dict,log) = misc.readout_config(config, config_delimiter)
+            (parameter_dict, log) = misc.readout_config(config, config_delimiter)
         except:
-            print('The config file (/files/default_files/pb_config.tsv) coul'\
-                  'd not be found and not config file was provided by user; '\
-                  'the values are set to default.')
+            print('''The config file (/files/default_files/pb_config.tsv) coul
+                     d not be found and not config file was provided by user;
+                     the values are set to default.''')
             parameter_dict = {}
 
     # Make empty SBtab if required
@@ -179,7 +179,7 @@ def parameter_balancing_wrapper(model_name, first = None,
         parameter_dict['reaction affinity'] = True
     if 'use_pseudo_values' not in parameter_dict.keys():
         parameter_dict['use_pseudo_values'] = False
-       
+
     print('\nFiles successfully read. Start balancing.\n')
 
     # 2: Parameter balancing
@@ -189,7 +189,7 @@ def parameter_balancing_wrapper(model_name, first = None,
     else:
         sbtab_new = pb.fill_sbtab(sbtab)
         pseudo_flag = 'no_pseudos'
-        
+
     (sbtab_final, mean_vector, mean_vector_inc, c_post, c_post_inc,
      r_matrix, shannon, log) = pb.make_balancing(sbtab_new,
                                                  sbtab, pmin,
@@ -213,27 +213,27 @@ def parameter_balancing_wrapper(model_name, first = None,
     except: def_act = 'complete_act'
     try: overwrite = parameter_dict['overwrite']
     except: overwrite = True
-    kineticizer_cs = kineticizer.kineticizer_cs(sbml_model, sbtab_final, mode,
-                                                enzyme_prefac, def_inh,
-                                                def_act, True)
+    kineticizer_cs = kineticizer.KineticizerCS(sbml_model, sbtab_final, mode,
+                                               enzyme_prefac, def_inh,
+                                               def_act, True)
 
-    output_name = input('\nEnter optional name for output files. If you do '\
-                        'not enter a name, the files are named after the '\
-                        'input file.\n')
+    output_name = input('''\nEnter optional name for output files. If you do
+                           not enter a name, the files are named after the
+                           input file.\n''')
     if output_name == '':
         try: rm = re.match('.*/(.*)', str(model_name)).group(1)[:-4]
         except: rm = str(model_name)[:-4]
         output_name = rm + '_balanced'
 
-    print('\nDone... now writing output files to current working directory. '\
-          '\n\nGoodbye!\n\n')
+    print('''\nDone... now writing output files to current working directory.
+          \n\nGoodbye!\n\n''')
 
     # 5: Write SBtab and SBML model
     model_name = str(model_name)[:-4]
     sbtab_file_new = open(output_name + '.tsv', 'w')
     sbtab_file_new.write(sbtab_final.return_table_string())
     sbtab_file_new.close()
-    
+
     sbml_code = '<?xml version="1.0" encoding="UTF-8"?>\n' + sbml_model.toSBML()
     sbml_model_new = open(output_name + '.xml', 'w')
     sbml_model_new.write(sbml_code)
@@ -248,15 +248,15 @@ if __name__ == '__main__':
 
     try: model_name = sys.argv[1]
     except:
-        print('\nPlease provide at least an SBML model as argument for the '\
-              'script, i.e. \n >python parameter_balancing.py '\
-              'your_sbml_file.xml \n')
+        print('''\nPlease provide at least an SBML model as argument for the
+                 script, i.e. \n >python parameter_balancing.py
+                 your_sbml_file.xml \n''')
         sys.exit()
 
     first = False
     second = False
     third = False
-        
+
     try:
         first = sys.argv[2]
         try:
@@ -273,4 +273,3 @@ if __name__ == '__main__':
     except:
         if not first:
             parameter_balancing_wrapper(model_name)
-

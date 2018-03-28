@@ -90,7 +90,7 @@ class ValidateTable:
         self.filename = sbtab_name
 
         # check file format and header row
-        self.checkTableFormat()
+        self.check_table_format()
 
         # try creating SBtab instance
         self.sbtab = SBtab.SBtabTable(self.table, self.filename)
@@ -109,12 +109,12 @@ class ValidateTable:
         self.sbtab.columns = f_columns
 
         # determine headers
-        self.determineHeaders()
+        self.determine_headers()
 
         # check SBtab object for validity
-        self.checkTable()
+        self.check_table()
 
-    def checkTableFormat(self):
+    def check_table_format(self):
         '''
         Validates format of SBtab file, checks file format and header row.
         '''
@@ -177,7 +177,7 @@ class ValidateTable:
                                      le does not start with "!":
                                      %s''' % (columns))
 
-    def determineHeaders(self):
+    def determine_headers(self):
         '''
         determines the headers and saves their position
         '''
@@ -186,7 +186,7 @@ class ValidateTable:
             if column == '!ID':
                 self.id_column = i
 
-    def checkTable(self):
+    def check_table(self):
         '''
         Validates the mandatory format of the SBtab in accordance to the
         TableType attribute.
@@ -305,7 +305,7 @@ class ValidateTable:
                                      n this SBtab file. Please remove it:
                                      %s''' % (str(column[0])))
 
-    def returnOutput(self):
+    def return_output(self):
         '''
         Returns the warnings from the validation process.
         '''
@@ -331,9 +331,9 @@ class ValidateFile:
         self.warnings = []
         self.sbtab_file = sbtab_file
         self.filename = filename
-        self.validateExtension()
+        self.validate_extension()
 
-    def validateExtension(self):
+    def validate_extension(self):
         '''
         Checks the extension of the file for invalid formats.
         '''
@@ -342,7 +342,7 @@ class ValidateFile:
             self.warnings.append('''Error: The file extension is not valid for
                                  an SBtab file.''')
 
-    def validateFile(self, sbtab_file):
+    def validate_file(self, sbtab_file):
         '''
         Validates file format and checks for possible problems.
 
@@ -366,7 +366,7 @@ class ValidateFile:
                                      tomatically.''')
             length = len(row)
 
-    def checkSeparator(self):
+    def check_separator(self):
         '''
         Finds the separator of the file.
         '''
@@ -383,7 +383,7 @@ class ValidateFile:
 
         return sep
 
-    def returnOutput(self):
+    def return_output(self):
         '''
         Returns the warnings from the validation process.
         '''
@@ -414,10 +414,10 @@ if __name__ == '__main__':
         def_tab = None
 
     validator_output = []
-    Validate_file_class = ValidateFile(sbtab_file, file_name)
-    validator_output.append(Validate_file_class.returnOutput())
+    Validate_file_class = Validate_file(sbtab_file, file_name)
+    validator_output.append(Validate_file_class.return_output())
     Validate_table_class = ValidateTable(sbtab_file, file_name, def_tab)
-    validator_output.append(Validate_table_class.returnOutput())
+    validator_output.append(Validate_table_class.return_output())
 
     warned = False
     for warning in validator_output:
