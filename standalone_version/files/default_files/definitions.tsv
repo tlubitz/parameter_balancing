@@ -308,3 +308,16 @@ Reference:Identifiers:pubmed	Column	rxnconContingencyList	string	Pubmed ID
 Quality	Column	rxnconContingencyList	string	Contingency quality
 Comment	Column	rxnconContingencyList	string	Comment
 InternalComplexID	Column	rxnconContingencyList	string	Internal ID for processing
+ID	Column	rxnconReactionList	integer	ID for reaction
+UID:Reaction	Column	rxnconReactionList	string	Reaction string
+ComponentA:Name	Column	rxnconReactionList	string	Name for Component A
+ComponentA:Domain	Column	rxnconReactionList	string	Domain of Component A
+ComponentA:Residue	Column	rxnconReactionList	string	Residue of Component A
+Reaction	Column	rxnconReactionList	string	Reaction type
+ComponentB:Name	Column	rxnconReactionList	string	Name for Component B
+ComponentB:Domain	Column	rxnconReactionList	string	Domain of Component B
+ComponentB:Residue	Column	rxnconReactionList	string	Residue of Component B
+Quality	Column	rxnconReactionList	string	Quality of reaction
+Literature:Identifiers:pubmed	Column	rxnconReactionList	string	Pubmed ID
+Comment	Column	rxnconReactionList	string	Comment
+
