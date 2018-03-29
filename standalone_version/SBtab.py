@@ -527,6 +527,14 @@ class SBtabTable():
         # Update object
         self.update()
 
+    def write(self, filename):
+        '''
+        write SBtab to hard disk
+        '''
+        f = open(filename, 'w')
+        f.write(self.return_table_string())
+        f.close()
+
     def write_sbtab(self, format_type, filename=None):
         '''
         Writes SBtab tablib object to file.

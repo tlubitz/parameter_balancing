@@ -300,3 +300,11 @@ ID	Column	QuantityInfo	string	Abbreviation of quantity type
 MatrixInfo	Column	QuantityInfo	string	Information on the matrix production
 Option	Column	PbConfig	string	Which option is addressed
 Value	Column	PbConfig	float	What value is the option set to
+UID:Contingency	Column	rxnconContingencyList	integer	ID for contingency
+Target	Column	rxnconContingencyList	string	Contingency target
+Contingency	Column	rxnconContingencyList	string	Contingency type
+Modifier	Column	rxnconContingencyList	string	Target modifier
+Reference:Identifiers:pubmed	Column	rxnconContingencyList	string	Pubmed ID
+Quality	Column	rxnconContingencyList	string	Contingency quality
+Comment	Column	rxnconContingencyList	string	Comment
+InternalComplexID	Column	rxnconContingencyList	string	Internal ID for processing
