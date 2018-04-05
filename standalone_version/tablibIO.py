@@ -130,6 +130,9 @@ def haveTSV(tsvfile,separator):
         longest = max([len(x) for x in rows])
     except:
         raise TypeError("File is empty!")
+
+    
+    
     for i, row in enumerate(rows):
         # Skip empty rows
         if not row:

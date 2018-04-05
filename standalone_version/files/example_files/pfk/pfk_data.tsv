@@ -1,4 +1,4 @@
-!!SBtab TableType='Quantity' Version='0.1' Level='1.0'											
+!!SBtab TableType='Quantity' Version='0.1' Level='1.0'									
 !QuantityType	!Reaction:SBML:reaction:id	!Compound:SBML:species:id	!Mean	!Std	!Unit	!Organism	!Reaction:Identifiers:kegg.reaction	!Compound:Identifiers:kegg.compound	!Reference
 concentration of enzyme	R04779	nan	0.089	nan	mM	Saccharomyces cerevisiae	R04779	nan	yeastGFP
 concentration of enzyme	R04779	nan	0.090	nan	mM	Saccharomyces cerevisiae	R04779	nan	yeastGFP

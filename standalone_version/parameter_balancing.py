@@ -64,6 +64,7 @@ def parameter_balancing_wrapper(parser_args):
                   'read.' % args.sbtab_data)
         try: sbtab_delimiter = misc.check_delimiter(f_content)
         except: sbtab_delimiter = '\t'
+        
         sbtab_data = SBtab.SBtabTable(f_content, args.sbtab_data)
         sbtab_data_validate = validatorSBtab.ValidateTable(sbtab_data,
                                                            args.sbtab_data)
@@ -263,7 +264,7 @@ def parameter_balancing_wrapper(parser_args):
         parameter_dict['use_pseudo_values'] = False
 
     print('\nFiles successfully read. Start balancing.\n')
-
+    
     # 2: Parameter balancing
     if parameter_dict['use_pseudo_values']:
         sbtab_new = pb.fill_sbtab(sbtab, pseudos)

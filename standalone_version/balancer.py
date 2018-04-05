@@ -340,11 +340,12 @@ class ParameterBalancing:
         self.parameter_dict = parameter_dict
         # the possibly messy user file needs to be tidied before computation
         self.rows = self.tidy_up_sbtab(False)
-
+        
         # build a list of all parameters provided by the user
         self.available_parameters = []
         for i, row in enumerate(self.rows):
             if len(row) == len(sbtab.columns):
+
                 if row[self.sbtab.columns_dict['!QuantityType']] in self.species_parameters:
                     self.available_parameters.append([row[self.sbtab.columns_dict['!QuantityType']],
                                                       row[self.sbtab.columns_dict['!Compound:SBML:species:id']]])
@@ -862,7 +863,7 @@ class ParameterBalancing:
         self.calculate_posteriori()
 
         #make normal values again
-        (self.mean_post,self.stds_post) = self.log_to_normal(self.x_post,self.stds_log_post,self.type_order)
+        (self.mean_post,self.stds_post) = self.log_to_normal(self.x_post,self.stds_log_post,self.quantities)
 
         ################################################################
         #generating minimization problem
@@ -957,7 +958,7 @@ class ParameterBalancing:
             self.x_post = numpy.dot(self.Q,new_medians_log)
             self.stds_log_post = self.extract_cpost()
 
-            (self.mean_post_opt,self.stds_post_opt) = self.log_to_normal(self.x_post,self.stds_log_post,self.type_order)
+            (self.mean_post_opt,self.stds_post_opt) = self.log_to_normal(self.x_post,self.stds_log_post,self.quantities)
             
             self.optimized = True
       
@@ -1018,7 +1019,7 @@ class ParameterBalancing:
         the values that have been added by the use of priors and pseudos.
         so we are basically searching two SBtab files and storing their content.
         '''
-        self.quantities = []
+        self.quantities_x = []
         self.parameter2bounds = {}
 
         #first: get the column indices of the initial SBtab file, so we can search it
@@ -1046,7 +1047,7 @@ class ParameterBalancing:
                     elif row[self.sbtab.columns_dict['!QuantityType']] in self.thermodynamics: single_tuple.append('35.0')
                     else: single_tuple.append(str(float(row[mean_column])*0.5))
                     single_tuple.append(self.make_identifier(row))
-                    self.quantities.append(row[self.sbtab.columns_dict['!QuantityType']])
+                    self.quantities_x.append(row[self.sbtab.columns_dict['!QuantityType']])
                    
                     #check, whether this parameter is really part of the model structure and store boundaries
                     if not row[self.sbtab.columns_dict['!Reaction:SBML:reaction:id']] == '' and not row[self.sbtab.columns_dict['!Compound:SBML:species:id']] == '':
@@ -1103,7 +1104,7 @@ class ParameterBalancing:
                     single_tuple.append(row[self.sbtab_new.columns_dict['!UnconstrainedGeometricMean']])
                     single_tuple.append(row[self.sbtab_new.columns_dict['!UnconstrainedGeometricStd']])
                     single_tuple.append(self.make_identifier(row))
-                    self.quantities.append(single_tuple[0])
+                    self.quantities_x.append(single_tuple[0])
                     try:
                         if self.sbtab_new.columns_dict['!Min'] and row[self.sbtab_new.columns_dict['!Min']] != '':
                             single_tuple.append((float(row[self.sbtab_new.columns_dict['!Min']]),float(row[self.sbtab_new.columns_dict['!Max']])))
@@ -1223,6 +1224,7 @@ class ParameterBalancing:
         #and the rows below the unit matrix
         D_matrix = []
         self.parameter2row = {}
+        self.quantities = []
         
         #first, we build up the unit matrix
         unit_matrix = self.build_unit_matrix()
@@ -1232,6 +1234,7 @@ class ParameterBalancing:
         #second, we check which bottom rows we have to build up
         for pseudo_quantity in self.pseudo_list:
             if self.parameter_dict[pseudo_quantity]:
+                self.quantities.append(pseudo_quantity)
                 rows = self.build_bottom_row(pseudo_quantity)
                 for row in rows:
                     D_matrix.append(row)
@@ -1245,16 +1248,15 @@ class ParameterBalancing:
         uses only the prior parameters that are chosen by the user
         '''
         unit_rows       = []
-        self.type_order = []
         self.bounds     = []
         self.id_order   = {}
-       
+
         for i,x in enumerate(self.theta_vector):
             row    = [0.0]*len(self.theta_vector)
             row[i] = 1.0
             unit_rows.append(row)
             self.parameter2row[(x[0],x[2])] = row
-            self.type_order.append(x[0])
+            self.quantities.append(x[0])
             self.id_order[(x[0],x[2])] = i
             if '!Min' in self.sbtab_new.columns_dict:
                 self.bounds.append(self.parameter2bounds[(x[0],x[2])])
@@ -1373,7 +1375,6 @@ class ParameterBalancing:
             row_index += 1
             rows.append(row)
             self.parameter2row[(pseudo_quantity,use_list[i])] = row
-            self.type_order.append(pseudo_quantity)
             self.id_order[(pseudo_quantity,element)] = self.matrix_row_counter
             self.matrix_row_counter += 1
             
@@ -1538,18 +1539,18 @@ class ParameterBalancing:
             print("C_prior is not invertible\n")
             sys.exit()
 
-        #for row in self.C_prior:
-        #    print(list(row))
+        #for i, row in enumerate(self.C_prior):
+        #    print(self.quantities_inc[i],',',list(row))
 
-        #for i,elem in enumerate(self.q_prior):
-        #    print(elem,',(',self.quantities_inc[i],')')
+        #for i, elem in enumerate(self.q_prior):
+        #    print(self.quantities_inc[i],',',elem)
 
-        #for row in self.Q:
-        #    print(list(row))
+        #for i, row in enumerate(self.Q):
+        #    print(self.quantities[i],',',list(row))
 
         #print(self.C_x_inv) --> 0
-        #for row in self.C_x:
-        #    print(list(row))
+        #for i, row in enumerate(self.quantities_x):
+        #    print(row,',',list(self.C_x[i]))
 
         #print(self.x_star) --> 0
         #for row in self.x_star:

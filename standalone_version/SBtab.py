@@ -55,19 +55,20 @@ class SBtabTable():
         # process string
         self.delimiter = misc.check_delimiter(table_string)
         table_list = self.cut_table_string(table_string)
-        
+
         # check if ascii stuff is violated
         try: (self.table, self.str_tab) = self.check_ascii(table_list)
         except: raise SBtabError('''This is not a valid SBtab file. Try to
         check your file with the SBtab validator or read the
         SBtab specification.''')
-        
+
         # Delete tablib header to avoid complications
         if self.table.headers: self.table.headers = None
 
         # Create all necessary variables
         self.tables_without_name = []
         self.initialize_table()
+
         self.sbtab_dataset = []
 
     def validate_extension(self):
@@ -122,7 +123,7 @@ class SBtabTable():
 
         # Update the list and tablib object
         self.update()
-
+        
     def check_ascii(self, table):
         '''
         Checks for ASCII violations, so that the parser will not crash
@@ -147,7 +148,7 @@ class SBtabTable():
 
         tablibtable = tablibIO.importSetNew('\n'.join(new_table),
                                             self.filename + '.csv')
-
+        
         return tablibtable, new_table
 
     def _get_header_row(self):
@@ -254,7 +255,7 @@ class SBtabTable():
             for entry in row:
                 if str(row[0]).startswith('!') \
                    and not str(row[0]).startswith('!!'):
-                    column_names = list(row)
+                    column_names = list(filter(lambda a: a != '', row))
                     break
 
         # Get column positions
@@ -293,16 +294,6 @@ class SBtabTable():
                 else:
                     if len(row) == i + 1:
                         value_rows.append(list(row))
-
-        # Insert value column if mandatory column was added automatically
-        if inserted:
-            if table_type == 'table':
-                for i, row in enumerate(value_rows):
-                    row.insert(0, 'TableRow_' + str(i + 1))
-            else:
-                for i, row in enumerate(value_rows):
-                    row.insert(0, table_type[0].upper() +
-                               table_type[-1].lower() + str(i + 1))
 
         return value_rows
 
@@ -396,7 +387,7 @@ class SBtabTable():
 
         # Make all rows the same length
         longest = max([len(x) for x in sb1])
-
+        
         for row in sb1:
             if len(row) < longest:
                 for i in range(longest - len(row)):
@@ -424,7 +415,7 @@ class SBtabTable():
         # Create temporary work copy
         sbtab_dataset = self.table
 
-        # If new row is to small, add empty entries to new row
+        # If new row is too small, add empty entries to new row
         if len(row_list) < len(sbtab_dataset.dict[0]):
             for i in range(len(sbtab_dataset.dict[0]) - len(row_list)):
                 row_list.append('')
@@ -477,14 +468,14 @@ class SBtabTable():
         '''
         # Empty column to fill up sbtab_dataset with ''
         empty_list = []
-
-        # If new column is to small, add empty entries to new column
+        
+        # If new column is too small, add empty entries to new column
         if len(column_list) < (len(self.sbtab_dataset.dict) - 1):
             for i in range((len(self.sbtab_dataset.dict) - 1) -
                            len(column_list)):
                 column_list.append('')
 
-        # If new column is to long, add empty entries to sbtab_dataset
+        # If new column is too long, add empty entries to sbtab_dataset
         elif len(column_list) > (len(self.sbtab_dataset.dict) - 1):
             for i in range(len(self.sbtab_dataset.dict[0])):
                 empty_list.append('')
@@ -575,6 +566,7 @@ class SBtabTable():
         '''
         # Create tablib Dataset instance with new SBtab table
         self.table = self.create_dataset()
+
         # Create list instance with new SBtab table
         self.sbtab_list = self.create_list()
 
