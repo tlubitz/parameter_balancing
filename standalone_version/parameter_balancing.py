@@ -299,10 +299,9 @@ def parameter_balancing_wrapper(parser_args):
                                                enzyme_prefac, def_inh,
                                                def_act, True)
 
-    output_name = input('\nEnter optional name for output files. If you do '\
-                        'not enter a name, the files are named after the '\
-                        'input file.\n')
-    if output_name == '':
+    if args.output_name:
+        output_name = args.output_name
+    else:
         try: rm = re.match('.*/(.*)', str(model_name)).group(1)[:-4]
         except: rm = str(model_name)[:-4]
         output_name = rm + '_balanced'
@@ -337,6 +336,7 @@ if __name__ == '__main__':
     parser.add_argument('--sbtab_data', help='Path to an SBtab data file.')
     parser.add_argument('--sbtab_prior', help='Path to an SBtab prior file.')
     parser.add_argument('--sbtab_options', help='Path to an SBtab options file.')
+    parser.add_argument('--output_name', help='Choose a name for the output files.')
     parser.add_argument('-l', '--pb_log', help='Flag to print a log file.', action='store_true')
    
     args = parser.parse_args()
