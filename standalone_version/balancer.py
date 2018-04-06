@@ -5,6 +5,7 @@ import numpy
 import scipy.linalg
 import copy
 import time
+import datetime
 import os
 import sys
 
@@ -324,13 +325,17 @@ class ParameterBalancing:
                                      parameter_dict)
         return value_rows
 
-
     
     def make_sbtab(self, sbtab, file_name, organism, volume,
                    pmin, pmax, parameter_dict):
         '''
         makes an insertable SBtab-file out of a possibly erraneous SBtab-File
         '''
+        # set warning message for numerical problems in numpy
+        numpy.seterrcall(self.print_warning)
+        numpy.seterr(all='call')
+        self.warned = True
+        
         self.sbtab = sbtab
         self.organism = organism
         self.new_header = header_names
@@ -823,11 +828,7 @@ class ParameterBalancing:
         '''
         generates the values for the parameter balancing
         '''
-        # set warning message for numerical problems in numpy
-        numpy.seterrcall(self.print_warning)
-        numpy.seterr(all='call')
-        self.warned = True
-        
+     
         self.sbtab = sbtab_old
         self.sbtab_new = sbtab
 
@@ -1627,7 +1628,7 @@ class ParameterBalancing:
         if self.optimized: means = self.mean_post_opt
         else: means = self.mean_post
 
-        finished_rows = [['!!SBtab TableType="QuantityType" Version="0.1" Level="1.0"']]
+        finished_rows = [['!!SBtab SBtabVersion="1.0" TableType="Quantity" TableName="Parameter" Document="%s" Date="%s"' % (self.sbtab.filename, datetime.date.today())]]
         finished_rows.append(self.new_header)
         first         = True
         self.hilo     = []

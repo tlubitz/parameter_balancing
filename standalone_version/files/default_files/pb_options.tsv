@@ -2,7 +2,7 @@
 !Option	!Value
 use_pseudo_values	False
 ph	7
-temperature	300
+temperature	298.15
 overwrite_kinetics	True
 cell_volume	43
 parametrisation	hal
