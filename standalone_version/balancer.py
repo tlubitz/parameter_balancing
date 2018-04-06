@@ -31,6 +31,7 @@ header_names = ['!QuantityType', '!Reaction:SBML:reaction:id',
 inhibitory_sbos       = [20, 206, 207, 536, 537]
 activation_sbos       = [13, 21, 459, 461, 462]
 
+
 class ParameterBalancingError(Exception):
     '''
     default class for throwing individual pb errors
@@ -599,7 +600,8 @@ class ParameterBalancing:
                                                                             [float(new_row[6])],
                                                                             [new_row[0]])[0])[0],4))
                         '''
-                        new_row[3] = str(round(self.med10_std_to_log([float(new_row[5])],[float(new_row[6])],[new_row[0]])[0][0],4))
+                        #new_row[3] = str(round(self.med10_std_to_log([float(new_row[5])],[float(new_row[6])],[new_row[0]])[0][0],4))
+                        new_row[3] = str(round(self.normal_to_log([float(new_row[5])],[float(new_row[6])],[new_row[0]])[0][0],4))
 
                         #print(new_row[3])
                     if quantity in self.thermodynamics: new_row[3] = new_row[5]
@@ -653,7 +655,8 @@ class ParameterBalancing:
             mean   = scipy.stats.gmean(means)
             std    = numpy.exp(numpy.sqrt(1/denominator))
             if not quantity in self.thermodynamics:
-                median = numpy.exp(self.med10_std_to_log([mean],[std],False)[0])[0]
+                #median = numpy.exp(self.med10_std_to_log([mean],[std],False)[0])[0]
+                median = numpy.exp(self.normal_to_log([mean],[std],False)[0])[0]
             else: median = mean
             value_dict = dict([('Mean',mean),('Std',std),('Mode',median)])
             #print(value_dict)
@@ -673,7 +676,8 @@ class ParameterBalancing:
 
             mean = numerator / denominator
             if not quantity in self.thermodynamics:
-                median = numpy.exp(self.med10_std_to_log([mean], [std], False)[0])[0]
+                #median = numpy.exp(self.med10_std_to_log([mean], [std], False)[0])[0]
+                median = numpy.exp(self.normal_to_log([mean], [std], False)[0])[0]
             else: median = mean
             value_dict = dict([('Mean', mean), ('Std', std), ('Mode', median)])
 
@@ -1130,7 +1134,8 @@ class ParameterBalancing:
             types.append(single_tuple[0])
             vt.append(single_tuple)
 
-        (self.x_star,self.log_stds_x) = self.med10_std_to_log(means,stds,types)
+        #(self.x_star,self.log_stds_x) = self.med10_std_to_log(means,stds,types)
+        (self.x_star,self.log_stds_x) = self.normal_to_log(means,stds,types)
 
         return vt
 
@@ -1561,11 +1566,6 @@ class ParameterBalancing:
         #print(self.Q_star) --> 0
         #for row in self.Q_star:
         #    print(list(row))  
-
-        #print(Q_star_trans)
-        #for row in Q_star_trans:
-        #    print(list(row))  
-
         
         # posterior covariance matrices
         self.C_post = numpy.linalg.inv(self.C_prior_inv+numpy.dot(numpy.dot(Q_star_trans,self.C_x_inv),self.Q_star))

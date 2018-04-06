@@ -266,8 +266,10 @@ def parameter_balancing_wrapper(parser_args):
 
     print('\nFiles successfully read. Start balancing.\n')
 
+    #print(sbtab.value_rows)
+    
     # 2: Parameter balancing
-    if parameter_dict['use_pseudo_values'] == True or args.pb_pseudos:
+    if parameter_dict['use_pseudo_values'] == 'True' or args.pb_pseudos:
         sbtab_new = pb.fill_sbtab(sbtab, pseudos)
         pseudo_flag = 'pseudos'
         print('\nParameter balancing is using pseudo values.\n')
