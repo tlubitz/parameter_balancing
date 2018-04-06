@@ -760,7 +760,6 @@ class ParameterBalancing:
                 
             else:
                 term = numpy.log(1+(numpy.square(float(stds[i]))/numpy.square(float(mean))))
-                numpy.seterr(invalid='raise')
                 log_means.append(numpy.log(float(mean))-0.5*term)
                 log_stds.append(numpy.sqrt(numpy.log(1+(numpy.square(float(stds[i]))/numpy.square(float(mean))))))
                
@@ -775,7 +774,6 @@ class ParameterBalancing:
         '''
         means = []
         stds  = []
-
         for i,log_mean in enumerate(log_means):
             if types and types[i] in self.thermodynamics:
                 means.append(log_mean)
@@ -814,17 +812,22 @@ class ParameterBalancing:
         for entry in self.parameter_dict.keys():
             self.log += '%s\t%s\n'%(entry,self.parameter_dict[entry])
 
-    def print_warning(self,type,flag):
-        if not self.warned:
-            print('There was an %s error in the numerics. This may be due to broadly chosen probability distributions. Try the usage of pseudo values for a fix.'%(type))
-            self.warned = True
-        
 ###############################################################################
-            
+
+    def print_warning(self, type, flag):
+        if self.warned:
+            print('There was an error in the numerics. This may be due to broadly chosen probability distributions. Try the usage of pseudo values for a fix.')
+            self.warned = False
+
     def make_balancing(self, sbtab, sbtab_old, pmin, pmax, parameter_dict):
         '''
         generates the values for the parameter balancing
         '''
+        # set warning message for numerical problems in numpy
+        numpy.seterrcall(self.print_warning)
+        numpy.seterr(all='call')
+        self.warned = True
+        
         self.sbtab = sbtab_old
         self.sbtab_new = sbtab
 
@@ -857,8 +860,6 @@ class ParameterBalancing:
         self.Q   = self.build_dependence_matrix()
         self.Q_star = self.build_specific_dependence_matrix()
 
-        self.warned = False
-        
         #KEY PART: calculating the posteriori covariance matrix C_post and the posteriori mean vector mean_post
         self.calculate_posteriori()
 
