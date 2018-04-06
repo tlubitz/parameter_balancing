@@ -213,7 +213,7 @@ def readout_config(sbtab_options):
                 log.append('There is no value set for option:'\
                            '%s' % row[sbtab_options.columns_dict['!Option']])
     
-        parameter_dict[sbtab_options.columns_dict['!Option']] = row[sbtab_options.columns_dict['!Value']]
+        parameter_dict[row[sbtab_options.columns_dict['!Option']]] = row[sbtab_options.columns_dict['!Value']]
 
     return parameter_dict, log
 

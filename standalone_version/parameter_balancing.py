@@ -203,8 +203,9 @@ def parameter_balancing_wrapper(parser_args):
                         'pb_options.tsv\n\n'
             for warning in warnings:
                 log_file += warning + '\n'
-        
+
         (parameter_dict, log) = misc.readout_config(sbtab_options)
+        
         if log != []:
             log_file += 'Log warnings for SBtab options file: '\
                         '%s\n\n' % args.sbtab_options
@@ -266,12 +267,14 @@ def parameter_balancing_wrapper(parser_args):
     print('\nFiles successfully read. Start balancing.\n')
     
     # 2: Parameter balancing
-    if parameter_dict['use_pseudo_values']:
+    if parameter_dict['use_pseudo_values'] or args.pb_pseudos:
         sbtab_new = pb.fill_sbtab(sbtab, pseudos)
         pseudo_flag = 'pseudos'
+        print('\nParameter balancing is using pseudo values.\n')
     else:
         sbtab_new = pb.fill_sbtab(sbtab)
         pseudo_flag = 'no_pseudos'
+        print('\nParameter balancing is not using pseudo values.\n')
 
     (sbtab_final, mean_vector, mean_vector_inc, c_post, c_post_inc,
      r_matrix, shannon, log) = pb.make_balancing(sbtab_new,
@@ -307,7 +310,7 @@ def parameter_balancing_wrapper(parser_args):
         except: rm = str(model_name)[:-4]
         output_name = rm + '_balanced'
 
-    print('\nDone... now writing output files to current working directory.'\
+    print('\nDone... writing output files.'\
           '\n\nGoodbye!\n\n')
 
     # 5: Write SBtab and SBML model
@@ -339,6 +342,7 @@ if __name__ == '__main__':
     parser.add_argument('--sbtab_options', help='Path to an SBtab options file.')
     parser.add_argument('--output_name', help='Choose a name for the output files.')
     parser.add_argument('-l', '--pb_log', help='Flag to print a log file.', action='store_true')
+    parser.add_argument('-p', '--pb_pseudos', help='Flag for usage of pseudo values.', action='store_true')
    
     args = parser.parse_args()
 
