@@ -28,8 +28,8 @@ header_names = ['!QuantityType', '!Reaction:SBML:reaction:id',
                 '!Compound:SBML:species:id', '!Mode', '!Unit',
                 '!UnconstrainedGeometricMean', '!UnconstrainedGeometricStd',
                 '!UnconstrainedMean', '!UnconstrainedStd']
-inhibitory_sbos       = [20, 206, 207, 536, 537]
-activation_sbos       = [13, 21, 459, 461, 462]
+inhibitory_sbos = [20, 206, 207, 536, 537]
+activation_sbos = [13, 21, 459, 461, 462]
 
 
 class ParameterBalancingError(Exception):
