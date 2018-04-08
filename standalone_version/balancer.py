@@ -643,7 +643,10 @@ class ParameterBalancing:
                         or row[self.sbtab.columns_dict['!Reaction:SBML:reaction:id']] == name):
                     means.append(float(row[self.sbtab.columns_dict['!Mean']]))
                     stds.append(float(row[self.sbtab.columns_dict['!Std']]))
-
+        #print(quantity)
+        #print(means)
+        #print(stds)
+                    
         # build the mean
         if quantity in self.quantity_type2median_std:
             # geometric mean for all multiplicative quantities
@@ -652,8 +655,9 @@ class ParameterBalancing:
             for std in stds:
                 if std != 0.0: denominator = denominator + (1/std**2)
                 else: denominator = denominator + (1/numpy.log(2)**2)
-            mean   = scipy.stats.gmean(means)
-            std    = numpy.exp(numpy.sqrt(1/denominator))
+            mean   = scipy.mean(means)
+            #std    = numpy.exp(numpy.sqrt(1/denominator))
+            std    = scipy.mean(stds)
             if not quantity in self.thermodynamics:
                 #median = numpy.exp(self.med10_std_to_log([mean],[std],False)[0])[0]
                 median = numpy.exp(self.normal_to_log([mean],[std],False)[0])[0]
@@ -680,7 +684,7 @@ class ParameterBalancing:
                 median = numpy.exp(self.normal_to_log([mean], [std], False)[0])[0]
             else: median = mean
             value_dict = dict([('Mean', mean), ('Std', std), ('Mode', median)])
-
+        
         return value_dict
 
     def fill_sbtab(self,sbtab,pseudos=None):
@@ -1137,6 +1141,9 @@ class ParameterBalancing:
         #(self.x_star,self.log_stds_x) = self.med10_std_to_log(means,stds,types)
         (self.x_star,self.log_stds_x) = self.normal_to_log(means,stds,types)
 
+        #print(self.x_star)
+        #print(self.log_stds_x)
+        
         return vt
 
     def sort_list(self,qlist):
@@ -1576,9 +1583,17 @@ class ParameterBalancing:
 
         #for i,row in enumerate(self.C_xpost):
         #    print(list(row))
-       
+
+        # posterior stds
+        self.stds_log_inc  = self.extract_cpost_inc()
+        self.stds_log_post = self.extract_cpost()
+        
         # posterior mean vector
         self.q_post = numpy.dot(self.C_post,(numpy.dot(numpy.dot(Q_star_trans,self.C_x_inv),self.x_star)+numpy.dot(self.C_prior_inv,self.q_prior)))
+        #if len(self.x_star) > 1:
+        #    (q_norm_x, stds_norm_x) = self.log_to_normal(self.q_post, self.stds_log_inc, self.quantities_x)
+        #    (self.q_post, self.stds_log_inc) = self.med10_std_to_log(q_norm, stds_norm_x, self.quantities_x)
+        
         self.x_post = numpy.dot(self.Q,self.q_post)
 
         #for elem in self.q_post:
@@ -1588,9 +1603,6 @@ class ParameterBalancing:
         #for i,elem in enumerate(self.x_post):
         #    print(elem,',(',self.quantities[i],')')
 
-        # posterior stds
-        self.stds_log_inc  = self.extract_cpost_inc()
-        self.stds_log_post = self.extract_cpost()
         
     def extract_cpost(self):
         '''
@@ -1653,7 +1665,11 @@ class ParameterBalancing:
                     row[3] = str(format(float(means[row_number]),'.4f'))
                     row[5] = 'NaN'
                     row[6] = 'NaN'
-                else:
+                else:  #XXX
+                    #(t1,t2) = self.log_to_normal([self.x_post[row_number]],[self.stds_log_post[row_number]],[row[0]])
+                    #print(row[0])
+                    #print(t1,t2)
+                    #print('\n')
                     row[3] = str(format(numpy.exp(float(self.x_post[row_number])),'.4f'))
                     row[5] = str(format(numpy.exp(float(self.x_post[row_number])),'.4f'))
                     row[6] = str(format(numpy.exp(float(self.stds_log_post[row_number])),'.4f'))
