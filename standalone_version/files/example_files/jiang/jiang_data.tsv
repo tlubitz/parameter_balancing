@@ -3,35 +3,35 @@
 concentration of enzyme	v4	nan	169000	nan	molecules/cell	nan	nan	Saccharomyces cerevisiae	R01061	nan	yeastGFP
 concentration of enzyme	v4	nan	120000	nan	molecules/cell	nan	nan	Saccharomyces cerevisiae	R01061	nan	yeastGFP
 concentration of enzyme	v4	nan	121000	nan	molecules/cell	nan	nan	Saccharomyces cerevisiae	R01061	nan	yeastGFP
-equilibrium constant	v4	nan	0.1	nan	nan	nan	nan	nan	R01061	nan	NIST
-equilibrium constant	v4	nan	0.2	nan	nan	nan	nan	nan	R01061	nan	NIST
-equilibrium constant	v4	nan	0.2	nan	nan	nan	nan	nan	R01061	nan	NIST
-equilibrium constant	v4	nan	0.2	nan	nan	nan	nan	nan	R01061	nan	NIST
-equilibrium constant	v4	nan	0.2	nan	nan	nan	nan	nan	R01061	nan	NIST
-equilibrium constant	v4	nan	0.2	nan	nan	nan	nan	nan	R01061	nan	NIST
-equilibrium constant	v4	nan	0.3	nan	nan	nan	nan	nan	R01061	nan	NIST
-equilibrium constant	v4	nan	0.4	nan	nan	nan	nan	nan	R01061	nan	NIST
-equilibrium constant	v4	nan	0.4	nan	nan	nan	nan	nan	R01061	nan	NIST
-equilibrium constant	v4	nan	0.4	nan	nan	nan	nan	nan	R01061	nan	NIST
-equilibrium constant	v4	nan	0.4	nan	nan	nan	nan	nan	R01061	nan	NIST
-equilibrium constant	v4	nan	0.4	nan	nan	nan	nan	nan	R01061	nan	NIST
-equilibrium constant	v4	nan	0.4	nan	nan	nan	nan	nan	R01061	nan	NIST
-equilibrium constant	v4	nan	0.5	nan	nan	nan	nan	nan	R01061	nan	NIST
-equilibrium constant	v4	nan	0.5	nan	nan	nan	nan	nan	R01061	nan	NIST
-equilibrium constant	v4	nan	0.6	nan	nan	nan	nan	nan	R01061	nan	NIST
-equilibrium constant	v4	nan	0.6	nan	nan	nan	nan	nan	R01061	nan	NIST
-equilibrium constant	v4	nan	0.6	nan	nan	nan	nan	nan	R01061	nan	NIST
-equilibrium constant	v4	nan	0.6	nan	nan	nan	nan	nan	R01061	nan	NIST
-equilibrium constant	v4	nan	0.6	nan	nan	nan	nan	nan	R01061	nan	NIST
-equilibrium constant	v4	nan	0.7	nan	nan	nan	nan	nan	R01061	nan	NIST
-equilibrium constant	v4	nan	0.7	nan	nan	nan	nan	nan	R01061	nan	NIST
-equilibrium constant	v4	nan	0.8	nan	nan	nan	nan	nan	R01061	nan	NIST
-equilibrium constant	v4	nan	0.9	nan	nan	nan	nan	nan	R01061	nan	NIST
-equilibrium constant	v4	nan	1	nan	nan	nan	nan	nan	R01061	nan	NIST
-equilibrium constant	v4	nan	1.3	nan	nan	nan	nan	nan	R01061	nan	NIST
-equilibrium constant	v4	nan	1.4	nan	nan	nan	nan	nan	R01061	nan	NIST
-equilibrium constant	v4	nan	0	nan	nan	nan	nan	nan	R01061	nan	NIST
-equilibrium constant	v4	nan	17	nan	nan	nan	nan	nan	R01061	nan	NIST
+equilibrium constant	v4	nan	0.1	nan	dimensionless	nan	nan	nan	R01061	nan	NIST
+equilibrium constant	v4	nan	0.2	nan	dimensionless	nan	nan	nan	R01061	nan	NIST
+equilibrium constant	v4	nan	0.2	nan	dimensionless	nan	nan	nan	R01061	nan	NIST
+equilibrium constant	v4	nan	0.2	nan	dimensionless	nan	nan	nan	R01061	nan	NIST
+equilibrium constant	v4	nan	0.2	nan	dimensionless	nan	nan	nan	R01061	nan	NIST
+equilibrium constant	v4	nan	0.2	nan	dimensionless	nan	nan	nan	R01061	nan	NIST
+equilibrium constant	v4	nan	0.3	nan	dimensionless	nan	nan	nan	R01061	nan	NIST
+equilibrium constant	v4	nan	0.4	nan	dimensionless	nan	nan	nan	R01061	nan	NIST
+equilibrium constant	v4	nan	0.4	nan	dimensionless	nan	nan	nan	R01061	nan	NIST
+equilibrium constant	v4	nan	0.4	nan	dimensionless	nan	nan	nan	R01061	nan	NIST
+equilibrium constant	v4	nan	0.4	nan	dimensionless	nan	nan	nan	R01061	nan	NIST
+equilibrium constant	v4	nan	0.4	nan	dimensionless	nan	nan	nan	R01061	nan	NIST
+equilibrium constant	v4	nan	0.4	nan	dimensionless	nan	nan	nan	R01061	nan	NIST
+equilibrium constant	v4	nan	0.5	nan	dimensionless	nan	nan	nan	R01061	nan	NIST
+equilibrium constant	v4	nan	0.5	nan	dimensionless	nan	nan	nan	R01061	nan	NIST
+equilibrium constant	v4	nan	0.6	nan	dimensionless	nan	nan	nan	R01061	nan	NIST
+equilibrium constant	v4	nan	0.6	nan	dimensionless	nan	nan	nan	R01061	nan	NIST
+equilibrium constant	v4	nan	0.6	nan	dimensionless	nan	nan	nan	R01061	nan	NIST
+equilibrium constant	v4	nan	0.6	nan	dimensionless	nan	nan	nan	R01061	nan	NIST
+equilibrium constant	v4	nan	0.6	nan	dimensionless	nan	nan	nan	R01061	nan	NIST
+equilibrium constant	v4	nan	0.7	nan	dimensionless	nan	nan	nan	R01061	nan	NIST
+equilibrium constant	v4	nan	0.7	nan	dimensionless	nan	nan	nan	R01061	nan	NIST
+equilibrium constant	v4	nan	0.8	nan	dimensionless	nan	nan	nan	R01061	nan	NIST
+equilibrium constant	v4	nan	0.9	nan	dimensionless	nan	nan	nan	R01061	nan	NIST
+equilibrium constant	v4	nan	1	nan	dimensionless	nan	nan	nan	R01061	nan	NIST
+equilibrium constant	v4	nan	1.3	nan	dimensionless	nan	nan	nan	R01061	nan	NIST
+equilibrium constant	v4	nan	1.4	nan	dimensionless	nan	nan	nan	R01061	nan	NIST
+equilibrium constant	v4	nan	0	nan	dimensionless	nan	nan	nan	R01061	nan	NIST
+equilibrium constant	v4	nan	17	nan	dimensionless	nan	nan	nan	R01061	nan	NIST
 concentration of enzyme	v29	nan	4670	nan	molecules/cell	nan	nan	Saccharomyces cerevisiae	R01324	nan	yeastGFP
 concentration of enzyme	v29	nan	96700	nan	molecules/cell	nan	nan	Saccharomyces cerevisiae	R01324	nan	yeastGFP
 inhibitory constant	v29	Fum	0.4	nan	mM	nan	nan	Rattus rattus	R01324	C00122	Brenda
@@ -49,22 +49,22 @@ inhibitory constant	v3	DHAP	0.1	nan	mM	nan	303.2	Escherichia coli	R01068	C00111	
 inhibitory constant	v3	DHAP	1.7	nan	mM	nan	303.2	Escherichia coli	R01068	C00111	Brenda
 inhibitory constant	v3	Pi	0	nan	mM	7.3	278.2	Spermophilus lateralis	R01068	C00009	Brenda
 inhibitory constant	v3	Pi	0	nan	mM	7.3	310.2	Spermophilus lateralis	R01068	C00009	Brenda
-equilibrium constant	v3	nan	0	nan	nan	nan	nan	nan	R01068	nan	NIST
-equilibrium constant	v3	nan	0	nan	nan	nan	nan	nan	R01068	nan	NIST
-equilibrium constant	v3	nan	0	nan	nan	nan	nan	nan	R01068	nan	NIST
-equilibrium constant	v3	nan	0	nan	nan	nan	nan	nan	R01068	nan	NIST
-equilibrium constant	v3	nan	0	nan	nan	nan	nan	nan	R01068	nan	NIST
-equilibrium constant	v3	nan	0	nan	nan	nan	nan	nan	R01068	nan	NIST
-equilibrium constant	v3	nan	0	nan	nan	nan	nan	nan	R01068	nan	NIST
-equilibrium constant	v3	nan	0	nan	nan	nan	nan	nan	R01068	nan	NIST
-equilibrium constant	v3	nan	0	nan	nan	nan	nan	nan	R01068	nan	NIST
-equilibrium constant	v3	nan	0	nan	nan	nan	nan	nan	R01068	nan	NIST
-equilibrium constant	v3	nan	0	nan	nan	nan	nan	nan	R01068	nan	NIST
-equilibrium constant	v3	nan	0	nan	nan	nan	nan	nan	R01068	nan	NIST
-equilibrium constant	v3	nan	0	nan	nan	nan	nan	nan	R01068	nan	NIST
-equilibrium constant	v3	nan	0	nan	nan	nan	nan	nan	R01068	nan	NIST
-equilibrium constant	v3	nan	0	nan	nan	nan	nan	nan	R01068	nan	NIST
-equilibrium constant	v3	nan	0	nan	nan	nan	nan	nan	R01068	nan	NIST
+equilibrium constant	v3	nan	0	nan	dimensionless	nan	nan	nan	R01068	nan	NIST
+equilibrium constant	v3	nan	0	nan	dimensionless	nan	nan	nan	R01068	nan	NIST
+equilibrium constant	v3	nan	0	nan	dimensionless	nan	nan	nan	R01068	nan	NIST
+equilibrium constant	v3	nan	0	nan	dimensionless	nan	nan	nan	R01068	nan	NIST
+equilibrium constant	v3	nan	0	nan	dimensionless	nan	nan	nan	R01068	nan	NIST
+equilibrium constant	v3	nan	0	nan	dimensionless	nan	nan	nan	R01068	nan	NIST
+equilibrium constant	v3	nan	0	nan	dimensionless	nan	nan	nan	R01068	nan	NIST
+equilibrium constant	v3	nan	0	nan	dimensionless	nan	nan	nan	R01068	nan	NIST
+equilibrium constant	v3	nan	0	nan	dimensionless	nan	nan	nan	R01068	nan	NIST
+equilibrium constant	v3	nan	0	nan	dimensionless	nan	nan	nan	R01068	nan	NIST
+equilibrium constant	v3	nan	0	nan	dimensionless	nan	nan	nan	R01068	nan	NIST
+equilibrium constant	v3	nan	0	nan	dimensionless	nan	nan	nan	R01068	nan	NIST
+equilibrium constant	v3	nan	0	nan	dimensionless	nan	nan	nan	R01068	nan	NIST
+equilibrium constant	v3	nan	0	nan	dimensionless	nan	nan	nan	R01068	nan	NIST
+equilibrium constant	v3	nan	0	nan	dimensionless	nan	nan	nan	R01068	nan	NIST
+equilibrium constant	v3	nan	0	nan	dimensionless	nan	nan	nan	R01068	nan	NIST
 concentration of enzyme	v32	nan	2910	nan	molecules/cell	nan	nan	Saccharomyces cerevisiae	R00355	nan	yeastGFP
 concentration of enzyme	v32	nan	7700	nan	molecules/cell	nan	nan	Saccharomyces cerevisiae	R00355	nan	yeastGFP
 inhibitory constant	v32	Pi	0	nan	mM	7.4	310.2	Ovis aries	R00355	C00009	Brenda
@@ -94,62 +94,62 @@ inhibitory constant	v32	OG_cyt	2.5	nan	mM	8.6	nan	Rattus norvegicus	R00355	C0002
 inhibitory constant	v32	Asp_cyt	21	nan	mM	8.6	nan	Rattus norvegicus	R00355	C00049	Brenda
 inhibitory constant	v32	OG_cyt	1	nan	mM	8.6	nan	Rattus norvegicus	R00355	C00026	Brenda
 inhibitory constant	v32	Asp_cyt	263	nan	mM	8.6	nan	Rattus norvegicus	R00355	C00049	Brenda
-equilibrium constant	v32	nan	0.1	nan	nan	nan	nan	nan	R00355	nan	NIST
-equilibrium constant	v32	nan	0.1	nan	nan	nan	nan	nan	R00355	nan	NIST
-equilibrium constant	v32	nan	0.1	nan	nan	nan	nan	nan	R00355	nan	NIST
-equilibrium constant	v32	nan	0.1	nan	nan	nan	nan	nan	R00355	nan	NIST
-equilibrium constant	v32	nan	0.1	nan	nan	nan	nan	nan	R00355	nan	NIST
-equilibrium constant	v32	nan	0.1	nan	nan	nan	nan	nan	R00355	nan	NIST
-equilibrium constant	v32	nan	0.2	nan	nan	nan	nan	nan	R00355	nan	NIST
-equilibrium constant	v32	nan	0.2	nan	nan	nan	nan	nan	R00355	nan	NIST
-equilibrium constant	v32	nan	0.2	nan	nan	nan	nan	nan	R00355	nan	NIST
-equilibrium constant	v32	nan	0.3	nan	nan	nan	nan	nan	R00355	nan	NIST
-equilibrium constant	v32	nan	0.3	nan	nan	nan	nan	nan	R00355	nan	NIST
+equilibrium constant	v32	nan	0.1	nan	dimensionless	nan	nan	nan	R00355	nan	NIST
+equilibrium constant	v32	nan	0.1	nan	dimensionless	nan	nan	nan	R00355	nan	NIST
+equilibrium constant	v32	nan	0.1	nan	dimensionless	nan	nan	nan	R00355	nan	NIST
+equilibrium constant	v32	nan	0.1	nan	dimensionless	nan	nan	nan	R00355	nan	NIST
+equilibrium constant	v32	nan	0.1	nan	dimensionless	nan	nan	nan	R00355	nan	NIST
+equilibrium constant	v32	nan	0.1	nan	dimensionless	nan	nan	nan	R00355	nan	NIST
+equilibrium constant	v32	nan	0.2	nan	dimensionless	nan	nan	nan	R00355	nan	NIST
+equilibrium constant	v32	nan	0.2	nan	dimensionless	nan	nan	nan	R00355	nan	NIST
+equilibrium constant	v32	nan	0.2	nan	dimensionless	nan	nan	nan	R00355	nan	NIST
+equilibrium constant	v32	nan	0.3	nan	dimensionless	nan	nan	nan	R00355	nan	NIST
+equilibrium constant	v32	nan	0.3	nan	dimensionless	nan	nan	nan	R00355	nan	NIST
 concentration of enzyme	v5	nan	2020	nan	molecules/cell	nan	nan	Saccharomyces cerevisiae	R01518	nan	yeastGFP
 concentration of enzyme	v5	nan	172000	nan	molecules/cell	nan	nan	Saccharomyces cerevisiae	R01518	nan	yeastGFP
 concentration of enzyme	v5	nan	3730	nan	molecules/cell	nan	nan	Saccharomyces cerevisiae	R01518	nan	yeastGFP
-equilibrium constant	v5	nan	8.7	nan	nan	nan	nan	nan	R01518	nan	NIST
-equilibrium constant	v5	nan	9.8	nan	nan	nan	nan	nan	R01518	nan	NIST
-equilibrium constant	v5	nan	10	nan	nan	nan	nan	nan	R01518	nan	NIST
-equilibrium constant	v5	nan	10.3	nan	nan	nan	nan	nan	R01518	nan	NIST
-equilibrium constant	v5	nan	10.4	nan	nan	nan	nan	nan	R01518	nan	NIST
-equilibrium constant	v5	nan	10.4	nan	nan	nan	nan	nan	R01518	nan	NIST
-equilibrium constant	v5	nan	10.5	nan	nan	nan	nan	nan	R01518	nan	NIST
-equilibrium constant	v5	nan	10.5	nan	nan	nan	nan	nan	R01518	nan	NIST
-equilibrium constant	v5	nan	10.6	nan	nan	nan	nan	nan	R01518	nan	NIST
-equilibrium constant	v5	nan	10.7	nan	nan	nan	nan	nan	R01518	nan	NIST
-equilibrium constant	v5	nan	10.7	nan	nan	nan	nan	nan	R01518	nan	NIST
-equilibrium constant	v5	nan	10.8	nan	nan	nan	nan	nan	R01518	nan	NIST
-equilibrium constant	v5	nan	10.8	nan	nan	nan	nan	nan	R01518	nan	NIST
-equilibrium constant	v5	nan	10.9	nan	nan	nan	nan	nan	R01518	nan	NIST
-equilibrium constant	v5	nan	11	nan	nan	nan	nan	nan	R01518	nan	NIST
-equilibrium constant	v5	nan	11.1	nan	nan	nan	nan	nan	R01518	nan	NIST
-equilibrium constant	v5	nan	11.1	nan	nan	nan	nan	nan	R01518	nan	NIST
-equilibrium constant	v5	nan	11.1	nan	nan	nan	nan	nan	R01518	nan	NIST
-equilibrium constant	v5	nan	11.3	nan	nan	nan	nan	nan	R01518	nan	NIST
-equilibrium constant	v5	nan	11.3	nan	nan	nan	nan	nan	R01518	nan	NIST
-equilibrium constant	v5	nan	11.3	nan	nan	nan	nan	nan	R01518	nan	NIST
-equilibrium constant	v5	nan	11.4	nan	nan	nan	nan	nan	R01518	nan	NIST
-equilibrium constant	v5	nan	11.4	nan	nan	nan	nan	nan	R01518	nan	NIST
-equilibrium constant	v5	nan	11.5	nan	nan	nan	nan	nan	R01518	nan	NIST
-equilibrium constant	v5	nan	11.6	nan	nan	nan	nan	nan	R01518	nan	NIST
-equilibrium constant	v5	nan	11.6	nan	nan	nan	nan	nan	R01518	nan	NIST
-equilibrium constant	v5	nan	11.7	nan	nan	nan	nan	nan	R01518	nan	NIST
-equilibrium constant	v5	nan	11.7	nan	nan	nan	nan	nan	R01518	nan	NIST
-equilibrium constant	v5	nan	4.9	nan	nan	nan	nan	nan	R01518	nan	NIST
-equilibrium constant	v5	nan	5	nan	nan	nan	nan	nan	R01518	nan	NIST
-equilibrium constant	v5	nan	5.1	nan	nan	nan	nan	nan	R01518	nan	NIST
-equilibrium constant	v5	nan	5.3	nan	nan	nan	nan	nan	R01518	nan	NIST
-equilibrium constant	v5	nan	5.3	nan	nan	nan	nan	nan	R01518	nan	NIST
-equilibrium constant	v5	nan	5.4	nan	nan	nan	nan	nan	R01518	nan	NIST
-equilibrium constant	v5	nan	5.8	nan	nan	nan	nan	nan	R01518	nan	NIST
-equilibrium constant	v5	nan	6	nan	nan	nan	nan	nan	R01518	nan	NIST
-equilibrium constant	v5	nan	6.1	nan	nan	nan	nan	nan	R01518	nan	NIST
-equilibrium constant	v5	nan	6.2	nan	nan	nan	nan	nan	R01518	nan	NIST
-equilibrium constant	v5	nan	6.3	nan	nan	nan	nan	nan	R01518	nan	NIST
-equilibrium constant	v5	nan	6.6	nan	nan	nan	nan	nan	R01518	nan	NIST
-equilibrium constant	v5	nan	6.8	nan	nan	nan	nan	nan	R01518	nan	NIST
-equilibrium constant	v5	nan	9.8	nan	nan	nan	nan	nan	R01518	nan	NIST
+equilibrium constant	v5	nan	8.7	nan	dimensionless	nan	nan	nan	R01518	nan	NIST
+equilibrium constant	v5	nan	9.8	nan	dimensionless	nan	nan	nan	R01518	nan	NIST
+equilibrium constant	v5	nan	10	nan	dimensionless	nan	nan	nan	R01518	nan	NIST
+equilibrium constant	v5	nan	10.3	nan	dimensionless	nan	nan	nan	R01518	nan	NIST
+equilibrium constant	v5	nan	10.4	nan	dimensionless	nan	nan	nan	R01518	nan	NIST
+equilibrium constant	v5	nan	10.4	nan	dimensionless	nan	nan	nan	R01518	nan	NIST
+equilibrium constant	v5	nan	10.5	nan	dimensionless	nan	nan	nan	R01518	nan	NIST
+equilibrium constant	v5	nan	10.5	nan	dimensionless	nan	nan	nan	R01518	nan	NIST
+equilibrium constant	v5	nan	10.6	nan	dimensionless	nan	nan	nan	R01518	nan	NIST
+equilibrium constant	v5	nan	10.7	nan	dimensionless	nan	nan	nan	R01518	nan	NIST
+equilibrium constant	v5	nan	10.7	nan	dimensionless	nan	nan	nan	R01518	nan	NIST
+equilibrium constant	v5	nan	10.8	nan	dimensionless	nan	nan	nan	R01518	nan	NIST
+equilibrium constant	v5	nan	10.8	nan	dimensionless	nan	nan	nan	R01518	nan	NIST
+equilibrium constant	v5	nan	10.9	nan	dimensionless	nan	nan	nan	R01518	nan	NIST
+equilibrium constant	v5	nan	11	nan	dimensionless	nan	nan	nan	R01518	nan	NIST
+equilibrium constant	v5	nan	11.1	nan	dimensionless	nan	nan	nan	R01518	nan	NIST
+equilibrium constant	v5	nan	11.1	nan	dimensionless	nan	nan	nan	R01518	nan	NIST
+equilibrium constant	v5	nan	11.1	nan	dimensionless	nan	nan	nan	R01518	nan	NIST
+equilibrium constant	v5	nan	11.3	nan	dimensionless	nan	nan	nan	R01518	nan	NIST
+equilibrium constant	v5	nan	11.3	nan	dimensionless	nan	nan	nan	R01518	nan	NIST
+equilibrium constant	v5	nan	11.3	nan	dimensionless	nan	nan	nan	R01518	nan	NIST
+equilibrium constant	v5	nan	11.4	nan	dimensionless	nan	nan	nan	R01518	nan	NIST
+equilibrium constant	v5	nan	11.4	nan	dimensionless	nan	nan	nan	R01518	nan	NIST
+equilibrium constant	v5	nan	11.5	nan	dimensionless	nan	nan	nan	R01518	nan	NIST
+equilibrium constant	v5	nan	11.6	nan	dimensionless	nan	nan	nan	R01518	nan	NIST
+equilibrium constant	v5	nan	11.6	nan	dimensionless	nan	nan	nan	R01518	nan	NIST
+equilibrium constant	v5	nan	11.7	nan	dimensionless	nan	nan	nan	R01518	nan	NIST
+equilibrium constant	v5	nan	11.7	nan	dimensionless	nan	nan	nan	R01518	nan	NIST
+equilibrium constant	v5	nan	4.9	nan	dimensionless	nan	nan	nan	R01518	nan	NIST
+equilibrium constant	v5	nan	5	nan	dimensionless	nan	nan	nan	R01518	nan	NIST
+equilibrium constant	v5	nan	5.1	nan	dimensionless	nan	nan	nan	R01518	nan	NIST
+equilibrium constant	v5	nan	5.3	nan	dimensionless	nan	nan	nan	R01518	nan	NIST
+equilibrium constant	v5	nan	5.3	nan	dimensionless	nan	nan	nan	R01518	nan	NIST
+equilibrium constant	v5	nan	5.4	nan	dimensionless	nan	nan	nan	R01518	nan	NIST
+equilibrium constant	v5	nan	5.8	nan	dimensionless	nan	nan	nan	R01518	nan	NIST
+equilibrium constant	v5	nan	6	nan	dimensionless	nan	nan	nan	R01518	nan	NIST
+equilibrium constant	v5	nan	6.1	nan	dimensionless	nan	nan	nan	R01518	nan	NIST
+equilibrium constant	v5	nan	6.2	nan	dimensionless	nan	nan	nan	R01518	nan	NIST
+equilibrium constant	v5	nan	6.3	nan	dimensionless	nan	nan	nan	R01518	nan	NIST
+equilibrium constant	v5	nan	6.6	nan	dimensionless	nan	nan	nan	R01518	nan	NIST
+equilibrium constant	v5	nan	6.8	nan	dimensionless	nan	nan	nan	R01518	nan	NIST
+equilibrium constant	v5	nan	9.8	nan	dimensionless	nan	nan	nan	R01518	nan	NIST
 concentration of enzyme	v6	nan	291000	24100	molecules/cell	nan	nan	Saccharomyces cerevisiae	R00200	nan	yeastGFP
 concentration of enzyme	v6	nan	2130	nan	molecules/cell	nan	nan	Saccharomyces cerevisiae	R00200	nan	yeastGFP
 inhibitory constant	v6	Cit_cyt	0.8	nan	mM	nan	nan	Plasmodium falciparum	R00200	C00158	Brenda
@@ -157,23 +157,7 @@ inhibitory constant	v6	Glu_cyt	3.7	nan	mM	7.5	298.2	nan	R00200	C00025	Brenda
 inhibitory constant	v6	Glu_cyt	4.4	nan	mM	7.5	298.2	nan	R00200	C00025	Brenda
 inhibitory constant	v6	Glu_cyt	13.6	nan	mM	6.9	298.2	nan	R00200	C00025	Brenda
 inhibitory constant	v6	Glu_cyt	19.2	nan	mM	6.9	298.2	nan	R00200	C00025	Brenda
-equilibrium constant	v6	nan	0	nan	nan	nan	nan	nan	R00200	nan	NIST
-equilibrium constant	v6	nan	0	nan	nan	nan	nan	nan	R00200	nan	NIST
-equilibrium constant	v6	nan	0	nan	nan	nan	nan	nan	R00200	nan	NIST
-equilibrium constant	v6	nan	0	nan	nan	nan	nan	nan	R00200	nan	NIST
-equilibrium constant	v6	nan	0	nan	nan	nan	nan	nan	R00200	nan	NIST
-equilibrium constant	v6	nan	0	nan	nan	nan	nan	nan	R00200	nan	NIST
-equilibrium constant	v6	nan	0	nan	nan	nan	nan	nan	R00200	nan	NIST
-equilibrium constant	v6	nan	0	nan	nan	nan	nan	nan	R00200	nan	NIST
-equilibrium constant	v6	nan	0	nan	nan	nan	nan	nan	R00200	nan	NIST
-equilibrium constant	v6	nan	0	nan	nan	nan	nan	nan	R00200	nan	NIST
-equilibrium constant	v6	nan	0	nan	nan	nan	nan	nan	R00200	nan	NIST
-equilibrium constant	v6	nan	0	nan	nan	nan	nan	nan	R00200	nan	NIST
-equilibrium constant	v6	nan	0	nan	nan	nan	nan	nan	R00200	nan	NIST
-equilibrium constant	v6	nan	0	nan	nan	nan	nan	nan	R00200	nan	NIST
-equilibrium constant	v6	nan	0	nan	nan	nan	nan	nan	R00200	nan	NIST
-equilibrium constant	v6	nan	0	nan	nan	nan	nan	nan	R00200	nan	NIST
-equilibrium constant	v6	nan	0	nan	nan	nan	nan	nan	R00200	nan	NIST
+equilibrium constant	v6	nan	0	nan	dimensionless	nan	nan	nan	R00200	nan	NIST
 concentration of enzyme	v24	nan	7130	nan	molecules/cell	nan	nan	Saccharomyces cerevisiae	R00331	nan	yeastGFP
 inhibitory constant	v24	GDP	1.9	nan	mM	nan	nan	Mycobacterium tuberculosis	R00331	C00035	Brenda
 concentration of enzyme	hidden_1	nan	123000	nan	molecules/cell	nan	nan	Saccharomyces cerevisiae	R00127	nan	yeastGFP
@@ -192,74 +176,7 @@ inhibitory constant	v31	OXA_cyt	0.2	nan	mM	6.9	nan	Aptenia cordifolia	R00342	C00
 inhibitory constant	v31	OXA_cyt	0.2	nan	mM	6.8	303.2	Mesembryanthemum crystallinum	R00342	C00036	Brenda
 inhibitory constant	v31	OXA_cyt	0.8	nan	mM	8.2	303.2	Mesembryanthemum crystallinum	R00342	C00036	Brenda
 substrate catalytic rate constant	nan	Mal_cyt	76.7	nan	1/s	nan	nan	Sus scrofa	R00342	C00149	Brenda
-equilibrium constant	v31	nan	0	nan	nan	nan	nan	nan	R00342	nan	NIST
-equilibrium constant	v31	nan	0	nan	nan	nan	nan	nan	R00342	nan	NIST
-equilibrium constant	v31	nan	0	nan	nan	nan	nan	nan	R00342	nan	NIST
-equilibrium constant	v31	nan	0	nan	nan	nan	nan	nan	R00342	nan	NIST
-equilibrium constant	v31	nan	0	nan	nan	nan	nan	nan	R00342	nan	NIST
-equilibrium constant	v31	nan	0	nan	nan	nan	nan	nan	R00342	nan	NIST
-equilibrium constant	v31	nan	0	nan	nan	nan	nan	nan	R00342	nan	NIST
-equilibrium constant	v31	nan	0	nan	nan	nan	nan	nan	R00342	nan	NIST
-equilibrium constant	v31	nan	0	nan	nan	nan	nan	nan	R00342	nan	NIST
-equilibrium constant	v31	nan	0	nan	nan	nan	nan	nan	R00342	nan	NIST
-equilibrium constant	v31	nan	0	nan	nan	nan	nan	nan	R00342	nan	NIST
-equilibrium constant	v31	nan	0	nan	nan	nan	nan	nan	R00342	nan	NIST
-equilibrium constant	v31	nan	0	nan	nan	nan	nan	nan	R00342	nan	NIST
-equilibrium constant	v31	nan	0	nan	nan	nan	nan	nan	R00342	nan	NIST
-equilibrium constant	v31	nan	0	nan	nan	nan	nan	nan	R00342	nan	NIST
-equilibrium constant	v31	nan	0	nan	nan	nan	nan	nan	R00342	nan	NIST
-equilibrium constant	v31	nan	0	nan	nan	nan	nan	nan	R00342	nan	NIST
-equilibrium constant	v31	nan	0	nan	nan	nan	nan	nan	R00342	nan	NIST
-equilibrium constant	v31	nan	0	nan	nan	nan	nan	nan	R00342	nan	NIST
-equilibrium constant	v31	nan	0	nan	nan	nan	nan	nan	R00342	nan	NIST
-equilibrium constant	v31	nan	0	nan	nan	nan	nan	nan	R00342	nan	NIST
-equilibrium constant	v31	nan	0	nan	nan	nan	nan	nan	R00342	nan	NIST
-equilibrium constant	v31	nan	0	nan	nan	nan	nan	nan	R00342	nan	NIST
-equilibrium constant	v31	nan	0	nan	nan	nan	nan	nan	R00342	nan	NIST
-equilibrium constant	v31	nan	0	nan	nan	nan	nan	nan	R00342	nan	NIST
-equilibrium constant	v31	nan	0	nan	nan	nan	nan	nan	R00342	nan	NIST
-equilibrium constant	v31	nan	0	nan	nan	nan	nan	nan	R00342	nan	NIST
-equilibrium constant	v31	nan	0	nan	nan	nan	nan	nan	R00342	nan	NIST
-equilibrium constant	v31	nan	0	nan	nan	nan	nan	nan	R00342	nan	NIST
-equilibrium constant	v31	nan	0	nan	nan	nan	nan	nan	R00342	nan	NIST
-equilibrium constant	v31	nan	0	nan	nan	nan	nan	nan	R00342	nan	NIST
-equilibrium constant	v31	nan	0	nan	nan	nan	nan	nan	R00342	nan	NIST
-equilibrium constant	v31	nan	0	nan	nan	nan	nan	nan	R00342	nan	NIST
-equilibrium constant	v31	nan	0	nan	nan	nan	nan	nan	R00342	nan	NIST
-equilibrium constant	v31	nan	0	nan	nan	nan	nan	nan	R00342	nan	NIST
-equilibrium constant	v31	nan	0	nan	nan	nan	nan	nan	R00342	nan	NIST
-equilibrium constant	v31	nan	0	nan	nan	nan	nan	nan	R00342	nan	NIST
-equilibrium constant	v31	nan	0	nan	nan	nan	nan	nan	R00342	nan	NIST
-equilibrium constant	v31	nan	0	nan	nan	nan	nan	nan	R00342	nan	NIST
-equilibrium constant	v31	nan	0	nan	nan	nan	nan	nan	R00342	nan	NIST
-equilibrium constant	v31	nan	0	nan	nan	nan	nan	nan	R00342	nan	NIST
-equilibrium constant	v31	nan	0	nan	nan	nan	nan	nan	R00342	nan	NIST
-equilibrium constant	v31	nan	0	nan	nan	nan	nan	nan	R00342	nan	NIST
-equilibrium constant	v31	nan	0	nan	nan	nan	nan	nan	R00342	nan	NIST
-equilibrium constant	v31	nan	0	nan	nan	nan	nan	nan	R00342	nan	NIST
-equilibrium constant	v31	nan	0	nan	nan	nan	nan	nan	R00342	nan	NIST
-equilibrium constant	v31	nan	0	nan	nan	nan	nan	nan	R00342	nan	NIST
-equilibrium constant	v31	nan	0	nan	nan	nan	nan	nan	R00342	nan	NIST
-equilibrium constant	v31	nan	0	nan	nan	nan	nan	nan	R00342	nan	NIST
-equilibrium constant	v31	nan	0	nan	nan	nan	nan	nan	R00342	nan	NIST
-equilibrium constant	v31	nan	0	nan	nan	nan	nan	nan	R00342	nan	NIST
-equilibrium constant	v31	nan	0	nan	nan	nan	nan	nan	R00342	nan	NIST
-equilibrium constant	v31	nan	0	nan	nan	nan	nan	nan	R00342	nan	NIST
-equilibrium constant	v31	nan	0	nan	nan	nan	nan	nan	R00342	nan	NIST
-equilibrium constant	v31	nan	0	nan	nan	nan	nan	nan	R00342	nan	NIST
-equilibrium constant	v31	nan	0	nan	nan	nan	nan	nan	R00342	nan	NIST
-equilibrium constant	v31	nan	0	nan	nan	nan	nan	nan	R00342	nan	NIST
-equilibrium constant	v31	nan	0	nan	nan	nan	nan	nan	R00342	nan	NIST
-equilibrium constant	v31	nan	0	nan	nan	nan	nan	nan	R00342	nan	NIST
-equilibrium constant	v31	nan	0	nan	nan	nan	nan	nan	R00342	nan	NIST
-equilibrium constant	v31	nan	0	nan	nan	nan	nan	nan	R00342	nan	NIST
-equilibrium constant	v31	nan	0	nan	nan	nan	nan	nan	R00342	nan	NIST
-equilibrium constant	v31	nan	0	nan	nan	nan	nan	nan	R00342	nan	NIST
-equilibrium constant	v31	nan	0	nan	nan	nan	nan	nan	R00342	nan	NIST
-equilibrium constant	v31	nan	0	nan	nan	nan	nan	nan	R00342	nan	NIST
-equilibrium constant	v31	nan	0	nan	nan	nan	nan	nan	R00342	nan	NIST
-equilibrium constant	v31	nan	0	nan	nan	nan	nan	nan	R00342	nan	NIST
-equilibrium constant	v31	nan	0	nan	nan	nan	nan	nan	R00342	nan	NIST
+equilibrium constant	v31	nan	0	nan	dimensionless	nan	nan	nan	R00342	nan	NIST
 Michaelis constant	v31	OXA_cyt	0.1	nan	mM	nan	nan	nan	R00342	C00036	Brenda
 Michaelis constant	v31	Mal_cyt	4	nan	mM	nan	nan	nan	R00342	C00149	Brenda
 Michaelis constant	v31	NAD	1.1	nan	mM	nan	nan	nan	R00342	C00003	Brenda
@@ -662,26 +579,26 @@ inhibitory constant	v2	Suc	1.5	nan	mM	nan	nan	Rattus norvegicus	R00756	C00042	Br
 inhibitory constant	v2	Cit_cyt	0	nan	mM	nan	nan	Rattus norvegicus	R00756	C00158	Brenda
 inhibitory constant	v2	PEP	0.8	nan	mM	7.9	nan	nan	R00756	C00074	Brenda
 inhibitory constant	v2	Cit_cyt	2.4	nan	mM	7.9	nan	nan	R00756	C00158	Brenda
-equilibrium constant	v2	nan	1000	nan	nan	nan	nan	nan	R00756	nan	NIST
-equilibrium constant	v2	nan	150	nan	nan	nan	nan	nan	R00756	nan	NIST
-equilibrium constant	v2	nan	2290	nan	nan	nan	nan	nan	R00756	nan	NIST
-equilibrium constant	v2	nan	2700	nan	nan	nan	nan	nan	R00756	nan	NIST
-equilibrium constant	v2	nan	2800	nan	nan	nan	nan	nan	R00756	nan	NIST
-equilibrium constant	v2	nan	2900	nan	nan	nan	nan	nan	R00756	nan	NIST
-equilibrium constant	v2	nan	4800	nan	nan	nan	nan	nan	R00756	nan	NIST
-equilibrium constant	v2	nan	800	nan	nan	nan	nan	nan	R00756	nan	NIST
+equilibrium constant	v2	nan	1000	nan	dimensionless	nan	nan	nan	R00756	nan	NIST
+equilibrium constant	v2	nan	150	nan	dimensionless	nan	nan	nan	R00756	nan	NIST
+equilibrium constant	v2	nan	2290	nan	dimensionless	nan	nan	nan	R00756	nan	NIST
+equilibrium constant	v2	nan	2700	nan	dimensionless	nan	nan	nan	R00756	nan	NIST
+equilibrium constant	v2	nan	2800	nan	dimensionless	nan	nan	nan	R00756	nan	NIST
+equilibrium constant	v2	nan	2900	nan	dimensionless	nan	nan	nan	R00756	nan	NIST
+equilibrium constant	v2	nan	4800	nan	dimensionless	nan	nan	nan	R00756	nan	NIST
+equilibrium constant	v2	nan	800	nan	dimensionless	nan	nan	nan	R00756	nan	NIST
 concentration of enzyme	v20	nan	3480	nan	molecules/cell	nan	nan	Saccharomyces cerevisiae	R00258	nan	yeastGFP
 concentration of enzyme	v20	nan	9960	nan	molecules/cell	nan	nan	Saccharomyces cerevisiae	R00258	nan	yeastGFP
 inhibitory constant	v20	Suc	17	nan	mM	8.6	310.2	Trichoderma viride	R00258	C00042	Brenda
-equilibrium constant	v20	nan	0.5	nan	nan	nan	nan	nan	R00258	nan	NIST
-equilibrium constant	v20	nan	0.6	nan	nan	nan	nan	nan	R00258	nan	NIST
-equilibrium constant	v20	nan	0.7	nan	nan	nan	nan	nan	R00258	nan	NIST
-equilibrium constant	v20	nan	0.7	nan	nan	nan	nan	nan	R00258	nan	NIST
-equilibrium constant	v20	nan	0.7	nan	nan	nan	nan	nan	R00258	nan	NIST
-equilibrium constant	v20	nan	0.7	nan	nan	nan	nan	nan	R00258	nan	NIST
-equilibrium constant	v20	nan	0.8	nan	nan	nan	nan	nan	R00258	nan	NIST
-equilibrium constant	v20	nan	1	nan	nan	nan	nan	nan	R00258	nan	NIST
-equilibrium constant	v20	nan	2.2	nan	nan	nan	nan	nan	R00258	nan	NIST
+equilibrium constant	v20	nan	0.5	nan	dimensionless	nan	nan	nan	R00258	nan	NIST
+equilibrium constant	v20	nan	0.6	nan	dimensionless	nan	nan	nan	R00258	nan	NIST
+equilibrium constant	v20	nan	0.7	nan	dimensionless	nan	nan	nan	R00258	nan	NIST
+equilibrium constant	v20	nan	0.7	nan	dimensionless	nan	nan	nan	R00258	nan	NIST
+equilibrium constant	v20	nan	0.7	nan	dimensionless	nan	nan	nan	R00258	nan	NIST
+equilibrium constant	v20	nan	0.7	nan	dimensionless	nan	nan	nan	R00258	nan	NIST
+equilibrium constant	v20	nan	0.8	nan	dimensionless	nan	nan	nan	R00258	nan	NIST
+equilibrium constant	v20	nan	1	nan	dimensionless	nan	nan	nan	R00258	nan	NIST
+equilibrium constant	v20	nan	2.2	nan	dimensionless	nan	nan	nan	R00258	nan	NIST
 Michaelis constant	v20	OG	0.1	nan	mM	7.3	313.2	Chlamydomonas reinhardtii	R00258	C00026	Brenda
 Michaelis constant	v20	Ala	2.7	nan	mM	7.3	313.2	Chlamydomonas reinhardtii	R00258	C00041	Brenda
 Michaelis constant	v20	Pyr	0.2	nan	mM	7.3	313.2	Chlamydomonas reinhardtii	R00258	C00022	Brenda
@@ -819,27 +736,7 @@ inhibitory constant	v27	NADH_cyt	0	nan	mM	nan	nan	Mesorhizobium ciceri	R00351	C0
 substrate catalytic rate constant	v27	nan	942	nan	1/s	nan	nan	Acinetobacter calcoaceticus subsp. anitratus	R00351	C00158	Brenda
 substrate catalytic rate constant	v27	nan	2100	nan	1/s	nan	nan	Azotobacter vinelandii	R00351	C00158	Brenda
 substrate catalytic rate constant	v27	nan	117	nan	1/s	nan	nan	Sus scrofa	R00351	C00158	Brenda
-equilibrium constant	v27	nan	0	nan	nan	nan	nan	nan	R00351	nan	NIST
-equilibrium constant	v27	nan	0	nan	nan	nan	nan	nan	R00351	nan	NIST
-equilibrium constant	v27	nan	0	nan	nan	nan	nan	nan	R00351	nan	NIST
-equilibrium constant	v27	nan	0	nan	nan	nan	nan	nan	R00351	nan	NIST
-equilibrium constant	v27	nan	0	nan	nan	nan	nan	nan	R00351	nan	NIST
-equilibrium constant	v27	nan	0	nan	nan	nan	nan	nan	R00351	nan	NIST
-equilibrium constant	v27	nan	0	nan	nan	nan	nan	nan	R00351	nan	NIST
-equilibrium constant	v27	nan	0	nan	nan	nan	nan	nan	R00351	nan	NIST
-equilibrium constant	v27	nan	0	nan	nan	nan	nan	nan	R00351	nan	NIST
-equilibrium constant	v27	nan	0	nan	nan	nan	nan	nan	R00351	nan	NIST
-equilibrium constant	v27	nan	0	nan	nan	nan	nan	nan	R00351	nan	NIST
-equilibrium constant	v27	nan	0	nan	nan	nan	nan	nan	R00351	nan	NIST
-equilibrium constant	v27	nan	0	nan	nan	nan	nan	nan	R00351	nan	NIST
-equilibrium constant	v27	nan	0	nan	nan	nan	nan	nan	R00351	nan	NIST
-equilibrium constant	v27	nan	0	nan	nan	nan	nan	nan	R00351	nan	NIST
-equilibrium constant	v27	nan	0	nan	nan	nan	nan	nan	R00351	nan	NIST
-equilibrium constant	v27	nan	0	nan	nan	nan	nan	nan	R00351	nan	NIST
-equilibrium constant	v27	nan	0	nan	nan	nan	nan	nan	R00351	nan	NIST
-equilibrium constant	v27	nan	0	nan	nan	nan	nan	nan	R00351	nan	NIST
-equilibrium constant	v27	nan	0	nan	nan	nan	nan	nan	R00351	nan	NIST
-equilibrium constant	v27	nan	0	nan	nan	nan	nan	nan	R00351	nan	NIST
+equilibrium constant	v27	nan	0	nan	dimensionless	nan	nan	nan	R00351	nan	NIST
 Michaelis constant	v27	Acetyl_CoA_cyt	0	nan	mM	nan	nan	Methanosarcina barkeri	R00351	C00024	Brenda
 Michaelis constant	v27	OXA_cyt	0	nan	mM	nan	nan	Methanosarcina barkeri	R00351	C00036	Brenda
 Michaelis constant	v27	Acetyl_CoA_cyt	0	nan	mM	nan	nan	Saccharomyces cerevisiae	R00351	C00024	Brenda
@@ -946,63 +843,12 @@ product catalytic rate constant	v17	nan	690	nan	1/s	nan	nan	nan	R01082	C00122	Br
 product catalytic rate constant	v17	nan	51.7	nan	1/s	nan	nan	Escherichia coli	R01082	C00122	Brenda
 substrate catalytic rate constant	v17	nan	540	nan	1/s	nan	nan	nan	R01082	C00711	Brenda
 substrate catalytic rate constant	v17	nan	11.2	nan	1/s	nan	nan	Escherichia coli	R01082	C00711	Brenda
-equilibrium constant	v17	nan	0.5	nan	nan	nan	nan	nan	R01082	nan	NIST
-equilibrium constant	v17	nan	0.4	nan	nan	nan	nan	nan	R01082	nan	NIST
-equilibrium constant	v17	nan	0.4	nan	nan	nan	nan	nan	R01082	nan	NIST
-equilibrium constant	v17	nan	0.4	nan	nan	nan	nan	nan	R01082	nan	NIST
-equilibrium constant	v17	nan	0.4	nan	nan	nan	nan	nan	R01082	nan	NIST
-equilibrium constant	v17	nan	0.3	nan	nan	nan	nan	nan	R01082	nan	NIST
-equilibrium constant	v17	nan	0.3	nan	nan	nan	nan	nan	R01082	nan	NIST
-equilibrium constant	v17	nan	0.3	nan	nan	nan	nan	nan	R01082	nan	NIST
-equilibrium constant	v17	nan	0.3	nan	nan	nan	nan	nan	R01082	nan	NIST
-equilibrium constant	v17	nan	0.3	nan	nan	nan	nan	nan	R01082	nan	NIST
-equilibrium constant	v17	nan	0.3	nan	nan	nan	nan	nan	R01082	nan	NIST
-equilibrium constant	v17	nan	0.3	nan	nan	nan	nan	nan	R01082	nan	NIST
-equilibrium constant	v17	nan	0.3	nan	nan	nan	nan	nan	R01082	nan	NIST
-equilibrium constant	v17	nan	0.3	nan	nan	nan	nan	nan	R01082	nan	NIST
-equilibrium constant	v17	nan	0.3	nan	nan	nan	nan	nan	R01082	nan	NIST
-equilibrium constant	v17	nan	0.3	nan	nan	nan	nan	nan	R01082	nan	NIST
-equilibrium constant	v17	nan	0.3	nan	nan	nan	nan	nan	R01082	nan	NIST
-equilibrium constant	v17	nan	0.3	nan	nan	nan	nan	nan	R01082	nan	NIST
-equilibrium constant	v17	nan	0.3	nan	nan	nan	nan	nan	R01082	nan	NIST
-equilibrium constant	v17	nan	0.3	nan	nan	nan	nan	nan	R01082	nan	NIST
-equilibrium constant	v17	nan	0.3	nan	nan	nan	nan	nan	R01082	nan	NIST
-equilibrium constant	v17	nan	0.3	nan	nan	nan	nan	nan	R01082	nan	NIST
-equilibrium constant	v17	nan	0.3	nan	nan	nan	nan	nan	R01082	nan	NIST
-equilibrium constant	v17	nan	0.2	nan	nan	nan	nan	nan	R01082	nan	NIST
-equilibrium constant	v17	nan	0.2	nan	nan	nan	nan	nan	R01082	nan	NIST
-equilibrium constant	v17	nan	0.2	nan	nan	nan	nan	nan	R01082	nan	NIST
-equilibrium constant	v17	nan	0.2	nan	nan	nan	nan	nan	R01082	nan	NIST
-equilibrium constant	v17	nan	0.2	nan	nan	nan	nan	nan	R01082	nan	NIST
-equilibrium constant	v17	nan	0.2	nan	nan	nan	nan	nan	R01082	nan	NIST
-equilibrium constant	v17	nan	0.2	nan	nan	nan	nan	nan	R01082	nan	NIST
-equilibrium constant	v17	nan	0.2	nan	nan	nan	nan	nan	R01082	nan	NIST
-equilibrium constant	v17	nan	0.2	nan	nan	nan	nan	nan	R01082	nan	NIST
-equilibrium constant	v17	nan	0.2	nan	nan	nan	nan	nan	R01082	nan	NIST
-equilibrium constant	v17	nan	0.2	nan	nan	nan	nan	nan	R01082	nan	NIST
-equilibrium constant	v17	nan	0.2	nan	nan	nan	nan	nan	R01082	nan	NIST
-equilibrium constant	v17	nan	0.2	nan	nan	nan	nan	nan	R01082	nan	NIST
-equilibrium constant	v17	nan	0.2	nan	nan	nan	nan	nan	R01082	nan	NIST
-equilibrium constant	v17	nan	0.2	nan	nan	nan	nan	nan	R01082	nan	NIST
-equilibrium constant	v17	nan	0.2	nan	nan	nan	nan	nan	R01082	nan	NIST
-equilibrium constant	v17	nan	0.2	nan	nan	nan	nan	nan	R01082	nan	NIST
-equilibrium constant	v17	nan	0.2	nan	nan	nan	nan	nan	R01082	nan	NIST
-equilibrium constant	v17	nan	0.2	nan	nan	nan	nan	nan	R01082	nan	NIST
-equilibrium constant	v17	nan	0.2	nan	nan	nan	nan	nan	R01082	nan	NIST
-equilibrium constant	v17	nan	0.2	nan	nan	nan	nan	nan	R01082	nan	NIST
-equilibrium constant	v17	nan	0.2	nan	nan	nan	nan	nan	R01082	nan	NIST
-equilibrium constant	v17	nan	0.2	nan	nan	nan	nan	nan	R01082	nan	NIST
-equilibrium constant	v17	nan	0.2	nan	nan	nan	nan	nan	R01082	nan	NIST
-equilibrium constant	v17	nan	0.2	nan	nan	nan	nan	nan	R01082	nan	NIST
-equilibrium constant	v17	nan	0.2	nan	nan	nan	nan	nan	R01082	nan	NIST
-equilibrium constant	v17	nan	0.2	nan	nan	nan	nan	nan	R01082	nan	NIST
-equilibrium constant	v17	nan	0.2	nan	nan	nan	nan	nan	R01082	nan	NIST
-equilibrium constant	v17	nan	0.2	nan	nan	nan	nan	nan	R01082	nan	NIST
-equilibrium constant	v17	nan	0.2	nan	nan	nan	nan	nan	R01082	nan	NIST
-equilibrium constant	v17	nan	0.2	nan	nan	nan	nan	nan	R01082	nan	NIST
-equilibrium constant	v17	nan	0.1	nan	nan	nan	nan	nan	R01082	nan	NIST
-equilibrium constant	v17	nan	0.1	nan	nan	nan	nan	nan	R01082	nan	NIST
-equilibrium constant	v17	nan	0.1	nan	nan	nan	nan	nan	R01082	nan	NIST
+equilibrium constant	v17	nan	0.5	nan	dimensionless	nan	nan	nan	R01082	nan	NIST
+equilibrium constant	v17	nan	0.4	nan	dimensionless	nan	nan	nan	R01082	nan	NIST
+equilibrium constant	v17	nan	0.3	nan	dimensionless	nan	nan	nan	R01082	nan	NIST
+equilibrium constant	v17	nan	0.2	nan	dimensionless	nan	nan	nan	R01082	nan	NIST
+equilibrium constant	v17	nan	0.2	nan	dimensionless	nan	nan	nan	R01082	nan	NIST
+equilibrium constant	v17	nan	0.1	nan	dimensionless	nan	nan	nan	R01082	nan	NIST
 Michaelis constant	v17	Fum	0.3	nan	mM	nan	nan	nan	R01082	C00122	Brenda
 Michaelis constant	v17	Mal	2.4	nan	mM	nan	nan	nan	R01082	C00149	Brenda
 Michaelis constant	v17	Fum	0.1	nan	mM	nan	nan	Sulfolobus solfataricus	R01082	C00122	Brenda
@@ -1031,17 +877,8 @@ inhibitory constant	v35	NADP_p	0	nan	mM	6.1	nan	Homo sapiens	R00115	C00006	Brend
 inhibitory constant	v35	NADPH	0	nan	mM	6.8	nan	Homo sapiens	R00115	C00005	Brenda
 inhibitory constant	v35	NADP_p	0.1	nan	mM	6.8	nan	Homo sapiens	R00115	C00006	Brenda
 inhibitory constant	v35	NADP_p	0	nan	mM	6.8	nan	Homo sapiens	R00115	C00006	Brenda
-equilibrium constant	v35	nan	0	nan	nan	nan	nan	nan	R00115	nan	NIST
-equilibrium constant	v35	nan	0	nan	nan	nan	nan	nan	R00115	nan	NIST
-equilibrium constant	v35	nan	0	nan	nan	nan	nan	nan	R00115	nan	NIST
-equilibrium constant	v35	nan	0.1	nan	nan	nan	nan	nan	R00115	nan	NIST
-equilibrium constant	v35	nan	0	nan	nan	nan	nan	nan	R00115	nan	NIST
-equilibrium constant	v35	nan	0	nan	nan	nan	nan	nan	R00115	nan	NIST
-equilibrium constant	v35	nan	0	nan	nan	nan	nan	nan	R00115	nan	NIST
-equilibrium constant	v35	nan	0	nan	nan	nan	nan	nan	R00115	nan	NIST
-equilibrium constant	v35	nan	0	nan	nan	nan	nan	nan	R00115	nan	NIST
-equilibrium constant	v35	nan	0	nan	nan	nan	nan	nan	R00115	nan	NIST
-equilibrium constant	v35	nan	0	nan	nan	nan	nan	nan	R00115	nan	NIST
+equilibrium constant	v35	nan	0.1	nan	dimensionless	nan	nan	nan	R00115	nan	NIST
+equilibrium constant	v35	nan	0	nan	dimensionless	nan	nan	nan	R00115	nan	NIST
 concentration of enzyme	v1	nan	21100	nan	molecules/cell	nan	nan	Saccharomyces cerevisiae	R00299	nan	yeastGFP
 concentration of enzyme	v1	nan	40800	nan	molecules/cell	nan	nan	Saccharomyces cerevisiae	R00299	nan	yeastGFP
 concentration of enzyme	v1	nan	114000	nan	molecules/cell	nan	nan	Saccharomyces cerevisiae	R00299	nan	yeastGFP
@@ -1062,27 +899,27 @@ inhibitory constant	v1	Pi	60	nan	mM	nan	nan	Rattus norvegicus	R00299	C00009	Bren
 inhibitory constant	v1	F6P	0.5	nan	mM	7.2	303.2	Sus scrofa	R00299	C00085	Brenda
 inhibitory constant	v1	PEP	8	nan	mM	7.2	303.2	Sus scrofa	R00299	C00074	Brenda
 inhibitory constant	v1	Pi	7.8	nan	mM	7.2	303.2	Sus scrofa	R00299	C00009	Brenda
-equilibrium constant	v1	nan	123	nan	nan	nan	nan	nan	R00299	nan	NIST
-equilibrium constant	v1	nan	1310	nan	nan	nan	nan	nan	R00299	nan	NIST
-equilibrium constant	v1	nan	139	nan	nan	nan	nan	nan	R00299	nan	NIST
-equilibrium constant	v1	nan	154	nan	nan	nan	nan	nan	R00299	nan	NIST
-equilibrium constant	v1	nan	172	nan	nan	nan	nan	nan	R00299	nan	NIST
-equilibrium constant	v1	nan	186	nan	nan	nan	nan	nan	R00299	nan	NIST
-equilibrium constant	v1	nan	193	nan	nan	nan	nan	nan	R00299	nan	NIST
-equilibrium constant	v1	nan	203	nan	nan	nan	nan	nan	R00299	nan	NIST
-equilibrium constant	v1	nan	205	nan	nan	nan	nan	nan	R00299	nan	NIST
-equilibrium constant	v1	nan	222	nan	nan	nan	nan	nan	R00299	nan	NIST
-equilibrium constant	v1	nan	230	nan	nan	nan	nan	nan	R00299	nan	NIST
-equilibrium constant	v1	nan	245	nan	nan	nan	nan	nan	R00299	nan	NIST
-equilibrium constant	v1	nan	249	nan	nan	nan	nan	nan	R00299	nan	NIST
-equilibrium constant	v1	nan	277	nan	nan	nan	nan	nan	R00299	nan	NIST
-equilibrium constant	v1	nan	286	nan	nan	nan	nan	nan	R00299	nan	NIST
-equilibrium constant	v1	nan	300	nan	nan	nan	nan	nan	R00299	nan	NIST
-equilibrium constant	v1	nan	304	nan	nan	nan	nan	nan	R00299	nan	NIST
-equilibrium constant	v1	nan	340	nan	nan	nan	nan	nan	R00299	nan	NIST
-equilibrium constant	v1	nan	430	nan	nan	nan	nan	nan	R00299	nan	NIST
-equilibrium constant	v1	nan	618	nan	nan	nan	nan	nan	R00299	nan	NIST
-equilibrium constant	v1	nan	88	nan	nan	nan	nan	nan	R00299	nan	NIST
+equilibrium constant	v1	nan	123	nan	dimensionless	nan	nan	nan	R00299	nan	NIST
+equilibrium constant	v1	nan	1310	nan	dimensionless	nan	nan	nan	R00299	nan	NIST
+equilibrium constant	v1	nan	139	nan	dimensionless	nan	nan	nan	R00299	nan	NIST
+equilibrium constant	v1	nan	154	nan	dimensionless	nan	nan	nan	R00299	nan	NIST
+equilibrium constant	v1	nan	172	nan	dimensionless	nan	nan	nan	R00299	nan	NIST
+equilibrium constant	v1	nan	186	nan	dimensionless	nan	nan	nan	R00299	nan	NIST
+equilibrium constant	v1	nan	193	nan	dimensionless	nan	nan	nan	R00299	nan	NIST
+equilibrium constant	v1	nan	203	nan	dimensionless	nan	nan	nan	R00299	nan	NIST
+equilibrium constant	v1	nan	205	nan	dimensionless	nan	nan	nan	R00299	nan	NIST
+equilibrium constant	v1	nan	222	nan	dimensionless	nan	nan	nan	R00299	nan	NIST
+equilibrium constant	v1	nan	230	nan	dimensionless	nan	nan	nan	R00299	nan	NIST
+equilibrium constant	v1	nan	245	nan	dimensionless	nan	nan	nan	R00299	nan	NIST
+equilibrium constant	v1	nan	249	nan	dimensionless	nan	nan	nan	R00299	nan	NIST
+equilibrium constant	v1	nan	277	nan	dimensionless	nan	nan	nan	R00299	nan	NIST
+equilibrium constant	v1	nan	286	nan	dimensionless	nan	nan	nan	R00299	nan	NIST
+equilibrium constant	v1	nan	300	nan	dimensionless	nan	nan	nan	R00299	nan	NIST
+equilibrium constant	v1	nan	304	nan	dimensionless	nan	nan	nan	R00299	nan	NIST
+equilibrium constant	v1	nan	340	nan	dimensionless	nan	nan	nan	R00299	nan	NIST
+equilibrium constant	v1	nan	430	nan	dimensionless	nan	nan	nan	R00299	nan	NIST
+equilibrium constant	v1	nan	618	nan	dimensionless	nan	nan	nan	R00299	nan	NIST
+equilibrium constant	v1	nan	88	nan	dimensionless	nan	nan	nan	R00299	nan	NIST
 concentration of enzyme	v9	nan	9970	nan	molecules/cell	nan	nan	Saccharomyces cerevisiae	R01699	nan	yeastGFP
 concentration of enzyme	v9	nan	100000	nan	molecules/cell	nan	nan	Saccharomyces cerevisiae	R01699	nan	yeastGFP
 inhibitory constant	v9	nan	0.3	nan	mM	nan	nan	Saccharomyces pastorianus	R01699	C00048	Brenda
@@ -1166,64 +1003,30 @@ Michaelis constant	v25	QH2	0	nan	mM	nan	nan	Helianthus tuberosus	R02161	C00390	B
 Michaelis constant	v25	QH2	0	nan	mM	nan	nan	Rhodobacter sphaeroides	R02161	C00390	Brenda
 Michaelis constant	v25	QH2	0	nan	mM	nan	nan	Homo sapiens	R02161	C00390	Brenda
 concentration of enzyme	v15	nan	18400	nan	molecules/cell	nan	nan	Saccharomyces cerevisiae	R00432	nan	yeastGFP
-equilibrium constant	v15	nan	0.5	nan	nan	nan	nan	nan	R00432	nan	NIST
-equilibrium constant	v15	nan	0.5	nan	nan	nan	nan	nan	R00432	nan	NIST
-equilibrium constant	v15	nan	0.5	nan	nan	nan	nan	nan	R00432	nan	NIST
-equilibrium constant	v15	nan	0.6	nan	nan	nan	nan	nan	R00432	nan	NIST
-equilibrium constant	v15	nan	0.6	nan	nan	nan	nan	nan	R00432	nan	NIST
-equilibrium constant	v15	nan	0.6	nan	nan	nan	nan	nan	R00432	nan	NIST
-equilibrium constant	v15	nan	0.7	nan	nan	nan	nan	nan	R00432	nan	NIST
-equilibrium constant	v15	nan	0.7	nan	nan	nan	nan	nan	R00432	nan	NIST
-equilibrium constant	v15	nan	0.7	nan	nan	nan	nan	nan	R00432	nan	NIST
-equilibrium constant	v15	nan	0.8	nan	nan	nan	nan	nan	R00432	nan	NIST
-equilibrium constant	v15	nan	0.8	nan	nan	nan	nan	nan	R00432	nan	NIST
-equilibrium constant	v15	nan	0.8	nan	nan	nan	nan	nan	R00432	nan	NIST
-equilibrium constant	v15	nan	1	nan	nan	nan	nan	nan	R00432	nan	NIST
-equilibrium constant	v15	nan	1.3	nan	nan	nan	nan	nan	R00432	nan	NIST
-equilibrium constant	v15	nan	1.5	nan	nan	nan	nan	nan	R00432	nan	NIST
-equilibrium constant	v15	nan	1.6	nan	nan	nan	nan	nan	R00432	nan	NIST
-equilibrium constant	v15	nan	1.7	nan	nan	nan	nan	nan	R00432	nan	NIST
-equilibrium constant	v15	nan	1.7	nan	nan	nan	nan	nan	R00432	nan	NIST
-equilibrium constant	v15	nan	1.7	nan	nan	nan	nan	nan	R00432	nan	NIST
+equilibrium constant	v15	nan	0.5	nan	dimensionless	nan	nan	nan	R00432	nan	NIST
+equilibrium constant	v15	nan	0.5	nan	dimensionless	nan	nan	nan	R00432	nan	NIST
+equilibrium constant	v15	nan	0.5	nan	dimensionless	nan	nan	nan	R00432	nan	NIST
+equilibrium constant	v15	nan	0.6	nan	dimensionless	nan	nan	nan	R00432	nan	NIST
+equilibrium constant	v15	nan	0.6	nan	dimensionless	nan	nan	nan	R00432	nan	NIST
+equilibrium constant	v15	nan	0.6	nan	dimensionless	nan	nan	nan	R00432	nan	NIST
+equilibrium constant	v15	nan	0.7	nan	dimensionless	nan	nan	nan	R00432	nan	NIST
+equilibrium constant	v15	nan	0.7	nan	dimensionless	nan	nan	nan	R00432	nan	NIST
+equilibrium constant	v15	nan	0.7	nan	dimensionless	nan	nan	nan	R00432	nan	NIST
+equilibrium constant	v15	nan	0.8	nan	dimensionless	nan	nan	nan	R00432	nan	NIST
+equilibrium constant	v15	nan	0.8	nan	dimensionless	nan	nan	nan	R00432	nan	NIST
+equilibrium constant	v15	nan	0.8	nan	dimensionless	nan	nan	nan	R00432	nan	NIST
+equilibrium constant	v15	nan	1	nan	dimensionless	nan	nan	nan	R00432	nan	NIST
+equilibrium constant	v15	nan	1.3	nan	dimensionless	nan	nan	nan	R00432	nan	NIST
+equilibrium constant	v15	nan	1.5	nan	dimensionless	nan	nan	nan	R00432	nan	NIST
+equilibrium constant	v15	nan	1.6	nan	dimensionless	nan	nan	nan	R00432	nan	NIST
+equilibrium constant	v15	nan	1.7	nan	dimensionless	nan	nan	nan	R00432	nan	NIST
+equilibrium constant	v15	nan	1.7	nan	dimensionless	nan	nan	nan	R00432	nan	NIST
+equilibrium constant	v15	nan	1.7	nan	dimensionless	nan	nan	nan	R00432	nan	NIST
 inhibitory constant	v7	PYR_cyt	57	nan	mM	7.5	nan	Plasmodium falciparum	R00703	C00022	Brenda
 inhibitory constant	v7	PYR_cyt	66	nan	mM	7.5	nan	Plasmodium berghei	R00703	C00022	Brenda
 inhibitory constant	v7	PYR_cyt	1.6	nan	mM	7	277.2	Gadus morhua	R00703	C00022	Brenda
 inhibitory constant	v7	NADPH	0.4	nan	mM	nan	nan	Thermoanaerobacter ethanolicus	R00703	C00005	Brenda
-equilibrium constant	v7	nan	0	nan	nan	nan	nan	nan	R00703	nan	NIST
-equilibrium constant	v7	nan	0	nan	nan	nan	nan	nan	R00703	nan	NIST
-equilibrium constant	v7	nan	0	nan	nan	nan	nan	nan	R00703	nan	NIST
-equilibrium constant	v7	nan	0	nan	nan	nan	nan	nan	R00703	nan	NIST
-equilibrium constant	v7	nan	0	nan	nan	nan	nan	nan	R00703	nan	NIST
-equilibrium constant	v7	nan	0	nan	nan	nan	nan	nan	R00703	nan	NIST
-equilibrium constant	v7	nan	0	nan	nan	nan	nan	nan	R00703	nan	NIST
-equilibrium constant	v7	nan	0	nan	nan	nan	nan	nan	R00703	nan	NIST
-equilibrium constant	v7	nan	0	nan	nan	nan	nan	nan	R00703	nan	NIST
-equilibrium constant	v7	nan	0	nan	nan	nan	nan	nan	R00703	nan	NIST
-equilibrium constant	v7	nan	0	nan	nan	nan	nan	nan	R00703	nan	NIST
-equilibrium constant	v7	nan	0	nan	nan	nan	nan	nan	R00703	nan	NIST
-equilibrium constant	v7	nan	0	nan	nan	nan	nan	nan	R00703	nan	NIST
-equilibrium constant	v7	nan	0	nan	nan	nan	nan	nan	R00703	nan	NIST
-equilibrium constant	v7	nan	0	nan	nan	nan	nan	nan	R00703	nan	NIST
-equilibrium constant	v7	nan	0	nan	nan	nan	nan	nan	R00703	nan	NIST
-equilibrium constant	v7	nan	0	nan	nan	nan	nan	nan	R00703	nan	NIST
-equilibrium constant	v7	nan	0	nan	nan	nan	nan	nan	R00703	nan	NIST
-equilibrium constant	v7	nan	0	nan	nan	nan	nan	nan	R00703	nan	NIST
-equilibrium constant	v7	nan	0	nan	nan	nan	nan	nan	R00703	nan	NIST
-equilibrium constant	v7	nan	0	nan	nan	nan	nan	nan	R00703	nan	NIST
-equilibrium constant	v7	nan	0	nan	nan	nan	nan	nan	R00703	nan	NIST
-equilibrium constant	v7	nan	0	nan	nan	nan	nan	nan	R00703	nan	NIST
-equilibrium constant	v7	nan	0	nan	nan	nan	nan	nan	R00703	nan	NIST
-equilibrium constant	v7	nan	0	nan	nan	nan	nan	nan	R00703	nan	NIST
-equilibrium constant	v7	nan	0	nan	nan	nan	nan	nan	R00703	nan	NIST
-equilibrium constant	v7	nan	0	nan	nan	nan	nan	nan	R00703	nan	NIST
-equilibrium constant	v7	nan	0	nan	nan	nan	nan	nan	R00703	nan	NIST
-equilibrium constant	v7	nan	0	nan	nan	nan	nan	nan	R00703	nan	NIST
-equilibrium constant	v7	nan	0	nan	nan	nan	nan	nan	R00703	nan	NIST
-equilibrium constant	v7	nan	0	nan	nan	nan	nan	nan	R00703	nan	NIST
-equilibrium constant	v7	nan	0	nan	nan	nan	nan	nan	R00703	nan	NIST
-equilibrium constant	v7	nan	0	nan	nan	nan	nan	nan	R00703	nan	NIST
-equilibrium constant	v7	nan	0	nan	nan	nan	nan	nan	R00703	nan	NIST
-equilibrium constant	v7	nan	0	nan	nan	nan	nan	nan	R00703	nan	NIST
+equilibrium constant	v7	nan	0	nan	dimensionless	nan	nan	nan	R00703	nan	NIST
 concentration of enzyme	v16	nan	7920	nan	molecules/cell	nan	nan	Saccharomyces cerevisiae	R02164	nan	yeastGFP
 concentration of enzyme	v16	nan	9540	nan	molecules/cell	nan	nan	Saccharomyces cerevisiae	R02164	nan	yeastGFP
 concentration of enzyme	v16	nan	238	nan	molecules/cell	nan	nan	Saccharomyces cerevisiae	R02164	nan	yeastGFP
@@ -1287,21 +1090,7 @@ Michaelis constant	v16	Q	0	nan	mM	nan	nan	Escherichia coli	R02164	C00399	Brenda
 concentration of enzyme	v38	nan	807	nan	molecules/cell	nan	nan	Saccharomyces cerevisiae	R00842	nan	yeastGFP
 concentration of enzyme	v38	nan	8970	nan	molecules/cell	nan	nan	Saccharomyces cerevisiae	R00842	nan	yeastGFP
 product catalytic rate constant	v38	nan	188	nan	1/s	nan	nan	Ceratitis capitata	R00842	C00111	Brenda
-equilibrium constant	v38	nan	0	nan	nan	nan	nan	nan	R00842	nan	NIST
-equilibrium constant	v38	nan	0	nan	nan	nan	nan	nan	R00842	nan	NIST
-equilibrium constant	v38	nan	0	nan	nan	nan	nan	nan	R00842	nan	NIST
-equilibrium constant	v38	nan	0	nan	nan	nan	nan	nan	R00842	nan	NIST
-equilibrium constant	v38	nan	0	nan	nan	nan	nan	nan	R00842	nan	NIST
-equilibrium constant	v38	nan	0	nan	nan	nan	nan	nan	R00842	nan	NIST
-equilibrium constant	v38	nan	0	nan	nan	nan	nan	nan	R00842	nan	NIST
-equilibrium constant	v38	nan	0	nan	nan	nan	nan	nan	R00842	nan	NIST
-equilibrium constant	v38	nan	0	nan	nan	nan	nan	nan	R00842	nan	NIST
-equilibrium constant	v38	nan	0	nan	nan	nan	nan	nan	R00842	nan	NIST
-equilibrium constant	v38	nan	0	nan	nan	nan	nan	nan	R00842	nan	NIST
-equilibrium constant	v38	nan	0	nan	nan	nan	nan	nan	R00842	nan	NIST
-equilibrium constant	v38	nan	0	nan	nan	nan	nan	nan	R00842	nan	NIST
-equilibrium constant	v38	nan	0	nan	nan	nan	nan	nan	R00842	nan	NIST
-equilibrium constant	v38	nan	0	nan	nan	nan	nan	nan	R00842	nan	NIST
+equilibrium constant	v38	nan	0	nan	dimensionless	nan	nan	nan	R00842	nan	NIST
 Michaelis constant	v38	NAD	0.5	nan	mM	nan	nan	Gallus gallus	R00842	C00003	Brenda
 Michaelis constant	v38	G3P	2	nan	mM	nan	nan	Gallus gallus	R00842	C00093	Brenda
 Michaelis constant	v38	NADH_cyt	0	nan	mM	nan	nan	Gallus gallus	R00842	C00004	Brenda

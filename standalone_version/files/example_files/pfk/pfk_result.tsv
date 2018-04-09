@@ -19,7 +19,7 @@ Michaelis constant	R04779	beta_D_fructofuranose_6_phosphate_c	0.5669	0.5669	0.30
 Michaelis constant	R04779	beta_D_fructofuranose_1_6_bisphosphate_c	8.9574	8.9574	4.82942921863	mM	Balanced parameter value	Basic	None
 Michaelis constant	R04779	ATP_c	0.0927	0.0927	0.0499760756288	mM	Balanced parameter value	Basic	None
 Michaelis constant	R04779	ADP_c	0.7516	0.7516	0.405243226727	mM	Balanced parameter value	Basic	None
-equilibrium constant	R04779	None	0.0721	0.0721	0.0395839013229	None	Balanced parameter value	Derived	None
+equilibrium constant	R04779	None	0.0721	0.0721	0.0395839013229	dimensionless	Balanced parameter value	Derived	None
 concentration of enzyme	R04779	None	0.0032	0.0032	0.00117710369675	mM	Balanced parameter value	Basic	None
 substrate catalytic rate constant	R04779	None	18.253	18.253	102.939814093	1/s	Balanced parameter value	Derived	None
 product catalytic rate constant	R04779	None	1.9764	1.9764	11.1459995047	1/s	Balanced parameter value	Derived	None
