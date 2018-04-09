@@ -449,11 +449,11 @@ class SBtabTable():
         # Create temporary work copy
         sbtab_dataset = self.table
 
-        del sbtab_dataset[position + 1]
+        del sbtab_dataset[position]
 
         # Update object
         self.table = sbtab_dataset
-        self.initialize_table()
+        #self.initialize_table()
 
     def add_column(self, column_list, position=None):
         '''

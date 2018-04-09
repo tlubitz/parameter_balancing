@@ -107,13 +107,20 @@ def valid_prior(sbtab_prior):
     return validity
 
 
-def extract_pseudos(sbtab_prior):
+def extract_pseudos_priors(sbtab_prior):
     '''
     extracts the priors and pseudos of a given SBtab prior table
     '''
+    pseudo_list = ['chemical potential', 'product catalytic rate constant',
+                   'substrate catalytic rate constant',
+                   'equilibrium constant', 'forward maximal velocity',
+                   'reverse maximal velocity', 'reaction affinity']
     pmin = {}
     pmax = {}
     pseudos = {}
+    priors = {}
+    
+    
     
     for row in sbtab_prior.value_rows:
         pmin[row[sbtab_prior.columns_dict['!QuantityType']]] = float(row[sbtab_prior.columns_dict['!LowerBound']])
@@ -123,9 +130,15 @@ def extract_pseudos(sbtab_prior):
         else:
             std = row[sbtab_prior.columns_dict['!PriorGeometricStd']]
         median = row[sbtab_prior.columns_dict['!PriorMedian']]
-        pseudos[row[sbtab_prior.columns_dict['!QuantityType']]] = [float(median), float(std)]
+
+        if row[sbtab_prior.columns_dict['!QuantityType']] in pseudo_list:
+            pseudos[row[sbtab_prior.columns_dict['!QuantityType']]] = [float(median),
+                                                                       float(std)]
+        else:
+            priors[row[sbtab_prior.columns_dict['!QuantityType']]] = [float(median),
+                                                                      float(std)]
        
-    return pseudos, pmin, pmax
+    return pseudos, priors, pmin, pmax
 
 
 def id_checker(sbtab, sbml):

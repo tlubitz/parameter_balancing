@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+import copy
 import libsbml
 import os
 import re
@@ -113,7 +114,7 @@ def parameter_balancing_wrapper(parser_args):
                 log_file += str(element) + '\n'
 
         # extract crucial information from prior
-        (pseudos, pmin, pmax) = misc.extract_pseudos(sbtab_prior)
+        (pseudos, priors, pmin, pmax) = misc.extract_pseudos_priors(sbtab_prior)
     else:
         # open default prior file
         p = os.path.dirname(os.path.abspath(__file__)) + '/files/default_'\
@@ -146,7 +147,7 @@ def parameter_balancing_wrapper(parser_args):
                 log_file += str(element) + '\n'
 
         # extract crucial information from prior
-        (pseudos, pmin, pmax) = misc.extract_pseudos(sbtab_prior)
+        (pseudos, priors, pmin, pmax) = misc.extract_pseudos_priors(sbtab_prior)
 
     ###########################
     # 1.4: open and prepare an optional SBtab options file;
@@ -267,10 +268,14 @@ def parameter_balancing_wrapper(parser_args):
     print('\nFiles successfully read. Start balancing.\n')
 
     #print(sbtab.value_rows)
+
+      
+    #print(sbtab.value_rows)
     
     # 2: Parameter balancing
     if parameter_dict['use_pseudo_values'] == 'True' or args.pb_pseudos:
-        sbtab_new = pb.fill_sbtab(sbtab, pseudos)
+        sbtab_old = copy.deepcopy(sbtab)
+        sbtab_new = pb.fill_sbtab(sbtab_old, pseudos, priors)
         pseudo_flag = 'pseudos'
         print('\nParameter balancing is using pseudo values.\n')
     else:
@@ -284,6 +289,9 @@ def parameter_balancing_wrapper(parser_args):
                                                  pmax,
                                                  parameter_dict)
 
+    #for row in sbtab_final.value_rows:
+    #    print(row)
+    
     # 3: inserting parameters and kinetics into SBML model
     transfer_mode = {'standard chemical potential': 'weg',
                      'equilibrium constant': 'hal',

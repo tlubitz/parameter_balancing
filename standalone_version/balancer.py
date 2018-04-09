@@ -331,7 +331,7 @@ class ParameterBalancing:
                    pmin, pmax, parameter_dict):
         '''
         makes an insertable SBtab-file out of a possibly erraneous SBtab-File
-        '''
+        '''        
         # set warning message for numerical problems in numpy
         numpy.seterrcall(self.print_warning)
         numpy.seterr(all='call')
@@ -643,9 +643,6 @@ class ParameterBalancing:
                         or row[self.sbtab.columns_dict['!Reaction:SBML:reaction:id']] == name):
                     means.append(float(row[self.sbtab.columns_dict['!Mean']]))
                     stds.append(float(row[self.sbtab.columns_dict['!Std']]))
-        #print(quantity)
-        #print(means)
-        #print(stds)
                     
         # build the mean
         if quantity in self.quantity_type2median_std:
@@ -687,49 +684,48 @@ class ParameterBalancing:
         
         return value_dict
 
-    def fill_sbtab(self,sbtab,pseudos=None):
+    def fill_sbtab(self, sbtab, pseudos=None, priors=None):
         '''
         fills the values in the given SBtabfile
         '''
         self.pseudo_used = False
-        
         self.make_default_table()
-
+        sbtab_strings = [sbtab.header_row, '\t'.join(sbtab.columns)]
+        
+        
         if pseudos:
             # first fill parameter rows that have no value
             self.pseudo_used = True
-            for row in sbtab.value_rows:
-                if row[sbtab.columns_dict['!Mode']] == '' \
-                   and row[sbtab.columns_dict['!QuantityType']] in self.pseudo_list:
+            for i, row in enumerate(sbtab.value_rows):
+                if row[sbtab.columns_dict['!QuantityType']] in self.pseudo_list:
                     try:
                         row[sbtab.columns_dict['!Mode']] = str(pseudos[row[0]][0])
                         row[sbtab.columns_dict['!UnconstrainedGeometricMean']] = str(pseudos[row[0]][0])
                         row[sbtab.columns_dict['!UnconstrainedGeometricStd']] = str(pseudos[row[0]][1])
+                        sbtab_strings.append('\t'.join(row))
                     except: pass
-
+                    
             # then construct required variables
             means = []
             stds = []
-            quantities = ['standard chemical potential',
-                          'catalytic rate constant geometric mean',
-                          'Michaelis constant', 'activation constant',
-                          'inhibitory constant', 'concentration of enzyme',
-                          'concentration', 'equilibrium constant',
-                          'substrate catalytic rate constant',
-                          'product catalytic rate constant',
-                          'forward maximal velocity',
-                          'reverse maximal velocity', 'chemical potential',
-                          'reaction affinity']
-            for i, quantity in enumerate(quantities):
+            for i, quantity in enumerate(self.pseudo_list):
                 means.append(pseudos[quantity][0])
                 stds.append(pseudos[quantity][1])
                 
-            (self.log_means,self.log_stds) = self.med10_std_to_log(means,stds,quantities)
+            (self.log_means,self.log_stds) = self.med10_std_to_log(means,stds,self.pseudo_list)
 
-            self.prior_values = {}
-            for i,quantity in enumerate(quantities):
-                self.prior_values[quantity] = [(self.log_means[i],self.log_stds[i])]
-
+            #if priors:
+            #    self.prior_values = {}
+            #    for i, row in enumerate(sbtab.value_rows):
+            #        if row[sbtab.columns_dict['!QuantityType']] in priors and row[sbtab.columns_dict['!UnconstrainedGeometricMean']] != '':
+            #            self.prior_values[row[sbtab.columns_dict['!QuantityType']]] = [self.normal_to_log([row[sbtab.columns_dict['!UnconstrainedGeometricMean']]],
+            #                                                                                              [row[sbtab.columns_dict['!UnconstrainedGeometricStd']]],
+            #                                                                                              [row[sbtab.columns_dict['!QuantityType']]])]
+            #print(self.prior_values)
+               
+            sbtab_pseudo = SBtab.SBtabTable('\n'.join(sbtab_strings), 'sbtab_pseudo.csv')
+            return sbtab_pseudo
+                           
         return sbtab
 
     def make_default_table(self):
@@ -836,7 +832,6 @@ class ParameterBalancing:
         '''
         generates the values for the parameter balancing
         '''
-     
         self.sbtab = sbtab_old
         self.sbtab_new = sbtab
 
@@ -1035,7 +1030,8 @@ class ParameterBalancing:
         #first: get the column indices of the initial SBtab file, so we can search it
         old_rows = self.tidy_up_sbtab(True)
 
-        value_tuples    = []
+        value_tuples_old = []
+        value_tuples_new = []
         row_identifiers = []
 
         try: mean_column = self.sbtab.columns_dict['!Mean']
@@ -1082,13 +1078,13 @@ class ParameterBalancing:
                             else: self.parameter2bounds[row[self.sbtab.columns_dict['!QuantityType']],(row[self.sbtab.columns_dict['!Compound:SBML:species:id']])] = (None,None)
                         except: pass
                     row_identifiers.append(row_identifier)
-                    if row_identifier in self.desired_parameters.keys(): value_tuples.append(single_tuple)
+                    if row_identifier in self.desired_parameters.keys(): value_tuples_old.append(single_tuple)
             else:
                 raise ParameterBalancingError('There is a quantity type in the SBtab that cannot be interpreted: %s'%(row[self.sbtab.columns_dict['!QuantityType']]))
 
         #second: get column indices of the new SBtab file and search it
-
         for row in self.new_rows:
+            if row[self.sbtab_new.columns_dict['!UnconstrainedGeometricMean']] == '': continue
             if len(row) == len(self.sbtab_new.columns):
                 single_tuple = []
                 single_tuple.append(row[self.sbtab_new.columns_dict['!QuantityType']])
@@ -1123,26 +1119,40 @@ class ParameterBalancing:
                         if self.sbtab_new.columns_dict['!Min'] and self.sbtab_new.columns_dict['!Max']:
                             self.parameter2bounds[row_identifier] = (None,None)
                     except: pass
-                    value_tuples.append(single_tuple)
+                    value_tuples_new.append(single_tuple)
 
         #generate logarithms
         means = []
         stds = []
         types = []
         vt = []
-        
-        for single_tuple in value_tuples:
+        x_star_old = []
+        log_stds_x_old = []
+       
+        for single_tuple in value_tuples_old:
             if single_tuple[3] == '': continue
             means.append(float(single_tuple[3]))
             stds.append(float(single_tuple[4]))
             types.append(single_tuple[0])
             vt.append(single_tuple)
+            (x_star_old,log_stds_x_old) = self.normal_to_log(means,stds,types)
 
-        #(self.x_star,self.log_stds_x) = self.med10_std_to_log(means,stds,types)
-        (self.x_star,self.log_stds_x) = self.normal_to_log(means,stds,types)
-
-        #print(self.x_star)
-        #print(self.log_stds_x)
+        means = []
+        stds = []
+        types = []
+        x_star_new = []
+        log_stds_x_new = []
+        for single_tuple in value_tuples_new:
+            if single_tuple[3] == '': continue
+            means.append(float(single_tuple[3]))
+            stds.append(float(single_tuple[4]))
+            types.append(single_tuple[0])
+            vt.append(single_tuple)
+            (x_star_new,log_stds_x_new) = self.med10_std_to_log(means,stds,types)   
+            
+        self.x_star = x_star_old + x_star_new
+        self.log_stds_x = log_stds_x_old + log_stds_x_new
+        self.new_rows = self.sbtab.value_rows + self.new_rows
         
         return vt
 
@@ -1283,7 +1293,6 @@ class ParameterBalancing:
         create a computable list of row specifics from the given string
         inherited from the prior file
         '''
-        # print(row_specifics_str)
         variable2value = {'RT':'2.4790','Nt':'A'}        
     
     def build_bottom_row(self,pseudo_quantity):
@@ -1467,7 +1476,7 @@ class ParameterBalancing:
                                 if self.min_column:
                                     self.bounds_inc.append(self.parameter2bounds[(quantity,(reaction_species[1],reaction_species[2]))])
                             used_identifiers.append((quantity,(reaction_species[1],reaction_species[2])))
-       
+        '''
         for quantity in self.pseudo_list:
             if self.parameter_dict[quantity]:
                 if quantity in self.species_parameters:
@@ -1494,7 +1503,7 @@ class ParameterBalancing:
                                 if self.min_column:
                                     self.bounds_inc.append(self.parameter2bounds[(quantity,(reaction_species[1],reaction_species[2]))])
                             used_identifiers.append((quantity,(reaction_species[1],reaction_species[2])))
-        
+        '''
         return theta
 
     def build_covariance_matrices(self):
@@ -1511,9 +1520,7 @@ class ParameterBalancing:
             C_prior_rows.append(row)
 
         C_prior = numpy.array(C_prior_rows)
-
         #second, generate covariance matrix according to the input values in the x-vector
-
         C_x_rows = []
         for i,x_entry in enumerate(self.x_vector):
             row = [0.0]*len(self.x_vector)
@@ -1562,7 +1569,7 @@ class ParameterBalancing:
         #for i, row in enumerate(self.Q):
         #    print(self.quantities[i],',',list(row))
 
-        #print(self.C_x_inv) --> 0
+        #print(self.C_x_inv)
         #for i, row in enumerate(self.quantities_x):
         #    print(row,',',list(self.C_x[i]))
 
@@ -1595,7 +1602,8 @@ class ParameterBalancing:
         #    (self.q_post, self.stds_log_inc) = self.med10_std_to_log(q_norm, stds_norm_x, self.quantities_x)
         
         self.x_post = numpy.dot(self.Q,self.q_post)
-
+        #print(self.x_post)
+        
         #for elem in self.q_post:
         #    print(elem)
         #print('\n')
@@ -1665,18 +1673,15 @@ class ParameterBalancing:
                     row[3] = str(format(float(means[row_number]),'.4f'))
                     row[5] = 'NaN'
                     row[6] = 'NaN'
-                else:  #XXX
-                    #(t1,t2) = self.log_to_normal([self.x_post[row_number]],[self.stds_log_post[row_number]],[row[0]])
-                    #print(row[0])
-                    #print(t1,t2)
-                    #print('\n')
+                else:
                     row[3] = str(format(numpy.exp(float(self.x_post[row_number])),'.4f'))
                     row[5] = str(format(numpy.exp(float(self.x_post[row_number])),'.4f'))
                     row[6] = str(format(numpy.exp(float(self.stds_log_post[row_number])),'.4f'))
 
                 row[7] = str(format(float(means[row_number]),'.4f'))
                 row[8] = str(format(float(self.stds_post[row_number] ) ,'.4f'))
-                finished_rows.append(row)
+                if not row in finished_rows:
+                    finished_rows.append(row)
                 first = self.check_extreme_values(row,first)
 
         if not first: self.log += '\n'
@@ -1685,6 +1690,7 @@ class ParameterBalancing:
             for entry in self.hilo:
                 self.log += entry
 
+                
         return finished_rows
 
     def check_extreme_values(self,row,first):
