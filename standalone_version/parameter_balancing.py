@@ -27,7 +27,7 @@ def parameter_balancing_wrapper(parser_args):
     '''
     model_name = args.sbml
     parameter_dict = {}
-    log_file = 'Parameter balancing log file of model %s\n\n' % (model_name)
+    log_file = 'Parameter balancing log file of model %s\n' % (model_name)
     
     ###########################
     # 1: open and prepare the files; then check for some rudimentary validity:
@@ -72,7 +72,7 @@ def parameter_balancing_wrapper(parser_args):
         warnings = sbtab_data_validate.return_output()
         if warnings != []:
             log_file += 'Log warnings for SBtab data file: '\
-                        '%s\n\n' % args.sbtab_data
+                        '%s\n' % args.sbtab_data
             for warning in warnings:
                 log_file += warning + '\n'
         
@@ -265,23 +265,21 @@ def parameter_balancing_wrapper(parser_args):
     if 'use_pseudo_values' not in parameter_dict.keys():
         parameter_dict['use_pseudo_values'] = False
 
-    print('\nFiles successfully read. Start balancing.\n')
+    if args.verbose:
+        print('\nFiles successfully read. Start balancing.')
 
-    #print(sbtab.value_rows)
-
-      
-    #print(sbtab.value_rows)
-    
     # 2: Parameter balancing
     if parameter_dict['use_pseudo_values'] == 'True' or args.pb_pseudos:
         sbtab_old = copy.deepcopy(sbtab)
         sbtab_new = pb.fill_sbtab(sbtab_old, pseudos, priors)
         pseudo_flag = 'pseudos'
-        print('\nParameter balancing is using pseudo values.\n')
+        if args.verbose:
+            print('Parameter balancing is using pseudo values.')
     else:
         sbtab_new = pb.fill_sbtab(sbtab)
         pseudo_flag = 'no_pseudos'
-        print('\nParameter balancing is not using pseudo values.\n')
+        if args.verbose:
+            print('Parameter balancing is not using pseudo values.')
 
     (sbtab_final, mean_vector, mean_vector_inc, c_post, c_post_inc,
      r_matrix, shannon, log) = pb.make_balancing(sbtab_new,
@@ -289,8 +287,6 @@ def parameter_balancing_wrapper(parser_args):
                                                  pmax,
                                                  parameter_dict)
 
-    #for row in sbtab_final.value_rows:
-    #    print(row)
     
     # 3: inserting parameters and kinetics into SBML model
     transfer_mode = {'standard chemical potential': 'weg',
@@ -320,27 +316,37 @@ def parameter_balancing_wrapper(parser_args):
         except: rm = str(model_name)[:-4]
         output_name = rm + '_balanced'
 
-    print('\nDone... writing output files.'\
-          '\n\nGoodbye!\n\n')
-
-    # 5: Write SBtab and SBML model
-    model_name = str(model_name)[:-4]
-    sbtab_file_new = open(output_name + '.tsv', 'w')
-    sbtab_file_new.write(sbtab_final.return_table_string())
-    sbtab_file_new.close()
-
-    sbml_code = '<?xml version="1.0" encoding="UTF-8"?>\n' + sbml_model.toSBML()
-    sbml_model_new = open(output_name + '.xml', 'w')
-    sbml_model_new.write(sbml_code)
-    sbml_model_new.close()
-
-    # 6: If requested write log file
+    if args.verbose:
+        print('Done... writing output files.')
+        
+    # 5: If requested write log file
     if args.pb_log:
         if log_file.count('\n') == 2:
             log_file += 'No warnings detected. \n'
         log = open(output_name + '_log.txt', 'w')
         log.write(log_file)
-        log.close()    
+        log.close()
+        if args.verbose:
+            print('The log file %s has been written.' % (output_name + '_log.txt'))
+
+    # 6: Write SBtab and SBML model
+    model_name = str(model_name)[:-4]
+    sbtab_file_new = open(output_name + '.tsv', 'w')
+    sbtab_file_new.write(sbtab_final.return_table_string())
+    sbtab_file_new.close()
+    if args.verbose:
+        print('The SBtab file %s has been written.' % (output_name + '.tsv'))
+
+    sbml_code = '<?xml version="1.0" encoding="UTF-8"?>\n' + sbml_model.toSBML()
+    sbml_model_new = open(output_name + '.xml', 'w')
+    sbml_model_new.write(sbml_code)
+    sbml_model_new.close()
+    if args.verbose:
+        print('The log file %s has been written.' % (output_name + '.xml'))
+        print('>> Goodbye.')
+        
+
+
 
 if __name__ == '__main__':
 
@@ -353,6 +359,7 @@ if __name__ == '__main__':
     parser.add_argument('--output_name', help='Choose a name for the output files.')
     parser.add_argument('-l', '--pb_log', help='Flag to print a log file.', action='store_true')
     parser.add_argument('-p', '--pb_pseudos', help='Flag for usage of pseudo values.', action='store_true')
+    parser.add_argument('-v', '--verbose', help='Flag to display script messages.', action='store_true')
    
     args = parser.parse_args()
 
