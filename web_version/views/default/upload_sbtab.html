@@ -1,0 +1,108 @@
+{{extend 'layout.html'}}
+    <hr style="width:900;float:left;"><br>
+
+    <p style="margin-left:250;">
+      <a href="/pb/static/main.html">Main</a> |
+      <a href="/pb/static/documentation.html">Documentation</a> |
+      Online Balancing |
+      <a href="/pb/static/download.html">Download</a> |
+      <a href="/pb/static/contact.html">Contact</a>
+    </p>
+    
+
+
+    <div style="background-color:CDCCCB;width:900"><h2>Parameter Balancing Online (2/4): Upload your SBtab parameter file</h2></div>
+
+
+
+Please choose a parameter SBtab file for your chosen model file <b>{{=SBML_NAME}}</b> <br><br>
+
+<table border="0">
+    <td>
+       <form>If you want to proceed without providing an SBtab parameter file, please click <button type="submit" value="0" name="emptysbtab_button">here</button>.</form>
+    </td>
+</table>
+
+<br>
+
+{{=SBTAB_FORM}}
+
+{{if SBTAB_NAMES:}}
+
+<table border="0">
+  <td valign="top">
+  <table border="1" rules="rows">
+    <td bgcolor="#87CEFA">
+    <!-- The remove all button (if there are more than one file) -->
+    {{if len(SBTAB_NAMES)>1:}}
+    <td bgcolor="#87CEFA"></td>
+    <form><td bgcolor="87CEFA"><button type="submit" value="0" name="erase_all_button_sbtab">Remove all</button></td></form>
+    {{else:}}
+    <td bgcolor="#87CEFA" height="20"></td>
+    <td bgcolor="#87CEFA" height="20"></td>
+    {{pass}}
+    <!-- The file list and corresponding buttons -->
+    {{for pos,f in enumerate(SBTAB_NAMES):}}
+    <tr>
+      <td>
+	&bull;
+	<a href="/pb/default/show_sbtab/{{=str(pos)}}" target="_new"> {{=f}}</a>
+      </td>
+      <form>
+	<td>
+	  <button type="submit" value="{{=pos}}" name="chooseprior_button">Proceed</button>
+	</td>
+      </form>
+      <form>
+	<td>
+	  <button type="submit" value="{{=pos}}" name="erase_button_sbtab">Remove</button>
+	</td>
+      </form>
+    </tr>
+    {{pass}}
+    </td>
+  </table>
+  <!-- Display warnings -->
+  {{if WARNINGS:}}
+  <table border="0">
+    {{for f in WARNINGS:}}
+    <tr>
+      <td>
+      <td><font color="red">{{=f}}</font></td>
+      </td>
+    </tr>
+    {{pass}}
+  </table>
+  {{else:}}
+  <table border="0">
+    <td> No warnings detected. </td>
+  </table>
+  {{pass}}
+  </td>
+  {{pass}}
+  {{pass}}
+
+  
+
+
+{{if not SBTAB_NAMES:}}
+<table>
+
+  <td>
+    <table border="1">
+	<td valign="top">
+	  Example Quantity <br>
+	  SBtab file (.tsv):
+	</td>
+	<td>
+	  <image width="600" src="/pb/static/images/example_sbtab_quantity.png">
+	</td>
+    </table>
+  </td>
+</table>
+{{pass}}
+<p>
+  Information on the use of online balancing can be found on the <a href="../static/documentation.html">documentation page</a>.<br>
+</p>
+
+</table>

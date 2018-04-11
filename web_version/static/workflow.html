@@ -1,0 +1,69 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Parameter Balancing for Kinetic Models of Cell Metabolism</title>
+    <link rel="stylesheet" type="text/css" href="css/pb.css">
+  </head>
+
+  <body>
+
+    <h2><a href="main.html"><image width="100" src="/pb/static/images/pb-logo.png"></a>   Parameter Balancing for Kinetic Models of Cell Metabolism</h2>
+
+    <h3>The parameter balancing workflow</h3>
+
+    <p style="width:700;">Parameter balancing helps you find a consistent parameter set
+      for a kinetic model, based on (i) kinetic constants and other data collected from
+      experiments or the literature; (ii) constraints between biochemical quantities due
+      to their definition or the laws of thermodynamics; (iii) assumptions about typical
+      ranges, represented by prior distributions and pseudo values. As our standard rate
+      laws, we use
+      <a href="http://bioinformatics.oxfordjournals.org/content/26/12/1528.abstract">modular
+	rate laws</a>.
+      <ol>
+	<li style="width:680;"><b>(1/4) Upload your SBML model.</b> Please make sure that your SBML model is
+	valid. You can use the official <a href="http://sbml.org/Facilities/Validator/">SBML online validator</a> for this.</li>
+	<li style="width:680;"><b>(2/4) Upload your SBtab file.</b> Here again, make sure that the SBtab file is
+	  valid. You can use the official <a href="https://rumo.biologie.hu-berlin.de/SBtab/default/validator">SBtab online validator</a>
+          for this. Please also keep in mind that the SBML species and reaction IDs need to comply with
+          the IDs that are used in the SBtab file.</li>
+        <li style="width:680;"><b>(3/4) Choose your prior file.</b> This file holds information on the prior distributions on the
+	  parameter types. Initially, you can use the default prior table which is already loaded. If you want
+	  to use an alternative prior table, you can choose one from the <a href="quantities.html">list</a> or
+	  create your own prior table (keep in mind to adhere to the syntax of the prior tables).</li>
+        <li style="width:680;"><b>(4/4) Download the balancing results.</b> If the balancing process was successful,
+          you can download the SBML file with the balanced parameters and convenience kinetics from the SBML list.
+	  Analogously, you can download the SBtab parameter file with the balanced parameters from the SBtab list.</li>
+      </ol>
+    </p>
+
+    <p style="width:700;"> Alternately, you can also use the <i>Fast Lane Balancing</i> option:
+      All required information are provided in one single SBtab document file, which consists
+      of several SBtab tables. Mandatory for this option is an SBtab Reaction table, which can
+      be translated to an SBMl model. Optional are
+      SBtab Compartment, Parameter, and Compound tables, which are employed as additional model
+      building information (see more information on the SBtab <-> SBML conversion on <a href="http://www.sbtab.net">www.sbtab.net</a>).
+      Furthermore, the user can also provide an SBtab Quantity table,
+      which holds the kinetic parameters for the balancing. Also, an SBtab QuantityInfo table
+      can be part of this one SBtab document file, and it holds the information on the prior
+      distributions for the balancing (see <a href="quantities.html">Quantities</a> for more
+      information). Finally, an SBtab PbConfig table can help you set configuration
+      options for the balancing process (see <a href="../default/config.html">Configure Online Balancing</a>
+      for more information).
+    </p>
+
+    <hr>
+    <p>
+      <a href="main.html">Main</a> |
+      <a href="introduction.html">Introduction</a> |
+      <a href="workflow.html">Workflow</a> |
+      <a href="../default/balancing.html"><b>Online Balancing</b></a> |
+      <a href="../default/config.html">Configure Online Balancing</a> |
+      <a href="file_format.html">File format</a> |
+      <a href="faq.html">FAQ</a> |
+      <a href="quantities.html">Quantities</a> |
+      <a href="examples.html">Examples</a> |
+      <a href="software.html">Software</a> |
+      <a href="contact.html">Contact</a> |
+    </p>
+
+</body></html>

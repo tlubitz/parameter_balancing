@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="application-name" content="{{=request.application}}" />
+  <title>Parameter Balancing Online</title>
+  <link rel="stylesheet" type="text/css" href="/pb/static/css/pb.css">
+  <link rel="shortcut icon" href="/pb/static/images/pb-logo.png" type="image/icon">
+  <link rel="icon" href="/pb/static/images/pb-logo.png" type="image/icon">
+  <script type="text/javascript">
+    function help_click(div, txt) { if (div.innerHTML == "") div.innerHTML = "<br/>   " + txt; else div.innerHTML = ""; }
+  </script> 
+
+  {{
+  # using sidebars need to know what sidebar you want to use
+  left_sidebar_enabled = globals().get('left_sidebar_enabled',False)
+  right_sidebar_enabled = globals().get('right_sidebar_enabled',False)
+  middle_columns = {0:'span12',1:'span9',2:'span6'}[
+    (left_sidebar_enabled and 1 or 0)+(right_sidebar_enabled and 1 or 0)]
+  }}
+  {{block head}}{{end}}
+</head>
+
+<body>
+  <table cellpadding="2">
+    <td>&nbsp;&nbsp;</td>
+      <td>
+
+      <table>
+	<td><a href="/pb/static/main.html"><image width="100" src="/pb/static/images/pb-logo.png"></a></td>
+	<td width="12.5"></td>
+	<td valign="bottom"><br><h1>Parameter balancing <br>for kinetic metabolic models</h1></td>
+      </table>
+
+
+
+
+  <div class="container">
+    <section id="main" class="main row">
+        {{if left_sidebar_enabled:}}
+        <div class="span3 left-sidebar">
+            {{block left_sidebar}}
+            <h3>Left Sidebar</h3>
+            <p></p>
+            {{end}}
+        </div>
+        {{pass}}
+
+        <div class="{{=middle_columns}}">
+            {{block center}}
+            {{include}}
+            {{end}}
+        </div>
+
+        {{if right_sidebar_enabled:}}
+        <div class="span3">
+            {{block right_sidebar}}
+            <h3>Right Sidebar</h3>
+            <p></p>
+            {{end}}
+        </div>
+        {{pass}}
+    </section><!--/main-->
+
+  </td>
+  </table>
+
+  <!-- The javascript =============================================
+       (Placed at the end of the document so the pages load faster) -->
+  <script src="{{=URL('static','js/bootstrap.min.js')}}"></script>
+  <script src="{{=URL('static','js/web2py_bootstrap.js')}}"></script>
+
+  {{if response.google_analytics_id:}}
+  <script src="{{=URL('static','js/analytics.min.js')}}"></script>
+  <script type="text/javascript">
+  analytics.initialize({
+    'Google Analytics':{trackingId:'{{=response.google_analytics_id}}'} 
+  });</script>
+  {{pass}}
+  <script src="{{=URL('static','js/share.js',vars=dict(static=URL('static','images')))}}"></script>
+
+</body>
+</html>
+

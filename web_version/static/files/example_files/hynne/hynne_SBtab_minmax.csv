@@ -1,0 +1,549 @@
+!!SBtab TableType="Quantity" SBtabVersion="1.0" TableName="Hynne Data"													
+!QuantityType	!Reaction:SBML:reaction:id	!Compound:SBML:species:id	!Mean	!Std	!Unit	!pH	!Temperature	!Organism	!Reaction:Identifiers:kegg.reaction	!Compound:Identifiers:kegg.compound	!Reference	!Min	!Max			
+concentration of enzyme	vGAPDH	nan	169000	nan	molecules/cell	nan	nan	Saccharomyces cerevisiae	R01061	nan	yeastGFP	0	10000
+concentration of enzyme	vGAPDH	nan	120000	nan	molecules/cell	nan	nan	Saccharomyces cerevisiae	R01061	nan	yeastGFP	0	10000
+concentration of enzyme	vGAPDH	nan	121000	nan	molecules/cell	nan	nan	Saccharomyces cerevisiae	R01061	nan	yeastGFP	0	10000
+equilibrium constant	vGAPDH	nan	0.0984	nan	nan	nan	nan	nan	R01061	nan	NIST	0	10000
+equilibrium constant	vGAPDH	nan	0.156	nan	nan	nan	nan	nan	R01061	nan	NIST	0	10000
+equilibrium constant	vGAPDH	nan	0.17	nan	nan	nan	nan	nan	R01061	nan	NIST	0	10000
+equilibrium constant	vGAPDH	nan	0.187	nan	nan	nan	nan	nan	R01061	nan	NIST	0	10000
+equilibrium constant	vGAPDH	nan	0.193	nan	nan	nan	nan	nan	R01061	nan	NIST	0	10000
+equilibrium constant	vGAPDH	nan	0.205	nan	nan	nan	nan	nan	R01061	nan	NIST	0	10000
+equilibrium constant	vGAPDH	nan	0.337	nan	nan	nan	nan	nan	R01061	nan	NIST	0	10000
+equilibrium constant	vGAPDH	nan	0.36	nan	nan	nan	nan	nan	R01061	nan	NIST	0	10000
+equilibrium constant	vGAPDH	nan	0.41	nan	nan	nan	nan	nan	R01061	nan	NIST	0	10000
+equilibrium constant	vGAPDH	nan	0.42	nan	nan	nan	nan	nan	R01061	nan	NIST	0	10000
+equilibrium constant	vGAPDH	nan	0.43	nan	nan	nan	nan	nan	R01061	nan	NIST	0	10000
+equilibrium constant	vGAPDH	nan	0.433	nan	nan	nan	nan	nan	R01061	nan	NIST	0	10000
+equilibrium constant	vGAPDH	nan	0.44	nan	nan	nan	nan	nan	R01061	nan	NIST	0	10000
+equilibrium constant	vGAPDH	nan	0.45	nan	nan	nan	nan	nan	R01061	nan	NIST	0	10000
+equilibrium constant	vGAPDH	nan	0.487	nan	nan	nan	nan	nan	R01061	nan	NIST	0	10000
+equilibrium constant	vGAPDH	nan	0.55	nan	nan	nan	nan	nan	R01061	nan	NIST	0	10000
+equilibrium constant	vGAPDH	nan	0.58	nan	nan	nan	nan	nan	R01061	nan	NIST	0	10000
+equilibrium constant	vGAPDH	nan	0.616	nan	nan	nan	nan	nan	R01061	nan	NIST	0	10000
+equilibrium constant	vGAPDH	nan	0.62	nan	nan	nan	nan	nan	R01061	nan	NIST	0	10000
+equilibrium constant	vGAPDH	nan	0.64	nan	nan	nan	nan	nan	R01061	nan	NIST	0	10000
+equilibrium constant	vGAPDH	nan	0.69	nan	nan	nan	nan	nan	R01061	nan	NIST	0	10000
+equilibrium constant	vGAPDH	nan	0.71	nan	nan	nan	nan	nan	R01061	nan	NIST	0	10000
+equilibrium constant	vGAPDH	nan	0.789	nan	nan	nan	nan	nan	R01061	nan	NIST	0	10000
+equilibrium constant	vGAPDH	nan	0.92	nan	nan	nan	nan	nan	R01061	nan	NIST	0	10000
+equilibrium constant	vGAPDH	nan	1.015	nan	nan	nan	nan	nan	R01061	nan	NIST	0	10000
+equilibrium constant	vGAPDH	nan	1.3	nan	nan	nan	nan	nan	R01061	nan	NIST	0	10000
+equilibrium constant	vGAPDH	nan	1.4	nan	nan	nan	nan	nan	R01061	nan	NIST	0	10000
+equilibrium constant	vGAPDH	nan	0.042	nan	nan	nan	nan	nan	R01061	nan	NIST	0	10000
+equilibrium constant	vGAPDH	nan	17	nan	nan	nan	nan	nan	R01061	nan	NIST	0	10000
+concentration of enzyme	vADH	nan	1310	nan	molecules/cell	nan	nan	Saccharomyces cerevisiae	R00754	nan	yeastGFP	0	10000
+concentration of enzyme	vADH	nan	125	nan	molecules/cell	nan	nan	Saccharomyces cerevisiae	R00754	nan	yeastGFP	0	10000
+concentration of enzyme	vADH	nan	11600	nan	molecules/cell	nan	nan	Saccharomyces cerevisiae	R00754	nan	yeastGFP	0	10000
+concentration of enzyme	vADH	nan	1620	nan	molecules/cell	nan	nan	Saccharomyces cerevisiae	R00754	nan	yeastGFP	0	10000
+equilibrium constant	vADH	nan	0.0001047	nan	nan	nan	nan	nan	R00754	nan	NIST	0	10000
+equilibrium constant	vADH	nan	0.0105	nan	nan	nan	nan	nan	R00754	nan	NIST	0	10000
+equilibrium constant	vADH	nan	1.08	nan	nan	nan	nan	nan	R00754	nan	NIST	0	10000
+equilibrium constant	vADH	nan	0.0115	nan	nan	nan	nan	nan	R00754	nan	NIST	0	10000
+equilibrium constant	vADH	nan	0.00115	nan	nan	nan	nan	nan	R00754	nan	NIST	0	10000
+equilibrium constant	vADH	nan	0.001175	nan	nan	nan	nan	nan	R00754	nan	NIST	0	10000
+equilibrium constant	vADH	nan	0.0001184	nan	nan	nan	nan	nan	R00754	nan	NIST	0	10000
+equilibrium constant	vADH	nan	0.000119	nan	nan	nan	nan	nan	R00754	nan	NIST	0	10000
+equilibrium constant	vADH	nan	0.00011	nan	nan	nan	nan	nan	R00754	nan	NIST	0	10000
+equilibrium constant	vADH	nan	0.0001202	nan	nan	nan	nan	nan	R00754	nan	NIST	0	10000
+equilibrium constant	vADH	nan	1.22	nan	nan	nan	nan	nan	R00754	nan	NIST	0	10000
+equilibrium constant	vADH	nan	1.27	nan	nan	nan	nan	nan	R00754	nan	NIST	0	10000
+equilibrium constant	vADH	nan	0.000128	nan	nan	nan	nan	nan	R00754	nan	NIST	0	10000
+equilibrium constant	vADH	nan	0.000012	nan	nan	nan	nan	nan	R00754	nan	NIST	0	10000
+equilibrium constant	vADH	nan	1.33	nan	nan	nan	nan	nan	R00754	nan	NIST	0	10000
+equilibrium constant	vADH	nan	0.00013	nan	nan	nan	nan	nan	R00754	nan	NIST	0	10000
+equilibrium constant	vADH	nan	0.000013	nan	nan	nan	nan	nan	R00754	nan	NIST	0	10000
+equilibrium constant	vADH	nan	0.001413	nan	nan	nan	nan	nan	R00754	nan	NIST	0	10000
+equilibrium constant	vADH	nan	0.0001445	nan	nan	nan	nan	nan	R00754	nan	NIST	0	10000
+equilibrium constant	vADH	nan	0.000144	nan	nan	nan	nan	nan	R00754	nan	NIST	0	10000
+equilibrium constant	vADH	nan	0.01454	nan	nan	nan	nan	nan	R00754	nan	NIST	0	10000
+equilibrium constant	vADH	nan	1.6	nan	nan	nan	nan	nan	R00754	nan	NIST	0	10000
+equilibrium constant	vADH	nan	0.0016	nan	nan	nan	nan	nan	R00754	nan	NIST	0	10000
+equilibrium constant	vADH	nan	0.00016	nan	nan	nan	nan	nan	R00754	nan	NIST	0	10000
+equilibrium constant	vADH	nan	1.73	nan	nan	nan	nan	nan	R00754	nan	NIST	0	10000
+equilibrium constant	vADH	nan	0.000174	nan	nan	nan	nan	nan	R00754	nan	NIST	0	10000
+equilibrium constant	vADH	nan	1.81	nan	nan	nan	nan	nan	R00754	nan	NIST	0	10000
+equilibrium constant	vADH	nan	1.84	nan	nan	nan	nan	nan	R00754	nan	NIST	0	10000
+equilibrium constant	vADH	nan	0.000187	nan	nan	nan	nan	nan	R00754	nan	NIST	0	10000
+equilibrium constant	vADH	nan	0.000194	nan	nan	nan	nan	nan	R00754	nan	NIST	0	10000
+equilibrium constant	vADH	nan	1.98	nan	nan	nan	nan	nan	R00754	nan	NIST	0	10000
+equilibrium constant	vADH	nan	0.00019	nan	nan	nan	nan	nan	R00754	nan	NIST	0	10000
+equilibrium constant	vADH	nan	0.000213	nan	nan	nan	nan	nan	R00754	nan	NIST	0	10000
+equilibrium constant	vADH	nan	0.0022	nan	nan	nan	nan	nan	R00754	nan	NIST	0	10000
+equilibrium constant	vADH	nan	0.00024	nan	nan	nan	nan	nan	R00754	nan	NIST	0	10000
+equilibrium constant	vADH	nan	2.54	nan	nan	nan	nan	nan	R00754	nan	NIST	0	10000
+equilibrium constant	vADH	nan	0.000026	nan	nan	nan	nan	nan	R00754	nan	NIST	0	10000
+equilibrium constant	vADH	nan	0.0029	nan	nan	nan	nan	nan	R00754	nan	NIST	0	10000
+equilibrium constant	vADH	nan	0.0003	nan	nan	nan	nan	nan	R00754	nan	NIST	0	10000
+equilibrium constant	vADH	nan	0.0364	nan	nan	nan	nan	nan	R00754	nan	NIST	0	10000
+equilibrium constant	vADH	nan	0.00364	nan	nan	nan	nan	nan	R00754	nan	NIST	0	10000
+equilibrium constant	vADH	nan	0.000364	nan	nan	nan	nan	nan	R00754	nan	NIST	0	10000
+equilibrium constant	vADH	nan	0.00037	nan	nan	nan	nan	nan	R00754	nan	NIST	0	10000
+equilibrium constant	vADH	nan	4.23	nan	nan	nan	nan	nan	R00754	nan	NIST	0	10000
+equilibrium constant	vADH	nan	0.000438	nan	nan	nan	nan	nan	R00754	nan	NIST	0	10000
+equilibrium constant	vADH	nan	0.000487	nan	nan	nan	nan	nan	R00754	nan	NIST	0	10000
+equilibrium constant	vADH	nan	0.00051	nan	nan	nan	nan	nan	R00754	nan	NIST	0	10000
+equilibrium constant	vADH	nan	0.000053	nan	nan	nan	nan	nan	R00754	nan	NIST	0	10000
+equilibrium constant	vADH	nan	0.000542	nan	nan	nan	nan	nan	R00754	nan	NIST	0	10000
+equilibrium constant	vADH	nan	0.000006	nan	nan	nan	nan	nan	R00754	nan	NIST	0	10000
+equilibrium constant	vADH	nan	0.00635	nan	nan	nan	nan	nan	R00754	nan	NIST	0	10000
+equilibrium constant	vADH	nan	0.000642	nan	nan	nan	nan	nan	R00754	nan	NIST	0	10000
+equilibrium constant	vADH	nan	0.0000646	nan	nan	nan	nan	nan	R00754	nan	NIST	0	10000
+equilibrium constant	vADH	nan	0.000663	nan	nan	nan	nan	nan	R00754	nan	NIST	0	10000
+equilibrium constant	vADH	nan	0.00068	nan	nan	nan	nan	nan	R00754	nan	NIST	0	10000
+equilibrium constant	vADH	nan	0.00071	nan	nan	nan	nan	nan	R00754	nan	NIST	0	10000
+equilibrium constant	vADH	nan	0.000734	nan	nan	nan	nan	nan	R00754	nan	NIST	0	10000
+equilibrium constant	vADH	nan	0.0000736	nan	nan	nan	nan	nan	R00754	nan	NIST	0	10000
+equilibrium constant	vADH	nan	0.000741	nan	nan	nan	nan	nan	R00754	nan	NIST	0	10000
+equilibrium constant	vADH	nan	0.000077	nan	nan	nan	nan	nan	R00754	nan	NIST	0	10000
+equilibrium constant	vADH	nan	0.00794	nan	nan	nan	nan	nan	R00754	nan	NIST	0	10000
+equilibrium constant	vADH	nan	0.0795	nan	nan	nan	nan	nan	R00754	nan	NIST	0	10000
+equilibrium constant	vADH	nan	0.000795	nan	nan	nan	nan	nan	R00754	nan	NIST	0	10000
+equilibrium constant	vADH	nan	0.00807	nan	nan	nan	nan	nan	R00754	nan	NIST	0	10000
+equilibrium constant	vADH	nan	0.0000807	nan	nan	nan	nan	nan	R00754	nan	NIST	0	10000
+equilibrium constant	vADH	nan	0.0008	nan	nan	nan	nan	nan	R00754	nan	NIST	0	10000
+equilibrium constant	vADH	nan	0.00084	nan	nan	nan	nan	nan	R00754	nan	NIST	0	10000
+equilibrium constant	vADH	nan	0.000088	nan	nan	nan	nan	nan	R00754	nan	NIST	0	10000
+equilibrium constant	vADH	nan	0.09	nan	nan	nan	nan	nan	R00754	nan	NIST	0	10000
+equilibrium constant	vADH	nan	0.0000925	nan	nan	nan	nan	nan	R00754	nan	NIST	0	10000
+equilibrium constant	vADH	nan	0.00972	nan	nan	nan	nan	nan	R00754	nan	NIST	0	10000
+equilibrium constant	vADH	nan	0.0000977	nan	nan	nan	nan	nan	R00754	nan	NIST	0	10000
+equilibrium constant	vADH	nan	0.0000997	nan	nan	nan	nan	nan	R00754	nan	NIST	0	10000
+concentration of enzyme	vPFK	nan	89800	nan	molecules/cell	nan	nan	Saccharomyces cerevisiae	R00756	nan	yeastGFP	0	10000
+concentration of enzyme	vPFK	nan	90200	nan	molecules/cell	nan	nan	Saccharomyces cerevisiae	R00756	nan	yeastGFP	0	10000
+inhibitory constant	vPFK	ATP	2.5	nan	mM	7.1	nan	Oryctolagus cuniculus	R00756	C00002	Brenda	0	10000
+inhibitory constant	vPFK	PEP	0.15	nan	mM	7.8	303.15	Aspergillus niger	R00756	C00074	Brenda	0	10000
+inhibitory constant	vPFK	PEP	0.83	nan	mM	7.2	298.15	Mus musculus	R00756	C00074	Brenda	0	10000
+inhibitory constant	vPFK	ATP	0.8	nan	mM	6.8	303.15	Ascaris suum	R00756	C00002	Brenda	0	10000
+inhibitory constant	vPFK	ATP	0.5	nan	mM	8	nan	Fasciola hepatica	R00756	C00002	Brenda	0	10000
+inhibitory constant	vPFK	ATP	1.4	nan	mM	8	nan	Fasciola hepatica	R00756	C00002	Brenda	0	10000
+inhibitory constant	vPFK	ATP	0.25	nan	mM	7	nan	Sus scrofa	R00756	C00002	Brenda	0	10000
+inhibitory constant	vPFK	PEP	0.8	nan	mM	7.9	nan	nan	R00756	C00074	Brenda	0	10000
+inhibitory constant	vPFK	ADP	1.75	nan	mM	7.9	nan	nan	R00756	C00008	Brenda	0	10000
+equilibrium constant	vPFK	nan	1000	nan	nan	nan	nan	nan	R00756	nan	NIST	0	10000
+equilibrium constant	vPFK	nan	150	nan	nan	nan	nan	nan	R00756	nan	NIST	0	10000
+equilibrium constant	vPFK	nan	2290	nan	nan	nan	nan	nan	R00756	nan	NIST	0	10000
+equilibrium constant	vPFK	nan	2700	nan	nan	nan	nan	nan	R00756	nan	NIST	0	10000
+equilibrium constant	vPFK	nan	2800	nan	nan	nan	nan	nan	R00756	nan	NIST	0	10000
+equilibrium constant	vPFK	nan	2900	nan	nan	nan	nan	nan	R00756	nan	NIST	0	10000
+equilibrium constant	vPFK	nan	4800	nan	nan	nan	nan	nan	R00756	nan	NIST	0	10000
+equilibrium constant	vPFK	nan	800	nan	nan	nan	nan	nan	R00756	nan	NIST	0	10000
+concentration of enzyme	vPGI	nan	91600	34200	molecules/cell	nan	nan	Saccharomyces cerevisiae	R00771	nan	yeastGFP	0	10000
+inhibitory constant	vPGI	FBP	12	nan	mM	7.5	323.15	Thermococcus litoralis	R00771	C00354	Brenda	0	10000
+equilibrium constant	vPGI	nan	0.19	nan	nan	nan	nan	nan	R00771	nan	NIST	0	10000
+equilibrium constant	vPGI	nan	0.2	nan	nan	nan	nan	nan	R00771	nan	NIST	0	10000
+equilibrium constant	vPGI	nan	0.214	nan	nan	nan	nan	nan	R00771	nan	NIST	0	10000
+equilibrium constant	vPGI	nan	0.22	nan	nan	nan	nan	nan	R00771	nan	NIST	0	10000
+equilibrium constant	vPGI	nan	0.24	nan	nan	nan	nan	nan	R00771	nan	NIST	0	10000
+equilibrium constant	vPGI	nan	0.25	nan	nan	nan	nan	nan	R00771	nan	NIST	0	10000
+equilibrium constant	vPGI	nan	0.26	nan	nan	nan	nan	nan	R00771	nan	NIST	0	10000
+equilibrium constant	vPGI	nan	0.264	nan	nan	nan	nan	nan	R00771	nan	NIST	0	10000
+equilibrium constant	vPGI	nan	0.27	nan	nan	nan	nan	nan	R00771	nan	NIST	0	10000
+equilibrium constant	vPGI	nan	0.28	nan	nan	nan	nan	nan	R00771	nan	NIST	0	10000
+equilibrium constant	vPGI	nan	0.287	nan	nan	nan	nan	nan	R00771	nan	NIST	0	10000
+equilibrium constant	vPGI	nan	0.29	nan	nan	nan	nan	nan	R00771	nan	NIST	0	10000
+equilibrium constant	vPGI	nan	0.293	nan	nan	nan	nan	nan	R00771	nan	NIST	0	10000
+equilibrium constant	vPGI	nan	0.298	nan	nan	nan	nan	nan	R00771	nan	NIST	0	10000
+equilibrium constant	vPGI	nan	0.299	nan	nan	nan	nan	nan	R00771	nan	NIST	0	10000
+equilibrium constant	vPGI	nan	0.3	nan	nan	nan	nan	nan	R00771	nan	NIST	0	10000
+equilibrium constant	vPGI	nan	0.302	nan	nan	nan	nan	nan	R00771	nan	NIST	0	10000
+equilibrium constant	vPGI	nan	0.308	nan	nan	nan	nan	nan	R00771	nan	NIST	0	10000
+equilibrium constant	vPGI	nan	0.31	nan	nan	nan	nan	nan	R00771	nan	NIST	0	10000
+equilibrium constant	vPGI	nan	0.32	nan	nan	nan	nan	nan	R00771	nan	NIST	0	10000
+equilibrium constant	vPGI	nan	0.327	nan	nan	nan	nan	nan	R00771	nan	NIST	0	10000
+equilibrium constant	vPGI	nan	0.329	nan	nan	nan	nan	nan	R00771	nan	NIST	0	10000
+equilibrium constant	vPGI	nan	0.33	nan	nan	nan	nan	nan	R00771	nan	NIST	0	10000
+equilibrium constant	vPGI	nan	0.34	nan	nan	nan	nan	nan	R00771	nan	NIST	0	10000
+equilibrium constant	vPGI	nan	0.357	nan	nan	nan	nan	nan	R00771	nan	NIST	0	10000
+equilibrium constant	vPGI	nan	0.36	nan	nan	nan	nan	nan	R00771	nan	NIST	0	10000
+equilibrium constant	vPGI	nan	0.37	nan	nan	nan	nan	nan	R00771	nan	NIST	0	10000
+equilibrium constant	vPGI	nan	0.38	nan	nan	nan	nan	nan	R00771	nan	NIST	0	10000
+equilibrium constant	vPGI	nan	0.41	nan	nan	nan	nan	nan	R00771	nan	NIST	0	10000
+equilibrium constant	vPGI	nan	0.45	nan	nan	nan	nan	nan	R00771	nan	NIST	0	10000
+equilibrium constant	vPGI	nan	0.54	nan	nan	nan	nan	nan	R00771	nan	NIST	0	10000
+equilibrium constant	vPGI	nan	0.67	nan	nan	nan	nan	nan	R00771	nan	NIST	0	10000
+concentration of enzyme	vALD	nan	1020000	358000	molecules/cell	nan	nan	Saccharomyces cerevisiae	R01070	nan	yeastGFP	0	10000
+inhibitory constant	vALD	DHAP	0.13	nan	mM	nan	303.15	Escherichia coli	R01070	C00111	Brenda	0	10000
+inhibitory constant	vALD	DHAP	1.7	nan	mM	nan	303.15	Escherichia coli	R01070	C00111	Brenda	0	10000
+concentration of enzyme	vHK	nan	21100	nan	molecules/cell	nan	nan	Saccharomyces cerevisiae	R00299	nan	yeastGFP	0	10000
+concentration of enzyme	vHK	nan	40800	nan	molecules/cell	nan	nan	Saccharomyces cerevisiae	R00299	nan	yeastGFP	0	10000
+concentration of enzyme	vHK	nan	114000	nan	molecules/cell	nan	nan	Saccharomyces cerevisiae	R00299	nan	yeastGFP	0	10000
+inhibitory constant	vHK	ADP	0.04	nan	mM	nan	nan	Solanum tuberosum	R00299	C00008	Brenda	0	10000
+inhibitory constant	vHK	G6P	4.1	nan	mM	nan	nan	Solanum tuberosum	R00299	C00092	Brenda	0	10000
+inhibitory constant	vHK	ADP	0.108	nan	mM	nan	nan	Solanum tuberosum	R00299	C00008	Brenda	0	10000
+inhibitory constant	vHK	AMP	0.031	nan	mM	nan	303.15	Entamoeba histolytica	R00299	C00020	Brenda	0	10000
+inhibitory constant	vHK	ADP	0.036	nan	mM	nan	303.15	Entamoeba histolytica	R00299	C00008	Brenda	0	10000
+inhibitory constant	vHK	AMP	0.00065	nan	mM	nan	303.15	Entamoeba histolytica	R00299	C00020	Brenda	0	10000
+inhibitory constant	vHK	ADP	0.193	nan	mM	nan	303.15	Entamoeba histolytica	R00299	C00008	Brenda	0	10000
+inhibitory constant	vHK	ADP	0.13	nan	mM	nan	nan	Trypanosoma cruzi	R00299	C00008	Brenda	0	10000
+inhibitory constant	vHK	G6P	1.4	nan	mM	nan	nan	Trypanosoma cruzi	R00299	C00092	Brenda	0	10000
+inhibitory constant	vHK	ADP	7	nan	mM	nan	nan	Trypanosoma cruzi	R00299	C00008	Brenda	0	10000
+inhibitory constant	vHK	ADP	1.5	nan	mM	8.1	303.15	Trypanosoma cruzi	R00299	C00008	Brenda	0	10000
+inhibitory constant	vHK	G6P	0.02	nan	mM	nan	nan	Mammalia	R00299	C00092	Brenda	0	10000
+inhibitory constant	vHK	G6P	0.1	nan	mM	nan	nan	Mammalia	R00299	C00092	Brenda	0	10000
+inhibitory constant	vHK	G6P	0.15	nan	mM	8.5	nan	Schistosoma mansoni	R00299	C00092	Brenda	0	10000
+inhibitory constant	vHK	ATP	3.6	nan	mM	8.1	303.15	Bubalus bubalis	R00299	C00002	Brenda	0	10000
+inhibitory constant	vHK	ADP	3.6	nan	mM	8.1	303.15	Bubalus bubalis	R00299	C00008	Brenda	0	10000
+inhibitory constant	vHK	F6P	0.88	nan	mM	8.1	303.15	Bubalus bubalis	R00299	C00085	Brenda	0	10000
+inhibitory constant	vHK	G6P	0.034	nan	mM	8.1	303.15	Bubalus bubalis	R00299	C00092	Brenda	0	10000
+inhibitory constant	vHK	ADP	1.3	nan	mM	7.5	nan	Trypanosoma cruzi	R00299	C00008	Brenda	0	10000
+inhibitory constant	vHK	G6P	0.045	nan	mM	7.2	310.15	Bos taurus	R00299	C00092	Brenda	0	10000
+inhibitory constant	vHK	G6P	0.066	nan	mM	7.2	310.15	Bos taurus	R00299	C00092	Brenda	0	10000
+inhibitory constant	vHK	G6P	0.13	nan	mM	7.2	310.15	Homo sapiens	R00299	C00092	Brenda	0	10000
+inhibitory constant	vHK	G6P	0.226	nan	mM	7.2	310.15	Homo sapiens	R00299	C00092	Brenda	0	10000
+inhibitory constant	vHK	G6P	0.029	nan	mM	7.2	310.15	Homo sapiens	R00299	C00092	Brenda	0	10000
+inhibitory constant	vHK	G6P	13	nan	mM	7.2	310.15	Homo sapiens	R00299	C00092	Brenda	0	10000
+inhibitory constant	vHK	ADP	3.5	nan	mM	nan	nan	Rattus norvegicus	R00299	C00008	Brenda	0	10000
+inhibitory constant	vHK	G6P	0.026	nan	mM	nan	nan	Rattus norvegicus	R00299	C00092	Brenda	0	10000
+inhibitory constant	vHK	G6P	0.015	nan	mM	nan	nan	Rattus norvegicus	R00299	C00092	Brenda	0	10000
+inhibitory constant	vHK	G6P	0.18	nan	mM	nan	nan	Rattus norvegicus	R00299	C00092	Brenda	0	10000
+inhibitory constant	vHK	ATP	4.5	nan	mM	6.9	303.15	Rattus norvegicus	R00299	C00002	Brenda	0	10000
+inhibitory constant	vHK	G6P	0.12	nan	mM	7.2	303.15	Sus scrofa	R00299	C00092	Brenda	0	10000
+inhibitory constant	vHK	ADP	0.5	nan	mM	7.2	303.15	Sus scrofa	R00299	C00008	Brenda	0	10000
+inhibitory constant	vHK	F6P	0.5	nan	mM	7.2	303.15	Sus scrofa	R00299	C00085	Brenda	0	10000
+inhibitory constant	vHK	ATP	0.5	nan	mM	7.2	303.15	Sus scrofa	R00299	C00002	Brenda	0	10000
+inhibitory constant	vHK	PEP	8	nan	mM	7.2	303.15	Sus scrofa	R00299	C00074	Brenda	0	10000
+inhibitory constant	vHK	ADP	0.122	nan	mM	7.5	295.15	Saccharomyces cerevisiae	R00299	C00008	Brenda	0	10000
+inhibitory constant	vHK	ATP	1.5	nan	mM	nan	nan	Oryctolagus cuniculus	R00299	C00002	Brenda	0	10000
+inhibitory constant	vHK	ADP	3	nan	mM	nan	nan	Oryctolagus cuniculus	R00299	C00008	Brenda	0	10000
+inhibitory constant	vHK	G6P	0.025	nan	mM	nan	nan	Oryctolagus cuniculus	R00299	C00092	Brenda	0	10000
+inhibitory constant	vHK	ADP	7.8	nan	mM	nan	nan	Oryctolagus cuniculus	R00299	C00008	Brenda	0	10000
+equilibrium constant	vHK	nan	123	nan	nan	nan	nan	nan	R00299	nan	NIST	0	10000
+equilibrium constant	vHK	nan	1310	nan	nan	nan	nan	nan	R00299	nan	NIST	0	10000
+equilibrium constant	vHK	nan	139	nan	nan	nan	nan	nan	R00299	nan	NIST	0	10000
+equilibrium constant	vHK	nan	154	nan	nan	nan	nan	nan	R00299	nan	NIST	0	10000
+equilibrium constant	vHK	nan	172	nan	nan	nan	nan	nan	R00299	nan	NIST	0	10000
+equilibrium constant	vHK	nan	186	nan	nan	nan	nan	nan	R00299	nan	NIST	0	10000
+equilibrium constant	vHK	nan	193	nan	nan	nan	nan	nan	R00299	nan	NIST	0	10000
+equilibrium constant	vHK	nan	203	nan	nan	nan	nan	nan	R00299	nan	NIST	0	10000
+equilibrium constant	vHK	nan	205	nan	nan	nan	nan	nan	R00299	nan	NIST	0	10000
+equilibrium constant	vHK	nan	222	nan	nan	nan	nan	nan	R00299	nan	NIST	0	10000
+equilibrium constant	vHK	nan	230	nan	nan	nan	nan	nan	R00299	nan	NIST	0	10000
+equilibrium constant	vHK	nan	245	nan	nan	nan	nan	nan	R00299	nan	NIST	0	10000
+equilibrium constant	vHK	nan	249	nan	nan	nan	nan	nan	R00299	nan	NIST	0	10000
+equilibrium constant	vHK	nan	277	nan	nan	nan	nan	nan	R00299	nan	NIST	0	10000
+equilibrium constant	vHK	nan	286	nan	nan	nan	nan	nan	R00299	nan	NIST	0	10000
+equilibrium constant	vHK	nan	300	nan	nan	nan	nan	nan	R00299	nan	NIST	0	10000
+equilibrium constant	vHK	nan	304	nan	nan	nan	nan	nan	R00299	nan	NIST	0	10000
+equilibrium constant	vHK	nan	340	nan	nan	nan	nan	nan	R00299	nan	NIST	0	10000
+equilibrium constant	vHK	nan	430	nan	nan	nan	nan	nan	R00299	nan	NIST	0	10000
+equilibrium constant	vHK	nan	618	nan	nan	nan	nan	nan	R00299	nan	NIST	0	10000
+equilibrium constant	vHK	nan	88	nan	nan	nan	nan	nan	R00299	nan	NIST	0	10000
+concentration of enzyme	vPK	nan	291000	24100	molecules/cell	nan	nan	Saccharomyces cerevisiae	R00200	nan	yeastGFP	0	10000
+concentration of enzyme	vPK	nan	2130	nan	molecules/cell	nan	nan	Saccharomyces cerevisiae	R00200	nan	yeastGFP	0	10000
+inhibitory constant	vPK	ATP	1.77	nan	mM	7	310.15	Toxoplasma gondii	R00200	C00002	Brenda	0	10000
+inhibitory constant	vPK	ATP	10	nan	mM	7.5	298.15	nan	R00200	C00002	Brenda	0	10000
+inhibitory constant	vPK	ATP	4	nan	mM	7.5	298.15	nan	R00200	C00002	Brenda	0	10000
+inhibitory constant	vPK	ATP	3.9	nan	mM	6.9	298.15	nan	R00200	C00002	Brenda	0	10000
+inhibitory constant	vPK	ATP	9.6	nan	mM	6.9	298.15	nan	R00200	C00002	Brenda	0	10000
+equilibrium constant	vPK	nan	0.0011	nan	nan	nan	nan	nan	R00200	nan	NIST	0	10000
+equilibrium constant	vPK	nan	0.00152	nan	nan	nan	nan	nan	R00200	nan	NIST	0	10000
+equilibrium constant	vPK	nan	0.000155	nan	nan	nan	nan	nan	R00200	nan	NIST	0	10000
+equilibrium constant	vPK	nan	0.000179	nan	nan	nan	nan	nan	R00200	nan	NIST	0	10000
+equilibrium constant	vPK	nan	0.00208	nan	nan	nan	nan	nan	R00200	nan	NIST	0	10000
+equilibrium constant	vPK	nan	0.00272	nan	nan	nan	nan	nan	R00200	nan	NIST	0	10000
+equilibrium constant	vPK	nan	0.000386	nan	nan	nan	nan	nan	R00200	nan	NIST	0	10000
+equilibrium constant	vPK	nan	0.0003	nan	nan	nan	nan	nan	R00200	nan	NIST	0	10000
+equilibrium constant	vPK	nan	0.00413	nan	nan	nan	nan	nan	R00200	nan	NIST	0	10000
+equilibrium constant	vPK	nan	0.000429	nan	nan	nan	nan	nan	R00200	nan	NIST	0	10000
+equilibrium constant	vPK	nan	0.00045	nan	nan	nan	nan	nan	R00200	nan	NIST	0	10000
+equilibrium constant	vPK	nan	0.000451	nan	nan	nan	nan	nan	R00200	nan	NIST	0	10000
+equilibrium constant	vPK	nan	0.00049	nan	nan	nan	nan	nan	R00200	nan	NIST	0	10000
+equilibrium constant	vPK	nan	0.00495	nan	nan	nan	nan	nan	R00200	nan	NIST	0	10000
+equilibrium constant	vPK	nan	0.000552	nan	nan	nan	nan	nan	R00200	nan	NIST	0	10000
+equilibrium constant	vPK	nan	0.000685	nan	nan	nan	nan	nan	R00200	nan	NIST	0	10000
+equilibrium constant	vPK	nan	0.000735	nan	nan	nan	nan	nan	R00200	nan	NIST	0	10000
+concentration of enzyme	vPDC	nan	2140	nan	molecules/cell	nan	nan	Saccharomyces cerevisiae	R00224	nan	yeastGFP	0	10000
+concentration of enzyme	vPDC	nan	6560	nan	molecules/cell	nan	nan	Saccharomyces cerevisiae	R00224	nan	yeastGFP	0	10000
+concentration of enzyme	vPDC	nan	1520	nan	molecules/cell	nan	nan	Saccharomyces cerevisiae	R00224	nan	yeastGFP	0	10000
+concentration of enzyme	vPDC	nan	8970	nan	molecules/cell	nan	nan	Saccharomyces cerevisiae	R00224	nan	yeastGFP	0	10000
+concentration of enzyme	vPDC	nan	471000	nan	molecules/cell	nan	nan	Saccharomyces cerevisiae	R00224	nan	yeastGFP	0	10000
+inhibitory constant	vPDC	Pyr	1.45	nan	mM	nan	nan	Saccharomyces cerevisiae	R00224	C00022	Brenda	0	10000
+inhibitory constant	vPDC	Pyr	3.75	nan	mM	nan	nan	Saccharomyces cerevisiae	R00224	C00022	Brenda	0	10000
+inhibitory constant	vPDC	Pyr	3.04	nan	mM	nan	nan	Saccharomyces cerevisiae	R00224	C00022	Brenda	0	10000
+inhibitory constant	vPDC	Pyr	136	nan	mM	nan	nan	Saccharomyces cerevisiae	R00224	C00022	Brenda	0	10000
+inhibitory constant	vPDC	Pyr	433	nan	mM	nan	nan	Saccharomyces cerevisiae	R00224	C00022	Brenda	0	10000
+inhibitory constant	vPDC	Pyr	112.2	nan	mM	nan	nan	Saccharomyces cerevisiae	R00224	C00022	Brenda	0	10000
+inhibitory constant	vPDC	Pyr	1200	nan	mM	nan	303.15	Kluyveromyces lactis	R00224	C00022	Brenda	0	10000
+concentration of enzyme	vlpGlyc	nan	23600	nan	molecules/cell	nan	nan	Saccharomyces cerevisiae	R01011	nan	yeastGFP	0	10000
+inhibitory constant	vlpGlyc	ADP	0.14	nan	mM	7.5	303.15	Citrobacter freundii	R01011	C00008	Brenda	0	10000
+inhibitory constant	vlpGlyc	ADP	0.2	nan	mM	nan	nan	Schizosaccharomyces pombe	R01011	C00008	Brenda	0	10000
+Michaelis constant	vlpGlyc	DHAP	0.006	nan	mM	7.5	303.15	Escherichia coli	R01011	C00111	Brenda	0	10000
+Michaelis constant	vlpGlyc	ATP	0.48	nan	mM	nan	nan	Saccharomyces cerevisiae	R01011	C00002	Brenda	0	10000
+Michaelis constant	vlpGlyc	ATP	0.35	nan	mM	8	310.15	Candida boidinii	R01011	C00002	Brenda	0	10000
+Michaelis constant	vlpGlyc	DHAP	0.005	nan	mM	7.5	303.15	Citrobacter freundii	R01011	C00111	Brenda	0	10000
+Michaelis constant	vlpGlyc	ATP	0.1	nan	mM	7.5	303.15	Citrobacter freundii	R01011	C00002	Brenda	0	10000
+Michaelis constant	vlpGlyc	ATP	0.63	nan	mM	7.5	298.15	Schizosaccharomyces pombe	R01011	C00002	Brenda	0	10000
+concentration of enzyme	vlpPEP	nan	314000	132000	molecules/cell	nan	nan	Saccharomyces cerevisiae	R01512	nan	yeastGFP	0	10000
+substrate catalytic rate constant	vlpPEP	nan	10	nan	1/s	nan	nan	Homo sapiens	R01512	C00063	Brenda	0	10000
+inhibitory constant	vlpPEP	AMP	1.5	nan	mM	7.8	298.15	Saccharomyces cerevisiae	R01512	C00020	Brenda	0	10000
+inhibitory constant	vlpPEP	ADP	0.17	nan	mM	nan	298.15	Saccharomyces cerevisiae	R01512	C00008	Brenda	0	10000
+inhibitory constant	vlpPEP	AMP	2	nan	mM	7.8	298.15	Saccharomyces cerevisiae	R01512	C00020	Brenda	0	10000
+inhibitory constant	vlpPEP	ADP	0.22	nan	mM	nan	298.15	Saccharomyces cerevisiae	R01512	C00008	Brenda	0	10000
+inhibitory constant	vlpPEP	ADP	0.08	nan	mM	6.5	298.15	Mus musculus	R01512	C00008	Brenda	0	10000
+inhibitory constant	vlpPEP	ADP	0.175	nan	mM	6.5	298.15	Mus musculus	R01512	C00008	Brenda	0	10000
+inhibitory constant	vlpPEP	ADP	0.039	nan	mM	7.5	293.15	Sus scrofa	R01512	C00008	Brenda	0	10000
+substrate catalytic rate constant	vlpPEP	nan	570	nan	1/s	nan	nan	Hippoglossus stenolepis	R01512	C00197	Brenda	0	10000
+substrate catalytic rate constant	vlpPEP	nan	570	nan	1/s	nan	nan	Hippoglossus stenolepis	R01512	C00002	Brenda	0	10000
+substrate catalytic rate constant	vlpPEP	nan	411	nan	1/s	nan	nan	Pseudomonas sp.	R01512	C00002	Brenda	0	10000
+substrate catalytic rate constant	vlpPEP	nan	500	nan	1/s	nan	nan	Pseudomonas sp.	R01512	C00002	Brenda	0	10000
+substrate catalytic rate constant	vlpPEP	nan	540	nan	1/s	nan	nan	Pseudomonas sp.	R01512	C00197	Brenda	0	10000
+substrate catalytic rate constant	vlpPEP	nan	519	nan	1/s	nan	nan	Pseudomonas sp.	R01512	C00002	Brenda	0	10000
+substrate catalytic rate constant	vlpPEP	nan	362	nan	1/s	nan	nan	Pseudomonas sp.	R01512	C00197	Brenda	0	10000
+substrate catalytic rate constant	vlpPEP	nan	537	nan	1/s	nan	nan	Pseudomonas sp.	R01512	C00197	Brenda	0	10000
+substrate catalytic rate constant	vlpPEP	nan	500	nan	1/s	nan	nan	Homo sapiens	R01512	C00002	Brenda	0	10000
+substrate catalytic rate constant	vlpPEP	nan	100	nan	1/s	nan	nan	Homo sapiens	R01512	C00002	Brenda	0	10000
+equilibrium constant	vlpPEP	nan	0.00102	nan	nan	nan	nan	nan	R01512	nan	NIST	0	10000
+equilibrium constant	vlpPEP	nan	0.00143	nan	nan	nan	nan	nan	R01512	nan	NIST	0	10000
+equilibrium constant	vlpPEP	nan	0.00015	nan	nan	nan	nan	nan	R01512	nan	NIST	0	10000
+equilibrium constant	vlpPEP	nan	0.000225	nan	nan	nan	nan	nan	R01512	nan	NIST	0	10000
+equilibrium constant	vlpPEP	nan	0.000241	nan	nan	nan	nan	nan	R01512	nan	NIST	0	10000
+equilibrium constant	vlpPEP	nan	0.000242	nan	nan	nan	nan	nan	R01512	nan	NIST	0	10000
+equilibrium constant	vlpPEP	nan	0.000251	nan	nan	nan	nan	nan	R01512	nan	NIST	0	10000
+equilibrium constant	vlpPEP	nan	0.000272	nan	nan	nan	nan	nan	R01512	nan	NIST	0	10000
+equilibrium constant	vlpPEP	nan	0.000274	nan	nan	nan	nan	nan	R01512	nan	NIST	0	10000
+equilibrium constant	vlpPEP	nan	0.000278	nan	nan	nan	nan	nan	R01512	nan	NIST	0	10000
+equilibrium constant	vlpPEP	nan	0.0003	nan	nan	nan	nan	nan	R01512	nan	NIST	0	10000
+equilibrium constant	vlpPEP	nan	0.000318	nan	nan	nan	nan	nan	R01512	nan	NIST	0	10000
+equilibrium constant	vlpPEP	nan	0.00031	nan	nan	nan	nan	nan	R01512	nan	NIST	0	10000
+equilibrium constant	vlpPEP	nan	0.000349	nan	nan	nan	nan	nan	R01512	nan	NIST	0	10000
+equilibrium constant	vlpPEP	nan	0.000392	nan	nan	nan	nan	nan	R01512	nan	NIST	0	10000
+equilibrium constant	vlpPEP	nan	0.0004	nan	nan	nan	nan	nan	R01512	nan	NIST	0	10000
+equilibrium constant	vlpPEP	nan	0.000529	nan	nan	nan	nan	nan	R01512	nan	NIST	0	10000
+equilibrium constant	vlpPEP	nan	0.000548	nan	nan	nan	nan	nan	R01512	nan	NIST	0	10000
+equilibrium constant	vlpPEP	nan	0.000549	nan	nan	nan	nan	nan	R01512	nan	NIST	0	10000
+equilibrium constant	vlpPEP	nan	0.00008	nan	nan	nan	nan	nan	R01512	nan	NIST	0	10000
+Michaelis constant	vlpPEP	ATP	0.04	nan	mM	7.8	298.15	Saccharomyces cerevisiae	R01512	C00002	Brenda	0	10000
+Michaelis constant	vlpPEP	ADP	0.2	nan	mM	nan	nan	Saccharomyces cerevisiae	R01512	C00008	Brenda	0	10000
+Michaelis constant	vlpPEP	ATP	1.25	nan	mM	7.5	298.15	Saccharomyces cerevisiae	R01512	C00002	Brenda	0	10000
+Michaelis constant	vlpPEP	ATP	3.45	nan	mM	7.8	298.15	Saccharomyces cerevisiae	R01512	C00002	Brenda	0	10000
+Michaelis constant	vlpPEP	ATP	0.33	nan	mM	7.5	298.15	Saccharomyces cerevisiae	R01512	C00002	Brenda	0	10000
+Michaelis constant	vlpPEP	ATP	0.48	nan	mM	nan	nan	Saccharomyces cerevisiae	R01512	C00002	Brenda	0	10000
+Michaelis constant	vlpPEP	ATP	0.35	nan	mM	7	nan	Oryctolagus cuniculus	R01512	C00002	Brenda	0	10000
+Michaelis constant	vlpPEP	ATP	0.095	nan	mM	7.5	nan	Ovis aries	R01512	C00002	Brenda	0	10000
+Michaelis constant	vlpPEP	ATP	0.09	nan	mM	7.5	nan	Ovis aries	R01512	C00002	Brenda	0	10000
+Michaelis constant	vlpPEP	ATP	0.3	nan	mM	nan	nan	Spinacia oleracea	R01512	C00002	Brenda	0	10000
+Michaelis constant	vlpPEP	ADP	0.27	nan	mM	nan	nan	Spinacia oleracea	R01512	C00008	Brenda	0	10000
+Michaelis constant	vlpPEP	ATP	4.1	nan	mM	7.3	nan	Pisum sativum	R01512	C00002	Brenda	0	10000
+Michaelis constant	vlpPEP	ATP	0.12	nan	mM	nan	nan	Trypanosoma brucei	R01512	C00002	Brenda	0	10000
+Michaelis constant	vlpPEP	ATP	0.29	nan	mM	7.6	298.15	Trypanosoma brucei	R01512	C00002	Brenda	0	10000
+Michaelis constant	vlpPEP	ATP	0.46	nan	mM	7.6	298.15	Trypanosoma brucei	R01512	C00002	Brenda	0	10000
+Michaelis constant	vlpPEP	ATP	0.21	nan	mM	7.5	298.15	Trypanosoma brucei	R01512	C00002	Brenda	0	10000
+Michaelis constant	vlpPEP	ATP	0.63	nan	mM	nan	nan	Plasmodium falciparum	R01512	C00002	Brenda	0	10000
+Michaelis constant	vlpPEP	ATP	1.1	nan	mM	6.5	298.15	Zymomonas mobilis	R01512	C00002	Brenda	0	10000
+Michaelis constant	vlpPEP	ATP	0.32	nan	mM	7.3	nan	Selenastrum minutum	R01512	C00002	Brenda	0	10000
+Michaelis constant	vlpPEP	ATP	0.73	nan	mM	nan	343.15	Methanothermus fervidus	R01512	C00002	Brenda	0	10000
+Michaelis constant	vlpPEP	ATP	0.15	nan	mM	7.5	303.15	Beta vulgaris	R01512	C00002	Brenda	0	10000
+Michaelis constant	vlpPEP	ATP	0.9	nan	mM	nan	nan	Fasciola hepatica	R01512	C00002	Brenda	0	10000
+Michaelis constant	vlpPEP	ATP	2.9	nan	mM	7.6	298.15	nan	R01512	C00002	Brenda	0	10000
+Michaelis constant	vlpPEP	ATP	0.038	nan	mM	nan	275.15	Mus musculus	R01512	C00002	Brenda	0	10000
+Michaelis constant	vlpPEP	ATP	0.11	nan	mM	6.9	298.15	Mus musculus	R01512	C00002	Brenda	0	10000
+Michaelis constant	vlpPEP	ADP	0.19	nan	mM	nan	nan	Mus musculus	R01512	C00008	Brenda	0	10000
+Michaelis constant	vlpPEP	ATP	0.22	nan	mM	nan	nan	Mus musculus	R01512	C00002	Brenda	0	10000
+Michaelis constant	vlpPEP	ADP	0.23	nan	mM	nan	nan	Mus musculus	R01512	C00008	Brenda	0	10000
+Michaelis constant	vlpPEP	ATP	0.42	nan	mM	nan	nan	Mus musculus	R01512	C00002	Brenda	0	10000
+Michaelis constant	vlpPEP	ADP	0.039	nan	mM	nan	275.15	Mus musculus	R01512	C00008	Brenda	0	10000
+Michaelis constant	vlpPEP	ATP	0.37	nan	mM	7.3	nan	Mus musculus	R01512	C00002	Brenda	0	10000
+Michaelis constant	vlpPEP	ATP	0.28	nan	mM	7.5	295.15	nan	R01512	C00002	Brenda	0	10000
+Michaelis constant	vlpPEP	ATP	4.8	nan	mM	nan	343.15	Pyrococcus woesei	R01512	C00002	Brenda	0	10000
+Michaelis constant	vlpPEP	ATP	4.05	nan	mM	nan	343.15	Pyrococcus woesei	R01512	C00002	Brenda	0	10000
+Michaelis constant	vlpPEP	ATP	0.38	nan	mM	7.5	298.15	Pseudomonas sp.	R01512	C00002	Brenda	0	10000
+Michaelis constant	vlpPEP	ATP	0.7	nan	mM	6.8	318.15	Lactobacillus delbrueckii subsp. lactis	R01512	C00002	Brenda	0	10000
+Michaelis constant	vlpPEP	ATP	0.59	nan	mM	nan	nan	Nitrosospira sp. TYM9	R01512	C00002	Brenda	0	10000
+Michaelis constant	vlpPEP	ATP	2.11	nan	mM	nan	nan	Nitrosospira sp. PJA1	R01512	C00002	Brenda	0	10000
+Michaelis constant	vlpPEP	ATP	0.57	nan	mM	nan	nan	Nitrosospira sp. TCH716	R01512	C00002	Brenda	0	10000
+Michaelis constant	vlpPEP	ATP	0.76	nan	mM	nan	nan	Nitrosospira sp. KAN8	R01512	C00002	Brenda	0	10000
+Michaelis constant	vlpPEP	ATP	0.53	nan	mM	nan	nan	nan	R01512	C00002	Brenda	0	10000
+Michaelis constant	vlpPEP	ATP	1.96	nan	mM	nan	nan	Nitrosovibrio sp. RY3C	R01512	C00002	Brenda	0	10000
+Michaelis constant	vlpPEP	ATP	1.58	nan	mM	nan	nan	Nitrosovibrio sp. RY6A	R01512	C00002	Brenda	0	10000
+Michaelis constant	vlpPEP	ATP	0.3	nan	mM	nan	nan	Homo sapiens	R01512	C00002	Brenda	0	10000
+Michaelis constant	vlpPEP	ATP	0.5	nan	mM	nan	nan	Homo sapiens	R01512	C00002	Brenda	0	10000
+Michaelis constant	vlpPEP	ATP	0.66	nan	mM	nan	nan	Nitrosovibrio sp. FJI82	R01512	C00002	Brenda	0	10000
+Michaelis constant	vlpPEP	ATP	0.51	nan	mM	nan	nan	Nitrosospira sp. GS833	R01512	C00002	Brenda	0	10000
+Michaelis constant	vlpPEP	ATP	0.77	nan	mM	nan	nan	Nitrosospira sp. NRS527	R01512	C00002	Brenda	0	10000
+Michaelis constant	vlpPEP	ATP	0.24	nan	mM	7.5	298.15	Rattus norvegicus	R01512	C00002	Brenda	0	10000
+concentration of enzyme	vTIM	nan	207000	nan	molecules/cell	nan	nan	Saccharomyces cerevisiae	R01015	nan	yeastGFP	0	10000
+product catalytic rate constant	vTIM	nan	1000	nan	1/s	nan	nan	Trypanosoma brucei	R01015	C00111	Brenda	0	10000
+product catalytic rate constant	vTIM	nan	1080	nan	1/s	nan	nan	Trypanosoma brucei	R01015	C00111	Brenda	0	10000
+product catalytic rate constant	vTIM	nan	63	nan	1/s	nan	nan	Trypanosoma brucei	R01015	C00111	Brenda	0	10000
+product catalytic rate constant	vTIM	nan	200	nan	1/s	nan	nan	Trypanosoma brucei	R01015	C00111	Brenda	0	10000
+product catalytic rate constant	vTIM	nan	180	nan	1/s	nan	nan	Trypanosoma brucei	R01015	C00111	Brenda	0	10000
+product catalytic rate constant	vTIM	nan	240	nan	1/s	nan	nan	Trypanosoma brucei	R01015	C00111	Brenda	0	10000
+product catalytic rate constant	vTIM	nan	367	nan	1/s	nan	nan	Leishmania mexicana	R01015	C00111	Brenda	0	10000
+substrate catalytic rate constant	vTIM	nan	2600	nan	1/s	nan	nan	Trypanosoma brucei	R01015	C00118	Brenda	0	10000
+substrate catalytic rate constant	vTIM	nan	6000	nan	1/s	nan	nan	Trypanosoma brucei	R01015	C00118	Brenda	0	10000
+substrate catalytic rate constant	vTIM	nan	6170	nan	1/s	nan	nan	Trypanosoma brucei	R01015	C00118	Brenda	0	10000
+substrate catalytic rate constant	vTIM	nan	2500	nan	1/s	nan	nan	Trypanosoma brucei	R01015	C00118	Brenda	0	10000
+substrate catalytic rate constant	vTIM	nan	1600	nan	1/s	nan	nan	Trypanosoma brucei	R01015	C00118	Brenda	0	10000
+substrate catalytic rate constant	vTIM	nan	4170	nan	1/s	nan	nan	Leishmania mexicana	R01015	C00118	Brenda	0	10000
+substrate catalytic rate constant	vTIM	nan	16700	nan	1/s	nan	nan	Saccharomyces cerevisiae	R01015	C00118	Brenda	0	10000
+substrate catalytic rate constant	vTIM	nan	8670	nan	1/s	nan	nan	Oryctolagus cuniculus	R01015	C00118	Brenda	0	10000
+Michaelis constant	vTIM	GAP	1.2	nan	mM	7.6	303.15	Gallus gallus	R01015	C00118	Brenda	0	10000
+Michaelis constant	vTIM	GAP	4	nan	mM	7.6	303.15	Gallus gallus	R01015	C00118	Brenda	0	10000
+Michaelis constant	vTIM	GAP	0.47	nan	mM	7.6	303.15	Gallus gallus	R01015	C00118	Brenda	0	10000
+Michaelis constant	vTIM	GAP	3.7	nan	mM	7.6	303.15	Gallus gallus	R01015	C00118	Brenda	0	10000
+Michaelis constant	vTIM	DHAP	11	nan	mM	7.6	303.15	Gallus gallus	R01015	C00111	Brenda	0	10000
+Michaelis constant	vTIM	DHAP	0.97	nan	mM	7.6	303.15	Gallus gallus	R01015	C00111	Brenda	0	10000
+Michaelis constant	vTIM	DHAP	15	nan	mM	7.6	303.15	Gallus gallus	R01015	C00111	Brenda	0	10000
+Michaelis constant	vTIM	DHAP	18	nan	mM	7.6	303.15	Gallus gallus	R01015	C00111	Brenda	0	10000
+Michaelis constant	vTIM	GAP	0.87	nan	mM	7.4	298.15	Giardia intestinalis	R01015	C00118	Brenda	0	10000
+Michaelis constant	vTIM	DHAP	1.1	nan	mM	7.4	298.15	Giardia intestinalis	R01015	C00111	Brenda	0	10000
+Michaelis constant	vTIM	GAP	0.53	nan	mM	7.4	298.15	Giardia intestinalis	R01015	C00118	Brenda	0	10000
+Michaelis constant	vTIM	GAP	0.5	nan	mM	7.4	298.15	Trypanosoma brucei	R01015	C00118	Brenda	0	10000
+Michaelis constant	vTIM	DHAP	1	nan	mM	nan	nan	Trypanosoma brucei	R01015	C00111	Brenda	0	10000
+Michaelis constant	vTIM	GAP	0.28	nan	mM	nan	nan	Trypanosoma brucei	R01015	C00118	Brenda	0	10000
+Michaelis constant	vTIM	DHAP	0.9	nan	mM	nan	nan	Trypanosoma brucei	R01015	C00111	Brenda	0	10000
+Michaelis constant	vTIM	GAP	0.19	nan	mM	nan	nan	Trypanosoma brucei	R01015	C00118	Brenda	0	10000
+Michaelis constant	vTIM	DHAP	0.67	nan	mM	nan	nan	Trypanosoma brucei	R01015	C00111	Brenda	0	10000
+Michaelis constant	vTIM	GAP	0.32	nan	mM	7.4	298.15	Trypanosoma brucei	R01015	C00118	Brenda	0	10000
+Michaelis constant	vTIM	DHAP	1.2	nan	mM	nan	nan	Trypanosoma brucei	R01015	C00111	Brenda	0	10000
+Michaelis constant	vTIM	DHAP	0.7	nan	mM	nan	nan	Trypanosoma brucei	R01015	C00111	Brenda	0	10000
+Michaelis constant	vTIM	DHAP	1.6	nan	mM	nan	nan	Trypanosoma brucei	R01015	C00111	Brenda	0	10000
+Michaelis constant	vTIM	GAP	0.24	nan	mM	nan	nan	Trypanosoma brucei	R01015	C00118	Brenda	0	10000
+Michaelis constant	vTIM	GAP	3.6	nan	mM	7.4	298.15	Trypanosoma brucei	R01015	C00118	Brenda	0	10000
+Michaelis constant	vTIM	GAP	0.35	nan	mM	7.4	298.15	Trypanosoma brucei	R01015	C00118	Brenda	0	10000
+Michaelis constant	vTIM	GAP	0.6	nan	mM	nan	nan	Trypanosoma brucei	R01015	C00118	Brenda	0	10000
+Michaelis constant	vTIM	DHAP	1.1	nan	mM	nan	nan	Trypanosoma brucei	R01015	C00111	Brenda	0	10000
+Michaelis constant	vTIM	GAP	0.9	nan	mM	nan	nan	Trypanosoma cruzi	R01015	C00118	Brenda	0	10000
+Michaelis constant	vTIM	GAP	0.4067	nan	mM	nan	nan	Schistosoma japonicum	R01015	C00118	Brenda	0	10000
+Michaelis constant	vTIM	GAP	1.03	nan	mM	7.6	nan	Escherichia coli	R01015	C00118	Brenda	0	10000
+Michaelis constant	vTIM	DHAP	2.5	nan	mM	nan	nan	Secale cereale	R01015	C00111	Brenda	0	10000
+Michaelis constant	vTIM	GAP	0.68	nan	mM	nan	nan	Secale cereale	R01015	C00118	Brenda	0	10000
+Michaelis constant	vTIM	GAP	0.31	nan	mM	nan	nan	Leishmania mexicana	R01015	C00118	Brenda	0	10000
+Michaelis constant	vTIM	DHAP	1.3	nan	mM	nan	nan	Leishmania mexicana	R01015	C00111	Brenda	0	10000
+Michaelis constant	vTIM	GAP	1.9	nan	mM	7.6	nan	Moritella marina	R01015	C00118	Brenda	0	10000
+Michaelis constant	vTIM	GAP	4.8	nan	mM	7.6	nan	Moritella marina	R01015	C00118	Brenda	0	10000
+Michaelis constant	vTIM	DHAP	0.26	nan	mM	nan	nan	Homo sapiens	R01015	C00111	Brenda	0	10000
+Michaelis constant	vTIM	GAP	0.55	nan	mM	nan	nan	Homo sapiens	R01015	C00118	Brenda	0	10000
+Michaelis constant	vTIM	GAP	0.4	nan	mM	nan	nan	Homo sapiens	R01015	C00118	Brenda	0	10000
+Michaelis constant	vTIM	DHAP	0.37	nan	mM	nan	nan	Homo sapiens	R01015	C00111	Brenda	0	10000
+Michaelis constant	vTIM	DHAP	0.82	nan	mM	nan	nan	Homo sapiens	R01015	C00111	Brenda	0	10000
+Michaelis constant	vTIM	DHAP	0.69	nan	mM	nan	nan	Homo sapiens	R01015	C00111	Brenda	0	10000
+Michaelis constant	vTIM	GAP	0.25	nan	mM	nan	nan	Homo sapiens	R01015	C00118	Brenda	0	10000
+Michaelis constant	vTIM	GAP	0.43	nan	mM	7.4	298.15	Homo sapiens	R01015	C00118	Brenda	0	10000
+Michaelis constant	vTIM	GAP	0.33	nan	mM	7.4	298.15	Homo sapiens	R01015	C00118	Brenda	0	10000
+Michaelis constant	vTIM	GAP	0.34	nan	mM	7.6	nan	Homo sapiens	R01015	C00118	Brenda	0	10000
+Michaelis constant	vTIM	DHAP	0.59	nan	mM	nan	nan	Homo sapiens	R01015	C00111	Brenda	0	10000
+Michaelis constant	vTIM	DHAP	1.5	nan	mM	nan	nan	Homo sapiens	R01015	C00111	Brenda	0	10000
+Michaelis constant	vTIM	GAP	0.22	nan	mM	nan	nan	Solanum chacoense	R01015	C00118	Brenda	0	10000
+Michaelis constant	vTIM	GAP	0.29	nan	mM	nan	nan	Solanum chacoense	R01015	C00118	Brenda	0	10000
+Michaelis constant	vTIM	DHAP	0.6	nan	mM	7.4	298.15	Saccharomyces cerevisiae	R01015	C00111	Brenda	0	10000
+Michaelis constant	vTIM	GAP	0.8	nan	mM	7.4	298.15	Saccharomyces cerevisiae	R01015	C00118	Brenda	0	10000
+Michaelis constant	vTIM	DHAP	2.1	nan	mM	7.4	298.15	Saccharomyces cerevisiae	R01015	C00111	Brenda	0	10000
+Michaelis constant	vTIM	GAP	1.27	nan	mM	nan	nan	Saccharomyces cerevisiae	R01015	C00118	Brenda	0	10000
+Michaelis constant	vTIM	DHAP	1.23	nan	mM	nan	nan	Saccharomyces cerevisiae	R01015	C00111	Brenda	0	10000
+Michaelis constant	vTIM	GAP	1.1	nan	mM	nan	298.15	Saccharomyces cerevisiae	R01015	C00118	Brenda	0	10000
+Michaelis constant	vTIM	GAP	0.3	nan	mM	7.4	298.15	Saccharomyces cerevisiae	R01015	C00118	Brenda	0	10000
+Michaelis constant	vTIM	DHAP	0.75	nan	mM	nan	nan	Oryctolagus cuniculus	R01015	C00111	Brenda	0	10000
+Michaelis constant	vTIM	GAP	0.42	nan	mM	7.4	298.15	Oryctolagus cuniculus	R01015	C00118	Brenda	0	10000
+Michaelis constant	vTIM	GAP	0.44	nan	mM	nan	nan	Pisum sativum	R01015	C00118	Brenda	0	10000
+Michaelis constant	vTIM	DHAP	0.88	nan	mM	nan	nan	Pisum sativum	R01015	C00111	Brenda	0	10000
+concentration	nan	F6P	0.65	nan	mM	nan	nan	Saccharomyces cerevisiae	nan	C00085	nan	0	10000
+concentration	nan	F6P	0.071	nan	mM	nan	nan	Dictyostelium discoideum	nan	C00085	nan	0	10000
+concentration	nan	F6P	0.362	nan	mM	nan	nan	Rattus sp.	nan	C00085	nan	0	10000
+concentration	nan	F6P	0.011	nan	mM	nan	nan	Homo sapiens	nan	C00085	nan	0	10000
+concentration	nan	F6P	0.0084	nan	mM	nan	nan	Vigna radiata var. radiata	nan	C00085	nan	0	10000
+concentration	nan	F6P	0.019	nan	mM	nan	nan	Rattus sp.	nan	C00085	nan	0	10000
+concentration	nan	F6P	0.011	nan	mM	nan	nan	Oryctolagus cuniculus	nan	C00085	nan	0	10000
+concentration	nan	F6P	82.1	73.9	mM	nan	nan	nan	nan	C00085	nan	0	10000
+concentration	nan	F6P	0.0875	0.0125	mM	nan	nan	Rattus sp.	nan	C00085	nan	0	10000
+standard chemical potential	nan	F6P	-1316.55	nan	kJ/mol	nan	nan	nan	nan	C00085	Alberty		10000
+concentration	nan	NADH	341	307	mM	nan	nan	nan	nan	C00004	nan	0	10000
+standard chemical potential	nan	NADH	1117.5	nan	kJ/mol	nan	nan	nan	nan	C00004	Alberty		10000
+concentration	nan	DHAP	0.33	nan	mM	nan	nan	Saccharomyces cerevisiae	nan	C00111	nan	0	10000
+concentration	nan	DHAP	0.203	nan	mM	nan	nan	Escherichia coli	nan	C00111	nan	0	10000
+concentration	nan	DHAP	0.1	nan	mM	nan	nan	Dictyostelium discoideum	nan	C00111	nan	0	10000
+concentration	nan	DHAP	0.012	nan	mM	nan	nan	Homo sapiens	nan	C00111	nan	0	10000
+concentration	nan	DHAP	0.0007	nan	mM	nan	nan	Vigna radiata var. radiata	nan	C00111	nan	0	10000
+concentration	nan	DHAP	0.012	nan	mM	nan	nan	Rattus sp.	nan	C00111	nan	0	10000
+concentration	nan	DHAP	0.01	nan	mM	nan	nan	Oryctolagus cuniculus	nan	C00111	nan	0	10000
+concentration	nan	DHAP	32.8	29.5	mM	nan	nan	nan	nan	C00111	nan	0	10000
+concentration	nan	DHAP	0.045	0.005	mM	nan	nan	Rattus sp.	nan	C00111	nan	0	10000
+concentration	nan	DHAP	0.043	0.003	mM	nan	nan	Rattus sp.	nan	C00111	nan	0	10000
+standard chemical potential	nan	DHAP	-1095.82	nan	kJ/mol	nan	nan	nan	nan	C00111	Alberty		10000
+concentration	nan	Glc	341	307	mM	nan	nan	nan	nan	C00293	nan	0	10000
+standard chemical potential	nan	Glc	-428.06	nan	kJ/mol	nan	nan	nan	nan	C00293	Alberty		10000
+concentration	nan	ADP	0.823	nan	mM	nan	nan	Escherichia coli	nan	C00008	nan	0	10000
+concentration	nan	ADP	0.2	nan	mM	nan	nan	Dictyostelium discoideum	nan	C00008	nan	0	10000
+concentration	nan	ADP	1.7	nan	mM	nan	nan	Rattus sp.	nan	C00008	nan	0	10000
+concentration	nan	ADP	1.059	nan	mM	nan	nan	Rattus sp.	nan	C00008	nan	0	10000
+concentration	nan	ADP	0.126	nan	mM	nan	nan	Homo sapiens	nan	C00008	nan	0	10000
+concentration	nan	ADP	0.5	nan	mM	nan	nan	Oryctolagus cuniculus	nan	C00008	nan	0	10000
+concentration	nan	ADP	184	166	mM	nan	nan	nan	nan	C00008	nan	0	10000
+concentration	nan	ADP	0.81	0.49	mM	nan	nan	Saccharomyces cerevisiae	nan	C00008	nan	0	10000
+concentration	nan	ADP	1.084	0.208	mM	nan	nan	Rattus sp.	nan	C00008	nan	0	10000
+standard chemical potential	nan	ADP	-1425.17	nan	kJ/mol	nan	nan	nan	nan	C00008	Alberty		10000
+concentration	nan	Glyc	209	188	mM	nan	nan	nan	nan	C00116	nan	0	10000
+standard chemical potential	nan	Glyc	-172.25	nan	kJ/mol	nan	nan	nan	nan	C00116	Alberty		10000
+concentration	nan	FBP	1.9	nan	mM	nan	nan	Escherichia coli	nan	C00354	nan	0	10000
+concentration	nan	FBP	0.05	nan	mM	nan	nan	Dictyostelium discoideum	nan	C00354	nan	0	10000
+concentration	nan	FBP	0.046	nan	mM	nan	nan	Rattus sp.	nan	C00354	nan	0	10000
+concentration	nan	FBP	0.005	nan	mM	nan	nan	Homo sapiens	nan	C00354	nan	0	10000
+concentration	nan	FBP	0.001	nan	mM	nan	nan	Vigna radiata var. radiata	nan	C00354	nan	0	10000
+concentration	nan	FBP	0.0085	nan	mM	nan	nan	Rattus sp.	nan	C00354	nan	0	10000
+concentration	nan	FBP	0.007	nan	mM	nan	nan	Oryctolagus cuniculus	nan	C00354	nan	0	10000
+concentration	nan	FBP	19.7	17.8	mM	nan	nan	nan	nan	C00354	nan	0	10000
+concentration	nan	FBP	3.1	1.4	mM	nan	nan	Saccharomyces cerevisiae	nan	C00354	nan	0	10000
+concentration	nan	FBP	0.031	0.008	mM	nan	nan	Rattus sp.	nan	C00354	nan	0	10000
+standard chemical potential	nan	FBP	-2206.14	nan	kJ/mol	nan	nan	nan	nan	C00354	Alberty		10000
+concentration	nan	NAD	0.025	nan	mM	nan	nan	Dictyostelium discoideum	nan	C00003	nan	0	10000
+concentration	nan	NAD	1.097	nan	mM	nan	nan	Rattus sp.	nan	C00003	nan	0	10000
+concentration	nan	NAD	0.31	nan	mM	nan	nan	Rattus sp.	nan	C00003	nan	0	10000
+concentration	nan	NAD	0.426	nan	mM	nan	nan	Rattus sp.	nan	C00003	nan	0	10000
+concentration	nan	NAD	1.3	0.3	mM	nan	nan	Saccharomyces cerevisiae	nan	C00003	nan	0	10000
+concentration	nan	NAD	1.667	0.411	mM	nan	nan	Escherichia coli	nan	C00003	nan	0	10000
+standard chemical potential	nan	NAD	1056.29	nan	kJ/mol	nan	nan	nan	nan	C00003	Alberty		10000
+standard chemical potential	nan	GAP	-1088.16	nan	kJ/mol	nan	nan	nan	nan	C00118	Alberty		10000
+concentration	nan	PEP	0.143	nan	mM	nan	nan	Rattus sp.	nan	C00074	nan	0	10000
+concentration	nan	PEP	0.008	nan	mM	nan	nan	Rattus sp.	nan	C00074	nan	0	10000
+concentration	nan	PEP	0.012	nan	mM	nan	nan	Homo sapiens	nan	C00074	nan	0	10000
+concentration	nan	PEP	0.004	nan	mM	nan	nan	Rattus sp.	nan	C00074	nan	0	10000
+concentration	nan	PEP	0.01	nan	mM	nan	nan	Oryctolagus cuniculus	nan	C00074	nan	0	10000
+concentration	nan	PEP	32.8	29.5	mM	nan	nan	nan	nan	C00074	nan	0	10000
+concentration	nan	PEP	0.1955	0.1045	mM	nan	nan	Escherichia coli	nan	C00074	nan	0	10000
+standard chemical potential	nan	PEP	-1189.04	nan	kJ/mol	nan	nan	nan	nan	C00074	Alberty		10000
+concentration	nan	ATP	2.641	nan	mM	nan	nan	Escherichia coli	nan	C00002	nan	0	10000
+concentration	nan	ATP	0.7	nan	mM	nan	nan	Dictyostelium discoideum	nan	C00002	nan	0	10000
+concentration	nan	ATP	3.535	nan	mM	nan	nan	Rattus sp.	nan	C00002	nan	0	10000
+concentration	nan	ATP	3.075	nan	mM	nan	nan	Rattus sp.	nan	C00002	nan	0	10000
+concentration	nan	ATP	1.13	nan	mM	nan	nan	Homo sapiens	nan	C00002	nan	0	10000
+concentration	nan	ATP	0.0109	nan	mM	nan	nan	Vigna radiata var. radiata	nan	C00002	nan	0	10000
+concentration	nan	ATP	1.7	nan	mM	nan	nan	Oryctolagus cuniculus	nan	C00002	nan	0	10000
+concentration	nan	ATP	176	158	mM	nan	nan	nan	nan	C00002	nan	0	10000
+concentration	nan	ATP	1.5	0.4	mM	nan	nan	Saccharomyces cerevisiae	nan	C00002	nan	0	10000
+concentration	nan	ATP	3.3	2.3	mM	nan	nan	Rattus sp.	nan	C00002	nan	0	10000
+standard chemical potential	nan	ATP	-2292.28	nan	kJ/mol	nan	nan	nan	nan	C00002	Alberty		10000
+concentration	nan	ACA	89.6	80.7	mM	nan	nan	nan	nan	C00084	nan	0	10000
+standard chemical potential	nan	ACA	23.61	nan	kJ/mol	nan	nan	nan	nan	C00084	Alberty		10000
+concentration	nan	EtOH	137	124	mM	nan	nan	nan	nan	C00469	nan	0	10000
+standard chemical potential	nan	EtOH	62.28	nan	kJ/mol	nan	nan	nan	nan	C00469	Alberty		10000
+concentration	nan	Pyr	1.6	nan	mM	nan	nan	Saccharomyces cerevisiae	nan	C00022	nan	0	10000
+concentration	nan	Pyr	0.39	nan	mM	nan	nan	Escherichia coli	nan	C00022	nan	0	10000
+concentration	nan	Pyr	0.06	nan	mM	nan	nan	Dictyostelium discoideum	nan	C00022	nan	0	10000
+concentration	nan	Pyr	0.187	nan	mM	nan	nan	Rattus sp.	nan	C00022	nan	0	10000
+concentration	nan	Pyr	0.056	nan	mM	nan	nan	Rattus sp.	nan	C00022	nan	0	10000
+concentration	nan	Pyr	0.09	nan	mM	nan	nan	Oryctolagus cuniculus	nan	C00022	nan	0	10000
+concentration	nan	Pyr	88.9	80	mM	nan	nan	nan	nan	C00022	nan	0	10000
+concentration	nan	Pyr	0.1495	0.1105	mM	nan	nan	Rattus sp.	nan	C00022	nan	0	10000
+standard chemical potential	nan	Pyr	-351.01	nan	kJ/mol	nan	nan	nan	nan	C00022	Alberty		10000
+concentration	nan	G6P	2.3	nan	mM	nan	nan	Saccharomyces cerevisiae	nan	C00092	nan	0	10000
+concentration	nan	G6P	0.801	nan	mM	nan	nan	Escherichia coli	nan	C00092	nan	0	10000
+concentration	nan	G6P	0.216	nan	mM	nan	nan	Dictyostelium discoideum	nan	C00092	nan	0	10000
+concentration	nan	G6P	1.033	nan	mM	nan	nan	Rattus sp.	nan	C00092	nan	0	10000
+concentration	nan	G6P	0.027	nan	mM	nan	nan	Homo sapiens	nan	C00092	nan	0	10000
+concentration	nan	G6P	0.036	nan	mM	nan	nan	Vigna radiata var. radiata	nan	C00092	nan	0	10000
+concentration	nan	G6P	0.136	nan	mM	nan	nan	Rattus sp.	nan	C00092	nan	0	10000
+concentration	nan	G6P	0.062	nan	mM	nan	nan	Oryctolagus cuniculus	nan	C00092	nan	0	10000
+concentration	nan	G6P	82.1	73.9	mM	nan	nan	nan	nan	C00092	nan	0	10000
+concentration	nan	G6P	0.2575	0.0265	mM	nan	nan	Rattus sp.	nan	C00092	nan	0	10000
+standard chemical potential	nan	G6P	-1319.75	nan	kJ/mol	nan	nan	nan	nan	C00092	Alberty		10000
+concentration	nan	BPG	9.61	8.65	mM	nan	nan	nan	nan	C00236	nan	0	10000
+standard chemical potential	nan	BPG	-2206.35	nan	kJ/mol	nan	nan	nan	nan	C00236	Alberty		10000
+concentration	nan	AMP	0.151	nan	mM	nan	nan	Escherichia coli	nan	C00020	nan	0	10000
+concentration	nan	AMP	0.05	nan	mM	nan	nan	Homo sapiens	nan	C00020	nan	0	10000
+concentration	nan	AMP	0.0109	nan	mM	nan	nan	Vigna radiata var. radiata	nan	C00020	nan	0	10000
+concentration	nan	AMP	0.123	nan	mM	nan	nan	Rattus sp.	nan	C00020	nan	0	10000
+concentration	nan	AMP	0.06	nan	mM	nan	nan	Oryctolagus cuniculus	nan	C00020	nan	0	10000
+concentration	nan	AMP	193	174	mM	nan	nan	nan	nan	C00020	nan	0	10000
+concentration	nan	AMP	0.235	0.065	mM	nan	nan	Saccharomyces cerevisiae	nan	C00020	nan	0	10000
+standard chemical potential	nan	AMP	-555.8	nan	kJ/mol	nan	nan	nan	nan	C00020	Alberty		10000

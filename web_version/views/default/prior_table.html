@@ -1,0 +1,95 @@
+{{extend 'layout.html'}}
+    <hr style="width:900;float:left;"><br>
+    
+    <p style="margin-left:250;">
+      <a href="/pb/static/main.html">Main</a> |
+      <a href="/pb/static/documentation.html">Documentation</a> |
+      Online Balancing |
+      <a href="/pb/static/download.html">Download</a> |
+      <a href="/pb/static/contact.html">Contact</a>
+    </p>
+    
+
+
+    <div style="background-color:CDCCCB;width:900"><h2>Parameter Balancing Online (3/4): Choose the prior distribution values</h2> </div>
+    
+    <div style="width:900">Please choose a prior table for balancing the chosen model file <b>{{=SBML_NAME}}</b> and the corresponding parameter file <b>{{=SBTAB_NAME}}</b>.
+A default prior table can be found in the list.</div>
+
+{{=PRIOR_FORM}}
+
+{{if PRIOR_NAMES:}}
+
+<table border="0">
+  <td>
+  <table border="1" rules="rows">
+    <td bgcolor="#87CEFA">
+    <td bgcolor="#87CEFA" height="20"></td>
+    <td bgcolor="#87CEFA" height="20"></td>
+    <!-- The file list and corresponding buttons -->
+    {{for pos,f in enumerate(PRIOR_NAMES):}}
+    <tr>
+      <td>
+	&bull;
+	<a href="/pb/default/show_prior/{{=str(pos)}}" target="_new"> {{=f}}</a>
+      </td>
+      <form>
+	<td>
+	  <button type="submit" value="{{=pos}}" name="balance_button">Balance!</button>
+	</td>
+      </form>
+      {{if f != 'default_prior.tsv':}}
+      <form>
+	<td>
+	  <button type="submit" value="{{=pos}}" name="erase_button_prior">Remove</button>
+	</td>
+      </form>
+      {{else:}}
+      <form>
+      <td>
+      </td>
+      </form>
+    </tr>
+    {{pass}}
+    {{pass}}
+    </td>
+  </table>
+
+  <!-- Display warnings -->
+  {{if WARNINGS:}}
+  <table border="0">
+    <tr>
+      <td>
+	<td><font color="red">{{=WARNINGS[0]}}</font></td>
+      </td>
+    </tr>
+  </table>
+  {{else:}}
+  <table border="0">
+    <td> No warnings detected.</td>
+  </table>
+  {{pass}}
+ 
+  </td>
+{{pass}}
+</table>
+
+{{if len(PRIOR_NAMES)==1:}}
+<table>
+  <td>
+    <table border="1">
+	<td valign="top">
+	  Example PriorInfo<br>SBtab file (.tsv):
+	</td>
+	<td>
+	  <image width="900" src="/pb/static/images/example_sbtab_prior.png">
+	</td>
+    </table>
+  </td>
+</table>
+{{pass}}
+
+<p>
+  Information on the use of online balancing can be found on the <a href="../static/documentation.html">documentation page</a>.<br>
+  Alternative prior tables can be found on the <a href="../static/quantities.html">quantities page</a>. <br><br>
+</p>

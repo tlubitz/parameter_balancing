@@ -1,0 +1,107 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Parameter Balancing for Kinetic Models of Cell Metabolism</title>
+    <link rel="stylesheet" type="text/css" href="css/pb.css">
+  </head>
+
+  <body>
+
+    <h2><a href="main.html"><image width="100" src="/pb/static/images/pb-logo.png"></a>   Parameter Balancing for Kinetic Models of Cell Metabolism</h2>
+
+    <h3>Models and data sets</h3>
+
+
+    <h4> Phosphofructokinase Reaction (PFK)</h4> 
+
+    <p style="width:700;">Our SBML model of the Phosphofructokinase reaction was constructed
+    from the KEGG
+    Reaction <a href="http://www.genome.jp/dbget-bin/www_bget?rn:R04779">R04779</a>
+    with <a href="http://www.semanticsbml.org/">semanticSBML-fill</a>.</p>
+
+    <ul>
+      <li><a href="files/pfk_reaction.xml">Model</a> (SBML format)</li>
+      <li><a href="files/pfk_SBtab.tsv">Collected parameter values</a> (SBtab format)</li>
+      <li><a href="files/pfk_sbtab_result.tsv">Balanced model parameters</a> (SBtab format)</li>
+    </ul>
+
+    
+    <h4> Glycolysis (Teusink et al, 2000)</h4>
+    
+    <p style="width:700;">Teusink's glycolysis model 
+    (<a href="http://www.ebi.ac.uk/biomodels-main/BIOMD0000000064">Teusink et al, (2000)</a>)
+    has been assembled from enzymatic rate laws determined in vitro.</p>
+
+    <ul>
+      <li><a href="files/BIOMD0000000064.xml">Model</a> (SBML format, from <a href="http://www.ebi.ac.uk/biomodels-main/">BioModels Database</a>)</li>
+      <li><a href="files/teusink_SBtab.tsv">Collected parameter values</a> (SBtab format)</li>
+      <li><a href="files/teusink_sbtab_result.tsv">Balanced model parameters</a> (SBtab format)</li>
+    </ul>
+
+    <h4>Glycolysis model (Hynne et al., 2001)</h4>
+   
+    <p style="width:700;">Hynne's glycolysis model (<a href="http://www.ebi.ac.uk/biomodels-main/BIOMD0000000061">(Hynne et al., 2001)</a>) was created to describe glycolysis in yeast at
+      the onset of metabolic oscillations. In the encoded version from
+      BioModels Database, SBO terms for allosteric inhibitors are
+      missing. We provide a second version in which these SBO terms have
+      been added.</p>
+    
+    <ul>
+      <li><a href="files/BIOMD0000000061.xml">Model</a> (SBML format, from <a href="http://www.ebi.ac.uk/biomodels-main/">BioModels Database</a>)</li>
+      <li><a href="files/BIOMD0000000061_inh.xml">Model</a> (SBML format, with SBO terms for inhibitors)</li>
+      <li><a href="files/hynne_SBtab.tsv">Collected parameter values</a> (SBtab format)</li>
+      <li><a href="files/hynne_sbtab_result.tsv">Balanced model parameters</a> (SBtab format)</li>
+    </ul>
+
+    <h4>Pancreatic Beta Cell Model  (Jiang et al.,2007)</h4>
+   <p style="width:700;"> Jiang's model of the glucose-stimulated secretion system in
+pancreatic beta cells
+(<a href="http://www.ebi.ac.uk/biomodels-main/BIOMD0000000239">(Jiang
+et al.,2007)</a>) is one of the largest kinetic models in BioModels
+Database.</p>
+ <ul>
+      <li><a href="files/BIOMD0000000239.xml">Model</a> (SBML format, from <a href="http://www.ebi.ac.uk/biomodels-main/">BioModels Database</a>)</li>
+      <li><a href="files/jiang_SBtab.tsv">Collected parameter values</a> (SBtab format)</li>
+      <li><a href="files/jiang_sbtab_results.tsv">Balanced model parameters</a> (SBtab format)</li>
+    </ul>
+
+    <h4>E coli central metabolism (unpublished)</h4>
+
+
+<p style="width:700;">Additional data files concerning E. coli central metabolism can be found <a href="http://www.metabolic-economics.de/enzyme-cost-minimization/ecoli_ccm_aerobic.html">here</a>.
+
+<br><hr align="left" width="720">
+
+<h4>Data provenance</h4>
+
+<p style="width:700;"> Data for the examples were collected from the following public data
+ sources:</p>
+<ol>
+  <li><p><strong>Brenda:</strong> <a href="http://www.brenda-enzymes.org/">Brenda Enzyme Database</a></p></li>
+  <li><p><strong>NIST:</strong><a href="http://xpdb.nist.gov/enzyme_thermodynamics/"> Thermodynamics of Enzyme-Catalyzed Reactions</a>, see <a href="http://bioinformatics.oxfordjournals.org/content/20/16/2874.short"></a>R.N. Goldberg, Y.B. Tewari and T.N. Bhat (2004), 
+<em>Thermodynamics of enzyme-catalyzed reactions - a database for
+quantitative biochemistry</em>, Bioinformatics 20 (16), 2874-2877
+ </p></li>
+  <li><p><strong>yeastGFP:</strong> <a href="http://yeastgfp.yeastgenome.org/">Yeast GFP Fusion Localization Database</a></p></li>
+  <li><p><strong>Alberty:</strong> Alberty, R.A. (1998), <em>Calculation
+    of standard transformed Gibbs energies and standard transformed
+    enthalpies of biochemical reactants</em>, <a href="http://www.sciencedirect.com/science?_ob=ArticleURL&amp;_udi=B6WB5-45KKRWW-9K&amp;_user=964000&amp;_coverDate=05%2F01%2F1998&amp;_rdoc=1&amp;_fmt=high&amp;_orig=search&amp;_origin=search&amp;_sort=d&amp;_docanchor=&amp;view=c&amp;_searchStrId=1453209324&amp;_rerunOrigin=google&amp;_acct=C000049508&amp;_version=1&amp;_urlVersion=0&amp;_userid=964000&amp;md5=384e4b67950ca23f0c9be4e613851795&amp;searchtype=a">Archives of Biochemistry and
+    Biophysics</a>, 353 (1), 116-130</p></li>
+</ol>
+
+    <hr>
+    <p>
+      <a href="main.html">Main</a> |
+      <a href="introduction.html">Introduction</a> |
+      <a href="workflow.html">Workflow</a> |
+      <a href="../default/balancing.html"><b>Online Balancing</b></a> |
+      <a href="../default/config.html">Configure Online Balancing</a> |
+      <a href="file_format.html">File format</a> |
+      <a href="faq.html">FAQ</a> |
+      <a href="quantities.html">Quantities</a> |
+      <a href="examples.html">Examples</a> |
+      <a href="software.html">Software</a> |
+      <a href="contact.html">Contact</a> |
+    </p>
+
+</body></html>

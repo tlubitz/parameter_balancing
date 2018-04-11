@@ -1,0 +1,112 @@
+{{extend 'layout.html'}}
+    <hr style="width:700;float:left;"><br>
+    
+    <p style="margin-left:50;">
+      <a href="/pb/static/main.html">Main</a> |
+      <a href="/pb/static/documentation.html">Documentation</a> |
+      <a href="/pb/default/balancing.html"><b>Online Balancing</b></a> |
+      <a href="/pb/default/config.html">Configure Online Balancing</a> |
+      <a href="/pb/static/download.html">Download</a> |
+      <a href="/pb/static/contact.html">Contact</a>
+    </p>
+    
+    <hr style="width:700;float:left;"><br>
+
+    
+<h2>Update the configuration file for online parameter balancing</h2>
+
+An SBtab configuration file can be employed to choose several options for the online parameter balancing.<br>
+<br>
+
+{{=CONFIG_FORM}}
+
+{{if CONFIG_NAME:}}
+<table border="0">
+  <table border="1" rules="rows"> 
+    <tr style="width:650;">
+      <td bgcolor="#87CEFA" >Currently loaded config file for your session:</td>
+      <td bgcolor="#87CEFA" ></td>
+    </tr>
+    <tr>
+      <td> <a href="/pb/default/show_sbtab_conf/{{=str(0)}}" target="_new"> {{=CONFIG_NAME}} </a> </td>
+      <form> <td><button type="submit" value="0" name="erase_button_config">Remove</button></td> </form>
+    </tr>
+  </table>
+  <!-- Display warnings -->
+  {{if WARNINGS:}}
+  <table border="0">
+    <tr>
+      <td>
+      <td>
+	<font color="red">{{=WARNINGS[0]}}</font>
+      </td>
+      </td>
+    </tr>
+  </table>
+  {{else:}}
+  <table border="0">
+    <td> No warnings detected. </td>
+</table>
+{{pass}}
+ 
+</table>
+{{pass}}
+
+
+{{if not CONFIG_NAME:}}
+<table>
+  <td>
+    <table border="1">
+	<td valign="top">
+	  Example PbConfig<br>SBtab file (.tsv):
+	</td>
+	<td>
+	  <image width="600" src="/pb/static/images/example_sbtab_config.png">
+	</td>
+    </table>
+  </td>
+</table>
+{{pass}}
+
+<table>
+  <td>
+    Parameter balancing can be configured via several options. The options are
+    <ul>
+      <li><b>use_pseudos </b>(True or False): Since independent priors can capture only some types
+	of kinetic constants (the mutually independent ones), pseudo values can be used, in addition,
+	to represent prior knowledge on other, dependent kinetic constants (default: True). </li>
+      <li><b>pH </b>(float): pH value that is assumed as modelling condition (default: 7).</li>
+      <li><b>temperature </b>(float; in Kelvin): temperature value that is assumed
+	as modelling condition (default: 300).</li>
+      <li><b>overwrite_kinetics </b>(True or False): The kinetic laws of the SBML model can either
+      be kept or overwritten with convenience kinetics and inserted balanced parameters (default: True).</li>
+      <li><b>cell_volume </b>(float; in µM): Volume of the cell the model is part of (default: 43 (yeast)).</li>
+      <li><b>parametrisation </b>(string): For the convenience kinetics that are inserted in the model, three
+	different parametrisations can be chosen ('hal': Haldane parametrisation; 'weg': Wegscheider parametrisation;
+	'cat': ;). Please see http://bioinformatics.oxfordjournals.org/content/26/12/1528.full for more details on
+	the parametrisation (default: 'hal'.</li>
+      <li><b>enzyme_prefac </b>(True or False): Usage of a prefactor for enzyme concentrations (default: True).</li>
+      <li><b>default_inhibition </b>('complete_inh','comp', or 'non-comp'): Default type of reaction inhibition,
+	which can be either complete, competetitive or non-competetive (default: 'complete_inh').</li>
+      <li><b>default_activation </b>('complete_act','essential', or 'non-essential'): Default type of reaction activation,
+	which can be either complete, essential, or non-essential (default: 'complete_act').</li>
+      <li><b>model_name </b>(string): A name for the output model and SBtab file (default: inputfilename+'_balanced').</li>
+      <li><b>samples </b>(int): How many sample models shall be drawn from the posterior distribution?</li>
+      <li><b>boundary_values </b>('enforce', 'ignore', or 'warning'): Usage of numerical boundaries: the balanced parameters can either be forced
+        to be within the given boundaries, or they only produce a warning in the log file if they are outside the boundaries.</li>
+    </ul>
+  </td>
+</table>
+
+    <hr style="width:700;float:left;"><br>
+    
+    <p style="margin-left:50;">
+      <a href="/pb/static/main.html">Main</a> |
+      <a href="/pb/static/documentation.html">Documentation</a> |
+      <a href="/pb/default/balancing.html"><b>Online Balancing</b></a> |
+      <a href="/pb/default/config.html">Configure Online Balancing</a> |
+      <a href="/pb/static/download.html">Download</a> |
+      <a href="/pb/static/contact.html">Contact</a>
+    </p>
+    
+    <hr style="width:700;float:left;"><br>

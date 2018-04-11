@@ -1,0 +1,89 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Parameter Balancing for Kinetic Models of Cell Metabolism</title>
+    <link rel="stylesheet" type="text/css" href="css/pb.css">
+  </head>
+
+  <body>
+
+    <h2><a href="main.html"><image width="100" src="/pb/static/images/pb-logo.png"></a>   Parameter Balancing for Kinetic Models of Cell Metabolism</h2>
+
+    <h3>Table of biochemical quantities</h3>
+
+    <p style="width:700;">At the beginning of parameter balancing, a metabolic network structure is read from
+      an SBML file. It is assumed that all kinetic rate laws will be substituted by
+      <a href="http://bioinformatics.oxfordjournals.org/content/26/12/1528.abstract">modular rate laws</a> and
+      the necessary kinetic constants and some dynamic quantities (referring to a specific metabolic state of
+      the system) are estimated from collected data. The relevant quantities are listed below.
+    </p>
+    <table border="1">
+	<tbody><tr> <td>Quantity Type</td>                          <td> Symbol           </td> <td>Unit</td>   <td>Constant     </td> <td>Related element  </td> <td>Scaling    </td> <td>Dependence</td>  <td> Prior/pseudo median </td> <td> Prior/pseudo std.dev. </td> <td>SBML element    </td> <td>Abbreviation </td> </tr>
+	<tr> <td>Michaelis constant</td>                     <td> k<sup>M</sup>    </td> <td>mM</td>     <td>Kinetic      </td> <td>Reaction, Species</td> <td>Logarithmic</td> <td>Basic     </td>  <td> 0.1 mM              </td> <td> 1.0 (for log10)       </td> <td>Local parameter </td> <td>kmc          </td> </tr>
+	<tr> <td>Inhibitory constant</td>                    <td> k<sup>I</sup>    </td> <td>mM</td>     <td>Kinetic      </td> <td>Reaction, Species</td> <td>Logarithmic</td> <td>Basic     </td>  <td> 0.1 mM              </td> <td> 1.0 (for log10)       </td> <td>Local parameter </td> <td>kic          </td> </tr>
+	<tr> <td>Activation constant</td>                    <td> k<sup>A</sup>    </td> <td>mM</td>     <td>Kinetic      </td> <td>Reaction, Species</td> <td>Logarithmic</td> <td>Basic     </td>  <td> 0.1 mM              </td> <td> 1.0 (for log10)       </td> <td>Local parameter </td> <td>kac          </td> </tr>
+	<tr> <td>Concentration</td>                          <td> c                </td> <td>mM</td>     <td>Dynamic      </td> <td>          Species</td> <td>Logarithmic</td> <td>Basic     </td>  <td> 0.1 mM              </td> <td> 1.5 (for log10)       </td> <td>Species (conc.) </td> <td>             </td> </tr>
+	<tr> <td>Standard chemical potential</td>            <td> μ<sup>0</sup> </td> <td>kJ/mol</td> <td>Thermodynamic</td> <td>          Species</td> <td>Original   </td> <td>Basic     </td>  <td> -880 kJ/mol         </td> <td> 680 kJ/mol            </td> <td>Global parameter</td> <td>scp          </td> </tr>
+	<tr> <td>Catalytic rate constant geometric mean</td> <td> k<sup>V</sup>    </td> <td>1/s</td>    <td>Kinetic      </td> <td>Reaction         </td> <td>Logarithmic</td> <td>Basic     </td>  <td> 10 s<sup>-1</sup>   </td> <td> 1.0 (for log10)       </td> <td>Local parameter </td> <td>kcrg         </td> </tr>
+	<tr> <td>Concentration of enzyme</td>                <td> u                </td> <td>mM</td>     <td>Dynamic      </td> <td>Reaction         </td> <td>Logarithmic</td> <td>Basic     </td>  <td> 0.0001 mM           </td> <td> 1.5 (for log10)       </td> <td>Local parameter </td> <td>eco          </td> </tr>
+	<tr> <td>Substrate catalytic rate constant</td>      <td> k<sup>cat+</sup> </td> <td>1/s</td>    <td>Kinetic      </td> <td>Reaction         </td> <td>Logarithmic</td> <td>Derived   </td>  <td> 10 s<sup>-1</sup>   </td> <td> 1.5 (for log10)       </td> <td>Local parameter </td> <td>kcrf         </td> </tr>
+	<tr> <td>Product catalytic rate constant</td>        <td> k<sup>cat-</sup> </td> <td>1/s</td>    <td>Kinetic      </td> <td>Reaction         </td> <td>Logarithmic</td> <td>Derived   </td>  <td> 10 s<sup>-1</sup>   </td> <td> 1.5 (for log10)       </td> <td>Local parameter </td> <td>kcrr         </td> </tr>
+	<tr> <td>Equilibrium constant</td>                   <td> k<sup>eq</sup>   </td> <td>-</td>      <td>Thermodynamic</td> <td>Reaction         </td> <td>Logarithmic</td> <td>Derived   </td>  <td> 1                   </td> <td> 1.5 (for log10)       </td> <td>Local parameter </td> <td>keq          </td> </tr>
+	<tr> <td>Forward maximal velocity</td>               <td> v<sup>max+</sup> </td> <td>mM/s</td>   <td>Dynamic      </td> <td>Reaction         </td> <td>Logarithmic</td> <td>Derived   </td>  <td> 0.001 mM/s          </td> <td> 2.0 (for log10)       </td> <td>Local parameter </td> <td>vmaf         </td> </tr>
+	<tr> <td>Reverse maximal velocity</td>               <td> v<sup>max-</sup> </td> <td>mM/s</td>   <td>Dynamic      </td> <td>Reaction         </td> <td>Logarithmic</td> <td>Derived   </td>  <td> 0.001 mM/s          </td> <td> 2.0 (for log10)       </td> <td>Local parameter </td> <td>vmar         </td> </tr>
+	<tr> <td>Reaction affinity</td>                      <td> A                </td> <td>kJ/mol</td> <td>Dynamic      </td> <td>Reaction         </td> <td>Original   </td> <td>Derived   </td>  <td> 0.0   kJ/mol        </td> <td> 10.0 kJ/mol           </td> <td>                </td> <td>             </td> </tr>
+	<tr> <td>Chemical potential</td>                     <td> μ             </td> <td>kJ/mol</td> <td>Dynamic      </td> <td>          Species</td> <td>Original   </td> <td>Derived   </td>  <td> -880  kJ/mol        </td> <td> 680 kJ/mol            </td> <td>                </td> <td>             </td> </tr> 
+  </tbody></table>
+
+<br>
+<p><strong>Remarks</strong></p>
+<ol>
+  <li><p>Note that the thermodynamic quantities refer to biochemical
+      reactants (e.g.ATP) rather than chemical species
+      (e.g. ATP<sup>4-</sup>). Therefore, they
+      represent <em>transformed</em> quantities. In Alberty's exact notation,
+      they  would be written as K' (for k<sup>eq</sup>),  μ' (for μ), and 
+ μ'<sup>0</sup> (for  μ<sup>0</sup>).</p></li>  
+  <li><p>
+    In parameter balancing, all quantities representing energies (in
+    kJ/mol) are treated in their original scale, while all other
+    quantities are converted to logarithmic scale (column
+    "Scaling"). Since the latter quantities are described by
+    log-normal (instead of normal) distributions, we need to
+    distinguish between their mean and median values.
+  </p></li>
+  <li>
+    <p>We further distinguish between <em>basic</em> and
+    <em>derived</em> quantities (column "Type"). The difference is
+    that the basis quantities can be freely chosen (e.g., as a result
+    of an estimation), while the derived quantities depend on the
+    basic quantities and are computed from them. In parameter
+    balancing, we define typical ranges for the basic quantities by
+    <em>prior distributions</em> and for the derived quantities by
+    <em>pseudo values</em>.
+  </p></li>
+  <li>
+    <p>When inserted into the SBML model, most quantities are inserted into
+    kinetic rate laws as local parameters. Exceptions are concentrations
+    (initial concentration attribute in species), standard chemical
+    potentials (global parameters), and reaction affinities and chemical
+    potentials, which could just be computed from other elements.
+  </p></li>
+</ol>
+
+    <hr>
+    <p>
+      <a href="main.html">Main</a> |
+      <a href="introduction.html">Introduction</a> |
+      <a href="workflow.html">Workflow</a> |
+      <a href="../default/balancing.html"><b>Online Balancing</b></a> |
+      <a href="../default/config.html">Configure Online Balancing</a> |
+      <a href="file_format.html">File format</a> |
+      <a href="faq.html">FAQ</a> |
+      <a href="quantities.html">Quantities</a> |
+      <a href="examples.html">Examples</a> |
+      <a href="software.html">Software</a> |
+      <a href="contact.html">Contact</a> |
+    </p>
+
+</body></html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Parameter Balancing for Kinetic Models of Cell Metabolism</title>
+    <link rel="stylesheet" type="text/css" href="css/pb.css">
+  </head>
+
+  <body>
+
+    <h2><a href="main.html"><image width="100" src="/pb/static/images/pb-logo.png"></a>   Parameter Balancing for Kinetic Models of Cell Metabolism</h2>
+
+    <h3>File format</h3>
+
+    <p style="width:700;">Input files for parameter balancing must be prepared in the SBtab format.
+      Some example files can be found <a href="examples.html">here</a>.
+      <ol>
+	<li>Data tables must be provided as tab-seperated text in a specific file format. The columns
+	  QuantityType, SBMLReactionID, SBMLSpeciesID, and Mean (data value, arithmetic mean) are obligatory,
+	  while the columns Std (data value, standard error), Unit, and other columns are optional.
+	  Example files can be found <a href="examples.html">here</a>.</li>
+	<li>Entries in the data table have to refer to species and reactions in the SBML file via the SBML
+	  element identifiers ("id") given in the columns SBMLSpeciesID and SBMLReactionID.</li>
+	<li>Please make sure that the modifiers (inhibitors or stimulators) in your model are identified
+	  clearly by the corresponding SBO terms (inhibitor:20, stimulator:459). Otherwise, the software
+	  will not recognize them, and the allosteric regulations will be ignored.</li>
+	<li>The model reactions are assumed to refer to biochemical reactants (e.g. ATP) and not to individual
+	  protonation states (like ATP4-). This means that the equilibrium constants or chemical potentials
+	  considered in the model are in fact transformed thermodynamic quantities, which refer to the biochemical
+	  reactants and will depend on the pH. This implies that protons (H+) may not appear in the reaction
+	  formulas in the model and that the data used must also refer to transformed quantities. For more
+	  information on this topic, see the review
+	  <a href="http://www.sciencedirect.com/science/article/pii/0167483894900450">Biochemical thermodynamics
+	    by R. Alberty</a>.</li>
+	<li>Some quantities depend on the specific definition of the reaction sum formula (nominal direction,
+	  appearance of small molecules like water); in particular for equilibrium constants, catalytic rate
+	  constants, and maximal velocities, make sure that the definitions match between model and data set.</li>
+	<li>Gibbs free energies can be used as proxies for the standard chemical potentials. However, make sure
+	  not to mix values from different data sets. It is possible that they will follow different conventions
+	  (setting the GFE for some large molecules to zero values for convenience) and will therefore be
+	  incompatible.</li>
+      </ol>
+    </p>
+
+    <hr>
+    <p>
+      <a href="main.html">Main</a> |
+      <a href="introduction.html">Introduction</a> |
+      <a href="workflow.html">Workflow</a> |
+      <a href="../default/balancing.html"><b>Online Balancing</b></a> |
+      <a href="../default/config.html">Configure Online Balancing</a> |
+      <a href="file_format.html">File format</a> |
+      <a href="faq.html">FAQ</a> |
+      <a href="quantities.html">Quantities</a> |
+      <a href="examples.html">Examples</a> |
+      <a href="software.html">Software</a> |
+      <a href="contact.html">Contact</a> |
+    </p>
+
+</body></html>

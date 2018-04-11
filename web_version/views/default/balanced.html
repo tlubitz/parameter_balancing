@@ -1,0 +1,124 @@
+{{extend 'layout.html'}}
+    <hr style="width:900;float:left;"><br>
+    
+    <p style="margin-left:250;">
+      <a href="/pb/static/main.html">Main</a> |
+      Online Balancing |
+      <a href="/pb/static/documentation.html">Documentation</a> |
+      <a href="/pb/static/download.html">Download</a> |
+      <a href="/pb/static/contact.html">Contact</a>
+    </p>
+    
+    <div style="background-color:CDCCCB;width:900"><h2>Parameter Balancing Online: Results</h2></div>
+
+
+{{if RESULT_SBML_NAME:}}
+
+<table border="0">
+  <table border="1" rules="rows" cellpadding="5">
+    <td bgcolor="#87CEFA" height="20">
+    SBML
+    <td bgcolor="#87CEFA" height="20"></td>
+    <td bgcolor="#87CEFA" height="20"></td>
+    <!-- The file list and corresponding buttons -->
+    <tr>
+      <td>
+	&bull;
+	<a href="/pb/default/show_sbml2/{{=str(0)}}" target="_new"> {{=RESULT_SBML_NAME[0]}}</a>
+      </td>
+      <form>
+	<td>
+	  <button type="submit" value="{{=0}}" name="download_button_sbml">Download</button>
+	</td>
+      </form>
+      <form>
+	<td>
+	  <button type="submit" value="{{=0}}" name="erase_button_sbml2">Remove</button>
+	</td>
+      </form>
+    </tr>
+    </td>
+    
+
+  </table>
+
+{{pass}}
+
+{{if RESULT_SBTAB_NAME:}}
+<br>
+
+  <table border="1" rules="rows" cellpadding="5">
+    <td bgcolor="#87CEFA" height="20">
+    SBtab
+    <td bgcolor="#87CEFA" height="20"></td>
+    <td bgcolor="#87CEFA" height="20"></td>
+    
+    <!-- The file list and corresponding buttons -->
+    {{for pos,f in enumerate(RESULT_SBTAB_NAME):}}
+    <tr>
+      <td>
+	&bull;
+	<a href="/pb/default/show_sbtab2/{{=str(pos)}}" target="_new"> {{=f}}</a>
+      </td>
+      <form>
+	<td>
+	  <button type="submit" value="{{=pos}}" name="download_button_sbtab">Download</button>
+	</td>
+      </form>
+      <form>
+	<td>
+	  <button type="submit" value="{{=pos}}" name="erase_button_sbtab2">Remove</button>
+	</td>
+      </form>
+    </tr>
+    </td>    
+    {{pass}}
+    {{pass}}
+
+
+  </table>
+
+{{pass}}
+
+
+
+<!-- Display warnings -->
+{{if (WARNINGS and RESULT_SBML_NAME) or (WARNINGS and RESULT_SBTAB_NAME) :}}
+
+<table border="0">
+    {{for pos,f in enumerate(WARNINGS):}}
+    <tr>
+      <td>
+	&bull;
+	<font color="red">{{=f}}</font>
+      </td>
+    </tr>
+    {{pass}}
+</table>
+{{elif RESULT_SBML_NAME or RESULT_SBTAB_NAME:}}
+<table border="0"><br>
+  <td>
+    No file warnings detected. Please see <a href="/pb/default/show_log/{{=str(0)}}" target="_new">log file</a> for parameter balancing warnings.
+  </td>
+</table>
+{{else:}}
+<table border="0">
+  <td>
+   There are no more files to show here. Please return to the <a href="../static/main.html">homepage</a>.
+  </td>
+</table>
+
+{{pass}}
+
+<table>
+  <td>
+  Information on the use of online balancing can be found on the <a href="../static/documentation.html">documentation page</a>.<br>
+  </td>
+  </table>
+<table>
+  <td>
+  <a href="../default/balancing.html">Run parameter balancing again</a>.<br>
+  </td>
+  </table>
+</table>
+</table>

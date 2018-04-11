@@ -1,0 +1,209 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Parameter Balancing for Kinetic Models of Cell Metabolism</title>
+    <link rel="stylesheet" type="text/css" href="css/pb.css">
+  </head>
+
+  <body>
+
+    <h2><a href="main.html"><image width="100" src="/pb/static/images/pb-logo.png"></a>   Parameter Balancing for Kinetic Models of Cell Metabolism</h2>
+
+    <h3>Introduction</h3>
+
+    <p style="width:700;">
+      <b>What is parameter balancing?</b>
+        <p style="width:700;">
+	  Parameter balancing is a way to determine consistent parameter sets for kinetic models of metabolism.
+	  Inserting experimentally measured values directly into a model will probably yield incomplete or
+	  inconsistent parameter sets, violating the thermodynamic Haldane relationships. Balanced parameter
+	  sets avoid this problem. They are computed based on kinetic constants and other data collected from
+	  experiments or the literature, but also based on known constraints between biochemical quantities and
+	  on assumptions about typical ranges, represented by prior values and bounds.
+	</p>
+
+    <p style="width:700;">
+      <b>How can I run parameter balancing?</b>
+        <p style="width:700;">
+	  After preparing your model and data files, you can run parameter balancing interactively
+	  <a href="../default/balancing.html">here</a>.
+	  The workflow is described <a href="workflow.html">here</a>. If you prefer working
+	  in the command line, or if you would like to include parameter balancing in your programs, you may use our code
+	  <a href="software.html">for python and matlab</a>.
+	</p>
+
+    <p style="width:700;">
+      <b>Which parameters of a metabolic model can be balanced?</b>
+        <p style="width:700;">
+	  In general, parameter balancing concerns the kinetic and thermodynamic constants in kinetic metabolic models.
+	  It can also cover metabolite concentrations, chemical potentials, and reaction Gibbs free energies (or,
+	  equivalently, "reaction affinities" or "driving forces"). Metabolic fluxes cannot be balanced, but they can
+	  be included in the analysis (this is described below). There are different typical application cases:
+	  <ul style="width:650;">
+	    <li><b>Kinetic constants, where equilibrium constants are fixed and given</b></li>This can be done separately
+	    for each individual reaction. If a network is large and equilibrium constants can be predefined (for instance,
+	    by parameter balancing), we suggest to split the network into single reactions and to run parameter balancing
+	    separately for every reaction.
+	    <li><b>Kinetic constants and equilibrium constants in a network</b></li>
+	    <li><b>Equilibrium constants and concentrations in a network</b></li>
+	    <li><b>Equilibrium constants, kinetic constants, and concentrations in a network</b></li>
+	  </ul>
+	</p>
+
+    <p style="width:700;">
+      <b>What input data are needed?</b>
+        <p style="width:700;">
+	  Our program for parameter balancing uses SBML (Systems Biology Markup Language) files for model structures and
+	  <a href="http://www.sbtab.net">SBtab table files</a> for parameter files. Parameter balancing imports a model (SBML)
+	  and a table (SBtab) with measured parameter values, as well as a table with prior information. In our website, this
+	  table is predefined and can be changed interactively. The program exports tables with balanced parameters (SBtab)
+	  and, possibly, a model with rate laws and balanced parameters included (SBML). Please prepare your SBtab files as described in
+	  <a href="file_format.html">here</a>. The validity of these files can be checked on
+	  the <a href="http://www.sbtab.net">SBtab website</a>. The quantities described in your data
+	  table will be linked to elements of the SBML model, via the entries in the columns SBMLReactionID and SBMLSpeciesID.
+	  The IDs in these columns must match the IDs chosen in the SBML file.
+	</p>
+
+    <p style="width:700;">
+      <b>Can I also use flux data?</b>
+        <p style="width:700;">
+	  Metabolic fluxes do not directly fit into the dependence scheme that parameter balancing uses internally to link
+	  different quantitities. Therefore, fluxes cannot be used as input data, nor can they be predicted directly.
+	  However, they can be used in an indirect way, as described in
+	  <a href="http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0079195">Stanford et al. (2013)</a>.
+	  The idea is as follows: In parameter balancing including metabolite levels and reaction Gibbs free energies, known
+	  flux directions can be used to define the signs of all reaction Gibbs free energies. The resulting rate laws and
+	  metabolite levels will be consistent with the predefined fluxes. The kinetic model, parametrised in this way, and
+	  with the balanced metabolite levels, will yield reaction rates with the same signs as the predefined fluxes. By
+	  rescaling the Vmax values (i.e., scaling the catalytic constants, enzyme levels, or both), reaction rates and fluxes
+	  can be matched. The resulting model will correlate to the predefined flux distribution by construction. Note that, in order
+	  for this to work, the predefined fluxes must be thermodynamically feasible (i.e., loop-free, and realisable for the
+	  (potentially predefined) external metabolite levels.
+	</p>
+
+    <p style="width:700;">
+      <b>Where can I find example files?</b>
+        <p style="width:700;">
+	  A number of example files (SBML models and SBtab data tables for parameter balancing) can be found
+	  <a href="examples.html">here</a>.
+	</p>
+
+    <p style="width:700;">
+      <b>Where can I find suitable input data for my own model?</b>
+        <p style="width:700;">
+	  Typical input data for estimating kinetic parameters comprise catalytic constants (kcat values), Michaelis-Menten
+	  constants (KM values), equilibrium constants, standard reaction Gibbs free energies, and Gibbs free energies of formation.
+	  Typical input data for estimating metabolic states also comprise metabolite concentrations.
+	  <ul>
+	    <li style="width:650;">A large collection of kinetic data is provided by the <a href="http://www.brenda-enzymes.org/">BRENDA
+		Enzyme Database</a>.</li>
+	    <li style="width:650;">Thermodynamic data for many reactions can be obtained from the website
+	      <a href="http://equilibrator.weizmann.ac.il/">eQuilibrator</a>. This comprises calculated equilibrium constants and
+	      standard reaction Gibbs free energies for different values of pH and ionic strength.</li>
+	  </ul>
+	</p>
+
+    <p style="width:700;">
+      <b>How can I define or modify the priors on model parameters?</b>
+        <p style="width:700;">
+	  Experimental data alone will usually not suffice to determine all model parameters. To determine underdetermined
+	  parameters, and to keep parameters in realistic ranges, parameter balancing uses prior distributions and constraints
+	  for each type of parameter. These priors and constraints are defined in a data table, which can be customised by the
+	  user. The table is described <a href="quantities.html">here</a>.
+	</p>
+
+    <p style="width:700;">
+      <b>Which kinetic rate laws are assumed in parameter balancing?</b>
+        <p style="width:700;">
+	  Parameter balancing is based on <a href="http://bioinformatics.oxfordjournals.org/content/26/12/1528.abstract">modular
+	  rate laws</a>, a generalised version of the convenience kinetics. The modular rate laws include reversible mass-action
+	  and reversible Michaelis-Menten rate laws as special cases. Modular rate laws are also supported by
+	  <a href="http://www.ra.cs.uni-tuebingen.de/software/SBMLsqueezer/">SBMLsqueezer</a>, which allows you to directly insert
+	  rate laws into SBML models. In parameter balancing, rate laws and rate constants can be directly inserted into your model
+	  at the end of the workflow. Note that all rate laws previously present in your model will be removed.
+	</p>
+
+    <p style="width:700;">
+      <b>What physical units are used in parameter balancing?</b>
+        <p style="width:700;">
+	  The units are predefined in the <a href="quantities.html">prior table</a> and cannot be changed,
+	  unless you provide your own customised prior table.
+	</p>
+
+    <p style="width:700;">
+      <b>How does parameter balancing work mathematically?</b>
+        <p style="width:700;">
+	  Parameter balancing employs Bayesian estimation to determine a consistent set of all model parameters. To use it efficiently,
+	  it is good to know about some of its details. For technical reasons, all quantities are internally converted to natural
+	  scaling. This means that for energy quantities (in kJ/mol), we keep the original values while for all other quantities, we
+	  take the natural logarithms. Furthermore, we distinguish between basic quantities and derived quantities (which are uniquely
+	  determined by the basic quantities). See the <a href="quantities.html">overview of all quantities
+	  considered</a>.
+	</p>
+        <p style="width:700;">
+	  During balancing, we integrate information from data (values and standard errors), prior distributions (typical values and
+	  spread for basic quantities), and pseudo values (typical values and spread for derived quantities). All these values and spreads
+	  are represented by normal distributions (priors, data with standard errors, pseudo values, and posteriors) for the naturally
+	  scaled quantities. When converting back to non-logarithmic values, we obtain log-normal distributions, which makes it crucial
+	  to distinguish between median and mean values. Eventually, the median values (which are more realistic and guaranteed to satisfy
+	  the relevant constraints) are inserted into the model.
+	</p>
+
+    <p style="width:700;">
+      <b>Where is the method described?</b>
+        <p style="width:700;">
+	  Parameter balancing is described in <a href="http://pubs.acs.org/doi/abs/10.1021/jp108764b">Lubitz et al. (2010)</a>. If you use
+	  parameter balancing in your work, please refer to this article. A modelling workflow based on parameter balancing is described
+	  in <a href="http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0079195">Stanford et al. (2013)</a>.
+	</p>
+
+    <p style="width:700;">
+      <b>What are the known caveats?</b>
+        <p style="width:700;">
+	  Parameter balancing makes specific assumptions about the rate laws used. In some cases, this can lead to problems, or parameter
+	  balancing may not be suitable for your modelling. Here we list points that can typically lead to problems:
+	  <ul style="width:650;">
+	    <li><b>Large models</b></li>Large networks lead to large parameter sets, which increase
+	    the numerical effort of parameter balancing. One possibility to avoid this problem is to use fixed, precalculated equilibrium
+	    constants. Then, the kinetic constants of each reaction can be balanced separately, which reduces the effort.
+	    <li><b>Biomass reaction or polymerisation reactions</b></li>Many metabolic models (especially, models used in flux balance analysis)
+	    contain a "biomass" reaction that involves a large number of compounds with largely varying stoichiometric coefficients.
+	    Modular rate laws, as assumed in parameter balancing, use the stoichiometric coefficients as exponents in the formula. For
+	    biomass reactions or polyerisation reactions, this is not very realistic as assumption. Furthermore, these reactions usually
+	    do not have to be thermodynamically consistent. For both reasons, it is advisable to discard the automatically proposed kinetics,
+	    and insert a more realistic kinetics instead (see, for instance, the rate laws proposed in
+	    <a href="http://www.sciencedirect.com/science/article/pii/S0014579313005267">Hofmeyr et al., (2013))</a>.
+	    <li><b>Very large or small parameter values</b></li>Very large or small parameter values can lead to unrealistic models and
+	    numerical problems. Extreme values should be avoided by using proper bounds. In any case, we suggest to have a look at all
+	    balanced values and to see if they are in realistic ranges.
+	    <li><b>Large uncertainties and strongly shifted mean values</b></li>Each balanced parameter value comes with an uncertainty.
+	    The uncertainties are described by normal distributions for the logarithmic parameter values, so median and mean value on
+	    logarithmic scale will be identical. For the non-logarithmic values, we obtain a log-normal distribution, and median and mean
+	    value will differ. If the uncertainty is large (which can easily happen if a value is not constrained by any data values), the
+	    mean and median can become very different, and the mean value can become very high. This can be avoided by reducing the uncertainty
+	    range - by providing more data that constraints the parameter value, by using narrower priors or constraints, or by using "pseudo"
+	    values.
+	    <li><b>What if the model cannot be simulated?</b></li>Problems in simulating the model (e.g., using COPASI) may be caused by
+	    unrealistically high or low parameter values. If you notice such parameter values in your model and would like to avoid them, you
+	    may use tighter priors or pseudo values to exclude extreme parameter values.
+	</p>
+    </p>
+
+    <hr>
+
+    <hr>
+    <p>
+      <a href="main.html">Main</a> |
+      <a href="introduction.html">Introduction</a> |
+      <a href="workflow.html">Workflow</a> |
+      <a href="../default/balancing.html"><b>Online Balancing</b></a> |
+      <a href="../default/config.html">Configure Online Balancing</a> |
+      <a href="file_format.html">File format</a> |
+      <a href="faq.html">FAQ</a> |
+      <a href="quantities.html">Quantities</a> |
+      <a href="examples.html">Examples</a> |
+      <a href="software.html">Software</a> |
+      <a href="contact.html">Contact</a> |
+    </p>
+
+</body></html>

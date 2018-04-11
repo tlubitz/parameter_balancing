@@ -1,0 +1,157 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Parameter Balancing for Kinetic Models of Cell Metabolism</title>
+    <link rel="stylesheet" type="text/css" href="css/pb.css">
+  </head>
+
+  <body>
+
+    <h2><a href="main.html"><image width="100" src="/pb/static/images/pb-logo.png"></a>   Parameter Balancing for Kinetic Models of Cell Metabolism</h2>
+
+    <h3>Frequently asked questions</h3>
+
+    <p style="width:700;">
+      <b>What files do I need to prepare?</b>
+        <p style="width:700;">
+	  A valid SBML file and a corresponding parameter file, provided in the SBtab format.
+	</p>
+
+    <p style="width:700;">
+      <b>What is the SBtab format?</b>
+        <p style="width:700;">
+	  SBtab tables can express various kinds of data. For the parameter balancing you need an
+	  SBtab file of the type "Quantity". You can also edit the prior distribution for the
+	  different parameter types by providing an SBtab file of the type "QuantityInfo". Finally,
+	  you can configure several options for the parameter balancing process by providing an
+	  SBtab file of the type "PbConfig". Examples for each of these SBtab files are on the
+	  corresponding pages of the workflow and in the Downloads section. The current SBtab format is explained
+	  <a href="http://www.sbtab.net">here</a>. SBtab files are provided in the .tsv-format (tab
+	  separated values). 
+	</p>
+
+    <p style="width:700;">
+      <b>Where can I acquire kinetic data for the parameter balancing?</b>
+        <p style="width:700;">
+	  The parameter balancing relies on a posterior distribution of the different parameter
+	  types and on a collection of kinetic data provided by the user. These kinetic data are
+	  ideally experimental data or data collected from web resources for this kind of information.
+	  We recommend using the  <a href="http://www.brenda-enzymes.de/">Brenda website</a>
+	  for the collection of kinetic data and the <a href="http://equilibrator.weizmann.ac.il/">eQuilibrator
+	  website</a> for the provision of thermodynamic data.
+	</p>
+
+    <p style="width:700;">
+      <b>What does a SBtab file look like?</b>
+        <p style="width:700;">
+	  In writing SBtab files, please regard the following facts:
+	  <ol>
+	    <li style="width:650;">The SBtab file begins with a specification line:
+	      "!!SBtab TableType='QuantityType' Level='1' Version '0.1'". Please do not alter
+	      this specification row, it will lead to trouble.</li>
+	    <li style="width:650;">The next row holds the headers of the different columns.
+	      Each header has to be started with an exclamation mark to be recognized as a header
+	      name properly.</li>
+	    <li style="width:650;">There are several mandatory column headers: !QuantityType,
+	      !SBMLReactionID, ! SBMLSpeciesID, !Mean, !Std, !Unit</li>
+	    <li style="width:650;">Please consider the following rules concerning the columns:
+	  <ul>
+	      <li style="width:620;">QuantityType can only hold the specific names of parameter
+		types. You can have a look at the QuantityTypes.tsv-file in this directory to see
+		which those are. Watch spelling!</li>
+	      <li style="width:620;">SBMLReactionID and SBMLSpeciesID hold the identifiers of the
+		corresponding reaction and species. Watch out: they HAVE TO be the same identifier
+		names like in the SBML file that is used. Watch spelling, too. No capital switches
+		or anything.</li>
+	      <li style="width:620;">Mean: this column HAS TO hold a numeric value. If you don't
+		have one, you don't need this row.</li>
+	      <li style="width:620;">Std: the standard deviation of the mean value. This can be
+		left blank, if you have no std.</li>
+	      <li style="width:620;">Unit: please enter the unit of the mean value here.</li>
+	      <li style="width:620;">Please note that different parameter types need either the
+		SBMLReactionID (e.g. equilibrium constant), or the SBMLSpeciesID (e.g. concentration),
+		or even both (e.g. Michaelis constant). If this is not entered correctly, the value
+		will not be taken into account. Whether you need Reaction, Species, or both you can
+		see in the QuantityTypes.tsv-file in this directory.</li>
+	      <li style="width:620;">Please stick to the presented order of the columns. This is for
+		sakes of consistency, but also the scripts might become problems (due to magical stuff
+		in the programming code which is not sorted out yet. sorry!) with messed up column orders.</li>
+	  </ul></li>
+	  </ol>
+	</p>
+
+    <p style="width:700;">
+      <b>I now have the files. How do I balance?</b>
+        <p style="width:700;">
+	  Go to semanticSBML.org and click the advanced user interface button (with the wheel). Then upload
+	  an SBML model and click in the model list on the "Parameters" button. In the next window you can
+	  upload your SBtab file in the .tsv format.
+
+	  Next screen: you will see your uploaded SBtab file. If you hit the 'Options for collected data'
+	  row below you can define, how missing standard deviations of your file will be handled. The default
+	  factor for this is the given mean value times 0.5 (mean value = 10, standard deviation = 5). You
+	  can also choose a cell volume, if you like.
+	  Next screen: you will see a new SBtab file on the screen. This holds all values from your input
+	  SBtab AND all values that will be aditionally generated for your SBML model after you hit the
+	  "Submit Query" button.
+	</p>
+
+    <p style="width:700;">
+      <b>How are these new parameter values generated?</b>
+        <p style="width:700;">
+	  To answer this question properly, you should read the underlying papers (Liebermeister,
+	  et al., Bringing metabolic models to life, 2 papers). In short: the new values are "balanced",
+	  this means, they are estimated within a Bayesian framework. The base of this estimation are
+	  on the hand your input SBtab file (the more values you provide, the more accurate is the balancing),
+	  and on the other hand a specific prior distribution for the different parameter types. These prior
+	  distributions are set to default values and can be edited on the screen you are currently on (hit
+	  'Edit prior distributions' row on the bottom of the screen).
+	  HOW you edit these distributions has effect on the outcome of the balancing and very much depends
+	  on your specific purposes. If you want to edit them, alter the two entry fields on the left and hit
+	  the "--->" button to compute the new mean and std value.
+	  The result of the Bayesian estimation will guarantee you a set of - and this is the most important
+	  part - thermodynamically consistent parameter values for your model. According to the sensibility
+	  of your input values, the output values might alter to different degrees in order to fulfill the
+          thermodynamic constraints of the model (e.g. the Haldane relationship). Hit 'Submit Query' now and
+	  go the next screen, the result screen.
+	</p>
+
+    <p style="width:700;">
+      <b>I have the results now, what can I do with it?</b>
+        <p style="width:700;">
+	  On the one hand you can download the SBtab file (click the small 'Download parameter
+	  table' button on the bottom of the SBtab) and store it on your hard drive for any purpose
+	  possible. On the other hand you can insert the parameter values directly into your SBML
+	  file in order to run simulations with it. You need to hit the 'Edit parameter insertion
+	  options' row on the bottom of the screen.
+	  Choose now the rate law (if you are unsure, use common modular rate law (CM) or read the
+	  paper by Liebermeister et al., introducing the different rate laws). Choose the thermodynamic
+	  parameterisation which defines, which parameter values will be entered into the SBML model.
+	  Please make sure that the 'Overwrite existing kinetic laws' box is checked or the values
+	  won't be entered if you already had kinetic laws assigned in the SBML code. Hit 'Submit Query'
+	  and get back to the starting screen, where the finished SBML model awaits you.
+	</p>
+
+    <p style="width:700;">
+      <b>Who can answer my other questions?</b>
+        <p style="width:700;">
+	  Please contact Timo or Wolf.
+	</p>
+    </p>
+
+    <hr>
+    <p>
+      <a href="main.html">Main</a> |
+      <a href="introduction.html">Introduction</a> |
+      <a href="workflow.html">Workflow</a> |
+      <a href="../default/balancing.html"><b>Online Balancing</b></a> |
+      <a href="../default/config.html">Configure Online Balancing</a> |
+      <a href="file_format.html">File format</a> |
+      <a href="faq.html">FAQ</a> |
+      <a href="quantities.html">Quantities</a> |
+      <a href="examples.html">Examples</a> |
+      <a href="software.html">Software</a> |
+      <a href="contact.html">Contact</a> |
+    </p>
+
+</body></html>
