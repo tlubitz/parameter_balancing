@@ -280,7 +280,7 @@ def parameter_balancing_wrapper(parser_args):
         pseudo_flag = 'no_pseudos'
         if args.verbose:
             print('Parameter balancing is not using pseudo values.')
-
+           
     (sbtab_final, mean_vector, mean_vector_inc, c_post, c_post_inc,
      r_matrix, shannon, log) = pb.make_balancing(sbtab_new,
                                                  sbtab, pmin,

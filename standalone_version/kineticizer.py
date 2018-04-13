@@ -122,8 +122,8 @@ class Kineticizer(object):
         self._writer = writer
         if (model.getLevel() < 2) or (model.getLevel() == 2 and
                                       model.getVersion() < 2):
-            self._writer.write('''SBO Term support requires SBML L2V2 at least.
-            SBO Terms not supported for this document.''')
+            self._writer.write('SBO Term support requires SBML L2V2 at least. \
+SBO Terms not supported for this document.\n')
         self._sbtab = sbtab
         self._enzyme_prefac = enzyme_prefac
 

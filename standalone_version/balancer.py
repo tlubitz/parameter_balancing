@@ -1259,7 +1259,6 @@ class ParameterBalancing:
         #second, we check which bottom rows we have to build up
         for pseudo_quantity in self.pseudo_list:
             if self.parameter_dict[pseudo_quantity]:
-                self.quantities.append(pseudo_quantity)
                 rows = self.build_bottom_row(pseudo_quantity)
                 for row in rows:
                     D_matrix.append(row)
@@ -1338,7 +1337,6 @@ class ParameterBalancing:
 
                     #build specific matrices
                     try:
-                        
                         if len(matrix_type)>1:
                             factor = matrix_type[0]              #this factor represents e.g. R*T or 1/R*T
                             matrix = matrix_type[1]
@@ -1398,6 +1396,7 @@ class ParameterBalancing:
 
             row_index += 1
             rows.append(row)
+            self.quantities.append(pseudo_quantity)
             self.parameter2row[(pseudo_quantity,use_list[i])] = row
             self.id_order[(pseudo_quantity,element)] = self.matrix_row_counter
             self.matrix_row_counter += 1
