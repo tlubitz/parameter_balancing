@@ -1126,7 +1126,7 @@ class ParameterBalancing:
         types = []
         vt = []
         #x_star_old = []
-        #self.x_star = []
+        self.x_star = []
         #log_stds_x_old = []
        
         for single_tuple in value_tuples_old:
@@ -1581,20 +1581,23 @@ class ParameterBalancing:
         #for i, row in enumerate(self.Q):
         #    print(self.quantities[i],',',list(row))
 
-        #print(self.C_x_inv)
+        #print(self.C_x)
         #for i, row in enumerate(self.quantities_x):
         #    print(row,',',list(self.C_x[i]))
 
-        #print(self.x_star) --> 0
+        #print(self.x_star)
         #for i, row in enumerate(self.x_star):
         #    print(self.quantities_x[i], ',', row)
 
-        #print(self.Q_star) --> 0
+        #print(self.Q_star)
         #for i, row in enumerate(self.Q_star):
         #    print(self.quantities_x[i], ',',list(row))  
         
         # posterior covariance matrices
-        self.C_post = numpy.linalg.inv(numpy.dot(numpy.dot(self.Q.transpose(),self.C_prior_inv),self.Q) + numpy.dot(numpy.dot(Q_star_trans,self.C_x_inv),self.Q_star))
+        if self.pseudo_used:
+            self.C_post = numpy.linalg.inv(numpy.dot(numpy.dot(self.Q.transpose(),self.C_prior_inv),self.Q) + numpy.dot(numpy.dot(Q_star_trans,self.C_x_inv),self.Q_star))
+        else:
+            self.C_post = numpy.linalg.inv(self.C_prior_inv+numpy.dot(numpy.dot(Q_star_trans,self.C_x_inv),self.Q_star))
         self.C_xpost = numpy.dot((numpy.dot(self.Q,self.C_post)),self.Q.transpose())
 
         #for i,row in enumerate(self.C_post):
@@ -1608,7 +1611,10 @@ class ParameterBalancing:
         self.stds_log_post = self.extract_cpost()
         
         # posterior mean vector
-        self.q_post = numpy.dot(self.C_post, numpy.dot(numpy.dot(self.Q.transpose(),self.C_prior_inv),self.q_prior) + numpy.dot(numpy.dot(Q_star_trans,self.C_x_inv),self.x_star))
+        if self.pseudo_used:
+            self.q_post = numpy.dot(self.C_post, numpy.dot(numpy.dot(self.Q.transpose(),self.C_prior_inv),self.q_prior) + numpy.dot(numpy.dot(Q_star_trans,self.C_x_inv),self.x_star))
+        else:
+            self.q_post = numpy.dot(self.C_post,(numpy.dot(numpy.dot(Q_star_trans,self.C_x_inv),self.x_star)+numpy.dot(self.C_prior_inv,self.q_prior)))
         self.x_post = numpy.dot(self.Q,self.q_post)
         #print(self.x_post)
         
