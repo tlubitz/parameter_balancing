@@ -1110,7 +1110,6 @@ class ParameterBalancing:
                     single_tuple.append(row[self.sbtab_new.columns_dict['!UnconstrainedGeometricMean']])
                     single_tuple.append(row[self.sbtab_new.columns_dict['!UnconstrainedGeometricStd']])
                     single_tuple.append(self.make_identifier(row))
-                    self.quantities_x.append(single_tuple[0])
                     try:
                         if self.sbtab_new.columns_dict['!Min'] and row[self.sbtab_new.columns_dict['!Min']] != '':
                             single_tuple.append((float(row[self.sbtab_new.columns_dict['!Min']]),float(row[self.sbtab_new.columns_dict['!Max']])))
@@ -1126,8 +1125,9 @@ class ParameterBalancing:
         stds = []
         types = []
         vt = []
-        x_star_old = []
-        log_stds_x_old = []
+        #x_star_old = []
+        #self.x_star = []
+        #log_stds_x_old = []
        
         for single_tuple in value_tuples_old:
             if single_tuple[3] == '': continue
@@ -1135,8 +1135,9 @@ class ParameterBalancing:
             stds.append(float(single_tuple[4]))
             types.append(single_tuple[0])
             vt.append(single_tuple)
-            (x_star_old,log_stds_x_old) = self.normal_to_log(means,stds,types)
+            (self.x_star,self.log_stds_x) = self.normal_to_log(means,stds,types)
 
+        '''
         means = []
         stds = []
         types = []
@@ -1149,9 +1150,9 @@ class ParameterBalancing:
             types.append(single_tuple[0])
             vt.append(single_tuple)
             (x_star_new,log_stds_x_new) = self.med10_std_to_log(means,stds,types)   
-            
         self.x_star = x_star_old + x_star_new
         self.log_stds_x = log_stds_x_old + log_stds_x_new
+        '''
         self.new_rows = self.sbtab.value_rows + self.new_rows
         
         return vt
@@ -1275,8 +1276,8 @@ class ParameterBalancing:
         self.bounds     = []
         self.id_order   = {}
 
-        for i,x in enumerate(self.theta_vector):
-            row    = [0.0]*len(self.theta_vector)
+        for i,x in enumerate(self.theta_basic):
+            row    = [0.0]*len(self.theta_basic)
             row[i] = 1.0
             unit_rows.append(row)
             self.parameter2row[(x[0],x[2])] = row
@@ -1315,7 +1316,7 @@ class ParameterBalancing:
 
         row_index = 0
         for i,element in enumerate(use_list):
-            row          = [0.0]*len(self.theta_vector)
+            row          = [0.0]*len(self.theta_basic)
             column_index = 0
             if '!Min' in self.sbtab.columns_dict and '!Max' in self.sbtab.columns_dict:
                 self.bounds.append(self.parameter2bounds[pseudo_quantity,element])
@@ -1431,6 +1432,7 @@ class ParameterBalancing:
         '''
         self.parameter2row = {}
         theta = []
+        self.theta_basic = []
         self.q_prior = []
         self.log_stds_prior  = []
         types = []
@@ -1444,6 +1446,7 @@ class ParameterBalancing:
                     for species in self.species_list:
                         if not (quantity,species) in used_identifiers:
                             theta.append((quantity,self.prior_values[quantity][0][0],species))
+                            self.theta_basic.append((quantity,self.prior_values[quantity][0][0],species))
                             self.q_prior.append(self.prior_values[quantity][0][0])
                             self.log_stds_prior.append(self.prior_values[quantity][0][1])
                             types.append(quantity)
@@ -1456,6 +1459,7 @@ class ParameterBalancing:
                     for reaction in self.reaction_list:
                         if not (quantity,reaction) in used_identifiers:
                             theta.append((quantity,self.prior_values[quantity][0][0],reaction))
+                            self.theta_basic.append((quantity,self.prior_values[quantity][0][0],reaction))
                             self.q_prior.append(self.prior_values[quantity][0][0])
                             self.log_stds_prior.append(self.prior_values[quantity][0][1])
                             types.append(quantity)
@@ -1468,6 +1472,7 @@ class ParameterBalancing:
                     for reaction_species in self.model_dict[quantity]:
                         if not (quantity,(reaction_species[1],reaction_species[2])) in used_identifiers:                        
                             theta.append((quantity,self.prior_values[quantity][0][0],(reaction_species[1],reaction_species[2])))
+                            self.theta_basic.append((quantity,self.prior_values[quantity][0][0],(reaction_species[1],reaction_species[2])))
                             self.q_prior.append(self.prior_values[quantity][0][0])
                             self.log_stds_prior.append(self.prior_values[quantity][0][1])
                             types.append(quantity)
@@ -1476,34 +1481,41 @@ class ParameterBalancing:
                                 if self.min_column:
                                     self.bounds_inc.append(self.parameter2bounds[(quantity,(reaction_species[1],reaction_species[2]))])
                             used_identifiers.append((quantity,(reaction_species[1],reaction_species[2])))
-        '''
-        for quantity in self.pseudo_list:
-            if self.parameter_dict[quantity]:
-                if quantity in self.species_parameters:
-                    for species in self.species_list:
-                        if not (quantity,species) in used_identifiers:
-                            self.quantities_inc.append(quantity)
-                            if (quantity,species) in self.parameter2bounds.keys():
-                                if self.min_column:
-                                    self.bounds_inc.append(self.parameter2bounds[(quantity,species)])
-                            used_identifiers.append((quantity,species))
-                elif quantity in self.reaction_parameters:
-                    for reaction in self.reaction_list:
-                        if not (quantity,reaction) in used_identifiers:
-                            self.quantities_inc.append(quantity)
-                            if (quantity,reaction) in self.parameter2bounds.keys():
-                                if self.min_column:
-                                    self.bounds_inc.append(self.parameter2bounds[(quantity,reaction)])
-                            used_identifiers.append((quantity,reaction))
-                elif quantity in self.reaction_species_parameters:
-                    for reaction_species in self.model_dict[quantity]:
-                        if not (quantity,(reaction_species[1],reaction_species[2])) in used_identifiers:
-                            self.quantities_inc.append(quantity)
-                            if (quantity,(reaction_species[1],reaction_species[2])) in self.parameter2bounds.keys():
-                                if self.min_column:
-                                    self.bounds_inc.append(self.parameter2bounds[(quantity,(reaction_species[1],reaction_species[2]))])
-                            used_identifiers.append((quantity,(reaction_species[1],reaction_species[2])))
-        '''
+
+        if self.pseudo_used:
+            for quantity in self.pseudo_list:
+                if self.parameter_dict[quantity]:
+                    if quantity in self.species_parameters:
+                        for species in self.species_list:
+                            if not (quantity,species) in used_identifiers:
+                                theta.append((quantity,self.prior_values[quantity][0][0],species))
+                                self.quantities_inc.append(quantity)
+                                if (quantity,species) in self.parameter2bounds.keys():
+                                    if self.min_column:
+                                        self.bounds_inc.append(self.parameter2bounds[(quantity,species)])
+                                used_identifiers.append((quantity,species))
+                                self.q_prior.append(self.prior_values[quantity][0][0])
+                    elif quantity in self.reaction_parameters:
+                        for reaction in self.reaction_list:
+                            if not (quantity,reaction) in used_identifiers:
+                                theta.append((quantity,self.prior_values[quantity][0][0],reaction))
+                                self.quantities_inc.append(quantity)
+                                if (quantity,reaction) in self.parameter2bounds.keys():
+                                    if self.min_column:
+                                        self.bounds_inc.append(self.parameter2bounds[(quantity,reaction)])
+                                used_identifiers.append((quantity,reaction))
+                                self.q_prior.append(self.prior_values[quantity][0][0])
+                    elif quantity in self.reaction_species_parameters:
+                        for reaction_species in self.model_dict[quantity]:
+                            if not (quantity,(reaction_species[1],reaction_species[2])) in used_identifiers:
+                                theta.append((quantity,self.prior_values[quantity][0][0],(reaction_species[1],reaction_species[2])))
+                                self.quantities_inc.append(quantity)
+                                if (quantity,(reaction_species[1],reaction_species[2])) in self.parameter2bounds.keys():
+                                    if self.min_column:
+                                        self.bounds_inc.append(self.parameter2bounds[(quantity,(reaction_species[1],reaction_species[2]))])
+                                used_identifiers.append((quantity,(reaction_species[1],reaction_species[2])))
+                                self.q_prior.append(self.prior_values[quantity][0][0])
+        
         return theta
 
     def build_covariance_matrices(self):
@@ -1574,15 +1586,15 @@ class ParameterBalancing:
         #    print(row,',',list(self.C_x[i]))
 
         #print(self.x_star) --> 0
-        #for row in self.x_star:
-        #    print(row)
+        #for i, row in enumerate(self.x_star):
+        #    print(self.quantities_x[i], ',', row)
 
         #print(self.Q_star) --> 0
-        #for row in self.Q_star:
-        #    print(list(row))  
+        #for i, row in enumerate(self.Q_star):
+        #    print(self.quantities_x[i], ',',list(row))  
         
         # posterior covariance matrices
-        self.C_post = numpy.linalg.inv(self.C_prior_inv+numpy.dot(numpy.dot(Q_star_trans,self.C_x_inv),self.Q_star))
+        self.C_post = numpy.linalg.inv(numpy.dot(numpy.dot(self.Q.transpose(),self.C_prior_inv),self.Q) + numpy.dot(numpy.dot(Q_star_trans,self.C_x_inv),self.Q_star))
         self.C_xpost = numpy.dot((numpy.dot(self.Q,self.C_post)),self.Q.transpose())
 
         #for i,row in enumerate(self.C_post):
@@ -1596,11 +1608,7 @@ class ParameterBalancing:
         self.stds_log_post = self.extract_cpost()
         
         # posterior mean vector
-        self.q_post = numpy.dot(self.C_post,(numpy.dot(numpy.dot(Q_star_trans,self.C_x_inv),self.x_star)+numpy.dot(self.C_prior_inv,self.q_prior)))
-        #if len(self.x_star) > 1:
-        #    (q_norm_x, stds_norm_x) = self.log_to_normal(self.q_post, self.stds_log_inc, self.quantities_x)
-        #    (self.q_post, self.stds_log_inc) = self.med10_std_to_log(q_norm, stds_norm_x, self.quantities_x)
-        
+        self.q_post = numpy.dot(self.C_post, numpy.dot(numpy.dot(self.Q.transpose(),self.C_prior_inv),self.q_prior) + numpy.dot(numpy.dot(Q_star_trans,self.C_x_inv),self.x_star))
         self.x_post = numpy.dot(self.Q,self.q_post)
         #print(self.x_post)
         
