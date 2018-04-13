@@ -342,7 +342,7 @@ def parameter_balancing_wrapper(parser_args):
     sbml_model_new.write(sbml_code)
     sbml_model_new.close()
     if args.verbose:
-        print('The log file %s has been written.' % (output_name + '.xml'))
+        print('The SBML file %s has been written.' % (output_name + '.xml'))
         print('>> Goodbye.')
         
 
