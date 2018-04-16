@@ -1,0 +1,5 @@
+python3
+numpy
+scipy
+libsbml
+tablib

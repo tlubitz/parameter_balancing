@@ -9,11 +9,9 @@ See specification for further information.
 """
 try:
     from . import SBtab
-    from . import tablibIO
     from . import misc
 except:
     import SBtab
-    import tablibIO
     import misc
 import re
 import collections
@@ -305,7 +303,6 @@ if __name__ == '__main__':
     sbtab_file = sbtab_file_o.read()
     sbtab_file_o.close()
     delimiter = misc.getDelimiter(sbtab_file)
-    sbtab_tablib = tablibIO.importSetNew(sbtab_file, file_name, delimiter)
 
     try:
         default_def = sys.argv[2]
