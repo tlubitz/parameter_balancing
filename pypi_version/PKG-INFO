@@ -1,0 +1,15 @@
+Metadata-Version: 1.1
+Name: pbalancing
+Version: 2.0.16
+Summary: Parameter Balancing for Kinetic Metabolic Models
+Home-page: https://www.parameterbalancing.net
+Author: Timo Lubitz
+Author-email: timo.lubitz@gmail.com
+License: MIT
+Description: Parameter Balancing - A Systems Biology tool to determine thermodynamically consistent parameter sets for kinetic models of cell metabolism
+Keywords: modelling systems biology kinetic parameter estimation thermodynamics
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development
+Classifier: Programming Language :: Python :: 3.0
