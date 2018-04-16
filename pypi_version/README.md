@@ -29,7 +29,7 @@ configuration of parameter balancing. Providing complete file information would 
 You can create a log file by setting the flag -l, you can use pseudo values to account for a lack of data by setting the flag -p, you can
 watch program outputs on your commandline by setting the flag -v.
 
-> usage: parameter_balancing.py [-h] [--sbtab_data SBTAB_DATA]
+> usage: parameter_balancing.py [-h] [--sbtab_data SBTAB_DATA] <br>
 >                               [--sbtab_prior SBTAB_PRIOR]
 >                               [--sbtab_options SBTAB_OPTIONS]
 >                               [--output_name OUTPUT_NAME] [-l] [-p] [-v]
