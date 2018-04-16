@@ -1,4 +1,4 @@
-# Parameter Balancing: PyPio version
+# Parameter Balancing: PyPi version
 
 Parameter balancing is a tool for metabolic modelling in systems biology. It is implemented in Python3 and its code underlies the PEP8 guidelines. This subdirectory holds the code for the PyPi python installer. This code is not meant to be downloaded but to be installed via pip. To do this, first of all you need Python3. Next, you will need the pip3 installer. You can find information
 on how to do this here: https://pip.pypa.io/en/stable/installing/. Then you can type on your commandline
