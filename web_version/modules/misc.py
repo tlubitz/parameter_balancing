@@ -696,24 +696,58 @@ def cut_tabs(sbtab_strings):
     sbtabs = []
     sbtab_string = ''
     counter = 1
-    
+
     for row in sbtab_strings.split('\n'):
         if row.startswith('!!'):
             if sbtab_string == '':
-                current_sbtab = row + '\n'
+                sbtab_string = row + '\n'
+                continue
+            else:
+                try:
+                    sbtabs.append(sbtab_string)
+                    sbtab_string = row + '\n'
+                    counter += 1
+                except:
+                    print('Warning: Could not write SBtab %s' % counter)
+                    counter += 1
+        else:
+            sbtab_string += row + '\n'
+    sbtabs.append(sbtab_string) 
+                    
+    return sbtabs
+
+
+    
+    '''
+    # THIS HERE DOESN'T HELP US WITHOUT THE SBTAB DOCUMENT CLASS
+    sbtabs = []
+    sbtab_string = ''
+    counter = 1
+
+    for row in sbtab_strings.split('\n'):
+        print(row)
+        if row.startswith('!!'):
+            if sbtab_string == '':
+                sbtab_string = row + '\n'
                 continue
             else:
                 try:
                     sbtab = SBtab.SBtabTable(sbtab_string, 'sbtab_%s.tsv' % counter)
                     sbtabs.append(sbtab)
+                    sbtab_string = row + '\n'
+                    print('Tis written')
                     counter += 1
                 except:
                     print('Warning: Could not write SBtab %s' % counter)
+                    counter += 1
         else:
             sbtab_string += row + '\n'
+
+    sbtab = SBtab.SBtabTable(sbtab_string, 'sbtab_%s.tsv' % counter)
+    sbtabs.append(sbtab) 
                     
     return sbtabs
-
+    '''
 
 def tsv_to_html(sbtab):
     '''

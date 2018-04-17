@@ -269,6 +269,9 @@ def balancing():
         session.warnings_fl = []
         filename = request.vars.File.filename
         sbtab_file = request.vars.File.value
+        # Update when SBtab Document class is at hand;
+        # we need to proceed with a document, and not with the ugly string
+        # sbtab_file like we do here
         sbtab_fl = SBtab.SBtabTable(sbtab_file.decode('utf-8'), filename)
         valid_extension = misc.validate_file_extension(sbtab_fl.filename, 'sbtab')
         if not valid_extension:
@@ -301,7 +304,7 @@ def balancing():
         if filename in session.sbtab_fl_names:
             session.warnings_fl.append('Error: Duplicate file name. Please remove the file with the same name before uploading.')
         elif valid_extension:
-                session.sbtab_fls.append(sbtab_fl)
+                session.sbtab_fls.append(sbtab_file.decode('utf-8'))
                 session.sbtab_fl_names.append(sbtab_fl.filename)
         try: redirect(URL('../default/balancing'))
         except: redirect(URL('../balancing'))
@@ -564,7 +567,10 @@ def balancing():
         prior_filename = None
         session.priors = []
         session.prior_names = []
-           
+
+        session.config_file = None
+        session.config_filename = None
+        
         try: redirect(URL('../default/balanced'))
         except: redirect(URL('../balanced'))
         
@@ -586,21 +592,21 @@ def balancing():
         try:
             sbtabs = misc.cut_tabs(session.sbtab_fl)
             for sbtab in sbtabs:
-                tabletype = tt
-                if sbtab.table_type == 'Quantity':
-                    sbtab_data = sbtab
-                elif sbtab.table_type == 'QuantityInfo':
-                    sbtab_prior = sbtab
-                elif sbtab.table_type == 'PbConfig':
-                    sbtab_config = sbtab
+                if 'QuantityInfo' in sbtab:
+                    sbtab_prior = SBtab.SBtabTable(sbtab, session.sbtab_fl_name[:-4]+'_%s.tsv' % 'prior')
+                elif "Quantity" in sbtab:
+                    sbtab_data = SBtab.SBtabTable(sbtab, session.sbtab_fl_name[:-4]+'_%s.tsv' % 'data')
+                elif 'PbConfig' in sbtab:
+                    sbtab_config = SBtab.SBtabTable(sbtab, session.sbtab_fl_name[:-4]+'_%s.tsv' % 'config')
         except:
             session.warnings_fl.append('Error: Could not separate the bundled SBtab file. Please check syntax validity.')
             try: redirect(URL('../default/balancing'))
             except: redirect(URL('../balancing'))                
 
+            
         #convert sbtab to sbml
         try:
-            Conversion_class = sbtab2sbml.SBtabDocument(session.sbtab_fl)
+            Conversion_class = sbtab2sbml.SBtabDocument(session.sbtab_fl, session.sbtab_fl_name)
             (sbml_file, warnings) = Conversion_class.makeSBML()
             if warnings != []:
                 for w in warnings:
@@ -670,7 +676,7 @@ def balancing():
             session.warnings_fl.append('Error: The prior table %s could not be processed properly.' % (session.prior_name))
             try: redirect(URL('../default/balancing'))
             except: redirect(URL('../balancing'))           
-            
+        print('6')
         #2: makeSBtab (either from an empty SBtab or from a given SBtab)
         if not sbtab_data:
             try:
@@ -702,11 +708,11 @@ def balancing():
                 try: redirect(URL('../default/balancing'))
                 except: redirect(URL('../balancing')) 
 
-        
+        print('7')
         #3: fill them in the SBtab file
         try: pseudo = bool(session.parameter_dict['use_pseudo_values'])
         except: pseudo = True
-        
+        print('8')
         try:
             if pseudo:
                 sbtab_old = copy.deepcopy(sbtab_data)
@@ -906,13 +912,12 @@ def show_sbtab_fl():
     function that converts fast lane SBtab file to HTML in order to display it in the browser
     '''    
     try:
-        sbtab_file = session.sbtab_fls[int(request.args(0))]
         file_name  = session.sbtab_fl_names[int(request.args(0))]
     except: return 'The requested SBtab file cannot be loaded.'
 
+    # This needs to be updated when the SBtab Document class is at hand
     try:
-        delimiter = misc.check_delimiter(sbtab_file)
-        return misc.tsv2html(sbtab_file,file_name,delimiter)
+        return misc.tsv_to_html(sbtab_file,file_name)
     except: return 'The requested SBtab file cannot be displayed.'
 
 def show_prior():
@@ -948,11 +953,10 @@ def download_sbtab():
     attachment                              = 'attachment;filename=' + session.result_sbtab_name[int(request.vars.download_button_sbtab)]
     response.headers['Content-Disposition'] = attachment
     
-    #here we remove the extra tabs/comma from the first row for export
-    content_raw = session.result_sbtab[int(request.vars.download_button_sbtab)]
-    try: delimiter = misc.getDelimiter(content_raw)
-    except: delimiter = '\t'
-    content = misc.first_row(content_raw,delimiter)
+    # fix the except part: we need something new, when we have
+    # the SBtab Document class
+    try: content = session.result_sbtab[int(request.vars.download_button_sbtab)].return_table_string()
+    except: content = session.result_sbtab[int(request.vars.download_button_sbtab)]
 
     raise HTTP(200,str(content),
                **{'Content-Type':'text/csv',

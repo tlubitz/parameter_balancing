@@ -29,7 +29,7 @@ class SBtabDocument:
     '''
     SBtab document to be converted to SBML model
     '''
-    def __init__(self,sbtab,tabs=1):
+    def __init__(self, sbtab, filename, tabs=1):
         '''
         Initalizes SBtab document, checks it for SBtab count.
         If there are more than 1 SBtab file to be converted, provide a "tabs" parameter higher than 1.
@@ -43,7 +43,7 @@ class SBtabDocument:
         tabs : int
            Amount of SBtab tables in the provided file.
         '''
-        self.filename  = sbtab.filename
+        self.filename  = filename
 
         if self.filename.endswith('tsv') or self.filename.endswith('csv') or self.filename.endswith('.xls'): pass
         else: raise ConversionError('The given file format is not supported: %s' % self.filename)
@@ -83,7 +83,7 @@ class SBtabDocument:
         #elif there is only one document given, possibly consisting of several SBtabs
         else:
             #check for several SBtabs in one document
-            document_rows = self.document[0].return_table_string().split('\n')
+            document_rows = self.document[0].split('\n')
             tabs_in_document = self.getAmountOfTables(document_rows)
             if tabs_in_document > 1: sbtabs = self.splitDocumentInTables(document_rows)
             else: sbtabs = [document_rows]
