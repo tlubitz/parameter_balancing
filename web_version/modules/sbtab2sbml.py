@@ -6,7 +6,7 @@ Python script that converts SBtab file/s to SBML.
 """
 #!/usr/bin/env python
 import re, libsbml
-import SBtab_new
+import SBtab
 import tablibIO
 import string
 import random
@@ -29,7 +29,7 @@ class SBtabDocument:
     '''
     SBtab document to be converted to SBML model
     '''
-    def __init__(self,sbtab,filename=None,tabs=1):
+    def __init__(self,sbtab,tabs=1):
         '''
         Initalizes SBtab document, checks it for SBtab count.
         If there are more than 1 SBtab file to be converted, provide a "tabs" parameter higher than 1.
@@ -43,14 +43,14 @@ class SBtabDocument:
         tabs : int
            Amount of SBtab tables in the provided file.
         '''
-        self.filename  = filename
+        self.filename  = sbtab.filename
 
-        if self.filename.endswith('tsv') or self.filename.endswith('tab') or self.filename.endswith('csv') or self.filename.endswith('.xls'): pass
-        else: raise ConversionError('The given file format is not supported: '+self.filename)
+        if self.filename.endswith('tsv') or self.filename.endswith('csv') or self.filename.endswith('.xls'): pass
+        else: raise ConversionError('The given file format is not supported: %s' % self.filename)
 
         self.document = [sbtab]
-        self.tabs      = tabs            
-        self.unit_mM   = False
+        self.tabs = tabs            
+        self.unit_mM = False
         self.unit_mpdw = False
         self.checkTabs()              #check how many SBtabs are given in the document
 
@@ -75,7 +75,7 @@ class SBtabDocument:
                     sbtabtsv = self.unifySBtab(sbtab)
                     if sbtabtsv == False: continue
                     new_tablib_obj = tablibIO.importSetNew(sbtabtsv,self.filename,separator='\t')
-                    single_tab = SBtab_new.SBtabTable(new_tablib_obj,self.filename)
+                    single_tab = SBtab.SBtabTable(new_tablib_obj,self.filename)
                     if single_tab.table_type in self.type2sbtab.keys():
                         fn = random_number = str(random.randint(0,1000))
                         self.type2sbtab[single_tab.table_type+'_'+fn] = single_tab
@@ -83,15 +83,14 @@ class SBtabDocument:
         #elif there is only one document given, possibly consisting of several SBtabs
         else:
             #check for several SBtabs in one document
-            document_rows    = self.document[0].split('\n')
+            document_rows = self.document[0].return_table_string().split('\n')
             tabs_in_document = self.getAmountOfTables(document_rows)
             if tabs_in_document > 1: sbtabs = self.splitDocumentInTables(document_rows)
             else: sbtabs = [document_rows]
             #generate SBtab class instance for every SBtab
             for sbtab in sbtabs:
                 as_sbtab = '\n'.join(sbtab)
-                new_tablib_obj = tablibIO.importSetNew(as_sbtab,self.filename,separator='\t')
-                single_tab = SBtab_new.SBtabTable(new_tablib_obj,self.filename)
+                single_tab = SBtab.SBtabTable(as_sbtab, self.filename)
                 self.type2sbtab[single_tab.table_type] = single_tab
 
     def unifySBtab(self,sbtab):
@@ -125,7 +124,7 @@ class SBtabDocument:
                     new_tab.append(sbtab[1].replace(delimiter,'\t'))
                     continue
                 else:
-                    print 'The delimiter of one of the SBtabs could not be identified. Please check.'
+                    print('The delimiter of one of the SBtabs could not be identified. Please check.')
             else:
                 try: new_tab.append(row.replace(delimiter,'\t'))
                 except: return False
@@ -358,7 +357,7 @@ class SBtabDocument:
                         cv_term = self.setAnnotation(compartment,annot,urn,'Model')
                         compartment.addCVTerm(cv_term)
                     except:
-                        print 'There was an annotation that I could not assign properly: ',compartment.getId(),annot #,urn
+                        print('There was an annotation that I could not assign properly: ',compartment.getId(),annot)
            
 
     def compoundSBtab(self):
@@ -440,7 +439,7 @@ class SBtabDocument:
                             cv_term = self.setAnnotation(species,annot,urn,'Biological')
                             species.addCVTerm(cv_term)
                         except:
-                            print 'There was an annotation that I could not assign properly: ',species.getId(),annot #,urn
+                            print('There was an annotation that I could not assign properly: ',species.getId(),annot)
 
         #species without compartments yield errors --> set them to the first available compartment
         for species in self.new_model.getListOfSpecies():
@@ -908,7 +907,7 @@ class SBtabDocument:
                         cv_term = self.setAnnotation(event,annot,urn,'Biological')
                         event.addCVTerm(cv_term)
                     except:
-                        print 'There was an annotation that I could not assign properly: ',event.getId(),annot #,urn
+                        print('There was an annotation that I could not assign properly: ',event.getId(),annot)
 
     def ruleSBtab(self):
         '''
@@ -949,13 +948,13 @@ class SBtabDocument:
                         cv_term = self.setAnnotation(event,annot,urn,'Biological')
                         rule.addCVTerm(cv_term)
                     except:
-                        print 'There was an annotation that I could not assign properly: ',rule.getId(),annot #,urn
+                        print('There was an annotation that I could not assign properly: ',rule.getId(),annot)
 
 if __name__ == '__main__':
 
     try: sys.argv[1]
     except:
-        print 'You have not provided input arguments. Please start the script by also providing an SBtab file and an optional SBML output filename: >python sbtab2sbml.py SBtabfile.csv Output'
+        print('You have not provided input arguments. Please start the script by also providing an SBtab file and an optional SBML output filename: >python sbtab2sbml.py SBtabfile.csv Output')
         sys.exit()
         
     file_name    = sys.argv[1]
@@ -971,4 +970,4 @@ if __name__ == '__main__':
     new_SBML_file.write(SBML_output[0])
     new_SBML_file.close()
 
-    print 'The SBML file has been successfully written to your working directory or chosen output path.'
+    print('The SBML file has been successfully written to your working directory or chosen output path.')

@@ -221,7 +221,7 @@ modelling using JWS Online</a>, Bioinformatics, 20:2143-2144
           </rdf:RDF>
         </annotation>
       </species>
-      <species metaid="metaid_0000006" id="ATP" name="ATP" compartment="cytosol" initialConcentration="2.1">
+      <species metaid="metaid_0000006" id="ATP" name="ATP" compartment="cytosol" initialConcentration="2.1" sboTerm="SBO:0000020">
         <annotation>
           <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
             <rdf:Description rdf:about="#metaid_0000006">
@@ -249,7 +249,7 @@ modelling using JWS Online</a>, Bioinformatics, 20:2143-2144
           </rdf:RDF>
         </annotation>
       </species>
-      <species metaid="metaid_0000008" id="ADP" name="ADP" compartment="cytosol" initialConcentration="1.5">
+      <species metaid="metaid_0000008" id="ADP" name="ADP" compartment="cytosol" initialConcentration="1.5" sboTerm="SBO:0000020">
         <annotation>
           <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
             <rdf:Description rdf:about="#metaid_0000008">
@@ -277,7 +277,7 @@ modelling using JWS Online</a>, Bioinformatics, 20:2143-2144
           </rdf:RDF>
         </annotation>
       </species>
-      <species metaid="metaid_0000010" id="FBP" name="Fructose 1,6-bisphosphate" compartment="cytosol" initialConcentration="4.64">
+      <species metaid="metaid_0000010" id="FBP" name="Fructose 1,6-bisphosphate" compartment="cytosol" initialConcentration="4.64" sboTerm="SBO:0000020">
         <annotation>
           <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
             <rdf:Description rdf:about="#metaid_0000010">
@@ -361,7 +361,7 @@ modelling using JWS Online</a>, Bioinformatics, 20:2143-2144
           </rdf:RDF>
         </annotation>
       </species>
-      <species metaid="metaid_0000016" id="PEP" name="Phosphoenolpyruvate" compartment="cytosol" initialConcentration="0.04">
+      <species metaid="metaid_0000016" id="PEP" name="Phosphoenolpyruvate" compartment="cytosol" initialConcentration="0.04" sboTerm="SBO:0000020">
         <annotation>
           <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
             <rdf:Description rdf:about="#metaid_0000016">
@@ -375,7 +375,7 @@ modelling using JWS Online</a>, Bioinformatics, 20:2143-2144
           </rdf:RDF>
         </annotation>
       </species>
-      <species metaid="metaid_0000017" id="Pyr" name="Pyruvate" compartment="cytosol" initialConcentration="8.7">
+      <species metaid="metaid_0000017" id="Pyr" name="Pyruvate" compartment="cytosol" initialConcentration="8.7" sboTerm="SBO:0000020">
         <annotation>
           <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
             <rdf:Description rdf:about="#metaid_0000017">
@@ -403,7 +403,7 @@ modelling using JWS Online</a>, Bioinformatics, 20:2143-2144
           </rdf:RDF>
         </annotation>
       </species>
-      <species metaid="metaid_0000019" id="EtOH" compartment="cytosol" initialConcentration="19.2379">
+      <species metaid="metaid_0000019" id="EtOH" compartment="cytosol" initialConcentration="19.2379" sboTerm="SBO:0000020">
         <annotation>
           <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
             <rdf:Description rdf:about="#metaid_0000019">
@@ -487,7 +487,7 @@ modelling using JWS Online</a>, Bioinformatics, 20:2143-2144
           </rdf:RDF>
         </annotation>
       </species>
-      <species metaid="metaid_0000025" id="AMP" name="AMP" compartment="cytosol" initialConcentration="0.33">
+      <species metaid="metaid_0000025" id="AMP" name="AMP" compartment="cytosol" initialConcentration="0.33" sboTerm="SBO:0000020">
         <annotation>
           <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
             <rdf:Description rdf:about="#metaid_0000025">

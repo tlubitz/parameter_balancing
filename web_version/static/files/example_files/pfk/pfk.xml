@@ -5,7 +5,7 @@
       <compartment metaid="c_meta" id="c" name="c" size="1"/>
     </listOfCompartments>
     <listOfSpecies>
-      <species metaid="ATP_c_meta" id="ATP_c" name="ATP" compartment="c" initialConcentration="-435.146">
+      <species metaid="ATP_c_meta" id="ATP_c" name="ATP" compartment="c" initialConcentration="-435.146" sboTerm="SBO:0000020">
         <annotation>
           <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
             <rdf:Description rdf:about="#ATP_c_meta">
@@ -69,7 +69,6 @@
           </rdf:RDF>
         </annotation>
       </species>
-      <species metaid="enzyme_R04779_c_meta" id="enzyme_R04779_c" name="enzyme_R04779" compartment="c" initialConcentration="0"/>
     </listOfSpecies>
     <listOfParameters>
       <parameter metaid="temp_meta" id="temp" value="300"/>
@@ -78,6 +77,12 @@
       <parameter metaid="scp_beta_D_fructofuranose_6_phosphate_c_meta" id="scp_beta_D_fructofuranose_6_phosphate_c" name="scp_beta_D_fructofuranose_6_phosphate_c" value="-1380"/>
       <parameter metaid="scp_ADP_c_meta" id="scp_ADP_c" name="scp_ADP_c" value="-1496"/>
       <parameter metaid="scp_beta_D_fructofuranose_1_6_bisphosphate_c_meta" id="scp_beta_D_fructofuranose_1_6_bisphosphate_c" name="scp_beta_D_fructofuranose_1_6_bisphosphate_c" value="-2206"/>
+      <parameter id="temp" value="300"/>
+      <parameter id="R" value="8.31"/>
+      <parameter id="scp_ATP_c" name="scp_ATP_c" value="-435.146" sboTerm="SBO:0000463"/>
+      <parameter id="scp_beta_D_fructofuranose_6_phosphate_c" name="scp_beta_D_fructofuranose_6_phosphate_c" value="-435.146" sboTerm="SBO:0000463"/>
+      <parameter id="scp_ADP_c" name="scp_ADP_c" value="-435.146" sboTerm="SBO:0000463"/>
+      <parameter id="scp_beta_D_fructofuranose_1_6_bisphosphate_c" name="scp_beta_D_fructofuranose_1_6_bisphosphate_c" value="-435.146" sboTerm="SBO:0000463"/>
     </listOfParameters>
     <listOfReactions>
       <reaction metaid="R04779_meta" id="R04779" name="_6_phosphofructokinase_activity">
@@ -164,9 +169,7 @@
                               <minus/>
                               <apply>
                                 <plus/>
-                                <ci>
-				  scp_ADP_c
-				</ci>
+                                <ci> scp_ADP_c </ci>
                                 <ci> scp_beta_D_fructofuranose_1_6_bisphosphate_c </ci>
                               </apply>
                               <apply>

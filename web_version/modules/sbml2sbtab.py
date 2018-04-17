@@ -8,6 +8,7 @@ See specification for further information.
 """
 #!/usr/bin/env python
 import re, libsbml, numpy
+import SBtab
 import sys
 
 allowed_sbtabs = ['Compartment','Compound','Reaction','Rule','Quantity','Event']
@@ -73,7 +74,13 @@ class SBMLDocument:
         sbtabs = self.getRidOfNone(sbtabs)
         sbtabs = self.getRidOfEmptyColumns(sbtabs)
 
-        return sbtabs,self.warnings
+        sbtab_objects = []
+        
+        for sbtab in sbtabs:
+            so = SBtab.SBtabTable(sbtab[0], self.filename[:-4]+'_%s.tsv' % sbtab[1])
+            sbtab_objects.append(so)
+        
+        return (sbtab_objects, self.warnings)
 
     def testForInconvertibles(self):
         '''
@@ -544,7 +551,7 @@ if __name__ == '__main__':
 
     try: sys.argv[1]
     except:
-        print 'You have not provided input arguments. Please start the script by also providing an SBML file and an optional SBtab output filename: >python sbml2sbtab.py SBMLfile.xml Output'
+        print('You have not provided input arguments. Please start the script by also providing an SBML file and an optional SBtab output filename: >python sbml2sbtab.py SBMLfile.xml Output')
         sys.exit()
 
     file_name  = sys.argv[1]
@@ -566,4 +573,4 @@ if __name__ == '__main__':
         sbtab_file.write(sbtab[0])
         sbtab_file.close()
 
-    print 'The SBtab file/s have been successfully written to your working directory or chosen output path.'
+    print('The SBtab file/s have been successfully written to your working directory or chosen output path.')

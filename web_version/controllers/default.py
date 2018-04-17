@@ -12,10 +12,10 @@
 #libsbml needs to be installed, the rest are part of the repository
 import libsbml
 import misc
+import copy
 import balancer
-import SBtab_old
 import kineticizer
-import SBtab_new
+import SBtab
 import tablibIO
 import validatorSBtab
 import sbtab2sbml
@@ -32,35 +32,35 @@ def clearsession():
     function to clear all session variables in case that anything goes awry in the session.
     it basically just resets all session variables to empty, False, or None, depending on the type.
     '''
-    session.warnings_sbml   = []
-    session.warnings_sbtab  = []
-    session.warnings_prior  = []
-    session.warnings_fl     = []
-    session.sbml            = None
-    session.sbml_name       = None
-    session.result_sbml     = None
-    session.sbmls           = []
-    session.sbml_names      = []
+    session.warnings_sbml = []
+    session.warnings_sbtab = []
+    session.warnings_prior = []
+    session.warnings_fl = []
+    session.sbml = None
+    session.sbml_name = None
+    session.result_sbml = None
+    session.sbmls = []
+    session.sbml_names = []
     session.result_sbml_name= None
-    session.sbtab           = None
-    session.sbtab_name      = None
-    session.sbtab_fls       = []
-    session.sbtab_fl_names  = []
-    session.sbtab_fl        = None
-    session.sbtab_fl_name   = None
-    session.sbtabs          = []
-    session.result_sbtab    = []
-    session.result_sbtab_name= []
-    session.sbtab_names     = []    
-    session.prior           = None
-    session.prior_name      = None
-    session.priors          = []
-    session.prior_names     = []    
-    session.emptysbtab      = False
-    session.log             = None
-    session.config_file     = None
+    session.sbtab = None
+    session.sbtab_name = None
+    session.sbtab_fls = []
+    session.sbtab_fl_names = []
+    session.sbtab_fl = None
+    session.sbtab_fl_name = None
+    session.sbtabs = []
+    session.result_sbtab = []
+    session.result_sbtab_name = []
+    session.sbtab_names = []    
+    session.prior = None
+    session.prior_name = None
+    session.priors = []
+    session.prior_names = []    
+    session.emptysbtab = False
+    session.log = None
+    session.config_file = None
     session.config_filename = None
-    session.parameter_dict  = {}
+    session.parameter_dict = {}
     redirect('http://www.parameterbalancing.net')
 
 def balancing():
@@ -68,15 +68,15 @@ def balancing():
     first page for the NEW online balancing (see def balancing_old for intermediate interface):
     upload of files
     '''
-    response.title    = T('Parameter Balancing for Kinetic Models of Cell Metabolism')
+    response.title = T('Parameter Balancing for Kinetic Models of Cell Metabolism')
     response.subtitle = T('Online Balancing')
 
-    session.warnings           = []
-    session.warnings_sbml      = []
-    session.warnings_sbtab     = []
-    session.warnings_prior     = []
+    session.warnings = []
+    session.warnings_sbml = []
+    session.warnings_sbtab = []
+    session.warnings_prior = []
     session.warnings_balancing = []
-    session.warnings_config    = []
+    session.warnings_config = []
     
     ###########################################################################################
     ###LEFT SIDE: SBML (mandatory), SBtab (opt), Prior (opt), Config (opt)#####################
@@ -88,24 +88,22 @@ def balancing():
     
     #File is uploaded, checked, and added to the list; variables are declared
     if sbmlform.process(formname='form_one').accepted:
-        response.flash        = 'form accepted'
-        filename              = request.vars.File.filename
-
-        
-        valid_extension  = misc.validate_file_extension(filename,'sbml')
+        response.flash = 'form accepted'
+        filename = request.vars.File.filename
+        valid_extension = misc.validate_file_extension(filename,'sbml')
         if not valid_extension:
-            session.warnings_sbml.append('Error: The file extension of file %s is not compliant with SBML. Please upload an SBML model with the .xml extension.'%(filename))
-        
-        if not session.has_key('sbmls'):
-            session.sbmls      = []
+            session.warnings_sbml.append('Error: The file extension of file %s is not compliant with SBML. Please upload an SBML model with the .xml extension.' % (filename))
+
+        if not 'sbmls' in session:
+            session.sbmls = []
             session.sbml_names = []
-        
+
         if filename in session.sbml_names:
             session.warnings_sbml.append('Error: Duplicate file name. Please remove the file with the same name before uploading.')
         elif valid_extension:
-            session.sbml      = request.vars.File.value
+            session.sbml = request.vars.File.value.decode('utf-8')
             session.sbml_name = filename
-            session.sbmls.append(request.vars.File.value)
+            session.sbmls.append(session.sbml)
             session.sbml_names.append(filename)
         try: redirect(URL('../default/balancing'))
         except: redirect(URL('../balancing'))
@@ -120,46 +118,47 @@ def balancing():
 
     # upload form
     if sbtabform.process(formname='form_two').accepted:
-        response.flash         = 'form accepted'
-        filename               = request.vars.File.filename
-        sbtab_file             = request.vars.File.value
-
-        try:
-            def_file_open   = open('./applications/pb/static/files/default_files/definitions.tsv')
-            definition_file = def_file_open.read()
-            def_file_name   = 'definitions.tsv'
-            TableValidClass = validatorSBtab.ValidateTable(sbtab_file,filename,definition_file,def_file_name)
-            if TableValidClass.sbtab.table_type != 'Quantity':
-                session.warnings_sbtab.append('Error: The data file has an incorrect table type: "'"%s"'". The correct table type would be "'"Quantity"'".\n'%(TableValidClass.sbtab.table_type))
-            for itemx in TableValidClass.returnOutput():
-                session.warnings_sbtab.append(itemx)
-        except:
-            session.warnings_sbtab.append('Error: The data file could not be validated. We suggest to validate the file manually on www.sbtab.net.')
-
+        response.flash = 'form accepted'
+        filename = request.vars.File.filename
+        sbtab_file = request.vars.File.value
+        sbtab_data = SBtab.SBtabTable(sbtab_file.decode('utf-8'), filename)
+        if sbtab_data.table_type != 'Quantity':
+            session.warnings_sbtab.append('Error: The data file has an incorrect table type: "'"%s"'". The correct table type would be "'"Quantity"'".\n'%(TableValidClass.sbtab.table_type))
         valid_extension  = misc.validate_file_extension(request.vars.File.filename,'sbtab')
         if not valid_extension:
             session.warnings_sbtab.append('Error: The file extension is not compliant with SBtab. Please upload an SBtab parameter file with the .tsv extension.')
-
-        if not session.has_key('sbtabs'):
+        try:
+            def_file_open = open('./applications/pb/static/files/default_files/definitions.tsv')
+            definition_string = def_file_open.read()
+            definition_name = 'definitions.tsv'
+            sbtab_def = SBtab.SBtabTable(definition_string, definition_name)
+            TableValidClass = validatorSBtab.ValidateTable(sbtab_data,sbtab_def)
+            warnings = TableValidClass.return_output()
+            if warnings != []:
+                for w in warnings:
+                    session.warnings_sbtab.append(w)
+        except:
+            session.warnings_sbtab.append('Error: The data file could not be validated. We suggest to validate the file manually on www.sbtab.net.')
+            
+        if not 'sbtabs' in session:
             session.sbtab       = None
             session.sbtab_name  = None
             session.sbtabs      = []
             session.sbtab_names = []
-
         if filename in session.sbtab_names:
             session.warnings_sbtab.append('Error: Duplicate file name. Please remove the file with the same name before uploading.')
         elif valid_extension:
-            session.sbtab = request.vars.File.value
-            session.sbtab_name = filename
-            session.sbtabs.append(request.vars.File.value)
-            session.sbtab_names.append(filename)
+            session.sbtab = sbtab_data
+            session.sbtab_name = sbtab_data.filename
+            session.sbtabs.append(sbtab_data)
+            session.sbtab_names.append(sbtab_data.filename)
 
             #upon upload we check whether the SBtab file holds any IDs which cannot be found in the SBML file
             if session.sbml:
-                reader         = libsbml.SBMLReader()
-                sbml           = reader.readSBMLFromString(session.sbml)
-                sbml_model     = sbml.getModel()
-                sbtabid2sbmlid = misc.id_checker(request.vars.File.value,sbml_model)
+                reader = libsbml.SBMLReader()
+                sbml = reader.readSBMLFromString(session.sbml)
+                sbml_model = sbml.getModel()
+                sbtabid2sbmlid = misc.id_checker(sbtab_data, sbml_model)
                 if sbtabid2sbmlid != []:
                     for element in sbtabid2sbmlid:
                         session.warnings_sbtab.append(element)
@@ -173,42 +172,45 @@ def balancing():
 
     #upload form
     if priorform.process(formname='form_three').accepted:
-        response.flash             = 'form accepted'
-        filename                   = request.vars.File.filename
-        prior_file                 = request.vars.File.value
-
+        response.flash = 'form accepted'
+        filename = request.vars.File.filename
+        prior_file = request.vars.File.value
+        sbtab_prior = SBtab.SBtabTable(prior_file.decode('utf-8'), filename)
+        if sbtab_prior.table_type != 'Quantity':
+            session.warnings_prior.append('Error: The data file has an incorrect table type: "'"%s"'". The correct table type would be "'"Quantity"'".\n'%(sbtab_prior.table_type))
+       
         try:
-            def_file_open   = open('./applications/pb/static/files/default_files/definitions.tsv')
+            def_file_open = open('./applications/pb/static/files/default_files/definitions.tsv')
             definition_file = def_file_open.read()
-            def_file_name   = 'definitions.tsv'
-            TableValidClass = validatorSBtab.ValidateTable(prior_file,filename,definition_file,def_file_name)
-            if TableValidClass.sbtab.table_type != 'QuantityInfo':
-                session.warnings_prior.append('Error: The data file has an incorrect table type: "'"%s"'". The correct table type would be "'"QuantityInfo"'".\n'%(TableValidClass.sbtab.table_type))
-            for itemx in TableValidClass.returnOutput():
-                session.warnings_prior.append(itemx)
+            definition_name = 'definitions.tsv'
+            sbtab_def = SBtab.SBtabTable(definition_file, definition_name)
+            TableValidClass = validatorSBtab.ValidateTable(sbtab_prior,sbtab_def)
+            warnings = TableValidClass.return_output()
+            if warnings != []:
+                session.warnings_prior.append(w)
         except:
             session.warnings_prior.append('Error: The prior data file could not be validated. We suggest to validate the file manually on www.sbtab.net.')
 
         #check file extension
-        valid_extension  = misc.validate_file_extension(request.vars.File.filename,'sbtab')
+        valid_extension = misc.validate_file_extension(sbtab_prior.filename,'sbtab')
         if not valid_extension:
             session.warnings_prior.append('Error: The file extension is not compliant with the prior table. Please upload a file with the .tsv extension.')
 
-        if not session.has_key('prior_names'):
-            session.priors      = []
+        if not 'prior_names' in session:
+            session.priors = []
             session.prior_names = []
             
         #append new prior file
         if filename in session.prior_names:
             session.warnings_prior.append('Error: Duplicate file name. Please remove the file with the same name before uploading.')
         elif valid_extension:
-            prior     = request.vars.File.value
-            delimiter = misc.check_delimiter(prior)
-            (prior,validity) = misc.valid_prior(prior,delimiter)
+            prior = sbtab_prior
+            delimiter = misc.check_delimiter(sbtab_prior.return_table_string())
+            validity = misc.valid_prior(sbtab_prior)
             for warning in validity:
                 session.warnings_prior.append(warning)
-            session.priors.append(prior)
-            session.prior_names.append(filename)
+            session.priors.append(sbtab_prior)
+            session.prior_names.append(sbtab_prior.filename)
 
     elif priorform.errors: response.flash = 'Form has errors'
 
@@ -221,30 +223,37 @@ def balancing():
 
     #upload form
     if configform.process(formname='form_four').accepted:
-        response.flash          = 'form accepted'
-        filename                = request.vars.File.filename
-        config_file             = request.vars.File.value
+        response.flash = 'form accepted'
+        filename = request.vars.File.filename
+        config_file = request.vars.File.value
+        sbtab_config = SBtab.SBtabTable(config_file.decode('utf-8'), filename)
+        valid_extension = misc.validate_file_extension(sbtab_config.filename,'sbtab')
+        if sbtab_config.table_type != 'PbConfig':
+            session.warnings_config.append('Error: The SBtab file has an incorrect table type: "'"%s"'". The correct table type would be "'"PbConfig"'".\n'%(TableValidClass.sbtab.table_type))
 
-        valid_extension  = misc.validate_file_extension(filename,'sbtab')
+        
         if not valid_extension:
             session.warnings_config.append('Error: The file extension of file %s is not compliant with SBtab. Please upload a options SBtab file with the .tsv extension.'%(filename))
         else:
-            session.config_file     = config_file
-            session.config_filename = filename
+            session.config_file = sbtab_config
+            session.config_filename = sbtab_config.filename
             try:
-                def_file_open   = open('./applications/pb/static/files/default_files/definitions.tsv')
+                def_file_open = open('./applications/pb/static/files/default_files/definitions.tsv')
                 definition_file = def_file_open.read()
-                def_file_name   = 'definitions.tsv'
-                TableValidClass = validatorSBtab.ValidateTable(config_file,filename,definition_file,def_file_name)
-                if TableValidClass.sbtab.table_type != 'PbConfig':
-                    session.warnings_config.append('Error: The SBtab file has an incorrect table type: "'"%s"'". The correct table type would be "'"PbConfig"'".\n'%(TableValidClass.sbtab.table_type))
-                for itemx in TableValidClass.returnOutput():
-                    session.warnings_config.append(itemx)
-                delimiter     = misc.check_delimiter(config_file)
-                (session.parameter_dict,log) = misc.readout_config(config_file,delimiter)
-                for itemx in log:
-                    session.warnings_config.append(itemx)
-            except: session.warnings_config.append('Error: The options SBtab file could not be validated. We suggest to validate the file manually on www.sbtab.net.')
+                definition_name = 'definitions.tsv'
+                sbtab_def = SBtab.SBtabTable(definition_file, definition_name)
+                TableValidClass = validatorSBtab.ValidateTable(sbtab_config, sbtab_def)
+                warnings = TableValidClass.return_output()
+                if warnings != []:
+                    for w in warnings:
+                        session.warnings_config.append(w)
+                delimiter = misc.check_delimiter(sbtab_config.return_table_string())
+                (session.parameter_dict, warnings) = misc.readout_config(sbtab_config)
+                if warnings != []:
+                    for w in warnings:
+                        session.warnings_config.append(w)
+            except:
+                session.warnings_config.append('Error: The options SBtab file could not be validated. We suggest to validate the file manually on www.sbtab.net.')
                 
     elif configform.errors: response.flash = 'Form has errors'
 
@@ -256,42 +265,44 @@ def balancing():
 
     #File is uploaded, checked, and added to the list; variables are declared
     if sbtab_fl_form.process(formname='form_five').accepted:
-        response.flash      = 'form accepted'
+        response.flash  = 'form accepted'
         session.warnings_fl = []
-        filename            = request.vars.File.filename
-
-        valid_extension = misc.validate_file_extension(filename,'sbtab')
+        filename = request.vars.File.filename
+        sbtab_file = request.vars.File.value
+        sbtab_fl = SBtab.SBtabTable(sbtab_file.decode('utf-8'), filename)
+        valid_extension = misc.validate_file_extension(sbtab_fl.filename, 'sbtab')
         if not valid_extension:
             session.warnings_fl.append('Error: The file extension of file %s is not compliant with SBtab. Please upload an SBtab file with the .tsv extension.'%(filename))
 
         session.warnings = []
-            
-        if not session.has_key('sbtab_fls'):
-            session.sbtab_fls      = []
+        if not 'sbtab_fls' in session:
+            session.sbtab_fls = []
             session.sbtab_fl_names = []
 
-        if not session.has_key('sbmls'):
-            session.sbmls      = []
+        if not 'sbmls' in session:
+            session.sbmls = []
             session.sbml_names = []
-            
-        if not session.has_key('sbtabs'):
-            session.sbtabs      = []
+
+        if not 'sbtabs' in session:
+            session.sbtabs = []
             session.sbtab_names = []
 
-        if not session.has_key('priors'):
-            session.priors      = []
+        if not 'priors' in session:
+            session.priors = []
             session.prior_names = []
-            prior_open          = open('./applications/pb/static/files/default_files/pb_prior.tsv')
-            session.prior       = prior_open.read()
-            session.prior_name  = 'default_prior.tsv'
-            session.priors.append(session.priors)
+            prior_open = open('./applications/pb/static/files/default_files/pb_prior.tsv')
+            prior_file = prior_open.read()
+            sbtab_prior = SBtab.SBtabTable(prior_file, 'pb_prior.tsv')
+            session.prior = sbtab_prior
+            session.prior_name = 'pb_prior.tsv'
+            session.priors.append(session.prior)
             session.prior_names.append(session.prior_name)
 
         if filename in session.sbtab_fl_names:
             session.warnings_fl.append('Error: Duplicate file name. Please remove the file with the same name before uploading.')
         elif valid_extension:
-                session.sbtab_fls.append(request.vars.File.value)
-                session.sbtab_fl_names.append(filename)
+                session.sbtab_fls.append(sbtab_fl)
+                session.sbtab_fl_names.append(sbtab_fl.filename)
         try: redirect(URL('../default/balancing'))
         except: redirect(URL('../balancing'))
                 
@@ -307,8 +318,8 @@ def balancing():
     if request.vars.erase_button_sbml:
         del session.sbmls[int(request.vars.erase_button_sbml)]
         del session.sbml_names[int(request.vars.erase_button_sbml)]
-        session.sbml          = None
-        session.sbml_name     = None
+        session.sbml = None
+        session.sbml_name = None
         session.warnings_sbml = []
         try: redirect(URL('../default/balancing'))
         except: redirect(URL('../balancing'))
@@ -317,8 +328,8 @@ def balancing():
     if request.vars.erase_button_sbtab:
         del session.sbtabs[int(request.vars.erase_button_sbtab)]
         del session.sbtab_names[int(request.vars.erase_button_sbtab)]
-        session.sbtab          = None
-        session.sbtab_name     = None
+        session.sbtab = None
+        session.sbtab_name = None
         session.warnings_sbtab = []
         try: redirect(URL('../default/balancing'))
         except: redirect(URL('../balancing'))
@@ -327,18 +338,18 @@ def balancing():
     if request.vars.erase_button_prior:
         del session.priors[int(request.vars.erase_button_prior)]
         del session.prior_names[int(request.vars.erase_button_prior)]
-        session.prior          = None
-        session.prior_name     = None
+        session.prior = None
+        session.prior_name = None
         session.warnings_prior = []
         try: redirect(URL('../default/balancing'))
         except: redirect(URL('../balancing'))
 
     ###4: Config
     if request.vars.erase_button_config:
-        session.config_file     = None
+        session.config_file = None
         session.config_filename = None
         session.warnings_config = []
-        session.parameter_dict  = {}
+        session.parameter_dict = {}
         try: redirect(URL('../default/balancing'))
         except: redirect(URL('../balancing'))
 
@@ -346,42 +357,42 @@ def balancing():
     if request.vars.erase_button_fl:
         del session.sbtab_fls[int(request.vars.erase_button_fl)]
         del session.sbtab_fl_names[int(request.vars.erase_button_fl)]
-        session.sbtab_fl      = None
+        session.sbtab_fl = None
         session.sbtab_fl_name = None
-        session.warnings_fl   = []
+        session.warnings_fl = []
         try: redirect(URL('../default/balancing'))
         except: redirect(URL('../balancing'))
 
     ###6: If stuff is in place, we can perform the classic balancing
     if request.vars.balance_classic:
         #get SBML
-        sbml_file      = session.sbml
+        sbml_file = session.sbml
         sbml_filename  = session.sbml_name
         #get SBtab or produce empty SBtab
-        if session.has_key('sbtab'):
+        if 'sbtab' in session:
             if session.sbtab != None:
-                sbtab_file         = session.sbtab
-                sbtab_filename     = session.sbtab_name
+                sbtab_file = session.sbtab
+                sbtab_filename = session.sbtab_name
                 session.emptysbtab = False
             else: session.emptysbtab = True
         else: session.emptysbtab = True
 
         #get prior file or open default
-        if session.has_key('prior'):
+        if 'prior' in session:
             if session.prior != None:
-                prior_file     = session.prior
+                sbtab_prior = session.prior
                 prior_filename = session.prior_name
-                emptyprior     = False
+                emptyprior = False
             else: emptyprior = True
         else: emptyprior = True
 
         if emptyprior:
             try:
-                prior_open          = open('./applications/pb/static/files/default_files/pb_prior.tsv')
-                session.prior       = prior_open.read()
-                session.prior_name  = 'default_prior.tsv'
-                prior_file          = session.prior
-                prior_filename      = session.prior_name
+                prior_open = open('./applications/pb/static/files/default_files/pb_prior.tsv')
+                prior_file = prior_open.read()
+                sbtab_prior = SBtab.SBtabTable(prior_file, 'pb_prior.tsv')
+                session.prior = sbtab_prior
+                session.prior_name = sbtab_prior.filename
                 session.priors.append(session.prior)
                 session.prior_names.append(session.prior_name)
                 emptyprior = False
@@ -389,139 +400,113 @@ def balancing():
                 session.warnings_prior.append('Error loading the default prior table.')
 
         #get config file if provided
-        if session.has_key('config'):
+        if 'config' in session:
             if session.config != None:
-                config_file     = session.config_file
+                sbtab_config = session.config_file
                 config_filename = session.config_filename
+                if sbtab_config.table_type != 'PbConfig':
+                    session.warnings_config.append('Error: The SBtab file has an incorrect table type: "'"%s"'". The correct table type would be "'"PbConfig"'".\n'%(TableValidClass.sbtab.table_type))
+                
                 #get default definition file
                 try:
-                    def_file_open   = open('./applications/pb/static/files/default_files/definitions.tsv')
+                    def_file_open = open('./applications/pb/static/files/default_files/definitions.tsv')
                     definition_file = def_file_open.read()
-                    def_file_name   = 'definitions.tsv'
-                    TableValidClass = validatorSBtab.ValidateTable(config_file,'embedded_options.tsv',definition_file,def_file_name)
-                    if TableValidClass.sbtab.table_type != 'PbConfig':
-                        session.warnings_config.append('Error: The SBtab file has an incorrect table type: "'"%s"'". The correct table type would be "'"PbConfig"'".\n'%(TableValidClass.sbtab.table_type))
-                    for itemx in TableValidClass.returnOutput():
-                        session.warnings_config.append(itemx)
-                        delimiter     = misc.check_delimiter(config_file)
-                        (session.parameter_dict,warnings) = misc.readout_config(config_file,delimiter)
-                    for itemx in warnings:
-                        session.warnings_config.append(itemx)
+                    definition_name = 'definitions.tsv'
+                    sbtab_def = SBtab.SBtabTable(definition_file, definition_name)
+                    TableValidClass = validatorSBtab.ValidateTable(sbtab_config, sbtab_def)
+                    warnings = TableValidClass.return_output()
+                    if warnings != []:
+                        for w in warnings:
+                            session.warnings_config.append(itemx)
+                    delimiter = misc.check_delimiter(sbtab_config.return_table_string())
+                    (session.parameter_dict, warnings) = misc.readout_config(sbtab_config)
+                    if warnings != []:
+                        for w in warnings:
+                            session.warnings_config.append(itemx)
                 except:
                     session.warnings_config.append('Error: The options SBtab file could not be validated. We suggest to validate the file manually on www.sbtab.net.')
                     try: redirect(URL('../default/balancing'))
                     except: redirect(URL('../balancing'))
 
-        if not session.has_key('parameter_dict'): session.parameter_dict = {'config':False}
+        if not 'parameter_dict' in session or not 'config' in session.parameter_dict:
+            session.parameter_dict = {'config': False}
 
         #1: extract priors and pseudos
         try:
-            delimiter                  = misc.check_delimiter(prior_file)
-            (priors,pseudos,pmin,pmax) = misc.extract_priorpseudos(prior_file,delimiter)
+            (pseudos, priors, pmin, pmax) = misc.extract_pseudos_priors(sbtab_prior)
         except:
-            session.warnings_prior.append('Error: The default prior table %s could not be processed properly.'%(prior_filename))
+            session.warnings_prior.append('Error: The default prior table %s could not be processed properly.'%(sbtab_prior.filename))
             try: redirect(URL('../default/balancing'))
             except: redirect(URL('../balancing'))
 
-        #2: makeSBtab (either from an empty SBtab or from a given SBtab)
+        #2: makeSBtab (either from an empty SBtab or from a given SBtab)xxx
         if session.emptysbtab:
             try:
-                reader        = libsbml.SBMLReader()
-                sbml          = reader.readSBMLFromString(sbml_file)
-                sbml_model    = sbml.getModel()
-                pb            = balancer.ParameterBalancing(sbml_model)
-                (header,rows) = pb.makeEmptySBtab(pmin,pmax,session.parameter_dict)
-                revoked_sbtab = '\t'.join(header)+'\n'
-                #for row in rows:
-                #    revoked_sbtab += '\t'.join(row)+'\n'
+                reader = libsbml.SBMLReader()
+                sbml = reader.readSBMLFromString(sbml_file)
+                sbml_model = sbml.getModel()
+                pb = balancer.ParameterBalancing(sbml_model)
+                sbtab_data = pb.make_empty_sbtab(pmin, pmax, session.parameter_dict)
             except:
                 session.warnings_sbml.append('Error: The SBML file %s could not be processed properly.'%(sbml_filename))
                 try: redirect(URL('../default/balancing'))
                 except: redirect(URL('../balancing'))
         else:
             try:
-                delimiter     = misc.check_delimiter(sbtab_file)
-                revoked_sbtab = misc.revoke_sbtab(sbtab_file,delimiter)
-            except:
-                session.warnings_sbtab.append('Error: The data file %s could not be processed properly.'%(sbtab_filename))
-                try: redirect(URL('../default/balancing'))
-                except: redirect(URL('../balancing'))
-            try:
-                reader        = libsbml.SBMLReader()
-                sbml          = reader.readSBMLFromString(sbml_file)
-                sbml_model    = sbml.getModel()
-                pb            = balancer.ParameterBalancing(sbml_model)
-                use_header    = revoked_sbtab.split('\n')[0].strip('\r').split('\t')
-                try: volume = float(session.parameter_dict['cell_volume'])
-                except: volume = 43
-                (header,rows) = pb.makeSBtab(revoked_sbtab,use_header,sbtab_filename,'All organisms',volume,pmin,pmax,session.parameter_dict)
+                reader = libsbml.SBMLReader()
+                sbml = reader.readSBMLFromString(sbml_file)
+                sbml_model = sbml.getModel()
+                pb = balancer.ParameterBalancing(sbml_model)
+                sbtab_data = pb.make_sbtab(sbtab_file, sbtab_file.filename, 'All organisms', 43,
+                                           pmin, pmax, session.parameter_dict)
+
             except:
                 session.warnings_sbml.append('Error: The SBML file %s could not be processed properly.'%(sbml_filename))
                 try: redirect(URL('../default/balancing'))
                 except: redirect(URL('../balancing'))
 
-
         #3: fill them in the SBtab file
-        try:
-            if session.parameter_dict['use_pseudos'] == 'True': pseudo = True
-            else: pseudo = False
-        except: pseudo = True
-        
-        try:
-            if pseudo: filled_rows = pb.fillSBtab(rows,priors,pseudos)
-            else: filled_rows = pb.fillSBtab(rows,priors)
-        except:
-            session.warnings_prior.append('Error: The prior table %s could not be processed properly.'%(prior_filename))
-            try: redirect(URL('../default/balancing'))
-            except: redirect(URL('../balancing'))
-
+        if 'use_pseudo_values' in session.parameter_dict and session.parameter_dict['use_pseudo_values'] == 'True':
+            sbtab_old = copy.deepcopy(sbtab_data)
+            sbtab_new = pb.fill_sbtab(sbtab_old, pseudos, priors)
+            pseudo_flag = 'pseudos'
+        else:
+            sbtab_new = pb.fill_sbtab(sbtab_data)
+            pseudo_flag = 'no_pseudos'
 
         #4: construct parameter dictionary
-        if not 'Temperature' in session.parameter_dict.keys(): session.parameter_dict['Temperature'] = 300
-        if not 'pH' in session.parameter_dict.keys(): session.parameter_dict['pH'] = 7
+        if not 'temperature' in session.parameter_dict.keys(): session.parameter_dict['temperature'] = 300
+        if not 'ph' in session.parameter_dict.keys(): session.parameter_dict['ph'] = 7
 
         types = ['standard chemical potential','catalytic rate constant geometric mean','Michaelis constant','activation constant','inhibitory constant','concentration','concentration of enzyme','equilibrium constant','substrate catalytic rate constant','forward maximal velocity','product catalytic rate constant','reverse maximal velocity','chemical potential','reaction affinity']
 
-        for typ in types: session.parameter_dict[typ] = True
-
+        for typ in types:
+            session.parameter_dict[typ] = True
 
         #5: BALANCE PARAMETERS
-        #(mean_vector,mean_vector_inc,c_post,c_post_inc,r_matrix,shannon,(header,rows),log) = pb.makeBalancing(session.parameter_dict,filled_rows,revoked_sbtab,pmin,pmax)
         try:
-            (mean_vector,mean_vector_inc,c_post,c_post_inc,r_matrix,shannon,(header,rows),log) = pb.makeBalancing(session.parameter_dict,filled_rows,revoked_sbtab,pmin,pmax)
+            (sbtab_final, mean_vector, mean_vector_inc, c_post,
+             c_post_inc, r_matrix, shannon, log) = pb.make_balancing(sbtab_new, sbtab_data, pmin, pmax, session.parameter_dict)
             session.log = log
         except:
             session.warnings_sbml.append('Error: The balancing process was erroneous. Please check your input files for validity.')
             try: redirect(URL('../default/balancing'))
             except: redirect(URL('../balancing'))
 
-        #6: post production of SBtab format; I am aware that this is not pretty; but it works and it does
-        #   not hurt and does not increase error liability
-        #(6a: do we need to remove duplicate entries? The script did that; but I see no need currently)
-        try:
-            sbone = '\n'.join(['\t'.join([str(x) for x in row]) for row in rows])
-            sbtwo = pb.checkForBlanks(sbone)
-            sbthr = pb.mimicMean(sbtwo)
-            sbfou = sbthr.split('\n')
-        except:
-            session.warnings_sbml.append('Error: The internal SBtab post processing was erroneous.')
-            try: redirect(URL('../default/balancing'))
-            except: redirect(URL('../balancing'))
-            
         #7: fill the model with the parameters and the kinetics
+        try: param = session.parameter_dict['parametrisation'] 
+        except: param = 'hal'
+        try: prefac = session.parameter_dict['enzyme_prefactor']
+        except: prefac = True
+        try: inh = session.parameter_dict['default_inh'] 
+        except: inh = 'complete_inh'
+        try: act = session.parameter_dict['default_act']
+        except: act = 'complete_act'
+        try: overwrite = session.parameter_dict['overwrite_kinetics'] 
+        except: overwrite = True
+
         try:
-            sbtab = SBtab_old.SBtabTable(sbfou,session.sbtab_fl_name,'QuantityType')
-            try: param = session.parameter_dict['parametrisation'] 
-            except: param = 'hal'
-            try: prefac = session.parameter_dict['enzyme_prefactor']
-            except: prefac = True
-            try: inh = session.parameter_dict['default_inh'] 
-            except: inh = 'complete_inh'
-            try: act = session.parameter_dict['default_act']
-            except: act = 'complete_act'
-            try: overwrite = session.parameter_dict['overwrite_kinetics'] 
-            except: overwrite = True
-            kineticizer_cs = kineticizer.kineticizer_cs(sbml_model,sbtab,param,prefac,inh,act,overwrite)
+            kineticizer_cs = kineticizer.KineticizerCS(sbml_model, sbtab_final, param, prefac, inh, act, overwrite)
         except:
             session.warnings_sbtab.append('Error: The parameters and kinetics could not be written to the output model.')
             try: redirect(URL('../default/balancing'))
@@ -531,8 +516,8 @@ def balancing():
         #8.1: SBML
         try:
             ###model_name
-            model_name     = str(sbml_filename)[:-4]+'_balanced_model.xml'
-            sbml_code      = '<?xml version="1.0" encoding="UTF-8"?>\n' + sbml_model.toSBML()    
+            model_name = str(sbml_filename)[:-4]+'_balanced_model.xml'
+            sbml_code = '<?xml version="1.0" encoding="UTF-8"?>\n' + sbml_model.toSBML()    
             session.result_sbml = [sbml_code]
             session.result_sbml_name = [model_name]
         except:
@@ -542,31 +527,32 @@ def balancing():
 
         #8.2: SBtab
         try:
-            sbfiv = misc.rerevoke_sbtab(sbfou)
-            session.result_sbtab = [sbfiv]
-            session.result_sbtab_name = [sbml_filename[:-4]+'_balanced_parameters.tsv']
-            #session.sbtabs = [sbfiv]
-            #session.sbtab_names = [sbml_filename[:-4]+'_balanced.tsv']
+            sbtab_file_new = open(sbtab_final.filename + '.tsv', 'w')
+            sbtab_file_new.write(sbtab_final.return_table_string())
+            sbtab_file_new.close()
+            session.result_sbtab = [sbtab_final]
+            session.result_sbtab_name = [sbtab_final.filename[:-4]+'_balanced_parameters.tsv']
         except:
             session.warnings_sbtab.append('Error: The new SBtab file could not be produced.')
             try: redirect(URL('../default/balancing'))
             except: redirect(URL('../balancing'))
 
-
         #8.3: SBtab (for all)
+        # Fix this as soon as we have the SBtab Document Class
+        # Currently, we only save a string with all the single SBtabs in it,
+        # but we need a list of SBtab objects and a proper show-function for it
         try:
-            document          = sbml2sbtab.SBMLDocument(sbml_model,model_name)
-            (sbtabs,warnings) = document.makeSBtabs()
-            allinone = ''
-            for sbtab in sbtabs:
-                allinone += sbtab[0]+'\n'
-            allinone += sbfiv+'\n'
-            if session.has_key('prior'):
-                allinone += session.prior+'\n'
-            if session.has_key('config_file') and session.config_file != None:
-                allinone += session.config_file+'\n'
-
-            session.result_sbtab.append(allinone)
+            document = sbml2sbtab.SBMLDocument(sbml_model,model_name)
+            sbtab_string = ''
+            (sbtab_all, warnings) = document.makeSBtabs()
+            for sbtab in sbtab_all:
+                sbtab_string += sbtab.return_table_string() + '\n\n'
+            sbtab_string += sbtab_final.return_table_string() + '\n\n'
+            if 'prior' in session:
+                sbtab_string += session.prior.return_table_string() + '\n\n'
+            if 'config_file' in session and session.config_file != None:
+                sbtab_string += session.config_file.return_table_string() + '\n\n'
+            session.result_sbtab.append(sbtab_string)
             session.result_sbtab_name.append(sbml_filename[:-4]+'_balanced_model.tsv')
         except:
             session.warnings_sbtab.append('Error: It was not possible to save the model and parameters in one SBtab file for download.')
@@ -574,9 +560,9 @@ def balancing():
             except: redirect(URL('../balanced'))
 
         #remove prior again to not have it shown initially on balancing screen
-        prior_file          = None
-        prior_filename      = None
-        session.priors      = []
+        prior_file = None
+        prior_filename = None
+        session.priors = []
         session.prior_names = []
            
         try: redirect(URL('../default/balanced'))
@@ -590,26 +576,23 @@ def balancing():
     #FASTLANE###################################################
 
     if request.vars.balance_fastlane:
-        session.sbtab_fl      = session.sbtab_fls[0]
+        session.sbtab_fl = session.sbtab_fls[0]
         session.sbtab_fl_name = session.sbtab_fl_names[0]
-        sbtab_q               = False
-        sbtab_c               = False
-        session.warnings      = []
+        sbtab_q = False
+        sbtab_c = False
+        session.warnings = []
 
         #check out which sbtabs are available
         try:
-            sbtabs         = misc.cut_tabs(session.sbtab_fl)
-            conversionlist = []
-            for tt in sbtabs.keys():
+            sbtabs = misc.cut_tabs(session.sbtab_fl)
+            for sbtab in sbtabs:
                 tabletype = tt
-                if tabletype == 'Reaction' or tabletype == 'Compartment' or tabletype == 'Compound':
-                    conversionlist.append(sbtabs[tabletype])
-                if tabletype == 'Quantity':
-                    sbtab_q = sbtabs[tabletype]
-                elif tabletype == 'QuantityInfo':
-                    sbtab_p = sbtabs[tabletype]
-                elif tabletype == 'PbConfig':
-                    sbtab_c = sbtabs[tabletype]
+                if sbtab.table_type == 'Quantity':
+                    sbtab_data = sbtab
+                elif sbtab.table_type == 'QuantityInfo':
+                    sbtab_prior = sbtab
+                elif sbtab.table_type == 'PbConfig':
+                    sbtab_config = sbtab
         except:
             session.warnings_fl.append('Error: Could not separate the bundled SBtab file. Please check syntax validity.')
             try: redirect(URL('../default/balancing'))
@@ -617,10 +600,11 @@ def balancing():
 
         #convert sbtab to sbml
         try:
-            Conversion_class = sbtab2sbml.SBtabDocument(session.sbtab_fl,session.sbtab_fl_name)
-            (sbml_file,warnings) = Conversion_class.makeSBML()
-            for warning in warnings:
-                session.warnings_fl.append(warning)
+            Conversion_class = sbtab2sbml.SBtabDocument(session.sbtab_fl)
+            (sbml_file, warnings) = Conversion_class.makeSBML()
+            if warnings != []:
+                for w in warnings:
+                    session.warnings_fl.append(w)
         except:
             session.warnings_fl.append('Error: The SBtab file did not include a valid Reaction SBtab that could be converted to SBML.')       
             try: redirect(URL('../default/balancing'))
@@ -628,19 +612,20 @@ def balancing():
 
         #check out prior file if available
         try:
-            delimiter = misc.check_delimiter(sbtab_p)
-            (sbtab_p,validity) = misc.valid_prior(sbtab_p,delimiter)
-            for entry in validity:
-                session.warnings_fl.append(entry)
-            session.priors.append(sbtab_p)
+            validity = misc.valid_prior(sbtab_prior)
+            if validity != []:
+                for v in validity:
+                    session.warnings_fl.append(v)
+            session.priors.append(sbtab_prior)
             session.prior_names.append('embedded_prior.tsv')            
-            session.prior = sbtab_p
+            session.prior = sbtab_prior
             session.prior_name = 'embedded_prior.tsv'
         except:
-            prior_open          = open('./applications/pb/static/files/default_files/pb_prior.tsv')
-            session.prior       = prior_open.read()
-            session.prior_name  = 'default_prior.tsv'
-            session.priors      = []
+            prior_open = open('./applications/pb/static/files/default_files/pb_prior.tsv')
+            prior_file = prior_open.read()
+            session.prior_name = 'pb_prior.tsv'
+            session.prior = SBtab.SBtabTable(prior_file, session.prior_name)
+            session.priors = []
             session.prior_names = []
             try:
                 session.priors.append(session.prior)
@@ -651,49 +636,49 @@ def balancing():
                 except: redirect(URL('../balancing'))
 
         #0: config:
-        if sbtab_c:
-            session.config_file     = sbtab_c
+        if sbtab_config:
+            session.config_file = sbtab_config
             session.config_filename = 'embedded_options.tsv'
             try:
-                def_file_open   = open('./applications/pb/static/files/default_files/definitions.tsv')
+                def_file_open = open('./applications/pb/static/files/default_files/definitions.tsv')
                 definition_file = def_file_open.read()
-                def_file_name   = 'definitions.tsv'
-                TableValidClass = validatorSBtab.ValidateTable(sbtab_c,'embedded_options.tsv',definition_file,def_file_name)
-                if TableValidClass.sbtab.table_type != 'PbConfig':
-                    session.warnings_fl.append('Error: The SBtab file has an incorrect table type: "'"%s"'". The correct table type would be "'"PbConfig"'".\n'%(TableValidClass.sbtab.table_type))
-                for itemx in TableValidClass.returnOutput():
-                    session.warnings_fl.append(itemx)
-                delimiter     = misc.check_delimiter(sbtab_c)
-                (session.parameter_dict,warnings) = misc.readout_config(sbtab_c,delimiter)
-                for itemx in warnings:
-                    session.warnings_fl.append(itemx)
+                definition_name = 'definitions.tsv'
+                sbtab_def = SBtab.SBtabTable(definition_file, definition_name)
+                TableValidClass = validatorSBtab.ValidateTable(sbtab_config, sbtab_def)
+                if sbtab_config.table_type != 'PbConfig':
+                    session.warnings_fl.append('Error: The SBtab file has an incorrect table type: "'"%s"'". The correct table type would be "'"PbConfig"'".\n'%(sbtab_config.table_type))
+                warnings = TableValidClass.return_output()
+                if warnings != []:
+                    for w in warnings:
+                        session.warnings_fl.append(w)
+                (session.parameter_dict, warnings) = misc.readout_config(sbtab_config)
+                if warnings != []:
+                    for w in warnings:
+                        session.warnings_fl.append(w)
             except:
                 session.warnings_fl.append('Error: The options SBtab file could not be validated. We suggest to validate the file manually on www.sbtab.net.')
                 try: redirect(URL('../default/balancing'))
                 except: redirect(URL('../balancing'))
-        
-        if not session.has_key('parameter_dict'): session.parameter_dict = {'config':False}
+
+        if not 'parameter_dict' in session:
+            session.parameter_dict = {'config': False}
 
         #1: extract priors and pseudos
         try:
-            delimiter                  = misc.check_delimiter(session.prior)
-            (priors,pseudos,pmin,pmax) = misc.extract_priorpseudos(session.prior,delimiter)
+            (pseudos, priors, pmin, pmax) = misc.extract_pseudos_priors(session.prior)
         except:
-            session.warnings_fl.append('Error: The prior table %s could not be processed properly.'%(session.prior_name))
+            session.warnings_fl.append('Error: The prior table %s could not be processed properly.' % (session.prior_name))
             try: redirect(URL('../default/balancing'))
             except: redirect(URL('../balancing'))           
             
         #2: makeSBtab (either from an empty SBtab or from a given SBtab)
-        if not sbtab_q:
+        if not sbtab_data:
             try:
-                reader        = libsbml.SBMLReader()
-                sbml          = reader.readSBMLFromString(sbml_file)
-                sbml_model    = sbml.getModel()
-                pb            = balancer.ParameterBalancing(sbml_model)
-                (header,rows) = pb.makeEmptySBtab(pmin,pmax,session.parameter_dict)
-                revoked_sbtab = '\t'.join(header)+'\n'
-                #for row in rows:
-                #    revoked_sbtab += '\t'.join(row)+'\n'
+                reader = libsbml.SBMLReader()
+                sbml = reader.readSBMLFromString(sbml_file)
+                sbml_model = sbml.getModel()
+                pb = balancer.ParameterBalancing(sbml_model)
+                sbtab_data = pb.make_empty_sbtab(pmin, pmax, session.parameter_dict)
             except:
                 session.warnings_fl.append('Error: The model information of %s could not be processed properly.'%(session.sbtab_fl_name))
                 try:
@@ -702,16 +687,16 @@ def balancing():
                     redirect(URL('../balancing')) 
         else:
             try:
-                delimiter     = misc.check_delimiter(sbtab_q)
-                revoked_sbtab = misc.revoke_sbtab(sbtab_q,delimiter)
-                reader        = libsbml.SBMLReader()
-                sbml          = reader.readSBMLFromString(sbml_file)
-                sbml_model    = sbml.getModel()
-                pb            = balancer.ParameterBalancing(sbml_model)
-                use_header    = revoked_sbtab.split('\n')[0].split('\t')
-                try: volume = float(session.parameter_dict['cell_volume'])
-                except: volume = 43.
-                (header,rows) = pb.makeSBtab(revoked_sbtab,use_header,session.sbtab_fl_name,'All organisms',volume,pmin,pmax,session.parameter_dict)
+                reader = libsbml.SBMLReader()
+                sbml = reader.readSBMLFromString(sbml_file)
+                sbml_model = sbml.getModel()
+                pb = balancer.ParameterBalancing(sbml_model)
+                #use_header    = revoked_sbtab.split('\n')[0].split('\t')
+                #try: volume = float(session.parameter_dict['cell_volume'])
+                #except: volume = 43.
+                sbtab_data = pb.make_sbtab(sbtab_data, sbtab_data.filename, 'All organisms', 43,
+                                           pmin, pmax, session.parameter_dict)
+                #(header,rows) = pb.makeSBtab(revoked_sbtab,use_header,session.sbtab_fl_name,'All organisms',volume,pmin,pmax,session.parameter_dict)
             except:
                 session.warnings_fl.append('Error: The model information of %s could not be processed properly.'%(session.sbtab_fl_name))
                 try: redirect(URL('../default/balancing'))
@@ -719,22 +704,27 @@ def balancing():
 
         
         #3: fill them in the SBtab file
-        try: pseudo = session.parameter_dict['use_pseudos']
+        try: pseudo = bool(session.parameter_dict['use_pseudo_values'])
         except: pseudo = True
         
         try:
-            if pseudo: filled_rows = pb.fillSBtab(rows,priors,pseudos)
-            else: filled_rows = pb.fillSBtab(rows,priors)
+            if pseudo:
+                sbtab_old = copy.deepcopy(sbtab_data)
+                sbtab_new = pb.fill_sbtab(sbtab_old, pseudos, priors)
+                pseudo_flag = 'pseudos'
+            else:
+                sbtab_new = pb.fill_sbtab(sbtab_data)
+                pseudo_flag = 'no_pseudos'
         except:
             session.warnings_fl.append('Error: The prior table %s could not be processed properly.'%(session.prior_name))
             try: redirect(URL('../default/balancing'))
             except: redirect(URL('../balancing'))       
         
         #4: construct parameter dictionary
-        if not 'Temperature' in session.parameter_dict.keys(): session.parameter_dict['Temperature'] = 300
-        else: session.parameter_dict['Temperature'] = float(session.parameter_dict['Temperature'])
-        if not 'pH' in session.parameter_dict.keys(): session.parameter_dict['pH'] = 7        
-        else: session.parameter_dict['pH'] = float(session.parameter_dict['pH'])
+        if not 'temperature' in session.parameter_dict.keys(): session.parameter_dict['temperature'] = 300
+        else: session.parameter_dict['temperature'] = float(session.parameter_dict['temperature'])
+        if not 'ph' in session.parameter_dict.keys(): session.parameter_dict['ph'] = 7        
+        else: session.parameter_dict['ph'] = float(session.parameter_dict['ph'])
 
         types = ['standard chemical potential','catalytic rate constant geometric mean','Michaelis constant','activation constant','inhibitory constant','concentration','concentration of enzyme','equilibrium constant','substrate catalytic rate constant','forward maximal velocity','product catalytic rate constant','reverse maximal velocity','chemical potential','reaction affinity']
 
@@ -743,29 +733,18 @@ def balancing():
         #####
         #5: BALANCE PARAMETERS
         try:
-            (mean_vector,mean_vector_inc,c_post,c_post_inc,r_matrix,shannon,(header,rows),log) = pb.makeBalancing(session.parameter_dict,filled_rows,revoked_sbtab,pmin,pmax)
+            (sbtab_final, mean_vector, mean_vector_inc, c_post, c_post_inc, r_matrix,
+             shannon, log) = pb.make_balancing(sbtab_new, sbtab_data, pmin, pmax, session.parameter_dict)
+            #(mean_vector,mean_vector_inc,c_post,c_post_inc,r_matrix,shannon,(header,rows),log) = pb.makeBalancing(session.parameter_dict,filled_rows,revoked_sbtab,pmin,pmax)
             session.log = log
         except:
             session.warnings_fl.append('Error: The balancing process was erroneous. Please check validity of input files.')
             try: redirect(URL('../default/balancing'))
             except: redirect(URL('../balancing')) 
 
-        #6: post production of SBtab format; I am aware that this is not pretty; but it works and it does
-        #   not hurt and does not increase error liability
-        #(6a: do we need to remove duplicate entries? The script did that; but I see no need currently)
-        try:
-            sbone = '\n'.join(['\t'.join([str(x) for x in row]) for row in rows])
-            sbtwo = pb.checkForBlanks(sbone)
-            sbthr = pb.mimicMean(sbtwo)
-            sbfou = sbthr.split('\n')
-        except:
-            session.warnings_fl.append('Error: The internal SBtab post processing was erroneous.')
-            try: redirect(URL('../default/balancing'))
-            except: redirect(URL('../balancing'))            
-
         #7: fill the model with the parameters and the kinetics
         try:
-            sbtab = SBtab_old.SBtabTable(sbfou,session.sbtab_fl_name,'QuantityType')
+            #sbtab = SBtab_old.SBtabTable(sbfou,session.sbtab_fl_name,'QuantityType')
             try: param = session.parameter_dict['parametrisation'] 
             except: param = 'hal'
             try: prefac = session.parameter_dict['enzyme_prefactor']
@@ -776,7 +755,7 @@ def balancing():
             except: act = 'complete_act'
             try: overwrite = session.parameter_dict['overwrite_kinetics'] 
             except: overwrite = True
-            kineticizer_cs = kineticizer.kineticizer_cs(sbml_model,sbtab,param,prefac,inh,act,overwrite)
+            kineticizer_cs = kineticizer.KineticizerCS(sbml_model, sbtab_final, param, prefac, inh, act, overwrite)
         except:
             session.warnings_fl.append('Error: The parameters and kinetics could not be written to the model.')
             try: redirect(URL('../default/balancing'))
@@ -785,14 +764,10 @@ def balancing():
         #8.1: Output SBML
         try:
             ###model_name
-            model_name     = str(session.sbtab_fl_name)[:-4]+'_balanced_model.xml'
-            sbml_code      = '<?xml version="1.0" encoding="UTF-8"?>\n' + sbml_model.toSBML()    
+            model_name = str(session.sbtab_fl_name)[:-4]+'_balanced_model.xml'
+            sbml_code = '<?xml version="1.0" encoding="UTF-8"?>\n' + sbml_model.toSBML()    
             session.result_sbml = [sbml_code]
             session.result_sbml_name = [model_name]
-            #session.sbmls.append(sbml_code)
-            #session.sbml_names.append(model_name)
-            #session.sbml = sbml_code
-            #session.sbml_name = model_name
         except:
             session.warnings_fl.append('Error: The new SBML model could not be produced.')
             try: redirect(URL('../default/balancing'))
@@ -800,11 +775,8 @@ def balancing():
 
         #8.2: Output SBtab
         try:
-            sbfiv = misc.rerevoke_sbtab(sbfou)
-            session.result_sbtab = [sbfiv]
+            session.result_sbtab = [sbtab_final.return_table_string()]
             session.result_sbtab_name = [session.sbtab_fl_name[:-4]+'_balanced_parameters.tsv']
-            #session.sbtabs.append(sbfiv)
-            #session.sbtab_names.append(session.sbtab_fl_name[:-4]+'_balanced.tsv')
         except:
             session.warnings_fl.append('Error: The new SBtab file could not be produced.')
             try: redirect(URL('../default/balancing'))
@@ -812,20 +784,16 @@ def balancing():
 
         #8.3: Output SBtab (for all)
         try:
-            allinone = ''
-            for tabletype in sbtabs.keys():
-                if tabletype != 'Quantity':
-                    allinone += sbtabs[tabletype]
-            allinone += sbfiv
-            session.result_sbtab.append(allinone)
+            sbtabs_all = ''
+            for sbtab in sbtabs:
+                sbtabs_all += sbtab.return_table_string() + '\n'
+            sbtabs_all += sbtab_final.return_table_string()
+            session.result_sbtab.append(sbtabs_all)
             session.result_sbtab_name.append(session.sbtab_fl_name[:-4]+'_balanced_model.tsv')
-            #session.sbtabs.append(allinone)
-            #session.sbtab_names.append(session.sbtab_fl_name[:-4]+'_complete.tsv')                
         except:
             session.warnings_fl.append('Error: It was not possible to save the model and parameters in one SBtab file for download.')
             try: redirect(URL('../default/balancing'))
             except: redirect(URL('../balancing'))
-
 
         #remove prior and config again to not have it shown initially on balancing screen
         prior_file          = None
@@ -835,7 +803,6 @@ def balancing():
 
         session.config_file     = None
         session.config_filename = None
-        
 
         try: redirect(URL('../default/balanced'))
         except: redirect(URL('../balanced'))
@@ -886,7 +853,7 @@ def show_sbml():
     '''
     function that converts SBML file to HTML in order to display it in the browser
     '''
-    return misc.xml2html(session.sbmls[int(request.args(0))])
+    return misc.xml2html(str(session.sbmls[int(request.args(0))]))
 
 def show_sbml2():
     '''
@@ -899,13 +866,11 @@ def show_sbtab():
     function that converts SBtab file to HTML in order to display it in the browser
     '''    
     try:
-        sbtab_file = session.sbtabs[int(request.args(0))]
-        file_name  = session.sbtab_names[int(request.args(0))]
+        sbtab = session.sbtabs[int(request.args(0))]
     except: return 'The requested SBtab file cannot be loaded.'
 
     try:
-        delimiter = misc.check_delimiter(sbtab_file)
-        return misc.tsv2html(sbtab_file,file_name,delimiter)
+        return misc.tsv_to_html(sbtab)
     except: return 'The requested SBtab file cannot be displayed.'
 
 def show_sbtab2():
@@ -913,13 +878,11 @@ def show_sbtab2():
     function that converts SBtab file to HTML in order to display it in the browser
     '''    
     try:
-        sbtab_file = session.result_sbtab[int(request.args(0))]
-        file_name  = session.result_sbtab_name[int(request.args(0))]
+        sbtab = session.result_sbtab[int(request.args(0))]
     except: return 'The requested SBtab file cannot be loaded.'
 
     try:
-        delimiter = misc.check_delimiter(sbtab_file)
-        return misc.tsv2html(sbtab_file,file_name,delimiter)
+        return misc.tsv_to_html(sbtab)
     except: return 'The requested SBtab file cannot be displayed.'
 
 
@@ -957,13 +920,11 @@ def show_prior():
     function that converts prior SBtab file to HTML in order to display it in the browser
     '''    
     try:
-        prior_file = session.priors[int(request.args(0))]
-        file_name  = session.prior_names[int(request.args(0))]
+        sbtab_prior = session.priors[int(request.args(0))]
     except: return 'The requested prior table cannot be loaded.'
 
     try:
-        delimiter = misc.check_delimiter(prior_file)
-        return misc.tsv2html(prior_file,file_name,delimiter)
+        return misc.tsv_to_html(sbtab_prior)
     except: return 'The requested prior file cannot be displayed.'
 
 def show_sbtab_conf():
@@ -971,13 +932,11 @@ def show_sbtab_conf():
     function that converts configure SBtab file to HTML in order to display it in the browser
     '''    
     try:
-        config_file = session.config_file
-        file_name   = session.config_filename
+        sbtab_config = session.config_file
     except: return 'The requested config table cannot be loaded.'
 
     try:
-        delimiter = misc.check_delimiter(config_file)
-        return misc.tsv2html(config_file,file_name,delimiter)
+        return misc.tsv_to_html(sbtab_config)
     except: return 'The requested options file cannot be displayed.'
     
 
