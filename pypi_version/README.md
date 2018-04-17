@@ -1,4 +1,4 @@
-# Parameter Balancing
+# Parameter Balancing: PyPi version
 
 Parameter balancing is a tool for metabolic modelling in systems biology. It is implemented in Python3 and its code underlies the PEP8 guidelines. This subdirectory holds the code for the PyPi python installer. This code is not meant to be downloaded but to be installed via pip. To do this, first of all you need Python3. Next, you will need the pip3 installer. You can find information
 on how to do this here: https://pip.pypa.io/en/stable/installing/. Then you can type on your commandline
@@ -28,28 +28,29 @@ configuration of parameter balancing. Providing complete file information would 
 
 You can create a log file by setting the flag -l, you can use pseudo values to account for a lack of data by setting the flag -p, you can
 watch program outputs on your commandline by setting the flag -v.
-usage: parameter_balancing.py [-h] [--sbtab_data SBTAB_DATA]
-                              [--sbtab_prior SBTAB_PRIOR]
-                              [--sbtab_options SBTAB_OPTIONS]
-                              [--output_name OUTPUT_NAME] [-l] [-p] [-v]
-                              sbml
 
-positional arguments:
-  sbml                  Path to an SBML file.
-
-optional arguments:
-  -h, --help            show this help message and exit
-  --sbtab_data SBTAB_DATA
-                        Path to an SBtab data file.
-  --sbtab_prior SBTAB_PRIOR
-                        Path to an SBtab prior file.
-  --sbtab_options SBTAB_OPTIONS
-                        Path to an SBtab options file.
-  --output_name OUTPUT_NAME
-                        Choose a name for the output files.
-  -l, --pb_log          Flag to print a log file.
-  -p, --pb_pseudos      Flag for usage of pseudo values.
-  -v, --verbose         Flag to display script messages.
+> usage: parameter_balancing.py [-h] [--sbtab_data SBTAB_DATA] <br>
+>                               [--sbtab_prior SBTAB_PRIOR] <br>
+>                               [--sbtab_options SBTAB_OPTIONS] <br>
+>                               [--output_name OUTPUT_NAME] [-l] [-p] [-v] <br>
+>                               sbml <br>
+>  <br>
+> positional arguments: <br>
+>   sbml                  Path to an SBML file. <br>
+>  <br>
+> optional arguments: <br>
+>   -h, --help            show this help message and exit <br>
+>   --sbtab_data SBTAB_DATA <br>
+>                         Path to an SBtab data file. <br>
+>   --sbtab_prior SBTAB_PRIOR <br>
+>                         Path to an SBtab prior file. <br>
+>   --sbtab_options SBTAB_OPTIONS <br>
+>                         Path to an SBtab options file. <br>
+>   --output_name OUTPUT_NAME <br>
+>                         Choose a name for the output files. <br>
+>   -l, --pb_log          Flag to print a log file. <br>
+>   -p, --pb_pseudos      Flag for usage of pseudo values. <br>
+>   -v, --verbose         Flag to display script messages. <br>
 
 Information on the SBtab format can be found on www.sbtab.net, more information
 on the mentioned file types can be found in the parameter balancing manual in parameter_balancing/standalone_version/files/manual.pdf,
