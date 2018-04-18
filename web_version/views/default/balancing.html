@@ -39,7 +39,7 @@
 	  </table>
 	  <!-- Display warnings -->
 	  {{pass}}
-	  {{if WARNINGS_SBML and SBML_NAMES:}}
+	  {{if WARNINGS_SBML:}}
 	  <table border="0" cellspacing="5">
 	    <tr>
 	      <td>
@@ -85,7 +85,7 @@
 	      </table>
 	  {{pass}}
 	  <!-- Display warnings -->
-	  {{if WARNINGS_SBTAB and SBTAB_NAMES:}}
+	  {{if WARNINGS_SBTAB:}}
 	      <table border="0">
 		{{for f in WARNINGS_SBTAB:}}
 		<tr>
@@ -177,7 +177,7 @@
 	  {{pass}}
 
 	  <!-- Display warnings -->
-	  {{if WARNINGS_CONFIG and CONFIG_FILE:}}
+	  {{if WARNINGS_CONFIG:}}
 	  <table border="0">
 	    <tr>
 	      <td>

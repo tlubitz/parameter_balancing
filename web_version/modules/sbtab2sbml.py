@@ -87,6 +87,7 @@ class SBtabDocument:
             tabs_in_document = self.getAmountOfTables(document_rows)
             if tabs_in_document > 1: sbtabs = self.splitDocumentInTables(document_rows)
             else: sbtabs = [document_rows]
+
             #generate SBtab class instance for every SBtab
             for sbtab in sbtabs:
                 as_sbtab = '\n'.join(sbtab)
@@ -204,7 +205,6 @@ class SBtabDocument:
                     self.warnings.append('Warning: The provided compounds could not be initialised. Please check for valid compound information.')
             else: strikes += 1
 
-
             #2nd order of bizness: Work the Reaction SBtab (mandatory)
             if 'Reaction' in self.type2sbtab.keys():
                 try:
@@ -318,12 +318,12 @@ class SBtabDocument:
 
         #complement the missing compartments
         for row in sbtab.value_rows:
-            if row[sbtab.columns_dict['!Compartment']] not in self.compartment_list:
+            if row[sbtab.columns_dict['!ID']] not in self.compartment_list:
                 compartment = self.new_model.createCompartment()
                 if '!Location:SBML:compartment:id' in sbtab.columns and row[sbtab.columns_dict['!Location:SBML:compartment:id']] != '':
                     compartment.setId(str(row[sbtab.columns_dict['!Location:SBML:compartment:id']]))
                 else:
-                    compartment.setId(str(row[sbtab.columns_dict['!Compartment']]))
+                    compartment.setId(str(row[sbtab.columns_dict['!ID']]))
                 if '!Name' in sbtab.columns and row[sbtab.columns_dict['!Name']] != '':
                     compartment.setName(str(row[sbtab.columns_dict['!Name']]))
                 else:
@@ -332,13 +332,13 @@ class SBtabDocument:
                 #    #if '|' in row[sbtab.columns_dict['!Name']]: compartment.setName(str(row[sbtab.columns_dict['!Name']].split('|')[0]))
                 #    compartment.setName(str(row[sbtab.columns_dict['!Name']]))
                 #else:
-            self.compartment_list.append(row[sbtab.columns_dict['!Compartment']])
+            self.compartment_list.append(row[sbtab.columns_dict['!ID']])
 
             #set the compartment sizes if given
             if '!Size' in sbtab.columns:
                 for comp in self.new_model.getListOfCompartments():
                     for compsbtab in sbtab.value_rows:
-                        if comp.getId() == compsbtab[sbtab.columns_dict['!Compartment']] and compsbtab[sbtab.columns_dict['!Size']] != '':
+                        if comp.getId() == compsbtab[sbtab.columns_dict['!ID']] and compsbtab[sbtab.columns_dict['!Size']] != '':
                             comp.setSize(float(compsbtab[sbtab.columns_dict['!Size']]))
 
             if '!SBOTerm' in sbtab.columns and row[sbtab.columns_dict['!SBOTerm']] != '':
@@ -507,6 +507,7 @@ class SBtabDocument:
                     continue
             except: pass
             react = self.new_model.createReaction()
+
             try:
                 sbtab.columns_dict['!Reaction:SBML:reaction:id']
                 if row[sbtab.columns_dict['!Reaction:SBML:reaction:id']] != '':
@@ -518,10 +519,11 @@ class SBtabDocument:
                 except: pass
 
             if '!IsReversible' in sbtab.columns and row[sbtab.columns_dict['!IsReversible']] != '':
-                if string.capitalize(row[sbtab.columns_dict['!IsReversible']]) == 'False':
+                if string.capwords(row[sbtab.columns_dict['!IsReversible']]) == 'False':
                     try: react.setReversible(0)
                     except: pass
-                elif string.capitalize(row[sbtab.columns_dict['!IsReversible']]) == 'True':
+                    
+                elif string.capwords(row[sbtab.columns_dict['!IsReversible']]) == 'True':
                     try: react.setReversible(1)
                     except: pass                   
 

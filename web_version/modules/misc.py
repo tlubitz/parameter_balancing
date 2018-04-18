@@ -749,12 +749,18 @@ def cut_tabs(sbtab_strings):
     return sbtabs
     '''
 
-def tsv_to_html(sbtab):
+def tsv_to_html(sbtab, filename=None):
     '''
     generates html view out of tsv file
     '''
-    ugly_sbtab = sbtab.return_table_string().split('\n')
-    nice_sbtab = '<p><h2><b>'+sbtab.filename+'</b></h2></p>'
+    if type(sbtab) == str and filename:
+        ugly_sbtab = sbtab.split('\n')
+        nice_sbtab = '<p><h2><b>%s</b></h2></p>' % filename
+        delimiter = check_delimiter(sbtab)
+    else:
+        ugly_sbtab = sbtab.return_table_string().split('\n')
+        nice_sbtab = '<p><h2><b>'+sbtab.filename+'</b></h2></p>'
+        delimiter = sbtab.delimiter
 
     first = True
     for row in ugly_sbtab:
@@ -768,14 +774,14 @@ def tsv_to_html(sbtab):
             nice_sbtab += '<table>'
         elif row.startswith('!'):
             nice_sbtab += '<tr bgcolor="#87CEFA">'
-            splitrow = row.split(sbtab.delimiter)
+            splitrow = row.split(delimiter)
         elif row.startswith('%'):
             nice_sbtab += '<tr bgcolor="#C0C0C0">'
         elif row.startswith('Parameter balancing log file'):
             nice_sbtab += '<table><tr>'
         else: nice_sbtab += '<tr>'
         
-        for i,thing in enumerate(row.split(sbtab.delimiter)):
+        for i,thing in enumerate(row.split(delimiter)):
             if thing.startswith('!!'): continue
             new_row = '<td>'+str(thing)+'</td>'
             nice_sbtab += new_row
