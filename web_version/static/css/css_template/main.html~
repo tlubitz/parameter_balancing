@@ -19,7 +19,6 @@
     <nav class="navbar navbar-inverse navbar-fixed-top">
       <!-- setting a max-width by using a container -->
       <div class="container">
-
 	<div class="navbar-header">
 	  <!-- button is hidden on desktop, becomes a hamburger on mobile! the span items are the hamburger lines --> 
 	  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
