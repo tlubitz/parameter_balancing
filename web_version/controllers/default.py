@@ -616,9 +616,9 @@ def balancing():
         try:
             sbtabs = misc.cut_tabs(session.sbtab_fl)
             for sbtab in sbtabs:
-                if 'QuantityInfo' in sbtab:
+                if 'Quantity' in sbtab and '!MathematicalType' in sbtab:
                     sbtab_prior = SBtab.SBtabTable(sbtab, session.sbtab_fl_name[:-4]+'_%s.tsv' % 'prior')
-                elif "Quantity" in sbtab:
+                elif 'Quantity' in sbtab and '!Mean':
                     sbtab_data = SBtab.SBtabTable(sbtab, session.sbtab_fl_name[:-4]+'_%s.tsv' % 'data')
                 elif 'PbConfig' in sbtab:
                     sbtab_config = SBtab.SBtabTable(sbtab, session.sbtab_fl_name[:-4]+'_%s.tsv' % 'config')

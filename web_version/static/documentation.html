@@ -30,7 +30,7 @@
 
     <div style="background-color:CDCCCB;width:900"><h2 id="intro">User manual</h2></div>
         <p style="width:900;">
-	  The user manual can be downloaded <a href="/pb/static/files/other/manual.pdf">here</a>.
+	  <a href="/pb/static/files/manual.pdf">Download User Manual</a>
 	</p>
 
     <div style="background-color:CDCCCB;width:900"><h2 id="intro">Clearing the session</h2></div>
@@ -184,21 +184,204 @@
     </p>
     
     <table border="1">
-	<tbody><tr> <td>Quantity Type</td>                          <td> Symbol           </td> <td>Unit</td>   <td>Constant     </td> <td>Related element  </td> <td>Scaling    </td> <td>Dependence</td>  <td> Prior/pseudo mode</td> <td> Prior/pseudo std.dev. </td> <td>SBML element    </td> <td>Abbreviation </td> </tr>
-	<tr> <td>Michaelis constant</td>                     <td> k<sup>M</sup>    </td> <td>mM</td>     <td>Kinetic      </td> <td>Reaction, Species</td> <td>Logarithmic</td> <td>Basic     </td>  <td> 0.1 mM              </td> <td> 1.0 (for log10)       </td> <td>Local parameter </td> <td>kmc          </td> </tr>
-	<tr> <td>Inhibitory constant</td>                    <td> k<sup>I</sup>    </td> <td>mM</td>     <td>Kinetic      </td> <td>Reaction, Species</td> <td>Logarithmic</td> <td>Basic     </td>  <td> 0.1 mM              </td> <td> 1.0 (for log10)       </td> <td>Local parameter </td> <td>kic          </td> </tr>
-	<tr> <td>Activation constant</td>                    <td> k<sup>A</sup>    </td> <td>mM</td>     <td>Kinetic      </td> <td>Reaction, Species</td> <td>Logarithmic</td> <td>Basic     </td>  <td> 0.1 mM              </td> <td> 1.0 (for log10)       </td> <td>Local parameter </td> <td>kac          </td> </tr>
-	<tr> <td>Concentration</td>                          <td> c                </td> <td>mM</td>     <td>Dynamic      </td> <td>          Species</td> <td>Logarithmic</td> <td>Basic     </td>  <td> 0.1 mM              </td> <td> 1.5 (for log10)       </td> <td>Species (conc.) </td> <td>             </td> </tr>
-	<tr> <td>Standard chemical potential</td>            <td> μ<sup>0</sup> </td> <td>kJ/mol</td> <td>Thermodynamic</td> <td>          Species</td> <td>Original   </td> <td>Basic     </td>  <td> -880 kJ/mol         </td> <td> 680 kJ/mol            </td> <td>Global parameter</td> <td>scp          </td> </tr>
-	<tr> <td>Catalytic rate constant geometric mean</td> <td> k<sup>V</sup>    </td> <td>1/s</td>    <td>Kinetic      </td> <td>Reaction         </td> <td>Logarithmic</td> <td>Basic     </td>  <td> 10 s<sup>-1</sup>   </td> <td> 1.0 (for log10)       </td> <td>Local parameter </td> <td>kcrg         </td> </tr>
-	<tr> <td>Concentration of enzyme</td>                <td> u                </td> <td>mM</td>     <td>Dynamic      </td> <td>Reaction         </td> <td>Logarithmic</td> <td>Basic     </td>  <td> 0.0001 mM           </td> <td> 1.5 (for log10)       </td> <td>Local parameter </td> <td>eco          </td> </tr>
-	<tr> <td>Substrate catalytic rate constant</td>      <td> k<sup>cat+</sup> </td> <td>1/s</td>    <td>Kinetic      </td> <td>Reaction         </td> <td>Logarithmic</td> <td>Derived   </td>  <td> 10 s<sup>-1</sup>   </td> <td> 1.5 (for log10)       </td> <td>Local parameter </td> <td>kcrf         </td> </tr>
-	<tr> <td>Product catalytic rate constant</td>        <td> k<sup>cat-</sup> </td> <td>1/s</td>    <td>Kinetic      </td> <td>Reaction         </td> <td>Logarithmic</td> <td>Derived   </td>  <td> 10 s<sup>-1</sup>   </td> <td> 1.5 (for log10)       </td> <td>Local parameter </td> <td>kcrr         </td> </tr>
-	<tr> <td>Equilibrium constant</td>                   <td> k<sup>eq</sup>   </td> <td>-</td>      <td>Thermodynamic</td> <td>Reaction         </td> <td>Logarithmic</td> <td>Derived   </td>  <td> 1                   </td> <td> 1.5 (for log10)       </td> <td>Local parameter </td> <td>keq          </td> </tr>
-	<tr> <td>Forward maximal velocity</td>               <td> v<sup>max+</sup> </td> <td>mM/s</td>   <td>Dynamic      </td> <td>Reaction         </td> <td>Logarithmic</td> <td>Derived   </td>  <td> 0.001 mM/s          </td> <td> 2.0 (for log10)       </td> <td>Local parameter </td> <td>vmaf         </td> </tr>
-	<tr> <td>Reverse maximal velocity</td>               <td> v<sup>max-</sup> </td> <td>mM/s</td>   <td>Dynamic      </td> <td>Reaction         </td> <td>Logarithmic</td> <td>Derived   </td>  <td> 0.001 mM/s          </td> <td> 2.0 (for log10)       </td> <td>Local parameter </td> <td>vmar         </td> </tr>
-	<tr> <td>Reaction affinity</td>                      <td> A                </td> <td>kJ/mol</td> <td>Dynamic      </td> <td>Reaction         </td> <td>Original   </td> <td>Derived   </td>  <td> 0.0   kJ/mol        </td> <td> 10.0 kJ/mol           </td> <td>                </td> <td>             </td> </tr>
-	<tr> <td>Chemical potential</td>                     <td> μ             </td> <td>kJ/mol</td> <td>Dynamic      </td> <td>          Species</td> <td>Original   </td> <td>Derived   </td>  <td> -880  kJ/mol        </td> <td> 680 kJ/mol            </td> <td>                </td> <td>             </td> </tr> 
+      <tbody>
+	<tr>
+	  <td>Quantity Type</td>
+	  <td> Symbol           </td>
+	  <td>Unit</td>
+	  <td>BiologicalElement</td>
+	  <td>MathematicalType</td>
+	  <td>PhysicalType     </td>
+	  <td>Dependence</td>
+	  <td>PriorMedian</td>
+	  <td>PriorStd/GeometricStd</td>
+	  <td>SBML element    </td>
+	  <td>Abbreviation </td>
+	</tr>
+	<tr>
+	  <td>Standard chemical potential</td>
+	  <td> μ<sup>0</sup> </td>
+	  <td>kJ/mol</td>
+	  <td>Species</td>
+	  <td>Additive</td>
+	  <td>Thermodynamic</td>
+	  <td>Basic     </td>
+	  <td> -880 kJ/mol         </td>
+	  <td> 1500 kJ/mol            </td>
+	  <td>Global parameter</td>
+	  <td>scp          </td>
+	</tr>
+	<tr>
+	  <td>Catalytic rate constant geometric mean</td>
+	  <td> k<sup>V</sup>    </td>
+	  <td>1/s</td>
+	  <td>Reaction</td>
+	  <td>Multiplicative</td>
+	  <td>Kinetic      </td>
+	  <td>Basic     </td>
+	  <td> 10 s<sup>-1</sup>   </td>
+	  <td> 100       </td>
+	  <td>Local parameter </td>
+	  <td>kcrg         </td>
+	</tr>
+	<tr>
+	  <td>Michaelis constant</td>
+	  <td> k<sup>M</sup>    </td>
+	  <td>mM</td>
+	  <td>Reaction/Species</td>
+	  <td>Multiplicative</td>
+	  <td>Kinetic      </td>
+	  <td>Basic     </td>
+	  <td> 0.1 mM              </td>
+	  <td> 10       </td>
+	  <td>Local parameter </td>
+	  <td>kmc          </td>
+	</tr>
+	<tr>
+	  <td>Activation constant</td>
+	  <td> k<sup>A</sup>    </td>
+	  <td>mM</td>
+	  <td>Reaction/Species</td>
+	  <td>Multiplicative</td>
+	  <td>Kinetic      </td>
+	  <td>Basic     </td>
+	  <td> 0.1 mM              </td>
+	  <td> 10       </td>
+	  <td>Local parameter </td>
+	  <td>kac          </td>
+	</tr>
+	<tr>
+	  <td>Inhibitory constant</td>
+	  <td> k<sup>I</sup>    </td>
+	  <td>mM</td>
+	  <td>Reaction/Species</td>
+	  <td>Multiplicative</td>
+	  <td>Kinetic      </td>
+	  <td>Basic     </td>
+	  <td> 0.1 mM              </td>
+	  <td> 10       </td>
+	  <td>Local parameter </td>
+	  <td>kic          </td>
+	</tr>
+	<tr>
+	  <td>Concentration</td>
+	  <td> c                </td>
+	  <td>mM</td>
+	  <td>Species</td>
+	  <td>Multiplicative</td>
+	  <td>Dynamic      </td>
+	  <td>Basic     </td>
+	  <td> 0.1 mM              </td>
+	  <td> 10       </td>
+	  <td>Species (conc.) </td>
+	  <td>             </td>
+	</tr>
+	<tr>
+	  <td>Concentration of enzyme</td>
+	  <td> u                </td>
+	  <td>mM</td>
+	  <td>Reaction</td>
+	  <td>Multiplicative</td>
+	  <td>Dynamic      </td>
+	  <td>Basic     </td>
+	  <td> 0.001 mM           </td>
+	  <td> 100       </td>
+	  <td>Local parameter </td>
+	  <td>eco          </td>
+	</tr>
+	<tr>
+	  <td>Equilibrium constant</td>
+	  <td> k<sup>eq</sup>   </td>
+	  <td>dimensionless</td>
+	  <td>Reaction</td>
+	  <td>Multiplicative</td>
+	  <td>Thermodynamic</td>
+	  <td>Derived   </td>
+	  <td> 1                   </td>
+	  <td> 100       </td>
+	  <td>Local parameter </td>
+	  <td>keq          </td>
+	</tr>	
+	<tr>
+	  <td>Substrate catalytic rate constant</td>
+	  <td> k<sup>cat+</sup> </td>
+	  <td>1/s</td>
+	  <td>Reaction</td>
+	  <td>Multiplicative</td>
+	  <td>Kinetic      </td>
+	  <td>Derived   </td>
+	  <td> 10 s<sup>-1</sup>   </td>
+	  <td> 100       </td>
+	  <td>Local parameter </td>
+	  <td>kcrf         </td>
+	</tr>
+	<tr>
+	  <td>Product catalytic rate constant</td>
+	  <td> k<sup>cat-</sup> </td>
+	  <td>1/s</td>
+	  <td>Reaction</td>
+	  <td>Multiplicative</td>
+	  <td>Kinetic      </td>
+	  <td>Derived   </td>
+	  <td> 10 s<sup>-1</sup>   </td>
+	  <td> 100       </td>
+	  <td>Local parameter </td>
+	  <td>kcrr         </td>
+	</tr>
+	<tr>
+	  <td>Chemical potential</td>
+	  <td> μ             </td>
+	  <td>kJ/mol</td>
+	  <td>Species</td>
+	  <td>Additive</td>
+	  <td>Dynamic      </td>
+	  <td>Derived   </td>
+	  <td> -880  kJ/mol        </td>
+	  <td> 1500            </td>
+	  <td>                </td>
+	  <td>             </td>
+	</tr>
+	<tr>
+	  <td>Reaction affinity</td>
+	  <td> A                </td>
+	  <td>kJ/mol</td>
+	  <td>Reaction</td>
+	  <td>Additive</td>
+	  <td>Dynamic      </td>
+	  <td>Derived   </td>
+	  <td> 0.0   kJ/mol        </td>
+	  <td> 10.0 kJ/mol           </td>
+	  <td>                </td>
+	  <td>             </td>
+	</tr>
+	<tr>
+	  <td>Forward maximal velocity</td>
+	  <td> v<sup>max+</sup> </td>
+	  <td>mM/s</td>
+	  <td>Reaction</td>
+	  <td>Multiplicative</td>
+	  <td>Dynamic      </td>
+	  <td>Derived   </td>
+	  <td> 0.001 mM/s          </td>
+	  <td> 100       </td>
+	  <td>Local parameter </td>
+	  <td>vmaf         </td>
+	</tr>
+	<tr>
+	  <td>Reverse maximal velocity</td>
+	  <td> v<sup>max-</sup> </td>
+	  <td>mM/s</td>
+	  <td>Reaction</td>
+	  <td>Multiplicative</td>
+	  <td>Dynamic      </td>
+	  <td>Derived   </td>
+	  <td> 0.001 mM/s          </td>
+	  <td> 100       </td>
+	  <td>Local parameter </td>
+	  <td>vmar         </td>
+	</tr>
+
+
   </tbody></table>
 
 <br>
@@ -372,7 +555,7 @@ literature and in  web resources:<p>
 	    <li style="width:850;">Thermodynamic data for many reactions can be obtained from the website
 	      <a href="http://equilibrator.weizmann.ac.il/">eQuilibrator</a>. This comprises calculated equilibrium constants and
 	      standard reaction Gibbs free energies for different values of pH and ionic strength. We provide a collection of
-	      these data for parameter balancing <a href="http://www.parameterbalancing.net/pb/static/files/other/kegg_reactions_CC_ph7.0.tsv">here</a>.</li>
+	      these data for parameter balancing <a href="http://www.parameterbalancing.net/pb/static/files/kegg_reactions_CC_ph7.0.tsv">here</a>.</li>
 	  </ul>
 	<p></p>
 

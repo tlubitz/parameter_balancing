@@ -11,73 +11,99 @@
     <table cellpadding="2">
       <td>&nbsp;&nbsp;</td>
       <td>
-    <table>
-	<td><a href="main.html"><image width="100" src="/pb/static/images/pb-logo.png"></a></td>
-	<td width="12.5"></td>
-	<td valign="bottom"><br><h1>Parameter balancing <br>for kinetic metabolic models</h1></td>
-      </table>
+	<table>
+	  <td><a href="main.html"><image width="100" src="/pb/static/images/pb-logo.png"></a></td>
+	  <td width="12.5"></td>
+	  <td valign="bottom"><br><h1>Parameter balancing <br>for kinetic metabolic models</h1></td>
+	</table>
 
     <hr style="width:900;float:left;"><br>
     
-    <p style="margin-left:250;">
-      <a href="/pb/static/main.html">Main</a> |
-      <a href="/pb/default/balancing.html">Online Balancing</a> |
-      <a href="/pb/static/documentation.html">Documentation</a> |
-      Download |
-      <a href="/pb/static/contact.html">Contact</a>
+	<p style="margin-left:250;">
+	  <a href="/pb/static/main.html">Main</a> |
+	  <a href="/pb/default/balancing.html">Online Balancing</a> |
+	  <a href="/pb/static/documentation.html">Documentation</a> |
+	  Download |
+	  <a href="/pb/static/contact.html">Contact</a>
+	</p>
+
+	<div style="background-color:CDCCCB;width:900"><h2 id="def">Parameter balancing standard options</h2></div>
+    
+	<p>
+	  <a href="files/default_files/pb_prior.tsv">Prior file for model parameters (SBtab format)</a>
+	</p>
+	<p>
+	  <a href="files/default_files/pb_options.tsv">Options file for parameter balancing (SBtab format)</a>
+	</p>
+
+	<div style="background-color:CDCCCB;width:900"><h2 id="soft">Software</h2></div>
+
+	<p style="width:900;">
+	  Parameter balancing is a tool for metabolic modelling in systems biology.
+	  It is implemented in Python3 and its code underlies the PEP8 guidelines.
+	  These are the possible ways of employing parameter balancing for your project:
+	</p>
+
+    <p>
+      <strong>1. The online version </strong>
+      The tool can be employed via www.parameterbalancing.net. All required knowledge can be found on the webpage.
     </p>
 
-    <!--<p>
-    <a href="#soft">1. Software</a><br>
-    <a href="#ex">2. Example files</a><br>
-    <a href="#def">3. Default tables</a><br><br>
+    <div style="width:900">
+      <p>
+	<strong>2. Parameter balancing as Pypi package and commandline tool</strong>
+	To install Parameter Balancing as a Python3 package, first of all you need Python3.
+	Next, you will need the pip3 installer. You can find information on how to do this
+	here: https://pip.pypa.io/en/stable/installing/.
+	Afterwards, install Parameter Balancing by typing in your command line:<br><br>
+
+	<em> sudo pip3 install pbalancing</em><br><br>
+
+	This will also install libsbml and tablib on your computer if these libraries are missing.
+	You can now employ Parameter Balancing as a Python3 package by, e.g., writing a script such as<br><br>
+
+	<em> from pbalancing import parameter_balancing<br>
+	    parameter_balancing.parameter_balancing_wrapper('model.xml')</em><br><br>
+
+	In this example case, 'model.xml' is the file name of an SBML model. Further optional
+	arguments are an SBtab parameter file, an SBtab prior distribution file, and an SBtab
+	configuration file (example files at the bottom of this page). 
+      </p>
+      <p>
+	To run parameter balancing as a commandline tool, the package needs to be installed as explained above.
+	Then, it can be executed in the commandline as follows:<br><br>
+
+	<em> python3 -m pbalancing.parameter_balancing model.xml</em><br><br>
+
+	where model.xml corresponds to the path of your SBML model. It is also possible to provide further
+	input files, such as an SBtab parameter files (.tsv), an SBtab prior information file (.tsv),
+	and an SBtab options file (.tsv) for the configuration of parameter balancing. Providing complete
+	file information would look like this:<br><br>
+
+	<em> python3 -m pbalancing.parameter_balancing model.xml --sbtab_data data_file.tsv --sbtab_prior prior_file.tsv --sbtab_options options_file.tsv</em><br><br>
+
+	You can create a log file by setting the flag -l, you can use pseudo values to account for a lack
+	of data by setting the flag -p, you can watch program outputs on your commandline by setting the
+	flag -v. Information on the SBtab format can be found on www.sbtab.net, more information on the
+	mentioned file types can be found in the <a href="files/manual.pdf">parameter balancing manual</a>, and example files can be found at the
+	bottom of this page.
+      </p>
+    </div>
     
-    <hr style="width:700;float:left;"><br>
-    </p>-->
-
-    <div style="background-color:CDCCCB;width:900"><h2 id="def">Parameter balancing standard options</h2></div>
-    
-    <p><a href="files/default_files/pb_prior.tsv">Prior file for model parameters (SBtab format)</a></p>
-    <p><a href="files/default_files/pb_options.tsv">Options file for parameter balancing (SBtab format)</a></p>
-
-    <div style="background-color:CDCCCB;width:900"><h2 id="soft">Software</h2></div>    
-
-    <p style="witdh:900;">
-      <b>Parameter balancing as Pypi package and commandline tool</b>
-        <p style="width:900">
-	  For Linux users, parameter balancing can be installed as a Python package via the Python
-	  package index. Simply type 
-	  <p style="width:890;margin-left:10"><i> > sudo pip3 install pbalancing </i></p>
-	  in your commandline. Then, you can import the package in your Python3 script as
-	  <p style="width:890;margin-left:10"><i>import pbalancing </i></p>
-	  After successful installation, you are also able to use parameter balancing as commmandline
-	  tool. Simply type
-	  <p style="width:890;margin-left:10"><i>> python3 -m pbalancing.parameter_balancing model.xml</i></p>
-	  <p style="width:890;margin-left:10">where 'model.xml' is your SBML model. It is also possible to add further input files, such as an SBtab
-	  parameter files (.tsv), an SBtab prior information file (.tsv), and an SBtab options file (.tsv) for
-	  the configuration of parameter balancing. Information on the SBtab format can be found on <a href="https://www.sbtab.net">SBtab</a>,
-	  more information on the mentioned file types can be found in the parameter balancing manual in the
-	  <a href="https://rumo.biologie.hu-berlin.de/pb/static/documentation.html">Documentation section</a>, and example
-	  files can be found at the bottom of this page. The optional files can be provided as further arguments in the commandline, such as</p>
-	  <p style="width:890;margin-left:10"><i>> python3 -m pbalancing.parameter_balancing model.xml parameter_file.tsv pb_prior.tsv pb_options.tsv</i></p>
-	  <p style="width:890;margin-left:10">where the first argument MUST be the SBML file and the order and amount of SBtab files is optional, as long as they are
-	    correct in their file paths and SBtab file syntax. More instructions for the installation and usage can be found <a href="https://bitbucket.org/tlubitz/pb">here</a>.
-	    Users that employ Windows or Mac OS, we would like to refer to the Python code and the online application.
-	</p></p>
-      <b>Python code for parameter balancing</b>
         <p style="width:900;">
-	  Python3 source code for parameter balancing can be freely downloaded
-	  <a href="https://pypi.python.org/pypi/pbalancing/">here</a>. Please see
+	  <strong>3. Python code for parameter balancing</strong>
+	  <a href="https://github.com/tlubitz/parameter_balancing">Python3 source code</a>
+	  for parameter balancing can be freely downloaded. Please see
 	  the instructions that come with the code.
 	</p>
-      <b>Web2py application</b>
         <p style="width:900;">
-	  The web2py application for parameter balancing can be freely downloaded from
-	  <a href="https://bitbucket.org/tlubitz/pb">bitbucket</a>. Please see
+	  <strong>4. Web2py application</strong>
+	  The web2py application for parameter balancing can be freely downloaded from the
+	  <a href="https://bitbucket.org/tlubitz/pb">Github repository</a>. Please see
 	  the instructions that come with the code.
 	</p>
-      <b>Matlab code for parameter balancing</b>
         <p style="width:900;">
+	  <strong>5. Matlab code for parameter balancing</strong>
 	  MATLAB code for parameter balancing is included in the <a href="https://github.com/liebermeister/mnt/">Metabolic Networks
 	  Toolbox</a>. For more information, install the MNT toolbox and type 'help mnt_parameter_balancing'.
 	</p>

@@ -1,4 +1,4 @@
-!!SBtab TableName="Parameter prior" TableType="Quantity" Date="2018-04-06"															
+!!SBtab TableName='Parameter prior' TableType='Quantity' Date='2018-04-18'															
 !QuantityType	!Unit	!BiologicalElement	!MathematicalType	!PriorMedian	!PriorStd	!PriorGeometricStd	!LowerBound	!UpperBound	!DataStd	!Symbol	!PhysicalType	!Dependence	!UseAsPriorInformation	!SBMLElement 	!Abbreviation	!MatrixInfo
 standard chemical potential	kJ/mol	Species	Additive	-880	1500		-3000	2000	10	mu0	Thermodynamic	Basic	1	Global parameter 	scp	[I_species, 0, 0, 0, 0, 0, 0, 0]
 catalytic rate constant geometric mean	1/s	Reaction	Multiplicative	10		100	0.0000001	10000	100	KV	Kinetic	Basic	1	Local parameter	kcrg	[0, I_reaction, 0, 0, 0, 0, 0, 0]
