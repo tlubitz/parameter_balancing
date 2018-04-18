@@ -83,12 +83,12 @@ def balancing():
     if sbmlform.process(formname='form_one').accepted:
         response.flash = 'form accepted'
         session.warnings_sbml = []
-        filename = request.vars.File.filename
-        if filename in session.sbml_names:
-            session.warnings_sbml.append('Error: Duplicate file name. Please remove the file with the same name before uploading.')
         if not 'sbmls' in session:
             session.sbmls = []
             session.sbml_names = []
+        filename = request.vars.File.filename
+        if filename in session.sbml_names:
+            session.warnings_sbml.append('Error: Duplicate file name. Please remove the file with the same name before uploading.')
 
         try:
             valid_extension = misc.validate_file_extension(filename,'sbml')
@@ -101,7 +101,6 @@ def balancing():
                 session.sbml_names.append(filename)
         except:
             session.warnings_sbml.append('Error: This is not a valid SBML file')
-
         try: redirect(URL('../default/balancing'))
         except: redirect(URL('../balancing'))
                 
@@ -387,6 +386,17 @@ def balancing():
 
     ###6: If stuff is in place, we can perform the classic balancing
     if request.vars.balance_classic:
+        if not 'priors' in session:
+            session.priors = []
+            session.prior_names = []
+            prior_open = open('./applications/pb/static/files/default_files/pb_prior.tsv')
+            prior_file = prior_open.read()
+            sbtab_prior = SBtab.SBtabTable(prior_file, 'pb_prior.tsv')
+            session.prior = sbtab_prior
+            session.prior_name = 'pb_prior.tsv'
+            session.priors.append(session.prior)
+            session.prior_names.append(session.prior_name)
+
         #get SBML
         sbml_file = session.sbml
         sbml_filename  = session.sbml_name
