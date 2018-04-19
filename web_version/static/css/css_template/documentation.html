@@ -1,667 +1,752 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html><head>
-<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="author" content="Timo Lubitz">
+    <meta name="description"  content="Parameter Balancing Website">
+    
+    <!-- this is required for responsiveness -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <title>Parameter Balancing for Kinetic Models of Cell Metabolism</title>
-    <link rel="stylesheet" type="text/css" href="css/pb.css">
+    <!--<link rel="stylesheet" type="text/css" href="css/pb.css">-->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/custom.css" rel="stylesheet">
     <link rel="shortcut icon" href="/pb/static/images/pb-logo.png" type="image/icon">
     <link rel="icon" href="/pb/static/images/pb-logo.png" type="image/icon">
   </head>
 
   <body>
-    <table cellpadding="2">
-      <td>&nbsp;&nbsp;</td>
-      <td>
-      <table>
-	<td><a href="main.html"><image width="100" src="/pb/static/images/pb-logo.png"></a></td>
-	<td width="12.5"></td>
-	<td valign="bottom"><br><h1>Parameter balancing <br>for kinetic metabolic models</h1></td>
-      </table>
-
-    <hr style="width:900;float:left;"><br>
-    
-    <p style="margin-left:250;">
-      <a href="/pb/static/main.html">Main</a> |
-      <a href="/pb/default/balancing.html">Online Balancing</a> |
-      Documentation |
-      <a href="/pb/static/download.html">Download</a> |
-      <a href="/pb/static/contact.html">Contact</a>
-    </p>
-
-
-    <div style="background-color:CDCCCB;width:900"><h2 id="intro">User manual</h2></div>
-        <p style="width:900;">
-	  <a href="/pb/static/files/manual.pdf">Download User Manual</a>
-	</p>
-
-    <div style="background-color:CDCCCB;width:900"><h2 id="intro">Clearing the session</h2></div>
-        <p style="width:900;">
-	  The variables of the browser session can be reset by clicking the 'Clear Session' button on bottom
-	  of the online balancing page. This can be handy, if e.g. large files have caused proxy errors and
-	  the tool shows random behaviour.
-	</p>
-
+    <!-- navbar: this is a navbar; navbar-inverse: it's dark; navbar-static-top: it's always at the top -->
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <!-- setting a max-width by using a container -->
+      <div class="container">
+	<div class="navbar-header">
+	  <a class="navbar-brand" href="main.html" title="Take me home">Parameter Balancing Home</a>
+	</div>
 	
-    <div style="background-color:CDCCCB;width:900"><h2 id="intro">Overview</h2></div>
-
-    <p style="width:900;">
-      <b>What is parameter balancing?</b>
-        </p><p style="width:900;">
-	  Parameter balancing is a way to determine consistent parameter sets for kinetic models of metabolism.
-	  Inserting experimentally measured values directly into a model will probably yield incomplete or
-	  inconsistent parameter sets, violating the thermodynamic Haldane relationships. Balanced parameter
-	  sets avoid this problem. They are computed based on kinetic constants and other data collected from
-	  experiments or the literature, but also based on known constraints between biochemical quantities and
-	  on assumptions about typical ranges, represented by prior values and bounds.
-	</p>
-
-      <b>How can I run parameter balancing?</b>
-        <p style="width:900;">
-	  After preparing your model and data files, you can run
-	  parameter balancing interactively on this website.  If you
-	  prefer working in the commandline, or if you would like to
-	  include parameter balancing in your programs, you may check
-	  out the various opportunities based on <a href="/pb/static/download.html">Python3 and Matlab code</a>.
-	</p>
-
-      <b>Which parameters of a metabolic model can be balanced?</b>
-        <p style="width:900;">
-	  In general, parameter balancing concerns the kinetic and thermodynamic constants in kinetic metabolic models.
-	  It can also cover metabolite concentrations, chemical potentials, and reaction Gibbs free energies (or,
-	  equivalently, "reaction affinities" or "driving forces"). Metabolic fluxes cannot be balanced, but they can
-	  be included in the analysis (this is described below). There are different typical application cases:
-	  </p><ul style="width:850;">
-	    <li><b>Kinetic constants, where equilibrium constants are fixed and given</b></li>This can be done separately
-	    for each individual reaction. If a network is large and equilibrium constants can be predefined (for instance,
-	    by parameter balancing), we suggest to split the network into single reactions and to run parameter balancing
-	    separately for every reaction.
-	    <li><b>Kinetic constants and equilibrium constants in a network</b></li>
-	    <li><b>Equilibrium constants and concentrations in a network</b></li>
-	    <li><b>Equilibrium constants, kinetic constants, and concentrations in a network</b></li>
+	<!-- simple right aligned list-->
+	<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+	  <ul class="nav navbar-nav navbar-right">
+	    <li> <a href="../../../default/balancing.html" title="Go to online balancing">Online Balancing</a></li>
+	    <li> <a href="documentation.html" title="Documentation and Manuals">Documentation</a></li>
+	    <li> <a href="download.html" title="Installation and Downloads">Download</a></li>
+	    <li> <a href="contact.html" title="Contact the balancing team">Contact</a></li>
 	  </ul>
-	<p></p>
+	</div>
+      </div>
+    </nav>
 
-     <b>What input data are needed?</b>
-        <p style="width:900;">
-	  Parameter balancing employs SBML (Systems
-          Biology Markup Language) files or <a href="http://www.sbtab.net/">SBtab files</a> for model structures and
-	  SBtab table files for data and configuration files. Parameter balancing imports a model (SBML, obligatory) and a
-          data table (SBtab, optional) with experimental data values. Furthermore, tables with information on the prior
-	  distributions and balancing options are possible. Parameter balancing produces tables with balanced
-          parameters (SBtab) and a model with rate laws and balanced parameters included (SBML). Please prepare your SBtab files as
-          described below. The validity of these files can be checked on the <a href="http://www.sbtab.net/">SBtab website</a>. The quantities
-          described in your data table will be linked to elements of the SBML model, via the entries in the columns !SBML:reaction:id and
-          !SBML:species:id.  The IDs in these columns must match the IDs chosen in the SBML file.
-	</p>
+    <header>
+      <div style="padding-top:100px" class="container-fluid bg-2 text-center">
+	<h2>Documentation</h2>
+      </div>
+    </header>
 
-     <b>References and citation</b>
-      <p style="width:900;">
-	Parameter balancing has been developed at Humboldt Universität Berlin and Charité - Universitätsmedizin Berlin. The concept of parameter
-	balancing is described in <a href="http://pubs.acs.org/doi/abs/10.1021/jp108764b">The Journal of Physical Chemistry B</a>.
-	Please cite this publication if you use parameter balancing for your research. <br>
-	Parameter balancing is applied as part of larger workflows in Stanford et al. (<a href="http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0079195">Plos One</a>) and Noor et al. (<a href="http://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1005167">Plos Computational Biology</a>). <br>
-	Additional information on Systems Biology applications can be found in "Systems Biology: A textbook" by Edda Klipp, Wolfram Liebermeister, Christoph Wierling, and Axel Kowald.
-	</p>
+    <main>
+      <article>
+	<div class="container-fluid bg-3 text-center">
+	  <div class="row">
+	    <div class="col-sm-2"></div>
+	    <div class="col-sm-8">
+	      <header>
+		<h3>User manual</h3>
+	      </header>
+	      <a href="/pb/static/files/manual.pdf">Download User Manual</a>
+	    </div>
+	    <div class="col-sm-2"></div>
+	  </div>
+	</div>
+      </article>
 
+      <article>
+	<div class="container-fluid bg-3 text-center">
+	  <div class="row">
+	    <div class="col-sm-2"></div>
+	    <div class="col-sm-8">
+	      <header>
+		<h3>Clearing the session</h3>
+	      </header>
+              <p align="left">
+		The variables of the browser session can be reset by clicking the 'Clear Session' button on bottom
+		of the online balancing page. This can be handy, if e.g. large files have caused proxy errors and
+		the tool shows random behaviour.
+	      </p>
+	    </div>
+	  </div>
+	  <div class="col-sm-2"></div>
+	</div>
+      </article>
 
-    <div style="background-color:CDCCCB;width:900"><h2 id="wf">How to run parameter balancing online</h2></div>
+      <article>
+	<div class="container-fluid bg-3 text-center">
+	  <div class="row">
+	    <div class="col-sm-2"></div>
+	    <div class="col-sm-8">
+	      <header>
+		<h3>Overview</h3>
+	      </header>
+	      <ul align="left">
+		<dt>What is parameter balancing?</dt>
+		<dd>
+		  Parameter balancing is a way to determine consistent parameter sets for kinetic models of metabolism.
+		  Inserting experimentally measured values directly into a model will probably yield incomplete or
+		  inconsistent parameter sets, violating the thermodynamic Haldane relationships. Balanced parameter
+		  sets avoid this problem. They are computed based on kinetic constants and other data collected from
+		  experiments or the literature, but also based on known constraints between biochemical quantities and
+		  on assumptions about typical ranges, represented by prior values and bounds.
+		</dd>
 
-    <p style="width:900;">Parameter balancing helps you find a consistent parameter set
-      for a kinetic model, based on (i) kinetic constants and other data collected from
-      experiments or the literature; (ii) constraints between biochemical quantities due
-      to their definition or the laws of thermodynamics; (iii) assumptions about typical
-      ranges, represented by prior distributions and pseudo values. As our standard rate
-      laws, we use
-      <a href="http://bioinformatics.oxfordjournals.org/content/26/12/1528.abstract">modular
-	rate laws</a>.
-      </p><ol>
-	<li style="width:880;"><b>Prepare your SBML model.</b> Please make sure that your SBML model is
-	valid. You can use the official <a href="http://sbml.org/Facilities/Validator/">SBML online validator</a> for this.</li>
-	<li style="width:880;"><b>Prepare your data file.</b> The
-       SBtab Quantity table holds the kinetic parameters for the
-       balancing.  Here again, make sure that the SBtab file is
-       valid. You can use the
-       official <a href="https://rumo.biologie.hu-berlin.de/SBtab/default/validator">SBtab
-       online validator</a> for this. Please also keep in mind that
-       the SBML species and reaction IDs need to comply with the IDs
-       that are used in the SBtab file.</li>
-        <li style="width:880;"><b>Prepare your parameter prior file
-	  (optional).</b> This file holds information on the prior
-	  distributions on the parameter types
-	  (see <a href="http://www.parameterbalancing.net/pb/static/download.html">Download area</a>
-	  for example files).  Initially, you can use the default
-	  prior table which is already loaded. If you want to use an
-	  alternative prior table, you can create your own prior table (keep in mind to adhere to
-	  the syntax of the prior tables).</li>
-        <li style="width:880;"><b>Prepare your options file (optional).</b> This file can be used to
-	  change settings of the parameter balancing algorithm (see <a href="/pb/default/download.html">Download area</a>
-          for example files).</li>
-        <li style="width:880;"><b>Upload the files, run
-          parameter balancing, and download the balanced parameters and model.</b>
-          If the balancing process was successful, you can download
-          the SBML file with the balanced parameters and convenience
-          kinetics. Analogously, you can download
-          the SBtab parameter file with the balanced parameters.</li>
-      </ol>
-    <p></p>
+		<dt>How can I run parameter balancing?</dt>
+		<dd>
+		  After preparing your model and data files, you can run
+		  parameter balancing interactively on this website.  If you
+		  prefer working in the commandline, or if you would like to
+		  include parameter balancing in your programs, you may check
+		  out the various opportunities based on <a href="/pb/static/download.html">Python3 and Matlab code</a>.
+		</dd>
 
-      <p style="width:900;"> Alternately, you provide all aforementioned information (model structure,
-	experimental data, prior file, options file) in one single SBtab document, which consists
-	of several SBtab tables. Mandatory for this option is an SBtab Reaction table, which can
-	be translated to an SBMl model. Optional are
-	SBtab Compartment, Parameter, and Compound tables, which are employed as additional model
-	building information (see more information on the SBtab &lt;-&gt; SBML conversion on <a href="http://www.sbtab.net/">www.sbtab.net</a>).
-	The three additional tables (for data, parameter priors, and settings) can also be included.
-    </p>
+		<dt>Which parameters of a metabolic model can be balanced?</dt>
+		<dd>
+		  In general, parameter balancing concerns the kinetic and thermodynamic constants in kinetic metabolic models.
+		  It can also cover metabolite concentrations, chemical potentials, and reaction Gibbs free energies (or,
+		  equivalently, "reaction affinities" or "driving forces"). Metabolic fluxes cannot be balanced, but they can
+		  be included in the analysis (this is described below). There are different typical application cases:
+		</dd>
+		<ul class="list-group" align="left">
+		  <li class="list-group-item">Kinetic constants, where equilibrium constants are fixed and given</li>
+		  <div class="list-group-item-text">This can be done separately
+		    for each individual reaction. If a network is large and equilibrium constants can be predefined (for instance,
+		    by parameter balancing), we suggest to split the network into single reactions and to run parameter balancing
+		    separately for every reaction.</div>
+		  <li class="list-group-item">Kinetic constants and equilibrium constants in a network</li>
+		  <li class="list-group-item">Equilibrium constants and concentrations in a network</li>
+		  <li class="list-group-item">Equilibrium constants, kinetic constants, and concentrations in a network</li>
+		</ul>
+		      
+		<dt>What input data are needed?</dt>
+		<dd> Parameter balancing employs SBML (Systems
+		  Biology Markup Language) files or <a href="http://www.sbtab.net/">SBtab files</a> for model structures and
+		  SBtab table files for data and configuration files. Parameter balancing imports a model (SBML, obligatory) and a
+		  data table (SBtab, optional) with experimental data values. Furthermore, tables with information on the prior
+		  distributions and balancing options are possible. Parameter balancing produces tables with balanced
+		  parameters (SBtab) and a model with rate laws and balanced parameters included (SBML). Please prepare your SBtab files as
+		  described below. The validity of these files can be checked on the <a href="http://www.sbtab.net/">SBtab website</a>. The quantities
+		  described in your data table will be linked to elements of the SBML model, via the entries in the columns !SBML:reaction:id and
+		  !SBML:species:id.  The IDs in these columns must match the IDs chosen in the SBML file.
+		</dd>
 
-    <div style="background-color:CDCCCB;width:900"><h2 id="ff">File formats</h2></div>
+		<dt>References and citation</dt>
+		<dd>
+		  Parameter balancing has been developed at Humboldt Universität Berlin and Charité - Universitätsmedizin Berlin. The concept of parameter
+		  balancing is described in <a href="http://pubs.acs.org/doi/abs/10.1021/jp108764b">The Journal of Physical Chemistry B</a>.
+		  Please cite this publication if you use parameter balancing for your research. <br>
+		  Parameter balancing is applied as part of larger workflows in Stanford et al. (<a href="http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0079195">Plos One</a>) and Noor et al. (<a href="http://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1005167">Plos Computational Biology</a>). <br>
+		  Additional information on Systems Biology applications can be found in "Systems Biology: A textbook" by Edda Klipp, Wolfram Liebermeister, Christoph Wierling, and Axel Kowald.
+		</dd>
+	      </ul>
+	    </div>
+	    <div class="col-sm-2"></div>
+	  </div>
+	</div>
+      </article>
 
-      <p style="width:900;">The model can be provided in <a href="http://www.sbml.org/">SBML</a> format.
-	</p>
+      <article>
+	<div class="container-fluid bg-3 text-center">
+	  <div class="row">
+	    <div class="col-sm-2"></div>
+	    <div class="col-sm-8">
+	      <header>
+		<h3 id="wf">How to run parameter balancing online</h3>
+	      </header>
+	      <p align="left">Parameter balancing helps you find a consistent parameter set
+		for a kinetic model, based on (i) kinetic constants and other data collected from
+		experiments or the literature; (ii) constraints between biochemical quantities due
+		to their definition or the laws of thermodynamics; (iii) assumptions about typical
+		ranges, represented by prior distributions and pseudo values. As our standard rate
+		laws, we use
+		<a href="http://bioinformatics.oxfordjournals.org/content/26/12/1528.abstract">modular
+		  rate laws</a>.
+	      </p>
+	      <div class="list-group" align="left">
+		<div class="list-group-item-text"><strong>1. Prepare your SBML model.</strong> Please make sure that your SBML model is
+		  valid. You can use the official <a href="http://sbml.org/Facilities/Validator/">SBML online validator</a> for this.</div>
+		<div class="list-group-item-text"><strong>2. Prepare your data file.</strong> The SBtab Quantity table holds the kinetic parameters for the
+		  balancing.  Here again, make sure that the SBtab file is
+		  valid. You can use the
+		  official <a href="https://rumo.biologie.hu-berlin.de/SBtab/default/validator">SBtab
+		    online validator</a> for this. Please also keep in mind that
+		  the SBML species and reaction IDs need to comply with the IDs
+		  that are used in the SBtab file.</div>
+		<div class="list-group-item-text"><strong>3. Prepare your parameter prior file (optional).</strong>
+		   This file holds information on the prior
+		  distributions on the parameter types
+		  (see <a href="http://www.parameterbalancing.net/pb/static/download.html">Download area</a>
+		  for example files).  Initially, you can use the default
+		  prior table which is already loaded. If you want to use an
+		  alternative prior table, you can create your own prior table (keep in mind to adhere to
+		  the syntax of the prior tables).</div>
+		<div class="list-group-item-text"><strong>4. Prepare your options file (optional).</strong> 
+		  This file can be used to
+		  change settings of the parameter balancing algorithm (see <a href="/pb/default/download.html">Download area</a>
+		  for example files).</div>
+		<div class="list-group-item-text"><strong>5. Upload the files, run parameter balancing, and download the balanced parameters and model.</strong> 
+		  If the balancing process was successful, you can download
+		  the SBML file with the balanced parameters and convenience
+		  kinetics. Analogously, you can download
+		  the SBtab parameter file with the balanced parameters.</div>
+	      </div>
+	      <p> Alternately, you provide all aforementioned information (model structure,
+		experimental data, prior file, options file) in one single SBtab document, which consists
+		of several SBtab tables. Mandatory for this option is an SBtab Reaction table, which can
+		be translated to an SBMl model. Optional are
+		SBtab Compartment, Parameter, and Compound tables, which are employed as additional model
+		building information (see more information on the SBtab &lt;-&gt; SBML conversion on <a href="http://www.sbtab.net/">www.sbtab.net</a>).
+		The three additional tables (for data, parameter priors, and settings) can also be included.
+	      </p>
+	    </div>
+	    <div class="col-sm-2"></div>
+	  </div>
+	</div>
+      </article>
+
+      <article>
+	<div class="container-fluid bg-3 text-center">
+	  <div class="row">
+	    <div class="col-sm-2"></div>
+	    <div class="col-sm-8" align="left">
+	      <header>
+		<h3 align="center">File formats</h3>
+	      </header>
+	      <p>
+		The model can be provided in <a href="http://www.sbml.org/">SBML</a> format.
+	      </p>
+	      <p>Input files for parameter balancing must be prepared in the SBtab format.
+		(<a href="/pb/static/download.html">example files</a>).
+	      </p>
+	      <div class="list-group">
+		<div class="list-group-item-text">
+		  Data tables must be provided as tab-seperated text (.tsv) in a specific file format. The columns
+		  !QuantityType, !SBML:reaction:id, !SBML:species:id, and !Mean (data value, arithmetic mean) are obligatory,
+		  while the columns !Std (data value, standard error), !Unit, and other columns are optional.
+		  Example files can be found <a href="/pb/static/download.html">here</a>.
+		</div>
+		<div class="list-group-item-text">
+		  Entries in the data table have to refer to species and reactions in the SBML file via the SBML
+		  element identifiers ("id") given in the columns !SBML:species:id and !SBML:reaction:id.
+		</div>
+		<div class="list-group-item-text">
+		  Please make sure that the modifiers (inhibitors or stimulators) in your model are identified
+		  clearly by the corresponding SBO terms (inhibitor:20, stimulator:459). Otherwise, the software
+		  will not recognize them, and allosteric regulations will be ignored.
+		</div>
+	      </div>
+	    </div>
+	    <div class="col-sm-2"></div>
+	  </div>
+	</div>
+      </article>
+
+      <article>
+	<div class="container-fluid bg-3 text-center">
+	  <div class="row">
+	    <div class="col-sm-1"></div>
+	    <div class="col-sm-10">
+	      <header>
+		<h3 id="quant">Table of biochemical quantities</h3>
+	      </header>
+	      <p>
+		At the beginning of parameter balancing, a metabolic network structure is read from
+		an SBML file. It is assumed that all kinetic rate laws will be substituted by
+		<a href="http://bioinformatics.oxfordjournals.org/content/26/12/1528.abstract">modular rate laws</a> and
+		the necessary kinetic constants and some dynamic quantities (referring to a specific metabolic state of
+		the system) are estimated from collected data. The relevant quantities are listed below.
+	      </p>
     
-    <p style="width:900;">Input files for parameter balancing must be prepared in the SBtab format.
-      Example files can be found <a href="/pb/static/download.html">here</a>.
-      </p><ol>
-	<li style="width:860;">Data tables must be provided as tab-seperated text (.tsv) in a specific file format. The columns
-	  !QuantityType, !SBML:reaction:id, !SBML:species:id, and !Mean (data value, arithmetic mean) are obligatory,
-	  while the columns !Std (data value, standard error), !Unit, and other columns are optional.
-	  Example files can be found <a href="/pb/static/download.html">here</a>.</li>
-	<li style="width:860;">Entries in the data table have to refer to species and reactions in the SBML file via the SBML
-	  element identifiers ("id") given in the columns !SBML:species:id and !SBML:reaction:id.</li>
-	<li style="width:860;">Please make sure that the modifiers (inhibitors or stimulators) in your model are identified
-	  clearly by the corresponding SBO terms (inhibitor:20, stimulator:459). Otherwise, the software
-	  will not recognize them, and allosteric regulations will be ignored.</li>
-      </ol>
-    <p></p>
-    
+	      <table class="table-hover table-bordered table-condensed">
+		<thead>
+		  <tr>
+		    <th>Quantity Type</th>
+		    <th> Symbol           </th>
+		    <th>Unit</th>
+		    <th>BiologicalElement</th>
+		    <th>MathematicalType</th>
+		    <th>PhysicalType     </th>
+		    <th>Dependence</th>
+		    <th>PriorMedian</th>
+		    <th>PriorStd/GeometricStd</th>
+		    <th>SBML element    </th>
+		    <th>Abbreviation </th>
+		  </tr>
+		</thead>
+		<tbody>
+		  <tr>
+		    <td>Standard chemical potential</td>
+		    <td> μ<sup>0</sup> </td>
+		    <td>kJ/mol</td>
+		    <td>Species</td>
+		    <td>Additive</td>
+		    <td>Thermodynamic</td>
+		    <td>Basic     </td>
+		    <td> -880 kJ/mol         </td>
+		    <td> 1500 kJ/mol            </td>
+		    <td>Global parameter</td>
+		    <td>scp          </td>
+		  </tr>
+		  <tr>
+		    <td>Catalytic rate constant geometric mean</td>
+		    <td> k<sup>V</sup>    </td>
+		    <td>1/s</td>
+		    <td>Reaction</td>
+		    <td>Multiplicative</td>
+		    <td>Kinetic      </td>
+		    <td>Basic     </td>
+		    <td> 10 s<sup>-1</sup>   </td>
+		    <td> 100       </td>
+		    <td>Local parameter </td>
+		    <td>kcrg         </td>
+		  </tr>
+		  <tr>
+		    <td>Michaelis constant</td>
+		    <td> k<sup>M</sup>    </td>
+		    <td>mM</td>
+		    <td>Reaction/Species</td>
+		    <td>Multiplicative</td>
+		    <td>Kinetic      </td>
+		    <td>Basic     </td>
+		    <td> 0.1 mM              </td>
+		    <td> 10       </td>
+		    <td>Local parameter </td>
+		    <td>kmc          </td>
+		  </tr>
+		  <tr>
+		    <td>Activation constant</td>
+		    <td> k<sup>A</sup>    </td>
+		    <td>mM</td>
+		    <td>Reaction/Species</td>
+		    <td>Multiplicative</td>
+		    <td>Kinetic      </td>
+		    <td>Basic     </td>
+		    <td> 0.1 mM              </td>
+		    <td> 10       </td>
+		    <td>Local parameter </td>
+		    <td>kac          </td>
+		  </tr>
+		  <tr>
+		    <td>Inhibitory constant</td>
+		    <td> k<sup>I</sup>    </td>
+		    <td>mM</td>
+		    <td>Reaction/Species</td>
+		    <td>Multiplicative</td>
+		    <td>Kinetic      </td>
+		    <td>Basic     </td>
+		    <td> 0.1 mM              </td>
+		    <td> 10       </td>
+		    <td>Local parameter </td>
+		    <td>kic          </td>
+		  </tr>
+		  <tr>
+		    <td>Concentration</td>
+		    <td> c                </td>
+		    <td>mM</td>
+		    <td>Species</td>
+		    <td>Multiplicative</td>
+		    <td>Dynamic      </td>
+		    <td>Basic     </td>
+		    <td> 0.1 mM              </td>
+		    <td> 10       </td>
+		    <td>Species (conc.) </td>
+		    <td>             </td>
+		  </tr>
+		  <tr>
+		    <td>Concentration of enzyme</td>
+		    <td> u                </td>
+		    <td>mM</td>
+		    <td>Reaction</td>
+		    <td>Multiplicative</td>
+		    <td>Dynamic      </td>
+		    <td>Basic     </td>
+		    <td> 0.001 mM           </td>
+		    <td> 100       </td>
+		    <td>Local parameter </td>
+		    <td>eco          </td>
+		  </tr>
+		  <tr>
+		    <td>Equilibrium constant</td>
+		    <td> k<sup>eq</sup>   </td>
+		    <td>dimensionless</td>
+		    <td>Reaction</td>
+		    <td>Multiplicative</td>
+		    <td>Thermodynamic</td>
+		    <td>Derived   </td>
+		    <td> 1                   </td>
+		    <td> 100       </td>
+		    <td>Local parameter </td>
+		    <td>keq          </td>
+		  </tr>	
+		  <tr>
+		    <td>Substrate catalytic rate constant</td>
+		    <td> k<sup>cat+</sup> </td>
+		    <td>1/s</td>
+		    <td>Reaction</td>
+		    <td>Multiplicative</td>
+		    <td>Kinetic      </td>
+		    <td>Derived   </td>
+		    <td> 10 s<sup>-1</sup>   </td>
+		    <td> 100       </td>
+		    <td>Local parameter </td>
+		    <td>kcrf         </td>
+		  </tr>
+		  <tr>
+		    <td>Product catalytic rate constant</td>
+		    <td> k<sup>cat-</sup> </td>
+		    <td>1/s</td>
+		    <td>Reaction</td>
+		    <td>Multiplicative</td>
+		    <td>Kinetic      </td>
+		    <td>Derived   </td>
+		    <td> 10 s<sup>-1</sup>   </td>
+		    <td> 100       </td>
+		    <td>Local parameter </td>
+		    <td>kcrr         </td>
+		  </tr>
+		  <tr>
+		    <td>Chemical potential</td>
+		    <td> μ             </td>
+		    <td>kJ/mol</td>
+		    <td>Species</td>
+		    <td>Additive</td>
+		    <td>Dynamic      </td>
+		    <td>Derived   </td>
+		    <td> -880  kJ/mol        </td>
+		    <td> 1500            </td>
+		    <td>                </td>
+		    <td>             </td>
+		  </tr>
+		  <tr>
+		    <td>Reaction affinity</td>
+		    <td> A                </td>
+		    <td>kJ/mol</td>
+		    <td>Reaction</td>
+		    <td>Additive</td>
+		    <td>Dynamic      </td>
+		    <td>Derived   </td>
+		    <td> 0.0   kJ/mol        </td>
+		    <td> 10.0 kJ/mol           </td>
+		    <td>                </td>
+		    <td>             </td>
+		  </tr>
+		  <tr>
+		    <td>Forward maximal velocity</td>
+		    <td> v<sup>max+</sup> </td>
+		    <td>mM/s</td>
+		    <td>Reaction</td>
+		    <td>Multiplicative</td>
+		    <td>Dynamic      </td>
+		    <td>Derived   </td>
+		    <td> 0.001 mM/s          </td>
+		    <td> 100       </td>
+		    <td>Local parameter </td>
+		    <td>vmaf         </td>
+		  </tr>
+		  <tr>
+		    <td>Reverse maximal velocity</td>
+		    <td> v<sup>max-</sup> </td>
+		    <td>mM/s</td>
+		    <td>Reaction</td>
+		    <td>Multiplicative</td>
+		    <td>Dynamic      </td>
+		    <td>Derived   </td>
+		    <td> 0.001 mM/s          </td>
+		    <td> 100       </td>
+		    <td>Local parameter </td>
+		    <td>vmar         </td>
+		  </tr>
+		</tbody>
+	      </table>
+	    </div>
+	    <div class="col-sm-1"></div>
+	  </div>
+	</div>
+      </article>
 
-    <div style="background-color:CDCCCB;width:900"><h2 id="quant">Table of biochemical quantities</h2></div>
+      <article>
+	<div class="container-fluid bg-3 text-center">
+	  <div class="row">
+	    <div class="col-sm-2"></div>
+	    <div class="col-sm-8">
+	      <header>
+		<h3>Remarks</h3>
+	      </header>
+	      <ul align="left">
+		<li>Note that the thermodynamic quantities refer to biochemical
+		  reactants (e.g.ATP) rather than chemical species
+		  (e.g. ATP<sup>4-</sup>). Therefore, they
+		  represent <em>transformed</em> quantities. In Alberty's exact notation,
+		  they  would be written as K' (for k<sup>eq</sup>),  μ' (for μ), and 
+		  μ'<sup>0</sup> (for  μ<sup>0</sup>).
+		</li>  
+		<li>
+		  In parameter balancing, all quantities representing energies (in
+		  kJ/mol) are treated in their original scale, while all other
+		  quantities are converted to logarithmic scale (column
+		  "Scaling"). Since the latter quantities are described by
+		  log-normal (instead of normal) distributions, we need to
+		  distinguish between their mean and median values. For more
+		  information on this topic, see the review
+		  <a href="http://www.sciencedirect.com/science/article/pii/0167483894900450">Biochemical thermodynamics
+		    by R. Alberty</a>.
+		</li>
+		<li>
+		  We further distinguish between <em>basic</em> and
+		  <em>derived</em> quantities (column "Type"). The difference is
+		  that the basis quantities can be freely chosen (e.g., as a result
+		  of an estimation), while the derived quantities depend on the
+		  basic quantities and are computed from them. In parameter
+		  balancing, we define typical ranges for the basic quantities by
+		  <em>prior distributions</em> and for the derived quantities by
+		  <em>pseudo values</em>.
+		</li>
+		<li>
+		  When inserted into the SBML model, most quantities are inserted into
+		  kinetic rate laws as local parameters. Exceptions are concentrations
+		  (initial concentration attribute in species), standard chemical
+		  potentials (global parameters), and reaction affinities and chemical
+		  potentials, which could just be computed from other elements.
+		</li>
+		<li>
+		  Some quantities depend on the specific definition of the reaction sum formula (nominal direction,
+		  appearance of small molecules like water); in particular for equilibrium constants, catalytic rate
+		  constants, and maximal velocities, make sure that the definitions match between model and data set.
+		</li>
+		<li>
+		  Gibbs free energies can be used as proxies for the standard chemical potentials. However, make sure
+		  not to mix values from different data sets. It is possible that they will follow different conventions
+		  (setting the GFE for some large molecules to zero values for convenience) and will therefore be
+		  incompatible.
+		</li>
+	      </ul>
+	    </div>
+	    <div class="col-sm-2"></div>
+	  </div>
+	</div>
+      </article>	
 
-    <p style="width:900;">At the beginning of parameter balancing, a metabolic network structure is read from
-      an SBML file. It is assumed that all kinetic rate laws will be substituted by
-      <a href="http://bioinformatics.oxfordjournals.org/content/26/12/1528.abstract">modular rate laws</a> and
-      the necessary kinetic constants and some dynamic quantities (referring to a specific metabolic state of
-      the system) are estimated from collected data. The relevant quantities are listed below.
-    </p>
-    
-    <table border="1">
-      <tbody>
-	<tr>
-	  <td>Quantity Type</td>
-	  <td> Symbol           </td>
-	  <td>Unit</td>
-	  <td>BiologicalElement</td>
-	  <td>MathematicalType</td>
-	  <td>PhysicalType     </td>
-	  <td>Dependence</td>
-	  <td>PriorMedian</td>
-	  <td>PriorStd/GeometricStd</td>
-	  <td>SBML element    </td>
-	  <td>Abbreviation </td>
-	</tr>
-	<tr>
-	  <td>Standard chemical potential</td>
-	  <td> μ<sup>0</sup> </td>
-	  <td>kJ/mol</td>
-	  <td>Species</td>
-	  <td>Additive</td>
-	  <td>Thermodynamic</td>
-	  <td>Basic     </td>
-	  <td> -880 kJ/mol         </td>
-	  <td> 1500 kJ/mol            </td>
-	  <td>Global parameter</td>
-	  <td>scp          </td>
-	</tr>
-	<tr>
-	  <td>Catalytic rate constant geometric mean</td>
-	  <td> k<sup>V</sup>    </td>
-	  <td>1/s</td>
-	  <td>Reaction</td>
-	  <td>Multiplicative</td>
-	  <td>Kinetic      </td>
-	  <td>Basic     </td>
-	  <td> 10 s<sup>-1</sup>   </td>
-	  <td> 100       </td>
-	  <td>Local parameter </td>
-	  <td>kcrg         </td>
-	</tr>
-	<tr>
-	  <td>Michaelis constant</td>
-	  <td> k<sup>M</sup>    </td>
-	  <td>mM</td>
-	  <td>Reaction/Species</td>
-	  <td>Multiplicative</td>
-	  <td>Kinetic      </td>
-	  <td>Basic     </td>
-	  <td> 0.1 mM              </td>
-	  <td> 10       </td>
-	  <td>Local parameter </td>
-	  <td>kmc          </td>
-	</tr>
-	<tr>
-	  <td>Activation constant</td>
-	  <td> k<sup>A</sup>    </td>
-	  <td>mM</td>
-	  <td>Reaction/Species</td>
-	  <td>Multiplicative</td>
-	  <td>Kinetic      </td>
-	  <td>Basic     </td>
-	  <td> 0.1 mM              </td>
-	  <td> 10       </td>
-	  <td>Local parameter </td>
-	  <td>kac          </td>
-	</tr>
-	<tr>
-	  <td>Inhibitory constant</td>
-	  <td> k<sup>I</sup>    </td>
-	  <td>mM</td>
-	  <td>Reaction/Species</td>
-	  <td>Multiplicative</td>
-	  <td>Kinetic      </td>
-	  <td>Basic     </td>
-	  <td> 0.1 mM              </td>
-	  <td> 10       </td>
-	  <td>Local parameter </td>
-	  <td>kic          </td>
-	</tr>
-	<tr>
-	  <td>Concentration</td>
-	  <td> c                </td>
-	  <td>mM</td>
-	  <td>Species</td>
-	  <td>Multiplicative</td>
-	  <td>Dynamic      </td>
-	  <td>Basic     </td>
-	  <td> 0.1 mM              </td>
-	  <td> 10       </td>
-	  <td>Species (conc.) </td>
-	  <td>             </td>
-	</tr>
-	<tr>
-	  <td>Concentration of enzyme</td>
-	  <td> u                </td>
-	  <td>mM</td>
-	  <td>Reaction</td>
-	  <td>Multiplicative</td>
-	  <td>Dynamic      </td>
-	  <td>Basic     </td>
-	  <td> 0.001 mM           </td>
-	  <td> 100       </td>
-	  <td>Local parameter </td>
-	  <td>eco          </td>
-	</tr>
-	<tr>
-	  <td>Equilibrium constant</td>
-	  <td> k<sup>eq</sup>   </td>
-	  <td>dimensionless</td>
-	  <td>Reaction</td>
-	  <td>Multiplicative</td>
-	  <td>Thermodynamic</td>
-	  <td>Derived   </td>
-	  <td> 1                   </td>
-	  <td> 100       </td>
-	  <td>Local parameter </td>
-	  <td>keq          </td>
-	</tr>	
-	<tr>
-	  <td>Substrate catalytic rate constant</td>
-	  <td> k<sup>cat+</sup> </td>
-	  <td>1/s</td>
-	  <td>Reaction</td>
-	  <td>Multiplicative</td>
-	  <td>Kinetic      </td>
-	  <td>Derived   </td>
-	  <td> 10 s<sup>-1</sup>   </td>
-	  <td> 100       </td>
-	  <td>Local parameter </td>
-	  <td>kcrf         </td>
-	</tr>
-	<tr>
-	  <td>Product catalytic rate constant</td>
-	  <td> k<sup>cat-</sup> </td>
-	  <td>1/s</td>
-	  <td>Reaction</td>
-	  <td>Multiplicative</td>
-	  <td>Kinetic      </td>
-	  <td>Derived   </td>
-	  <td> 10 s<sup>-1</sup>   </td>
-	  <td> 100       </td>
-	  <td>Local parameter </td>
-	  <td>kcrr         </td>
-	</tr>
-	<tr>
-	  <td>Chemical potential</td>
-	  <td> μ             </td>
-	  <td>kJ/mol</td>
-	  <td>Species</td>
-	  <td>Additive</td>
-	  <td>Dynamic      </td>
-	  <td>Derived   </td>
-	  <td> -880  kJ/mol        </td>
-	  <td> 1500            </td>
-	  <td>                </td>
-	  <td>             </td>
-	</tr>
-	<tr>
-	  <td>Reaction affinity</td>
-	  <td> A                </td>
-	  <td>kJ/mol</td>
-	  <td>Reaction</td>
-	  <td>Additive</td>
-	  <td>Dynamic      </td>
-	  <td>Derived   </td>
-	  <td> 0.0   kJ/mol        </td>
-	  <td> 10.0 kJ/mol           </td>
-	  <td>                </td>
-	  <td>             </td>
-	</tr>
-	<tr>
-	  <td>Forward maximal velocity</td>
-	  <td> v<sup>max+</sup> </td>
-	  <td>mM/s</td>
-	  <td>Reaction</td>
-	  <td>Multiplicative</td>
-	  <td>Dynamic      </td>
-	  <td>Derived   </td>
-	  <td> 0.001 mM/s          </td>
-	  <td> 100       </td>
-	  <td>Local parameter </td>
-	  <td>vmaf         </td>
-	</tr>
-	<tr>
-	  <td>Reverse maximal velocity</td>
-	  <td> v<sup>max-</sup> </td>
-	  <td>mM/s</td>
-	  <td>Reaction</td>
-	  <td>Multiplicative</td>
-	  <td>Dynamic      </td>
-	  <td>Derived   </td>
-	  <td> 0.001 mM/s          </td>
-	  <td> 100       </td>
-	  <td>Local parameter </td>
-	  <td>vmar         </td>
-	</tr>
-
-
-  </tbody></table>
-
-<br>
-<p><strong>Remarks</strong>
-</p><ol>
-  <li style="width:860"><p>Note that the thermodynamic quantities refer to biochemical
-      reactants (e.g.ATP) rather than chemical species
-      (e.g. ATP<sup>4-</sup>). Therefore, they
-      represent <em>transformed</em> quantities. In Alberty's exact notation,
-      they  would be written as K' (for k<sup>eq</sup>),  μ' (for μ), and 
- μ'<sup>0</sup> (for  μ<sup>0</sup>).</p></li>  
-  <li style="width:860"><p>
-    In parameter balancing, all quantities representing energies (in
-    kJ/mol) are treated in their original scale, while all other
-    quantities are converted to logarithmic scale (column
-    "Scaling"). Since the latter quantities are described by
-    log-normal (instead of normal) distributions, we need to
-    distinguish between their mean and median values. For more
-    information on this topic, see the review
-    <a href="http://www.sciencedirect.com/science/article/pii/0167483894900450">Biochemical thermodynamics
-      by R. Alberty</a>.
-  </p></li>
-  <li style="width:860">
-    <p>We further distinguish between <em>basic</em> and
-    <em>derived</em> quantities (column "Type"). The difference is
-    that the basis quantities can be freely chosen (e.g., as a result
-    of an estimation), while the derived quantities depend on the
-    basic quantities and are computed from them. In parameter
-    balancing, we define typical ranges for the basic quantities by
-    <em>prior distributions</em> and for the derived quantities by
-    <em>pseudo values</em>.
-  </p></li>
-  <li style="width:860">
-    <p>When inserted into the SBML model, most quantities are inserted into
-    kinetic rate laws as local parameters. Exceptions are concentrations
-    (initial concentration attribute in species), standard chemical
-    potentials (global parameters), and reaction affinities and chemical
-    potentials, which could just be computed from other elements.
-  </p></li>
-  <li style="width:860;"><p>Some quantities depend on the specific definition of the reaction sum formula (nominal direction,
-    appearance of small molecules like water); in particular for equilibrium constants, catalytic rate
-    constants, and maximal velocities, make sure that the definitions match between model and data set.</p></li>
-  <li style="width:860;"><p>Gibbs free energies can be used as proxies for the standard chemical potentials. However, make sure
-    not to mix values from different data sets. It is possible that they will follow different conventions
-    (setting the GFE for some large molecules to zero values for convenience) and will therefore be
-    incompatible.</p></li>
- 
-</ol>
-<p></p>
-
-    <div style="background-color:CDCCCB;width:900"><h2 id="faq">Frequently asked questions</h2></div>
-
-
-      <b>Where is the parameter balancing method described?</b>
-        <p style="width:900;">
-	  Parameter balancing is described in <a href="http://pubs.acs.org/doi/abs/10.1021/jp108764b">Lubitz et al. (2010)</a>.
-          If you use
-	  parameter balancing in your work, please refer to this article. A  modelling workflow based on parameter balancing is described
-	  in <a href="http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0079195">Stanford et al. (2013)</a>.
-	</p>
-
-      <b>How does parameter balancing work mathematically?</b>
-        <p style="width:900;">
-	  Parameter balancing employs Bayesian estimation to determine
-	  a consistent set of all model parameters. To use it
-	  efficiently, it is good to know about some of its
-	  details. For technical reasons, all quantities are
-	  internally converted to natural scaling. This means that for
-	  energy quantities (in kJ/mol), we keep the original values
-	  while for all other quantities, we take the natural
-	  logarithms. Furthermore, we distinguish between basic
-	  quantities and derived quantities (which are uniquely
-	  determined by the basic quantities). See
-	  the overview of all quantities shown above. During balancing, we
-	  integrate information from data (values and standard
-	  errors), prior distributions (typical values and spread for
-	  basic quantities), and pseudo values (typical values and
-	  spread for derived quantities). All these values and spreads
-	  are represented by normal distributions (priors, data with
-	  standard errors, pseudo values, and posteriors) for the
-	  naturally scaled quantities. When converting back to
-	  non-logarithmic values, we obtain log-normal distributions,
-	  which makes it crucial to distinguish between median and
-	  mean values. Eventually, the median values (which are more
-	  realistic and guaranteed to satisfy the relevant
-	  constraints) are inserted into the model.
-	</p>
-
-      <b>Which kinetic rate laws are assumed in parameter balancing?</b>
-        <p style="width:900;">
-	  Parameter balancing is based on <a href="http://bioinformatics.oxfordjournals.org/content/26/12/1528.abstract">modular
-	  rate laws</a>, a generalised version of the convenience kinetics. The modular rate laws include reversible mass-action
-	  and reversible Michaelis-Menten rate laws as special cases. Modular rate laws are also supported by
-	  <a href="http://www.ra.cs.uni-tuebingen.de/software/SBMLsqueezer/">SBMLsqueezer</a>, which allows you to directly insert
-	  rate laws into SBML models. In parameter balancing, rate laws and rate constants can be directly inserted into your model
-	  at the end of the workflow. Note that all rate laws previously present in your model will be removed.
-	</p>
-
-    <p style="width:900;">
-      <b>What files do I need to prepare?</b>
-        </p><p style="width:900;">
-	  A valid SBML file and a corresponding data file, provided in the SBtab format.
-	</p>
-
-      <b>Where can I find example files?</b>
-        <p style="width:900;">
-	  A number of example files (SBML models and SBtab data tables for parameter balancing) can be found
-	  <a href="/pb/static/download.html">here</a>.
-	</p>
-
-      <b>What is the SBtab format?</b>
-        <p style="width:900;">
-	  SBtab tables can express various kinds of data. For the parameter balancing you need an
-	  SBtab file of the type "Quantity". You can also edit the prior distribution for the
-	  different parameter types by providing an SBtab file of the type "QuantityInfo". Finally,
-	  you can configure several options for the parameter balancing process by providing an
-	  SBtab file of the type "PbConfig". Examples for each of these SBtab files are on the
-	  corresponding pages of the workflow and in the Downloads section. The current SBtab format is explained
-	  <a href="http://www.sbtab.net/">here</a>. SBtab files are provided in the .tsv-format (tab
-	  separated values). 
-	</p>
-
-      <b>What does a SBtab file look like?</b>
-        <p style="width:900;">
-	  In writing SBtab files, please regard the following facts:
-	  </p><ol>
-	    <li style="width:850;">The SBtab file begins with a specification line:
-	      "!!SBtab TableType='QuantityType' Level='1' Version '0.1'". Please do not alter
-	      this specification row, it will lead to trouble.</li>
-	    <li style="width:850;">The next row holds the headers of the different columns.
-	      Each header has to be started with an exclamation mark to be recognized as a header
-	      name properly.</li>
-	    <li style="width:850;">There are several mandatory column headers: !QuantityType,
-	      !SBMLReactionID, ! SBMLSpeciesID, !Mean, !Std, !Unit</li>
-	    <li style="width:850;">Please consider the following rules concerning the columns:
-	  <ul>
-	      <li style="width:820;">!QuantityType can only hold the specific names of parameter
-		types. You can have a look at the QuantityTypes.tsv-file in the <a href="/pb/static/download.html">Download area</a> to see
-		which those are. Watch spelling!</li>
-	      <li style="width:820;">!SBML:reaction:id and !SBML:species:id hold the identifiers of the
-		corresponding reaction and species. Watch out: they HAVE TO be the same identifier
-		names like in the SBML file that is used. Watch spelling, too. No capital switches
-		or anything.</li>
-	      <li style="width:820;">!Mean: this column HAS TO hold a numeric value. If you do not
-		have one, you do not need this row.</li>
-	      <li style="width:820;">!Std: the standard deviation of the mean value. This can be
-		left blank, if you have no std.</li>
-	      <li style="width:820;">!Unit: please enter the unit of the mean value here.</li>
-	      <li style="width:820;">Please note that different parameter types need either the
-		!SBML:reaction:id (e.g. equilibrium constant), or the !SBML:species:id (e.g. concentration),
-		or even both (e.g. Michaelis constant). If this is not entered correctly, the value
-		will not be taken into account. Whether you need Reaction, Species, or both you can
-		see in the default prior table.</li>
-	      <li style="width:820;">To support consistent style, please stick to the presented order of the columns.</li>
-	  </ul></li>
-	  </ol>
-	<p></p>
-
-      <b>Where can I find kinetic and other data for parameter balancing?</b>
-        <p style="width:900;">
-	  The parameter balancing relies on a posterior distribution of the different parameter
-	  types and on a collection of kinetic data provided by the user. 
-	  Typical input data for estimating kinetic parameters comprise catalytic constants (kcat values), Michaelis-Menten
-	  constants (KM values), equilibrium constants, standard reaction Gibbs free energies, and Gibbs free energies of formation.
-	  Typical input data for estimating metabolic states also comprise metabolite concentrations.
- Data obtained from experiments can be found in the 
-literature and in  web resources:<p>
-<ul>
-	    <li style="width:850;">A large collection of kinetic data is provided by the <a href="http://www.brenda-enzymes.org/">BRENDA
-		Enzyme Database</a>.</li>
-	    <li style="width:850;">Thermodynamic data for many reactions can be obtained from the website
-	      <a href="http://equilibrator.weizmann.ac.il/">eQuilibrator</a>. This comprises calculated equilibrium constants and
-	      standard reaction Gibbs free energies for different values of pH and ionic strength. We provide a collection of
-	      these data for parameter balancing <a href="http://www.parameterbalancing.net/pb/static/files/kegg_reactions_CC_ph7.0.tsv">here</a>.</li>
-	  </ul>
-	<p></p>
-
-
-      <b>What physical units are used?</b>
-        <p style="width:900;">
-	  The units are predefined in the <a href="/pb/static/download.html">prior table</a> and cannot be changed,
-	  unless you provide your own customised prior table.
-	</p>
-
-      <b>Can I also use flux data?</b>
-        <p style="width:900;">
-	  Metabolic fluxes do not directly fit into the dependence scheme that parameter balancing uses internally to link
-	  different quantitities. Therefore, fluxes cannot be used as input data, nor can they be predicted directly.
-	  However, they can be used in an indirect way, as described in
-	  <a href="http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0079195">Stanford et al. (2013)</a>.
-	  The idea is as follows: In parameter balancing including metabolite levels and reaction Gibbs free energies, known
-	  flux directions can be used to define the signs of all reaction Gibbs free energies. The resulting rate laws and
-	  metabolite levels will be consistent with the predefined fluxes. The kinetic model, parametrised in this way, and
-	  with the balanced metabolite levels, will yield reaction rates with the same signs as the predefined fluxes. By
-	  rescaling the Vmax values (i.e., scaling the catalytic constants, enzyme levels, or both), reaction rates and fluxes
-	  can be matched. The resulting model will correlate to the predefined flux distribution by construction. Note that, in order
-	  for this to work, the predefined fluxes must be thermodynamically feasible (i.e., loop-free, and realisable for the
-	  (potentially predefined) external metabolite levels.
-	</p>
-
-      <b>How can I define or modify the priors on model parameters?</b>
-        <p style="width:900;">
-	  Experimental data alone will usually not suffice to determine all model parameters. To determine underdetermined
-	  parameters, and to keep parameters in realistic ranges, parameter balancing uses prior distributions and constraints
-	  for each type of parameter. These priors and constraints are defined in a data table, which can be customised by the
-	  user. The table is described <a href="/pb/static/download.html">here</a>.
-	</p>
-
-      <b>What known caveats exist in parameter balancing?</b>
-        <p style="width:900;">
-	  Parameter balancing makes specific assumptions about the rate laws 
-used. In some cases, this can lead to problems, or parameter
-	  balancing may not be suitable for your modelling. Here we list points
- that can typically lead to problems:
-	  </p><ul style="width:850;">
-	    <li><b>Large models</b></li>Large networks lead to large parameter 
-sets, which increase
-	    the numerical effort of parameter balancing. One possibility to 
-avoid this problem is to use fixed, precalculated equilibrium
-	    constants. Then, the kinetic constants of each reaction can be 
-balanced separately, which reduces the effort.
-	    <li><b>Biomass reaction or polymerisation reactions</b></li>Many 
-metabolic models (especially, models used in flux balance analysis)
-	    contain a "biomass" reaction that involves a large number of 
-compounds with largely varying stoichiometric coefficients.
-	    Modular rate laws, as assumed in parameter balancing, use the 
-stoichiometric coefficients as exponents in the formula. For
-	    biomass reactions or polyerisation reactions, this is not very 
-realistic as assumption. Furthermore, these reactions usually
-	    do not have to be thermodynamically consistent. For both reasons, 
-it is advisable to discard the automatically proposed kinetics,
-	    and insert a more realistic kinetics instead (see, for instance, 
-the rate laws proposed in
-	    <a href="http://www.sciencedirect.com/science/article/pii/S0014579313005267">Hofmeyr et al., (2013))</a>.
-	    <li><b>Very large or small parameter values</b></li>Very large or small parameter values can lead to unrealistic models and
-	    numerical problems. Extreme values should be avoided by using proper bounds. In any case, we suggest to have a look at all
-	    balanced values and to see if they are in realistic ranges.
-	    <li><b>Large uncertainties and strongly shifted mean values</b></li>Each
- balanced parameter value comes with an uncertainty.
-	    The uncertainties are described by normal distributions for the 
-logarithmic parameter values, so median and mean value on
-	    logarithmic scale will be identical. For the non-logarithmic 
-values, we obtain a log-normal distribution, and median and mean
-	    value will differ. If the uncertainty is large (which can easily 
-happen if a value is not constrained by any data values), the
-	    mean and median can become very different, and the mean value can 
-become very high. This can be avoided by reducing the uncertainty
-	    range - by providing more data that constraints the parameter 
-value, by using narrower priors or constraints, or by using "pseudo"
-	    values.
-	    <li><b>What if the model cannot be simulated?</b></li>Problems in 
-simulating the model (e.g., using COPASI) may be caused by
-	    unrealistically high or low parameter values. If you notice such 
-parameter values in your model and would like to avoid them, you
-	    may use tighter priors or pseudo values to exclude extreme 
-parameter values.
-	  </ul>
-	<p></p>
-    <p></p>
-
-
-      <b>Who can answer my other questions?</b>
-        <p style="width:900;">
-	  Please refer to the <a href="/pb/static/contact.html">Contact Page</a>.
-	</p>
-    <p></p>
-
-
-
-    <br>
-    <p style="margin-left:250;">
-      <a href="/pb/static/main.html">Main</a> |
-      <a href="/pb/default/balancing.html">Online Balancing</a> |
-      Documentation |
-      <a href="/pb/static/download.html">Download</a> |
-      <a href="/pb/static/contact.html">Contact</a>
-    </p>
-    
-    <hr style="width:900;float:left;"><br>
-      </td>
-      </tr></tbody></table>
-
-</body></html>
+      <article>
+	<div class="container-fluid bg-3 text-center">
+	  <div class="row">
+	    <div class="col-sm-2"></div>
+	    <div class="col-sm-8">
+	      <header>
+		<h3 id="faq">Frequently asked questions</h3>
+	      </header>
+	      <ul align="left">
+		<li>
+		  <b>Where is the parameter balancing method described?</b>
+		  Parameter balancing is described in <a href="http://pubs.acs.org/doi/abs/10.1021/jp108764b">Lubitz et al. (2010)</a>.
+		  If you use parameter balancing in your work, please refer to this article. A  modelling workflow based on parameter balancing is described
+		  in <a href="http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0079195">Stanford et al. (2013)</a>.
+		</li>
+		<li>
+		  <b>How does parameter balancing work mathematically?</b>
+		  Parameter balancing employs Bayesian estimation to determine
+		  a consistent set of all model parameters. To use it
+		  efficiently, it is good to know about some of its
+		  details. For technical reasons, all quantities are
+		  internally converted to natural scaling. This means that for
+		  energy quantities (in kJ/mol), we keep the original values
+		  while for all other quantities, we take the natural
+		  logarithms. Furthermore, we distinguish between basic
+		  quantities and derived quantities (which are uniquely
+		  determined by the basic quantities). See
+		  the overview of all quantities shown above. During balancing, we
+		  integrate information from data (values and standard
+		  errors), prior distributions (typical values and spread for
+		  basic quantities), and pseudo values (typical values and
+		  spread for derived quantities). All these values and spreads
+		  are represented by normal distributions (priors, data with
+		  standard errors, pseudo values, and posteriors) for the
+		  naturally scaled quantities. When converting back to
+		  non-logarithmic values, we obtain log-normal distributions,
+		  which makes it crucial to distinguish between median and
+		  mean values. Eventually, the median values (which are more
+		  realistic and guaranteed to satisfy the relevant
+		  constraints) are inserted into the model.
+		</li>
+		<li>
+		  <b>Which kinetic rate laws are assumed in parameter balancing?</b>
+		  Parameter balancing is based on <a href="http://bioinformatics.oxfordjournals.org/content/26/12/1528.abstract">modular
+		    rate laws</a>, a generalised version of the convenience kinetics. The modular rate laws include reversible mass-action
+		  and reversible Michaelis-Menten rate laws as special cases. Modular rate laws are also supported by
+		  <a href="http://www.ra.cs.uni-tuebingen.de/software/SBMLsqueezer/">SBMLsqueezer</a>, which allows you to directly insert
+		  rate laws into SBML models. In parameter balancing, rate laws and rate constants can be directly inserted into your model
+		  at the end of the workflow. Note that all rate laws previously present in your model will be removed.
+		</li>
+		<li>
+		  <b>What files do I need to prepare?</b>
+		  A valid SBML file and a corresponding data file, provided in the SBtab format.
+		</li>
+		<li>
+		  <b>Where can I find example files?</b>
+		  A number of example files (SBML models and SBtab data tables for parameter balancing) can be found
+		  <a href="/pb/static/download.html">here</a>.
+		</li>
+		<li>
+		  <b>What is the SBtab format?</b>
+		  SBtab tables can express various kinds of data. For the parameter balancing you need an
+		  SBtab file of the type "Quantity". You can also edit the prior distribution for the
+		  different parameter types by providing an SBtab file of the type "QuantityInfo". Finally,
+		  you can configure several options for the parameter balancing process by providing an
+		  SBtab file of the type "PbConfig". Examples for each of these SBtab files are on the
+		  corresponding pages of the workflow and in the Downloads section. The current SBtab format is explained
+		  <a href="http://www.sbtab.net/">here</a>. SBtab files are provided in the .tsv-format (tab
+		  separated values). 
+		</li>
+		<li>
+		  <b>What does a SBtab file look like?</b>
+		  In writing SBtab files, please regard the following rules:
+		  <ol>
+		    <li>The SBtab file begins with a specification line:
+		      "!!SBtab TableType='QuantityType' Level='1' Version '0.1'". Please do not alter
+		      this specification row, it will lead to trouble.</li>
+		    <li>The next row holds the headers of the different columns.
+		      Each header has to be started with an exclamation mark to be recognized as a header
+		      name properly.</li>
+		    <li>There are several mandatory column headers: !QuantityType,
+		      !SBMLReactionID, ! SBMLSpeciesID, !Mean, !Std, !Unit</li>
+		    <li>Please consider the following rules concerning the columns:
+		      <ul>
+			<li>!QuantityType can only hold the specific names of parameter
+			  types. You can have a look at the QuantityTypes.tsv-file in the <a href="/pb/static/download.html">Download area</a> to see
+			  which those are. Watch spelling!</li>
+			<li>!SBML:reaction:id and !SBML:species:id hold the identifiers of the
+			  corresponding reaction and species. Watch out: they HAVE TO be the same identifier
+			  names like in the SBML file that is used. Watch spelling, too. No capital switches
+			  or anything.</li>
+			<li>!Mean: this column HAS TO hold a numeric value. If you do not
+			  have one, you do not need this row.</li>
+			<li>!Std: the standard deviation of the mean value. This can be
+			  left blank, if you have no std.</li>
+			<li>!Unit: please enter the unit of the mean value here.</li>
+			<li>Please note that different parameter types need either the
+			  !SBML:reaction:id (e.g. equilibrium constant), or the !SBML:species:id (e.g. concentration),
+			  or even both (e.g. Michaelis constant). If this is not entered correctly, the value
+			  will not be taken into account. Whether you need Reaction, Species, or both you can
+			  see in the default prior table.</li>
+			<li>To support consistent style, please stick to the presented order of the columns.</li>
+		      </ul>
+		    </li>
+		  </ol>
+		</li>
+		<li>
+		  <b>Where can I find kinetic and other data for parameter balancing?</b>
+		  The parameter balancing relies on a posterior distribution of the different parameter
+		  types and on a collection of kinetic data provided by the user. 
+		  Typical input data for estimating kinetic parameters comprise catalytic constants (kcat values), Michaelis-Menten
+		  constants (KM values), equilibrium constants, standard reaction Gibbs free energies, and Gibbs free energies of formation.
+		  Typical input data for estimating metabolic states also comprise metabolite concentrations.
+		  Data obtained from experiments can be found in the 
+		  literature and in  web resources:
+		  <ul>
+		    <li>A large collection of kinetic data is provided by the <a href="http://www.brenda-enzymes.org/">BRENDA
+			Enzyme Database</a>.</li>
+		    <li>Thermodynamic data for many reactions can be obtained from the website
+		      <a href="http://equilibrator.weizmann.ac.il/">eQuilibrator</a>. This comprises calculated equilibrium constants and
+		      standard reaction Gibbs free energies for different values of pH and ionic strength. We provide a collection of
+		      these data for parameter balancing <a href="http://www.parameterbalancing.net/pb/static/files/kegg_reactions_CC_ph7.0.tsv">here</a>.</li>
+		  </ul>
+		</li>
+		<li>
+		  <b>What physical units are used?</b>
+		  The units are predefined in the <a href="/pb/static/download.html">prior table</a> and cannot be changed,
+		  unless you provide your own customised prior table.
+		</li>
+		<li>
+		  <b>Can I also use flux data?</b>
+		  Metabolic fluxes do not directly fit into the dependence scheme that parameter balancing uses internally to link
+		  different quantitities. Therefore, fluxes cannot be used as input data, nor can they be predicted directly.
+		  However, they can be used in an indirect way, as described in
+		  <a href="http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0079195">Stanford et al. (2013)</a>.
+		  The idea is as follows: In parameter balancing including metabolite levels and reaction Gibbs free energies, known
+		  flux directions can be used to define the signs of all reaction Gibbs free energies. The resulting rate laws and
+		  metabolite levels will be consistent with the predefined fluxes. The kinetic model, parametrised in this way, and
+		  with the balanced metabolite levels, will yield reaction rates with the same signs as the predefined fluxes. By
+		  rescaling the Vmax values (i.e., scaling the catalytic constants, enzyme levels, or both), reaction rates and fluxes
+		  can be matched. The resulting model will correlate to the predefined flux distribution by construction. Note that, in order
+		  for this to work, the predefined fluxes must be thermodynamically feasible (i.e., loop-free, and realisable for the
+		  (potentially predefined) external metabolite levels.
+		</li>
+		<li>
+		  <b>How can I define or modify the priors on model parameters?</b>
+		  Experimental data alone will usually not suffice to determine all model parameters. To determine underdetermined
+		  parameters, and to keep parameters in realistic ranges, parameter balancing uses prior distributions and constraints
+		  for each type of parameter. These priors and constraints are defined in a data table, which can be customised by the
+		  user. The table is described <a href="/pb/static/download.html">here</a>.
+		</li>
+		<li>
+		  <b>What known caveats exist in parameter balancing?</b>
+		  Parameter balancing makes specific assumptions about the rate laws 
+		  used. In some cases, this can lead to problems, or parameter
+		  balancing may not be suitable for your modelling. Here we list points
+		  that can typically lead to problems:
+		  <ul>
+		    <li><b>Large models</b> Large networks lead to large parameter 
+		    sets, which increase
+		    the numerical effort of parameter balancing. One possibility to 
+		    avoid this problem is to use fixed, precalculated equilibrium
+		    constants. Then, the kinetic constants of each reaction can be 
+		    balanced separately, which reduces the effort.</li>
+		    <li><b>Biomass reaction or polymerisation reactions</b> Many 
+		    metabolic models (especially, models used in flux balance analysis)
+		    contain a "biomass" reaction that involves a large number of 
+		    compounds with largely varying stoichiometric coefficients.
+		    Modular rate laws, as assumed in parameter balancing, use the 
+		    stoichiometric coefficients as exponents in the formula. For
+		    biomass reactions or polyerisation reactions, this is not very 
+		    realistic as assumption. Furthermore, these reactions usually
+		    do not have to be thermodynamically consistent. For both reasons, 
+		    it is advisable to discard the automatically proposed kinetics,
+		    and insert a more realistic kinetics instead (see, for instance, 
+		    the rate laws proposed in
+		    <a href="http://www.sciencedirect.com/science/article/pii/S0014579313005267">Hofmeyr et al., (2013))</a>.</li>
+		    <li><b>Very large or small parameter values</b>Very large or small parameter values can lead to unrealistic models and
+		    numerical problems. Extreme values should be avoided by using proper bounds. In any case, we suggest to have a look at all
+		    balanced values and to see if they are in realistic ranges.</li>
+		    <li><b>Large uncertainties and strongly shifted mean values</b>Each
+		    balanced parameter value comes with an uncertainty.
+		    The uncertainties are described by normal distributions for the 
+		    logarithmic parameter values, so median and mean value on
+		    logarithmic scale will be identical. For the non-logarithmic 
+		    values, we obtain a log-normal distribution, and median and mean
+		    value will differ. If the uncertainty is large (which can easily 
+		    happen if a value is not constrained by any data values), the
+		    mean and median can become very different, and the mean value can 
+		    become very high. This can be avoided by reducing the uncertainty
+		    range - by providing more data that constraints the parameter 
+		    value, by using narrower priors or constraints, or by using "pseudo"
+		    values.</li>
+		    <li><b>What if the model cannot be simulated?</b>Problems in 
+		    simulating the model (e.g., using COPASI) may be caused by
+		    unrealistically high or low parameter values. If you notice such 
+		    parameter values in your model and would like to avoid them, you
+		    may use tighter priors or pseudo values to exclude extreme 
+		    parameter values.</li>
+		  </ul>
+		</li>
+		<li>
+		  <b>Who can answer my other questions?</b>
+		  Please refer to the <a href="/pb/static/contact.html">Contact Page</a>.
+		</li>
+	      </ul>
+	    </div>
+	    <div class="col-sm-2"></div>
+	  </div>
+	</div>
+      </article>
+    </main>
+    <hr>
+    <footer class="container-fluid bg-3 text-center">
+      <p>Thanks to <a href="https://getbootstrap.com/" target="_blank">Bootstrap</a> and <a href="http://web2py.com/" target="_blank">Web2py</a>. Code and further information on <a href="https://github.com/tlubitz/parameter_balancing" target="_blank">Github</a>.</p> 
+    </footer>
+  </body>
+</html>

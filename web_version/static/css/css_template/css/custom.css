@@ -2274,12 +2274,12 @@ hr {
     color: inherit;
 }
 .bg-1 { 
-    background-color: #fff; /* Green */
-    color: #55555;
+    background-color: #eee; /* Green */
+    color: #eee;
 }
 .bg-2 { 
-    background-color: #474e5d; /* Dark Blue */
-    color: #ffffff;
+    background-color: #eee; /* Dark Blue */
+    color: #777
 }
 .bg-3 { 
     background-color: #fff; /* White */

@@ -1,287 +1,201 @@
 {{extend 'layout.html'}}
-    <hr style="width:900;float:left;"><br>
-    
-    <p style="margin-left:250;">
-      <a href="/pb/static/main.html">Main</a> |
-      Online Balancing |
-      <a href="/pb/static/documentation.html">Documentation</a> |
-      <a href="/pb/static/download.html">Download</a> |
-      <a href="/pb/static/contact.html">Contact</a>
-    </p>
-    
-    <div style="background-color:CDCCCB;width:900"><h2>Parameter Balancing Online</h2></div>
 
-    <table>
-      <th style="width:430">
-	<!---------------------------------SBML-------------------------------------------->
-	<h3 align="left">Option 1: Separate Input Files</h3>
-	<p>Upload an SBML model (obligatory), and SBtab parameter, prior, or config files (optional).</p><hr>
-	{{if not SBML_NAMES:}}
-	{{=SBML_FORM}}
-	{{else:}}
-	<table border="0" cellspacing="5">
-	  <table border="1" rules="rows" cellspacing="5" cellpadding="5" align="center">
-	    <td bgcolor="#87CEFA">
-	    <td bgcolor="#87CEFA" height="20"></td>
-	    <!-- The file and corresponding button -->
-	    <tr>
-	      <td>
-		&bull;
-		<a href="/pb/default/show_sbml/{{=str(0)}}" target="_new"> {{=SBML_NAMES[0]}}</a>
-	      </td>
-	      <form>
-		<td>
-		  <button type="submit" value="{{=str(0)}}" name="erase_button_sbml">Remove</button>
-		</td>
-	      </form>
-	    </tr>
-	    </td>
-	  </table>
+<header>
+  <div style="padding-top:100px" class="container-fluid bg-2 text-center">
+    <h2>Parameter Balancing Online</h2>
+  </div>
+</header>
+
+<main>
+  <div class="container-fluid bg-3 text-center">
+    <div class="row">
+      <div class="col-sm-2"></div>
+      <div class="col-sm-4">
+	<article>
+	  <header>
+	    <h3>Option 1: Separate Input Files</h3>
+	  </header>
+	  <!---------------------------------SBML-------------------------------------------->
+	  Upload an SBML model (obligatory), and SBtab parameter, prior, or config files (optional).<hr>
+	  {{if not SBML_NAMES:}}
+	  <div class="container-fluid" style="padding-bottom:0px">
+	    {{=SBML_FORM}}
+	  </div>
+	  {{else:}}
+	  <div class="container-fluid" style="padding-bottom:5px">
+	    <a href="/pb/default/show_sbml/{{=str(0)}}" target="_new"> {{=SBML_NAMES[0]}}</a>
+	    <form style="padding-top:10px">
+	      <button type="submit" value="{{=str(0)}}" name="erase_button_sbml">Remove</button>
+	    </form>
+	  </div>
+	  
 	  <!-- Display warnings -->
 	  {{pass}}
 	  {{if WARNINGS_SBML:}}
-	  <table border="0" cellspacing="5">
-	    <tr>
-	      <td>
-	      <td>
-		<font color="red">{{=WARNINGS_SBML[0]}}</font>
-	      </td>
-	      </td>
-	    </tr>
-	    <tr></tr><tr></tr>
-	  </table>
+	  <div>
+	    <font color="red">{{=WARNINGS_SBML[0]}}</font>
+	  </div>
 	  {{elif SBML_NAMES:}}
-	  <table border="0" cellspacing="5">
-	    <tr>
-	      <td> No warnings detected. </td>
-	    </tr>
-	    <tr></tr><tr></tr>
-	  </table>
-
+	  <div>
+	    No warnings detected.
+	  </div>
 	  {{pass}}
 	  {{pass}}
 	  
 	  <!---------------------------------SBTAB-------------------------------------------->
 	  <hr>
-	    {{if not SBTAB_NAMES:}}	  
+	  {{if not SBTAB_NAMES:}}
+	  <div class="container-fluid" style="padding-bottom:0px">
 	    {{=SBTAB_FORM}}
-	    {{else:}}
-	  <table border="1" rules="rows" cellspacing="5" cellpadding="5" align="center">
-	      <td bgcolor="#87CEFA">
-	      <td bgcolor="#87CEFA" height="20"></td>
-		<!-- The file list and corresponding buttons -->
-		<tr>
-		  <td>
-		    &bull;
-		    <a href="/pb/default/show_sbtab/{{=str(0)}}" target="_new"> {{=SBTAB_NAMES[0]}}</a>
-		  </td>
-		  <form>
-		    <td>
-		      <button type="submit" value="{{=0}}" name="erase_button_sbtab">Remove</button>
-		    </td>
-		  </form>
-		</tr>
-		</td>
-	      </table>
+	  </div>
+	  {{else:}}
+	  <div class="container-fluid" style="padding-bottom:5px">
+	    <a href="/pb/default/show_sbtab/{{=str(0)}}" target="_new"> {{=SBTAB_NAMES[0]}}</a>
+	    <form style="padding-top:10px">
+	      <button type="submit" value="{{=0}}" name="erase_button_sbtab">Remove</button>
+	    </form>
+	  </div>
 	  {{pass}}
 	  <!-- Display warnings -->
 	  {{if WARNINGS_SBTAB:}}
-	      <table border="0">
-		{{for f in WARNINGS_SBTAB:}}
-		<tr>
-		  <td>
-		  <td><font color="red">{{=f}}</font></td>
-		  </td>
-		</tr>
-		{{pass}}
-	      </table>
-	      {{elif SBTAB_NAMES:}}
-	      <table border="0">
-		<td> No warnings detected. </td>
-	      </table>
-
-	      </td>
-	      {{pass}}
-	      {{pass}}
-	  <!---------------------------------PRIOR-------------------------------------------->
-	  <hr>
-	{{if not PRIOR_NAMES:}}
-	{{=PRIOR_FORM}}
-	{{else:}}
-
-	  <table border="1" rules="rows" cellspacing="5" cellpadding="5" align="center">
-	    <td bgcolor="#87CEFA">
-	    <td bgcolor="#87CEFA" height="20"></td>
-	    <!-- The file list and corresponding buttons -->
-	    <tr>
-	      <td>
-		&bull;
-		<a href="/pb/default/show_prior/{{=str(0)}}" target="_new"> {{=PRIOR_NAMES[0]}}</a>
-	      </td>
-	      <form>
-		<td>
-		  <button type="submit" value="{{=0}}" name="erase_button_prior">Remove</button>
-		</td>
-	      </form>
-
-
-	    </tr>
-
-	    </td>
-	  </table>
+	  {{for f in WARNINGS_SBTAB:}}
+	  <div>
+	    <font color="red">{{=f}}</font>
+	  </div>
+	  {{pass}}
+	  {{elif SBTAB_NAMES:}}
+	  <div>
+	    No warnings detected.
+	  </div>
+	  {{pass}}
 	  {{pass}}
 
+	  <!---------------------------------PRIOR-------------------------------------------->
+	  <hr>
+	  {{if not PRIOR_NAMES:}}
+	  <div class="container-fluid" style="padding-bottom:0px">
+	    {{=PRIOR_FORM}}
+	  </div>
+	  {{else:}}
+	  <div class="container-fluid" style="padding-bottom:5px">
+	    <a href="/pb/default/show_prior/{{=str(0)}}" target="_new"> {{=PRIOR_NAMES[0]}}</a>
+	    <form style="padding-top:10px">
+	      <button type="submit" value="{{=0}}" name="erase_button_prior">Remove</button>
+	    </form>
+	  </div>
+	  {{pass}}
+	
 	  <!-- Display warnings -->
 	  {{if WARNINGS_PRIOR:}}
-	  <table border="0">
-	    <tr>
-	      <td>
-		<td><font color="red">{{=WARNINGS_PRIOR[0]}}</font></td>
-	      </td>
-	    </tr>
-	  </table>
+	  <div>
+	    <font color="red">{{=WARNINGS_PRIOR[0]}}</font>
+	  </div>
 	  {{elif PRIOR_NAMES:}}
-	  <table border="0">
-	    <td> No warnings detected.</td>
-	  </table>
-
-        {{pass}}
+	  <div>
+	    No warnings detected.
+	  </div>
+          {{pass}}
 
 	  <!---------------------------------CONFIG-------------------------------------------->
 	  <hr>
-	{{if not CONFIG_FILE:}}
-	{{=CONFIG_FORM}}
-	{{else:}}
-
-	  <table border="1" rules="rows" cellspacing="5" cellpadding="5" align="center">
-	    <td bgcolor="#87CEFA">
-	    <td bgcolor="#87CEFA" height="20"></td>
-	    <!-- The file list and corresponding buttons -->
-	    <tr>
-	      <td>
-		&bull;
-		<a href="/pb/default/show_sbtab_conf/{{=str(0)}}" target="_new"> {{=CONFIG_FILENAME}}</a>
-	      </td>
-	      
-	      <form>
-		<td>
-		  <button type="submit" value="{{=0}}" name="erase_button_config">Remove</button>
-		</td>
-	      </form>
-
-
-	    </tr>
-
-	    </td>
-	  </table>
+	  {{if not CONFIG_FILE:}}
+	  <div class="container-fluid" style="padding-bottom:0px">
+	    {{=CONFIG_FORM}}
+	  </div>
+	  {{else:}}
+	  <div class="container-fluid" style="padding-bottom:5px">
+	    <a href="/pb/default/show_sbtab_conf/{{=str(0)}}" target="_new"> {{=CONFIG_FILENAME}}</a>
+	    <form style="padding-top:10px">
+	      <button type="submit" value="{{=0}}" name="erase_button_config">Remove</button>
+	    </form>	    
+	  </div>
 	  {{pass}}
 
 	  <!-- Display warnings -->
 	  {{if WARNINGS_CONFIG:}}
-	  <table border="0">
-	    <tr>
-	      <td>
-		<td><font color="red">{{=WARNINGS_CONFIG[0]}}</font></td>
-	      </td>
-	    </tr>
-	  </table>
+	  <div>
+	    <font color="red">{{=WARNINGS_CONFIG[0]}}</font>
+	  </div>
 	  {{elif CONFIG_FILE:}}
-	  <table border="0">
-	    <td> No warnings detected.</td>
-	  </table>
+	  <div>
+	    No warnings detected.
+	  </div>
 	  {{pass}}
 
-          <p>
-	    You can find example files on the <a href="/pb/static/download.html">Download page</a>.
-          </p>
 	  <hr>
-          <p>
-	    If your session appears crooked or yields incomprehensible errors, please <form><button type="submit" value="{{=str(0)}}" name="clearsession">Clear Session</button></form>
-          </p>
-
-	  <!---------------------------------BALANCE-------------------------------------------->
 	  {{if SBML_NAMES:}}
+	  <form>
+	    <button class="btn-info btn-lg" type="submit" value="{{=str(0)}}" name="balance_classic">Balance Parameters</button>
+          </form>
+	  {{pass}}
+	  
 	  <hr>
-	  <table border="0" rules="rows" cellspacing="5" cellpadding="5" align="center">
-	    <tr>
-	      <form>
-		<td>
-		  ------><button type="submit" value="{{=str(0)}}" name="balance_classic"><h2>Balance Parameters</h2></button><------
-		</td>
-	      </form>
-	    </tr>
-	    </table>
-	    {{pass}}
+	  You can find example files on the <a href="/pb/static/download.html">Download page</a>.
+	  <hr>
+	  <div>
+	    If your session appears crooked or yields incomprehensible errors, please <form><button type="submit" value="{{=str(0)}}" name="clearsession">Clear Session</button></form>
+	  </div>
+	</article>
+      </div>
 
-</th>
 
-<th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
-<!------------------------------------------------------------------------------------>
-      <th valign="top" style="width:430">
-	<h3 align="left">Option 2: Single Input File</h3>
-	<p>Upload a single SBtab file that holds model information (obligatory) and
-	  parameter, prior, or config information (optional).</p><hr>
-	{{if not SBTAB_FL_NAMES:}}
-	{{=SBTAB_FL_FORM}}
-	{{else:}}
-	  <table border="1" rules="rows" cellspacing="5" cellpadding="5" align="center">
-	    <td bgcolor="#87CEFA" height="20"></td>
-	    <td bgcolor="#87CEFA" height="20"></td>
-	    <tr>
-	      <td>
-		&bull;
-		<a href="/pb/default/show_sbtab_fl/{{=str(0)}}" target="_new"> {{=SBTAB_FL_NAMES[0]}}</a>
-	      </td>
-	      <form>
-		<td>
-		  <button type="submit" value="{{=0}}" name="erase_button_fl">Remove</button>
-		</td>
-	      </form>
-	    </tr>
-	    </td>
-	  </table>
-          {{pass}}
+      <!------------------------------------------------------------------------------------>
+      
+      <div class="col-sm-4">
+	<article>
+	  <header>
+	    <h3>Option 2: Single Input File</h3>
+	    </header>
+	  Upload a single SBtab file that holds model information (obligatory) and
+	parameter, prior, or config information (optional).<hr>
+	  {{if not SBTAB_FL_NAMES:}}
+	  <div class="container-fluid" style="padding-bottom:0px">
+	    {{=SBTAB_FL_FORM}}
+	  </div>
+	  {{else:}}
+	  <div class="container-fluid" style="padding-bottom:5px">
+	    <a href="/pb/default/show_sbtab_fl/{{=str(0)}}" target="_new"> {{=SBTAB_FL_NAMES[0]}}</a>
+	    <form style="padding-top:10px">
+	      <button type="submit" value="{{=0}}" name="erase_button_fl">Remove</button>
+	    </form>
+	  </div>
+	  {{pass}}
 	  <!-- Display warnings -->
 	  {{if WARNINGS_SBTAB_FL:}}
-	  <table border="0" cellspacing="5">
-	    <tr>
-	      <td>
-		<font color="red">{{=WARNINGS_SBTAB_FL[0]}}</font>
-	      </td>
-	    </tr>
-	  </table>
+	  <div>
+	    <font color="red">{{=WARNINGS_SBTAB_FL[0]}}</font>
+	  </div>
 	  {{elif SBTAB_FL_NAMES:}}
-	  <table border="0" cellspacing="5">
-	    <td> No warnings detected. </td>
-	  </table>
+	  <div>
+	    No warnings detected.
+	  </div>
 	  {{pass}}
 	  {{pass}}
 	  <!---------------------------------BALANCE-------------------------------------------->
 	  {{if SBTAB_FL_NAMES:}}
 	  <hr>
-	  <table border="0" rules="rows" cellspacing="5" cellpadding="5" align="center">
-	    <tr>
-	      <form>
-		<td>
-		  ------><button type="submit" value="{{=str(0)}}" name="balance_fastlane"><h2>Balance Parameters</h2></button><------
-		</td>
-	      </form>
-	    </tr>
-	    </table>
-	    {{pass}}
+	  <form>
+	    <button class="btn-info btn-lg" type="submit" value="{{=str(0)}}" name="balance_fastlane">Balance Parameters</button>
+	  </form>
+	  {{pass}}
+	</article>
+      </div>
+      <div class="col-sm-2"></div>
+    </div>
 
-  
-      </th>
-</table>
+    <div class="row">
+      <div class="col-sm-12" align="center">
+	<hr>
+	Information on the use of online balancing can be found on the <a href="../static/documentation.html#wf">documentation page</a>.
+      </div>
+    </div>
+  </div>
+</main>
 
+<hr>
+<footer class="container-fluid bg-3 text-center">
+  <p>Thanks to <a href="https://getbootstrap.com/" target="_blank">Bootstrap</a> and <a href="http://web2py.com/" target="_blank">Web2py</a>. Code and further information on <a href="https://github.com/tlubitz/parameter_balancing" target="_blank">Github</a>.</p> 
+</footer>
 
-
-      <table>
-	<td>
-	  <hr style="background-color:CDCCCB;width:900">
-	  Information on the use of online balancing can be found on the <a href="../static/documentation.html#wf">documentation page</a>.<br>
-	</td>
-       </table>
-     
 
     
