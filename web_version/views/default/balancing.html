@@ -23,9 +23,11 @@
 	  </div>
 	  {{else:}}
 	  <div class="container-fluid" style="padding-bottom:5px">
-	    <a href="/pb/default/show_sbml/{{=str(0)}}" target="_new"> {{=SBML_NAMES[0]}}</a>
+	    <h4>
+	      <a href="/pb/default/show_sbml/{{=str(0)}}" target="_new"> {{=SBML_NAMES[0]}}</a>
+	    </h4>
 	    <form style="padding-top:10px">
-	      <button type="submit" value="{{=str(0)}}" name="erase_button_sbml">Remove</button>
+	      <button class="btn btn-primary" type="submit" value="{{=str(0)}}" name="erase_button_sbml">Remove</button>
 	    </form>
 	  </div>
 	  
@@ -50,9 +52,11 @@
 	  </div>
 	  {{else:}}
 	  <div class="container-fluid" style="padding-bottom:5px">
-	    <a href="/pb/default/show_sbtab/{{=str(0)}}" target="_new"> {{=SBTAB_NAMES[0]}}</a>
+	    <h4>
+	      <a href="/pb/default/show_sbtab/{{=str(0)}}" target="_new"> {{=SBTAB_NAMES[0]}}</a>
+	    </h4>
 	    <form style="padding-top:10px">
-	      <button type="submit" value="{{=0}}" name="erase_button_sbtab">Remove</button>
+	      <button class="btn btn-primary" type="submit" value="{{=0}}" name="erase_button_sbtab">Remove</button>
 	    </form>
 	  </div>
 	  {{pass}}
@@ -78,9 +82,11 @@
 	  </div>
 	  {{else:}}
 	  <div class="container-fluid" style="padding-bottom:5px">
-	    <a href="/pb/default/show_prior/{{=str(0)}}" target="_new"> {{=PRIOR_NAMES[0]}}</a>
+	    <h4>
+	      <a href="/pb/default/show_prior/{{=str(0)}}" target="_new"> {{=PRIOR_NAMES[0]}}</a>
+	    </h4>
 	    <form style="padding-top:10px">
-	      <button type="submit" value="{{=0}}" name="erase_button_prior">Remove</button>
+	      <button class="btn btn-primary" type="submit" value="{{=0}}" name="erase_button_prior">Remove</button>
 	    </form>
 	  </div>
 	  {{pass}}
@@ -104,9 +110,11 @@
 	  </div>
 	  {{else:}}
 	  <div class="container-fluid" style="padding-bottom:5px">
-	    <a href="/pb/default/show_sbtab_conf/{{=str(0)}}" target="_new"> {{=CONFIG_FILENAME}}</a>
+	    <h4>
+	      <a href="/pb/default/show_sbtab_conf/{{=str(0)}}" target="_new"> {{=CONFIG_FILENAME}}</a>
+	    </h4>
 	    <form style="padding-top:10px">
-	      <button type="submit" value="{{=0}}" name="erase_button_config">Remove</button>
+	      <button class="btn btn-primary" type="submit" value="{{=0}}" name="erase_button_config">Remove</button>
 	    </form>	    
 	  </div>
 	  {{pass}}

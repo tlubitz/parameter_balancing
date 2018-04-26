@@ -1,0 +1,78 @@
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="author" content="Timo Lubitz">
+    <meta name="description"  content="Parameter Balancing Website">
+    
+    <!-- this is required for responsiveness -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Parameter Balancing for Kinetic Models of Cell Metabolism</title>
+    <!--<link rel="stylesheet" type="text/css" href="css/pb.css">-->
+    <link href="../static/css/css_template/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../static/css/css_template/css/custom.css" rel="stylesheet">
+    <link rel="shortcut icon" href="/pb/static/images/pb-logo.png" type="image/icon">
+    <link rel="icon" href="/pb/static/images/pb-logo.png" type="image/icon">
+  </head>
+
+  <body>
+    <!-- navbar: this is a navbar; navbar-inverse: it's dark; navbar-static-top: it's always at the top -->
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <!-- setting a max-width by using a container -->
+      <div class="container">
+	<div class="navbar-header">
+	  <a class="navbar-brand" href="main.html" title="Take me home">
+	    <div style="float:left;padding-right:10px"><img width="30" src="../static/css/css_template/img/pb-logo.png" alt="Parameter Balancing Logo"> </div><div style="float:right;padding-top:5px">Parameter Balancing</div></a>
+	</div>
+	
+	<!-- simple right aligned list-->
+	<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+	  <ul class="nav navbar-nav navbar-right">
+	    <li> <a href="about" title="Go to online balancing">Online Balancing</a></li>
+	    <li> <a href="documentation.html" title="Documentation and Manuals">Documentation</a></li>
+	    <li> <a href="download.html" title="Installation and Downloads">Download</a></li>
+	    <li> <a href="about.html" title="Find out all about Timo">Contact</a></li>
+	    <li> <a href="contact.html" title="Contact Timo. He's just waiting for it">Contact</a></li>
+	  </ul>
+	</div>
+      </div>
+    </nav>
+
+    <!--
+    <header>
+      <div class="container-fluid bg-1 text-center">
+	<div class="jumbotron" align="center">
+	  <h1><small>Parameter balancing for kinetic metabolic models</small></h1>
+	</div>
+      </div>
+    </header>
+    -->
+
+  <div class="container">
+    <section id="main" class="main row">
+            {{block center}}
+            {{include}}
+            {{end}}
+    </section><!--/main-->
+
+  </td>
+  </table>
+
+  <!-- The javascript =============================================
+       (Placed at the end of the document so the pages load faster) -->
+  <script src="{{=URL('static','js/bootstrap.min.js')}}"></script>
+  <script src="{{=URL('static','js/web2py_bootstrap.js')}}"></script>
+
+  {{if response.google_analytics_id:}}
+  <script src="{{=URL('static','js/analytics.min.js')}}"></script>
+  <script type="text/javascript">
+  analytics.initialize({
+    'Google Analytics':{trackingId:'{{=response.google_analytics_id}}'} 
+  });</script>
+  {{pass}}
+  <script src="{{=URL('static','js/share.js',vars=dict(static=URL('static','images')))}}"></script>
+
+</body>
+</html>
+
