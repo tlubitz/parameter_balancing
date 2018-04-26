@@ -1,0 +1,94 @@
+\begin{thebibliography}{}
+
+\bibitem[Ashyraliyev {\em et~al.}(2009)Ashyraliyev, Fomekong-Nanfack, Kaandorp,
+  and Blom]{ashyraliyev2009systems}
+Ashyraliyev, M., Fomekong-Nanfack, Y., Kaandorp, J.~A., and Blom, J.~G. (2009).
+\newblock Systems biology: parameter estimation for biochemical models.
+\newblock {\em FEBS Journal\/}, {\bf 276}(4), 886--902.
+
+\bibitem[Dr\"ager {\em et~al.}(2008)Dr\"ager, Hassis, Supper, Schr\"oder, and
+  Zell]{dhss:08}
+Dr\"ager, A., Hassis, N., Supper, J., Schr\"oder, A., and Zell, A. (2008).
+\newblock {SBMLsqueezer: a CellDesigner} plug-in to generate kinetic rate
+  equations for biochemical networks.
+\newblock {\em BMC Systems Biology\/}, {\bf 2:39}.
+
+\bibitem[Flamholz {\em et~al.}(2011)Flamholz, Noor, Bar-Even, and
+  Milo]{flamholz2011equilibrator}
+Flamholz, A., Noor, E., Bar-Even, A., and Milo, R. (2011).
+\newblock e{Q}uilibrator - the biochemical thermodynamics calculator.
+\newblock {\em Nucleic acids research\/}, page gkr874.
+
+\bibitem[Haldane(1930)Haldane]{haldane1930enzymes}
+Haldane, J. (1930).
+\newblock {\em Enzymes\/}.
+\newblock Longmans, Green and Co., London. (republished in 1965 by MIT Press,
+  Cambridge, MA).
+
+\bibitem[Hucka {\em et~al.}(2003)Hucka, Finney, Sauro, Bolouri, Doyle, Kitano,
+  Arkin, Bornstein, Bray, Cornish-Bowden, {\em et~al.}]{hucka2003systems}
+Hucka, M., Finney, A., Sauro, H.~M., Bolouri, H., Doyle, J.~C., Kitano, H.,
+  Arkin, A.~P., Bornstein, B.~J., Bray, D., Cornish-Bowden, A., {\em et~al.}
+  (2003).
+\newblock The systems biology markup language ({SBML}): a medium for
+  representation and exchange of biochemical network models.
+\newblock {\em Bioinformatics\/}, {\bf 19}(4), 524--531.
+
+\bibitem[Liebermeister and Klipp(2006a)Liebermeister and Klipp]{likl:06a}
+Liebermeister, W. and Klipp, E. (2006a).
+\newblock Bringing metabolic networks to life: convenience rate law and
+  thermodynamic constraints.
+\newblock {\em Theor.~Biol.~Med.~Mod.}, {\bf 3:41}.
+
+\bibitem[Liebermeister and Klipp(2006b)Liebermeister and
+  Klipp]{liebermeister2006bringing}
+Liebermeister, W. and Klipp, E. (2006b).
+\newblock Bringing metabolic networks to life: integration of kinetic,
+  metabolic, and proteomic data.
+\newblock {\em Theor.~Biol.~Med.~Mod.}, {\bf 3:42}.
+
+\bibitem[Liebermeister {\em et~al.}(2010)Liebermeister, Uhlendorf, and
+  Klipp]{liebermeister2010modular}
+Liebermeister, W., Uhlendorf, J., and Klipp, E. (2010).
+\newblock Modular rate laws for enzymatic reactions: thermodynamics,
+  elasticities, and implementation.
+\newblock {\em Bioinformatics\/}, {\bf 26}(12), 1528--1534.
+
+\bibitem[Lubitz {\em et~al.}(2010)Lubitz, Schulz, Klipp, and
+  Liebermeister]{lubitz2010parameter}
+Lubitz, T., Schulz, M., Klipp, E., and Liebermeister, W. (2010).
+\newblock Parameter balancing in kinetic models of cell metabolism†.
+\newblock {\em The Journal of Physical Chemistry B\/}, {\bf 114}(49),
+  16298--16303.
+
+\bibitem[Lubitz {\em et~al.}(2016)Lubitz, Hahn, Bergmann, Noor, Klipp, and
+  Liebermeister]{lubitz2016sbtab}
+Lubitz, T., Hahn, J., Bergmann, F., Noor, E., Klipp, E., and Liebermeister, W.
+  (2016).
+\newblock {SBtab}: A flexible table format for data exchange in systems
+  biology.
+\newblock {\em Bioinformatics\/}, {\bf 32}(16), 2559–2561.
+
+\bibitem[Scheer {\em et~al.}(2010)Scheer, Grote, Chang, Schomburg, Munaretto,
+  Rother, S{\"o}hngen, Stelzer, Thiele, and Schomburg]{scheer2010brenda}
+Scheer, M., Grote, A., Chang, A., Schomburg, I., Munaretto, C., Rother, M.,
+  S{\"o}hngen, C., Stelzer, M., Thiele, J., and Schomburg, D. (2010).
+\newblock Brenda, the enzyme information system in 2011.
+\newblock {\em Nucleic acids research\/}, page gkq1089.
+
+\bibitem[Stanford {\em et~al.}(2013)Stanford, Lubitz, Smallbone, Klipp, Mendes,
+  and Liebermeister]{stanford2013systematic}
+Stanford, N.~J., Lubitz, T., Smallbone, K., Klipp, E., Mendes, P., and
+  Liebermeister, W. (2013).
+\newblock Systematic construction of kinetic models from genome-scale metabolic
+  networks.
+\newblock {\em PLoS One\/}, {\bf 8}(11).
+
+\bibitem[Wittig {\em et~al.}(2011)Wittig, Kania, Golebiewski, Rey, Shi, Jong,
+  Algaa, Weidemann, Sauer-Danzwith, Mir, {\em et~al.}]{wittig2011sabio}
+Wittig, U., Kania, R., Golebiewski, M., Rey, M., Shi, L., Jong, L., Algaa, E.,
+  Weidemann, A., Sauer-Danzwith, H., Mir, S., {\em et~al.} (2011).
+\newblock {SABIO-RK} -- database for biochemical reaction kinetics.
+\newblock {\em Nucleic acids research\/}, {\bf 40}(D1), D790--D796.
+
+\end{thebibliography}
