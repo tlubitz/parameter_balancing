@@ -25,7 +25,7 @@ def index():
     '''
     index function that is called upon first call of website
     '''
-    redirect(URL('../../static/main.html'))
+    redirect(URL('../../../pbnew/static/css/css_template/main.html'))
         
 def clearsession():
     '''
@@ -101,8 +101,9 @@ def balancing():
                 session.sbml_names.append(filename)
         except:
             session.warnings_sbml.append('Error: This is not a valid SBML file')
-        try: redirect(URL('../default/balancing'))
-        except: redirect(URL('../balancing'))
+        redirect(URL('../../../pbnew/default/balancing'))
+        #try: redirect(URL('../../../pbnew/default/balancing'))
+        #except: redirect(URL('../../pbnew/balancing'))
                 
     elif sbmlform.errors: response.flash = 'Form has errors'
 
@@ -116,6 +117,9 @@ def balancing():
     if sbtabform.process(formname='form_two').accepted:
         response.flash = 'form accepted'
         session.warnings_sbtab = []
+        if not 'sbtabs' in session:
+            session.sbtabs = []
+            session.sbtab_names = []
         filename = request.vars.File.filename
         if filename in session.sbtab_names:
             session.warnings_sbtab.append('Error: Duplicate file name. Please remove the file with the same name before uploading.')
@@ -161,13 +165,6 @@ def balancing():
         except:
             session.warnings_sbtab.append('Error: The data file could not be validated. We suggest to validate the file manually on www.sbtab.net.')
             
-        if not 'sbtabs' in session:
-            session.sbtab       = None
-            session.sbtab_name  = None
-            session.sbtabs      = []
-            session.sbtab_names = []
-
-
     elif sbtabform.errors: response.flash = 'Form has errors'
 
     ###########################################################################################
@@ -323,7 +320,7 @@ def balancing():
                 session.sbtab_fl_names.append(sbtab_fl.filename)
         except:
             session.warnings_fl.append('Error: The file %s is not compliant with SBtab. Please upload a valid SBtab file.'%(filename))
-
+        redirect(URL('../../../pbnew/default/balancing'))
         try: redirect(URL('../default/balancing'))
         except: redirect(URL('../balancing'))
                 
@@ -342,6 +339,7 @@ def balancing():
         session.sbml = None
         session.sbml_name = None
         session.warnings_sbml = []
+        redirect(URL('../../../pbnew/default/balancing'))
         try: redirect(URL('../default/balancing'))
         except: redirect(URL('../balancing'))
 
@@ -352,6 +350,7 @@ def balancing():
         session.sbtab = None
         session.sbtab_name = None
         session.warnings_sbtab = []
+        redirect(URL('../../../pbnew/default/balancing'))
         try: redirect(URL('../default/balancing'))
         except: redirect(URL('../balancing'))
 
@@ -362,6 +361,7 @@ def balancing():
         session.prior = None
         session.prior_name = None
         session.warnings_prior = []
+        redirect(URL('../../../pbnew/default/balancing'))
         try: redirect(URL('../default/balancing'))
         except: redirect(URL('../balancing'))
 
@@ -371,6 +371,7 @@ def balancing():
         session.config_filename = None
         session.warnings_config = []
         session.parameter_dict = {}
+        redirect(URL('../../../pbnew/default/balancing'))
         try: redirect(URL('../default/balancing'))
         except: redirect(URL('../balancing'))
 
@@ -381,6 +382,7 @@ def balancing():
         session.sbtab_fl = None
         session.sbtab_fl_name = None
         session.warnings_fl = []
+        redirect(URL('../../../pbnew/default/balancing'))
         try: redirect(URL('../default/balancing'))
         except: redirect(URL('../balancing'))
 
@@ -457,6 +459,7 @@ def balancing():
                             session.warnings_config.append(itemx)
                 except:
                     session.warnings_config.append('Error: The options SBtab file could not be validated. We suggest to validate the file manually on www.sbtab.net.')
+                    redirect(URL('../../../pbnew/default/balancing'))
                     try: redirect(URL('../default/balancing'))
                     except: redirect(URL('../balancing'))
 
@@ -468,6 +471,7 @@ def balancing():
             (pseudos, priors, pmin, pmax) = misc.extract_pseudos_priors(sbtab_prior)
         except:
             session.warnings_prior.append('Error: The default prior table %s could not be processed properly.'%(sbtab_prior.filename))
+            redirect(URL('../../../pbnew/default/balancing'))
             try: redirect(URL('../default/balancing'))
             except: redirect(URL('../balancing'))
 
@@ -481,6 +485,7 @@ def balancing():
                 sbtab_data = pb.make_empty_sbtab(pmin, pmax, session.parameter_dict)
             except:
                 session.warnings_sbml.append('Error: The SBML file %s could not be processed properly.'%(sbml_filename))
+                redirect(URL('../../../pbnew/default/balancing'))
                 try: redirect(URL('../default/balancing'))
                 except: redirect(URL('../balancing'))
         else:
@@ -494,6 +499,7 @@ def balancing():
 
             except:
                 session.warnings_sbml.append('Error: The SBML file %s could not be processed properly.'%(sbml_filename))
+                redirect(URL('../../../pbnew/default/balancing'))
                 try: redirect(URL('../default/balancing'))
                 except: redirect(URL('../balancing'))
 
@@ -508,6 +514,7 @@ def balancing():
                 pseudo_flag = 'no_pseudos'
         except:
                 session.warnings_sbtab.append('Error: The SBtab data could not be processed correctly.')
+                redirect(URL('../../../pbnew/default/balancing'))
                 try: redirect(URL('../default/balancing'))
                 except: redirect(URL('../balancing'))
                 
@@ -527,6 +534,7 @@ def balancing():
             session.log = log
         except:
             session.warnings_sbml.append('Error: The balancing process was erroneous. Please check your input files for validity.')
+            redirect(URL('../../../pbnew/default/balancing'))
             try: redirect(URL('../default/balancing'))
             except: redirect(URL('../balancing'))
 
@@ -546,6 +554,7 @@ def balancing():
             kineticizer_cs = kineticizer.KineticizerCS(sbml_model, sbtab_final, param, prefac, inh, act, overwrite)
         except:
             session.warnings_sbtab.append('Error: The parameters and kinetics could not be written to the output model.')
+            redirect(URL('../../../pbnew/default/balancing'))
             try: redirect(URL('../default/balancing'))
             except: redirect(URL('../balancing'))
 
@@ -559,6 +568,7 @@ def balancing():
             session.result_sbml_name = [model_name]
         except:
             session.warnings_sbml.append('Error: The new SBML model could not be produced.')
+            redirect(URL('../../../pbnew/default/balancing'))
             try: redirect(URL('../default/balancing'))
             except: redirect(URL('../balancing'))
 
@@ -571,6 +581,7 @@ def balancing():
             session.result_sbtab_name = [sbtab_final.filename[:-4]+'_balanced_parameters.tsv']
         except:
             session.warnings_sbtab.append('Error: The new SBtab file could not be produced.')
+            redirect(URL('../../../pbnew/default/balancing'))
             try: redirect(URL('../default/balancing'))
             except: redirect(URL('../balancing'))
 
@@ -593,6 +604,7 @@ def balancing():
             session.result_sbtab_name.append(sbml_filename[:-4]+'_balanced_model.tsv')
         except:
             session.warnings_sbtab.append('Error: It was not possible to save the model and parameters in one SBtab file for download.')
+            redirect(URL('../../../pbnew/default/balanced'))
             try: redirect(URL('../default/balanced'))
             except: redirect(URL('../balanced'))
 
@@ -604,7 +616,7 @@ def balancing():
 
         session.config_file = None
         session.config_filename = None
-        
+        redirect(URL('../../../pbnew/default/balanced'))
         try: redirect(URL('../default/balanced'))
         except: redirect(URL('../balanced'))
         
@@ -634,6 +646,7 @@ def balancing():
                     sbtab_config = SBtab.SBtabTable(sbtab, session.sbtab_fl_name[:-4]+'_%s.tsv' % 'config')
         except:
             session.warnings_fl.append('Error: Could not separate the bundled SBtab file. Please check syntax validity.')
+            redirect(URL('../../../pbnew/default/balancing'))
             try: redirect(URL('../default/balancing'))
             except: redirect(URL('../balancing'))                
 
@@ -650,7 +663,8 @@ def balancing():
                 for w in warnings:
                     session.warnings_fl.append(w)
         except:
-            session.warnings_fl.append('Error: The SBtab file did not include a valid Reaction SBtab that could be converted to SBML.')       
+            session.warnings_fl.append('Error: The SBtab file did not include a valid Reaction SBtab that could be converted to SBML.')
+            redirect(URL('../../../pbnew/default/balancing'))
             try: redirect(URL('../default/balancing'))
             except: redirect(URL('../balancing'))  
 
@@ -676,6 +690,7 @@ def balancing():
                 session.prior_names.append(session.prior_name)
             except:
                 session.warnings_fl.append('Error loading the default prior table.')
+                redirect(URL('../../../pbnew/default/balancing'))
                 try: redirect(URL('../default/balancing'))
                 except: redirect(URL('../balancing'))
 
@@ -701,6 +716,7 @@ def balancing():
                         session.warnings_fl.append(w)
             except:
                 session.warnings_fl.append('Error: The options SBtab file could not be validated. We suggest to validate the file manually on www.sbtab.net.')
+                redirect(URL('../../../pbnew/default/balancing'))
                 try: redirect(URL('../default/balancing'))
                 except: redirect(URL('../balancing'))
 
@@ -712,6 +728,7 @@ def balancing():
             (pseudos, priors, pmin, pmax) = misc.extract_pseudos_priors(session.prior)
         except:
             session.warnings_fl.append('Error: The prior table %s could not be processed properly.' % (session.prior_name))
+            redirect(URL('../../../pbnew/default/balancing'))
             try: redirect(URL('../default/balancing'))
             except: redirect(URL('../balancing'))           
 
@@ -725,6 +742,7 @@ def balancing():
                 sbtab_data = pb.make_empty_sbtab(pmin, pmax, session.parameter_dict)
             except:
                 session.warnings_fl.append('Error: The model information of %s could not be processed properly.'%(session.sbtab_fl_name))
+                redirect(URL('../../../pbnew/default/balancing'))
                 try:
                     redirect(URL('../default/balancing'))
                 except:
@@ -739,6 +757,7 @@ def balancing():
                                            pmin, pmax, session.parameter_dict)
             except:
                 session.warnings_fl.append('Error: The model information of %s could not be processed properly.'%(session.sbtab_fl_name))
+                redirect(URL('../../../pbnew/default/balancing'))
                 try: redirect(URL('../default/balancing'))
                 except: redirect(URL('../balancing')) 
 
@@ -756,6 +775,7 @@ def balancing():
                 pseudo_flag = 'no_pseudos'
         except:
             session.warnings_fl.append('Error: The prior table %s could not be processed properly.'%(session.prior_name))
+            redirect(URL('../../../pbnew/default/balancing'))
             try: redirect(URL('../default/balancing'))
             except: redirect(URL('../balancing'))       
 
@@ -778,6 +798,7 @@ def balancing():
             session.log = log
         except:
             session.warnings_fl.append('Error: The balancing process was erroneous. Please check validity of input files.')
+            redirect(URL('../../../pbnew/default/balancing'))
             try: redirect(URL('../default/balancing'))
             except: redirect(URL('../balancing')) 
 
@@ -797,6 +818,7 @@ def balancing():
             kineticizer_cs = kineticizer.KineticizerCS(sbml_model, sbtab_final, param, prefac, inh, act, overwrite)
         except:
             session.warnings_fl.append('Error: The parameters and kinetics could not be written to the model.')
+            redirect(URL('../../../pbnew/default/balancing'))
             try: redirect(URL('../default/balancing'))
             except: redirect(URL('../balancing'))
 
@@ -809,6 +831,7 @@ def balancing():
             session.result_sbml_name = [model_name]
         except:
             session.warnings_fl.append('Error: The new SBML model could not be produced.')
+            redirect(URL('../../../pbnew/default/balancing'))
             try: redirect(URL('../default/balancing'))
             except: redirect(URL('../balancing'))
 
@@ -818,6 +841,7 @@ def balancing():
             session.result_sbtab_name = [session.sbtab_fl_name[:-4]+'_balanced_parameters.tsv']
         except:
             session.warnings_fl.append('Error: The new SBtab file could not be produced.')
+            redirect(URL('../../../pbnew/default/balancing'))
             try: redirect(URL('../default/balancing'))
             except: redirect(URL('../balancing'))
 
@@ -833,6 +857,7 @@ def balancing():
             session.result_sbtab_string_name = session.sbtab_fl_name[:-4]+'_balanced_model.tsv'
         except:
             session.warnings_fl.append('Error: It was not possible to save the model and parameters in one SBtab file for download.')
+            redirect(URL('../../../pbnew/default/balancing'))
             try: redirect(URL('../default/balancing'))
             except: redirect(URL('../balancing'))
 
@@ -844,7 +869,7 @@ def balancing():
 
         session.config_file     = None
         session.config_filename = None
-
+        redirect(URL('../../../pbnew/default/balanced'))
         try: redirect(URL('../default/balanced'))
         except: redirect(URL('../balanced'))
 
@@ -869,6 +894,7 @@ def balanced():
         del session.result_sbml[int(request.vars.erase_button_sbml2)]
         del session.result_sbml_name[int(request.vars.erase_button_sbml2)]
         session.log = False
+        redirect(URL('../../../pbnew/default/balanced'))
         try: redirect(URL('../default/balanced'))
         except: redirect(URL('../balanced'))
 
@@ -884,6 +910,7 @@ def balanced():
         del session.result_sbtab[int(request.vars.erase_button_sbtab2)]
         del session.result_sbtab_name[int(request.vars.erase_button_sbtab2)]
         session.warnings_sbtab = []
+        redirect(URL('../../../pbnew/default/balanced'))
         try: redirect(URL('../default/balanced'))
         except: redirect(URL('../balanced'))
 

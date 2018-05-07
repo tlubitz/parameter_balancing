@@ -1,0 +1,222 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Parameter Balancing for Kinetic Models of Cell Metabolism</title>
+    <link rel="stylesheet" type="text/css" href="css/pb.css">
+    <link rel="shortcut icon" href="/pb/static/images/pb-logo.png" type="image/icon">
+    <link rel="icon" href="/pb/static/images/pb-logo.png" type="image/icon">
+  </head>
+
+  <body>
+    <table cellpadding="2">
+      <td>&nbsp;&nbsp;</td>
+      <td>
+	<table>
+	  <td><a href="main.html"><image width="100" src="/pb/static/images/pb-logo.png"></a></td>
+	  <td width="12.5"></td>
+	  <td valign="bottom"><br><h1>Parameter balancing <br>for kinetic metabolic models</h1></td>
+	</table>
+
+    <hr style="width:900;float:left;"><br>
+    
+	<p style="margin-left:250;">
+	  <a href="/pb/static/main.html">Main</a> |
+	  <a href="/pb/default/balancing.html">Online Balancing</a> |
+	  <a href="/pb/static/documentation.html">Documentation</a> |
+	  Download |
+	  <a href="/pb/static/contact.html">Contact</a>
+	</p>
+
+	<div style="background-color:CDCCCB;width:900"><h2 id="def">Parameter balancing standard options</h2></div>
+    
+	<p>
+	  <a href="files/default_files/pb_prior.tsv">Prior file for model parameters (SBtab format)</a>
+	</p>
+	<p>
+	  <a href="files/default_files/pb_options.tsv">Options file for parameter balancing (SBtab format)</a>
+	</p>
+
+	<div style="background-color:CDCCCB;width:900"><h2 id="soft">Software</h2></div>
+
+	<p style="width:900;">
+	  Parameter balancing is a tool for metabolic modelling in systems biology.
+	  It is implemented in Python3 and its code underlies the PEP8 guidelines.
+	  These are the possible ways of employing parameter balancing for your project:
+	</p>
+
+    <p>
+      <strong>1. The online version </strong>
+      The tool can be employed via www.parameterbalancing.net. All required knowledge can be found on the webpage.
+    </p>
+
+    <div style="width:900">
+      <p>
+	<strong>2. Parameter balancing as Pypi package and commandline tool</strong>
+	To install Parameter Balancing as a Python3 package, first of all you need Python3.
+	Next, you will need the pip3 installer. You can find information on how to do this
+	here: https://pip.pypa.io/en/stable/installing/.
+	Afterwards, install Parameter Balancing by typing in your command line:<br><br>
+
+	<em> sudo pip3 install pbalancing</em><br><br>
+
+	This will also install libsbml and tablib on your computer if these libraries are missing.
+	You can now employ Parameter Balancing as a Python3 package by, e.g., writing a script such as<br><br>
+
+	<em> from pbalancing import parameter_balancing<br>
+	    parameter_balancing.parameter_balancing_wrapper('model.xml')</em><br><br>
+
+	In this example case, 'model.xml' is the file name of an SBML model. Further optional
+	arguments are an SBtab parameter file, an SBtab prior distribution file, and an SBtab
+	configuration file (example files at the bottom of this page). 
+      </p>
+      <p>
+	To run parameter balancing as a commandline tool, the package needs to be installed as explained above.
+	Then, it can be executed in the commandline as follows:<br><br>
+
+	<em> python3 -m pbalancing.parameter_balancing model.xml</em><br><br>
+
+	where model.xml corresponds to the path of your SBML model. It is also possible to provide further
+	input files, such as an SBtab parameter files (.tsv), an SBtab prior information file (.tsv),
+	and an SBtab options file (.tsv) for the configuration of parameter balancing. Providing complete
+	file information would look like this:<br><br>
+
+	<em> python3 -m pbalancing.parameter_balancing model.xml --sbtab_data data_file.tsv --sbtab_prior prior_file.tsv --sbtab_options options_file.tsv</em><br><br>
+
+	You can create a log file by setting the flag -l, you can use pseudo values to account for a lack
+	of data by setting the flag -p, you can watch program outputs on your commandline by setting the
+	flag -v. Information on the SBtab format can be found on www.sbtab.net, more information on the
+	mentioned file types can be found in the <a href="files/manual.pdf">parameter balancing manual</a>, and example files can be found at the
+	bottom of this page.
+      </p>
+    </div>
+    
+        <p style="width:900;">
+	  <strong>3. Python code for parameter balancing</strong>
+	  <a href="https://github.com/tlubitz/parameter_balancing">Python3 source code</a>
+	  for parameter balancing can be freely downloaded. Please see
+	  the instructions that come with the code.
+	</p>
+        <p style="width:900;">
+	  <strong>4. Web2py application</strong>
+	  The web2py application for parameter balancing can be freely downloaded from the
+	  <a href="https://bitbucket.org/tlubitz/pb">Github repository</a>. Please see
+	  the instructions that come with the code.
+	</p>
+        <p style="width:900;">
+	  <strong>5. Matlab code for parameter balancing</strong>
+	  MATLAB code for parameter balancing is included in the <a href="https://github.com/liebermeister/mnt/">Metabolic Networks
+	  Toolbox</a>. For more information, install the MNT toolbox and type 'help mnt_parameter_balancing'.
+	</p>
+    </p>
+
+    <div style="background-color:CDCCCB;width:900"><h2 id="ex">Models and data sets</h2></div>    
+
+    <div style="background-color:E8E5E1;width:900">
+    <h4> Phosphofructokinase Reaction (PFK)</h4> 
+
+    <p style="width:900;">Our SBML model of the Phosphofructokinase reaction was constructed
+    from the KEGG
+    Reaction <a href="http://www.genome.jp/dbget-bin/www_bget?rn:R04779">R04779</a>
+    with <a href="http://www.semanticsbml.org/">semanticSBML-fill</a>.</p>
+
+    <ul>
+      <li><a href="files/example_files/pfk/pfk.xml">Model</a> (SBML)</li>
+      <li><a href="files/example_files/pfk/pfk_data.tsv">Data file</a> (SBtab format)</li>
+      <li><a href="files/example_files/pfk/pfk_modeldata.tsv">Model and data</a> (SBtab format, single input file)</li>
+      <li><a href="files/example_files/pfk/pfk_result.tsv">Balanced model parameters</a> (SBtab format)</li>
+    </ul>
+    </div>
+
+    <div style="background-color:E8E5E1;width:900">
+    <h4> Glycolysis (Teusink et al, 2000)</h4>
+    
+    <p style="width:900;">Teusink's glycolysis model 
+    (<a href="http://www.ebi.ac.uk/biomodels-main/BIOMD0000000064">Teusink et al, (2000)</a>)
+    has been assembled from enzymatic rate laws determined in vitro.</p>
+
+    <ul>
+      <li><a href="files/example_files/teusink/teusink.xml">Model</a> (SBML, from <a href="http://www.ebi.ac.uk/biomodels-main/">BioModels Database</a>)</li>
+      <li><a href="files/example_files/teusink/teusink_data.tsv">Data file</a> (SBtab format)</li>
+      <li><a href="files/example_files/teusink/teusink_modeldata.tsv">Model and data</a> (SBtab format, single input file)</li>
+      <li><a href="files/example_files/teusink/teusink_result.tsv">Balanced model parameters</a> (SBtab format)</li>
+    </ul>
+    </div>
+    
+    <div style="background-color:E8E5E1;width:900">
+    <h4>Glycolysis model (Hynne et al., 2001)</h4>
+   
+    <p style="width:900;">Hynne's glycolysis model (<a href="http://www.ebi.ac.uk/biomodels-main/BIOMD0000000061">Hynne et al., 2001</a>) was created to describe glycolysis in yeast at
+      the onset of metabolic oscillations. In the encoded version from
+      BioModels Database, SBO terms for allosteric inhibitors are
+      missing. We provide a second version in which these SBO terms have
+      been added.</p>
+    
+    <ul>
+      <li><a href="files/example_files/hynne/hynne.xml">Model</a> (SBML, from <a href="http://www.ebi.ac.uk/biomodels-main/">BioModels Database</a>)</li>
+      <li><a href="files/example_files/hynne/hynne_data.tsv">Data file</a> (SBtab format)</li>
+      <li><a href="files/example_files/hynne/hynne_modeldata.tsv">Model and data</a> (SBtab format, single input file)</li>
+      <li><a href="files/example_files/hynne/hynne_result.tsv">Balanced model parameters</a> (SBtab format)</li>
+    </ul>
+    </div>
+    
+    <div style="background-color:E8E5E1;width:900">
+    <h4>Pancreatic Beta Cell Model  (Jiang et al.,2007)</h4>
+   <p style="width:900;"> Jiang's model of the glucose-stimulated secretion system in
+pancreatic beta cells (<a href="http://www.ebi.ac.uk/biomodels-main/BIOMD0000000239">Jiang
+et al.,2007</a>) is one of the largest kinetic models in BioModels Database.</p>
+   <ul>
+     <li><a href="files/example_files/jiang/jiang.xml">Model</a> (SBML, from <a href="http://www.ebi.ac.uk/biomodels-main/">BioModels Database</a>)</li>
+     <li><a href="files/example_files/jiang/jiang_data.tsv">Data file</a> (SBtab format)</li>
+     <li><a href="files/example_files/jiang/jiang_modeldata.tsv">Model and data</a> (SBtab format, single input file)</li>
+     <li><a href="files/example_files/jiang/jiang_result.tsv">Balanced model parameters</a> (SBtab format)</li>
+   </ul>
+    </div>
+ 
+    <div style="background-color:E8E5E1;width:900">
+    <h4>E coli central metabolism</h4>
+
+
+    <p style="width:900;">Additional data files concerning E. coli central metabolism can be found <a href="http://www.metabolic-economics.de/enzyme-cost-minimization/ecoli_ccm.html">here</a>.
+    </div>
+
+    <div style="background-color:E8E5E1;width:900">
+    <h4>A collection of transformed standard Gibbs free energies of reaction</h4>
+
+
+    <p style="width:900;">The collection is an extract of the <a href="http://equilibrator.weizmann.ac.il/">eQuilibrator</a> project and was kindly provided by Elad Noor. It can be downloaded <a href="files/other/kegg_reactions_CC_ph7.0.tsv">here</a>.
+    </div>
+    
+<h4>Data provenance</h4>
+
+<p style="width:900;"> Data for the examples were collected from the following public data
+ sources:</p>
+<ol>
+  <li><p><strong>Brenda:</strong> <a href="http://www.brenda-enzymes.org/">Brenda Enzyme Database</a></p></li>
+  <li><p><strong>NIST:</strong><a href="http://xpdb.nist.gov/enzyme_thermodynamics/"> Thermodynamics of Enzyme-Catalyzed Reactions</a>, see <a href="http://bioinformatics.oxfordjournals.org/content/20/16/2874.short"></a>R.N. Goldberg, Y.B. Tewari and T.N. Bhat (2004), 
+<em>Thermodynamics of enzyme-catalyzed reactions - a database for
+quantitative biochemistry</em>, Bioinformatics 20 (16), 2874-2877
+ </p></li>
+  <li><p><strong>yeastGFP:</strong> <a href="http://yeastgfp.yeastgenome.org/">Yeast GFP Fusion Localization Database</a></p></li>
+  <li><p><strong>Alberty:</strong> Alberty, R.A. (1998), <em>Calculation
+    of standard transformed Gibbs energies and standard transformed
+    enthalpies of biochemical reactants</em>, <a href="http://www.sciencedirect.com/science?_ob=ArticleURL&amp;_udi=B6WB5-45KKRWW-9K&amp;_user=964000&amp;_coverDate=05%2F01%2F1998&amp;_rdoc=1&amp;_fmt=high&amp;_orig=search&amp;_origin=search&amp;_sort=d&amp;_docanchor=&amp;view=c&amp;_searchStrId=1453209324&amp;_rerunOrigin=google&amp;_acct=C000049508&amp;_version=1&amp;_urlVersion=0&amp;_userid=964000&amp;md5=384e4b67950ca23f0c9be4e613851795&amp;searchtype=a">Archives of Biochemistry and
+    Biophysics</a>, 353 (1), 116-130</p></li>
+</ol>
+
+
+<br>
+
+
+    <p style="margin-left:250;">
+      <a href="/pb/static/main.html">Main</a> |
+      <a href="/pb/default/balancing.html">Online Balancing</a> |
+      <a href="/pb/static/documentation.html">Documentation</a> |
+      Download |
+      <a href="/pb/static/contact.html">Contact</a>
+    </p>
+    
+    <hr style="width:900;float:left;"><br>
+
+          </td>
+      </table>
+</body></html>

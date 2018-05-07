@@ -1,13 +1,65 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html><head>
-<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="author" content="Timo Lubitz">
+    <meta name="description"  content="Parameter Balancing Website">
+    <!-- this is required for responsiveness -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <title>Parameter Balancing for Kinetic Models of Cell Metabolism</title>
-    <link rel="stylesheet" type="text/css" href="css/pb.css">
+    <!--<link rel="stylesheet" type="text/css" href="css/pb.css">-->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
     <link rel="shortcut icon" href="/pb/static/images/pb-logo.png" type="image/icon">
     <link rel="icon" href="/pb/static/images/pb-logo.png" type="image/icon">
   </head>
 
   <body>
+    <!-- navbar: this is a navbar; navbar-inverse: it's dark; navbar-static-top: it's always at the top -->
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <!-- setting a max-width by using a container -->
+      <div class="container">
+
+	<div class="navbar-header">
+	  <!-- button is hidden on desktop, becomes a hamburger on mobile! the span items are the hamburger lines --> 
+	  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+	    <span class="sr-only">Toggle navigation</span>
+	    <span class="icon-bar">A</span>
+	    <span class="icon-bar">N</span>
+	    <span class="icon-bar">C</span>
+	  </button>
+	  <a class="navbar-brand" href="main.html" title="Take me home">Timo Lubitz - Development Galore</a>
+	</div>
+	
+	<!-- simple right aligned list-->
+	<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+	  <ul class="nav navbar-nav navbar-right">
+	    <li> <a href="about" title="Find out all about Timo">About Timo</a></li>
+
+	    <li class="dropdown">
+	      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" title="Click to see the services Timo has to offer">Services<span class="caret"></span></a>
+	      <ul class="dropdown-menu">
+		<li><a href="software" title="An overview of Timo's software development">Software Development</a></li>
+		<li><a href="web" title="An overview of Timo's web development">Web Development</a></li>
+		<li><a href="proof" title="An overview of Timo's proof reading features">Proof Reading</a></li>
+	      </ul>
+	    </li>
+	    <li><a href="contact" title="Contact Timo. He's just waiting for it">Contact</a></li>
+	    <li class="dropdown">
+	      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" title="Choose a language for the website">Languages<span class="caret"></span></a>
+		   <ul class="dropdown-menu">
+		     <li><a href="#"><img src="img/uk.ico" width="22" alt="English flag">&nbsp;&nbsp;English</a></li>
+		     <li><a href="#"><img src="img/germany.ico" width="22" alt="Deutsche Flagge">&nbsp;&nbsp;Deutsch</a></li>
+		   </ul>
+	    </li>
+	  </ul>
+	</div>
+      </div>
+    </nav>
+
+
+
+    
     <table cellpadding="2">
       <tbody>
 	<tr>
@@ -67,5 +119,6 @@
 	</tr>
       </tbody>
     </table>
+    
   </body>
 </html>
