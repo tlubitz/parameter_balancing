@@ -47,7 +47,7 @@ class ParameterBalancing:
     '''
     class for the handling of parameter balancing
     '''
-    def __init__(self,sbml_model,req=True):
+    def __init__(self, sbml_model, req=True):
         '''
         initialise pb class
         '''
@@ -72,7 +72,7 @@ class ParameterBalancing:
         for species in self.model.getListOfSpecies():
             if 'biomass' in species.getName().lower():
                 self.log += '### Warning about apparent biomass reaction: '\
-                            '###\nIt appears that the model has a biomass '\
+                            '### \nIt appears that the model has a biomass '\
                             'reaction (SBML ID %s). The convenience kinetics '\
                             'that are entered for the model reactions are not '\
                             'appropriate for biomass reactions. We suggest '\
@@ -83,7 +83,7 @@ class ParameterBalancing:
         for reaction in self.model.getListOfReactions():
             if 'biomass' in reaction.getName().lower():
                 self.log += '### Warning about apparent biomass reaction: '\
-                            '###\nIt appears that the model has a biomass '\
+                            '### \nIt appears that the model has a biomass '\
                             'reaction (SBML ID %s). The convenience kinetics '\
                             'that are entered for the model reactions are not '\
                             'appropriate for biomass reactions. We suggest '\
@@ -94,7 +94,7 @@ class ParameterBalancing:
 
             if reaction.getNumReactants() > 4:
                 self.log += '### Warning about apparent biomass reaction: '\
-                            '###\nThere is a reaction with an usually high '\
+                            '### \nThere is a reaction with an usually high '\
                             'amount of reactants (SBML ID %s). It may be a '\
                             'biomass reaction. The convenience kinetics that '\
                             'are entered for the model reactions are not '\
@@ -158,7 +158,7 @@ class ParameterBalancing:
         
         self.model_dict = {'Michaelis constant': self.model_michaelis,
                            'inhibitory constant': self.model_inhibition,
-                           'activation constant':self.model_activation}
+                           'activation constant': self.model_activation}
         
         self.build_reaction_specifics()
 
@@ -199,7 +199,7 @@ class ParameterBalancing:
             sys.exit()
 
         p = pf.read()
-        sbtab_prior = SBtab.SBtabTable(p,'pb_prior.tsv')
+        sbtab_prior = SBtab.SBtabTable(p, 'pb_prior.tsv')
  
         self.quantity2identifier = {}
         self.quantity_type2unit = {}
@@ -296,8 +296,6 @@ class ParameterBalancing:
             for reactant in reaction.getListOfReactants():
                 reactants.append(reactant.getSpecies())
                 this_stoich = reactant.getStoichiometry()
-                #if this_stoich != this_stoich:
-                #    this_stoich = 1.
                 stoich.append(this_stoich*(-1.0))
             self.reactions_reactants[reaction.getId()] = (reactants, stoich)
 
@@ -306,8 +304,6 @@ class ParameterBalancing:
             for product in reaction.getListOfProducts():
                 products.append(product.getSpecies())
                 this_stoich = product.getStoichiometry()
-                #if this_stoich != this_stoich:
-                #    this_stoich = 1.0
                 stoich.append(this_stoich)
             self.reactions_products[reaction.getId()] = (products, stoich)
 
@@ -418,7 +414,7 @@ class ParameterBalancing:
 
         return new_sbtab
                     
-    def tidy_up_sbtab(self,ig_bounds):
+    def tidy_up_sbtab(self, ig_bounds):
         '''
         remove a lot of stuff from SBtab that is either cramping the functionality or
         delete entries that must not be used in parameter balancing
@@ -474,9 +470,9 @@ class ParameterBalancing:
                                 if float(row[mean_column]) < float(self.pmin[row[self.sbtab.columns_dict['!QuantityType']]]):
                                     if log_header == False:
                                         self.log += '\n### Warnings about ignored values that '\
-                                                    'lie out of the boundaries ###\n'
+                                                    'lie out of the boundaries ### \n'
                                         log_header = True
-                                    self.log += 'The value %s for the %s of %s,%s lies below t'\
+                                    self.log += 'The value %s for the %s of %s, %s lies below t'\
                                                 'he requested minimum value of %s. It is ignor'\
                                                 'ed for the balancing.\n'%(row[mean_column],
                                                                            row[self.sbtab.columns_dict['!QuantityType']],
@@ -489,9 +485,9 @@ class ParameterBalancing:
                                 if float(row[mean_column]) > float(self.pmax[row[self.sbtab.columns_dict['!QuantityType']]]):
                                     if log_header == False:
                                         self.log += '\n### Warnings about ignored values that '\
-                                                    'lie out of the boundaries ###\n'
+                                                    'lie out of the boundaries ### \n'
                                         log_header = True
-                                    self.log += 'The value %s for the %s of %s,%s lies above t'\
+                                    self.log += 'The value %s for the %s of %s, %s lies above t'\
                                                 'he requested maximum value of %s. It is ignor'\
                                                 'ed for the balancing.\n'%(row[mean_column],
                                                                            row[self.sbtab.columns_dict['!QuantityType']],
@@ -535,7 +531,7 @@ class ParameterBalancing:
                 
         return consistent_rows
 
-    def new_row(self,name,quantity):
+    def new_row(self, name, quantity):
         '''
         generates one new row that is required for model structure
         '''
@@ -557,19 +553,19 @@ class ParameterBalancing:
         '''
         # if multiple entries are provided, they must be averaged
         value_dict = False
-        amount = 1 # this is not even changed ever; is it required?
+        amount = 1  # this is not even changed ever; is it required?
         if quantity in self.reaction_species_parameters:
-            if self.available_parameters.count([quantity,name[1], name[2]]) > 1:
+            if self.available_parameters.count([quantity, name[1], name[2]]) > 1:
                 value_dict = self.mean_row(name, quantity)
-        elif self.available_parameters.count([quantity,name]) > 1:
-            value_dict = self.mean_row(name,quantity)
+        elif self.available_parameters.count([quantity, name]) > 1:
+            value_dict = self.mean_row(name, quantity)
 
         # after the averaging, the row is built
         used_rows = []
         new_row = [''] * len(self.new_header)
 
         for row in self.rows:
-            for i in range(0,amount):
+            for i in range(0, amount):
                 further = False
                 if quantity in self.reaction_species_parameters:
                     if row[self.sbtab.columns_dict['!QuantityType']] == quantity \
@@ -595,19 +591,12 @@ class ParameterBalancing:
                     else:
                         new_row[5] = str(row[self.sbtab.columns_dict['!Mean']])
                         new_row[6] = str(row[self.sbtab.columns_dict['!Std']])
-                        '''
-                        new_row[3] = str(round(numpy.exp(self.normal_to_log([float(new_row[5])],
-                                                                            [float(new_row[6])],
-                                                                            [new_row[0]])[0])[0],4))
-                        '''
-                        #new_row[3] = str(round(self.med10_std_to_log([float(new_row[5])],[float(new_row[6])],[new_row[0]])[0][0],4))
-                        new_row[3] = str(round(self.normal_to_log([float(new_row[5])],[float(new_row[6])],[new_row[0]])[0][0],4))
+                        new_row[3] = str(round(self.normal_to_log([float(new_row[5])], [float(new_row[6])], [new_row[0]])[0][0], 4))
 
-                        #print(new_row[3])
                     if quantity in self.thermodynamics: new_row[3] = new_row[5]
                     new_row[4] = self.quantity_type2unit[row[self.sbtab.columns_dict['!QuantityType']]]
                     # optional columns (columns 9 and more)
-                    #j = 9
+
                     # MIN and MAX is currently out of order. Reinstall later.
                     if '!Min' in self.sbtab.columns_dict and '!Max' in self.sbtab.columns_dict:
                         new_row[j] = row[self.sbtab.columns_dict['!Min']]
@@ -627,7 +616,7 @@ class ParameterBalancing:
         '''
         if there are more than one value for one parameter, calculate the mean
         '''
-        #collect available means and stds
+        # collect available means and stds
         means = []
         stds = []
         for row in self.rows:
@@ -653,31 +642,27 @@ class ParameterBalancing:
                 if std != 0.0: denominator = denominator + (1/std**2)
                 else: denominator = denominator + (1/numpy.log(2)**2)
             mean   = scipy.mean(means)
-            #std    = numpy.exp(numpy.sqrt(1/denominator))
             std    = scipy.mean(stds)
             if not quantity in self.thermodynamics:
-                #median = numpy.exp(self.med10_std_to_log([mean],[std],False)[0])[0]
-                median = numpy.exp(self.normal_to_log([mean],[std],False)[0])[0]
+                median = numpy.exp(self.normal_to_log([mean], [std], False)[0])[0]
             else: median = mean
-            value_dict = dict([('Mean',mean),('Std',std),('Mode',median)])
-            #print(value_dict)
+            value_dict = dict([('Mean', mean), ('Std', std), ('Mode', median)])
         else:
             # arithmetic mean for all additive/thermodynamic quantities
             denominator = 0
-            for i,std in enumerate(stds):
+            for i, std in enumerate(stds):
                 if std != 0.0: denominator = denominator + (1 / std ** 2)
                 else: denominator = denominator + (1 / numpy.log(2) ** 2)
 
             std = numpy.sqrt(1/denominator)
             numerator   = 0
             denominator = 0
-            for i,mean in enumerate(means):
+            for i, mean in enumerate(means):
                 numerator   = numerator + mean / stds[i] ** 2
                 denominator = denominator + 1 / stds[i] ** 2
 
             mean = numerator / denominator
             if not quantity in self.thermodynamics:
-                #median = numpy.exp(self.med10_std_to_log([mean], [std], False)[0])[0]
                 median = numpy.exp(self.normal_to_log([mean], [std], False)[0])[0]
             else: median = mean
             value_dict = dict([('Mean', mean), ('Std', std), ('Mode', median)])
@@ -712,17 +697,8 @@ class ParameterBalancing:
                 means.append(pseudos[quantity][0])
                 stds.append(pseudos[quantity][1])
                 
-            (self.log_means,self.log_stds) = self.med10_std_to_log(means,stds,self.pseudo_list)
-
-            #if priors:
-            #    self.prior_values = {}
-            #    for i, row in enumerate(sbtab.value_rows):
-            #        if row[sbtab.columns_dict['!QuantityType']] in priors and row[sbtab.columns_dict['!UnconstrainedGeometricMean']] != '':
-            #            self.prior_values[row[sbtab.columns_dict['!QuantityType']]] = [self.normal_to_log([row[sbtab.columns_dict['!UnconstrainedGeometricMean']]],
-            #                                                                                              [row[sbtab.columns_dict['!UnconstrainedGeometricStd']]],
-            #                                                                                              [row[sbtab.columns_dict['!QuantityType']]])]
-            #print(self.prior_values)
-               
+            (self.log_means, self.log_stds) = self.med10_std_to_log(means, stds, self.pseudo_list)
+             
             sbtab_pseudo = SBtab.SBtabTable('\n'.join(sbtab_strings), 'sbtab_pseudo.csv')
             return sbtab_pseudo
                            
@@ -749,21 +725,21 @@ class ParameterBalancing:
             quantities.append(parameter_type)
             counter += 1
             
-        (self.log_means,self.log_stds) = self.med10_std_to_log(medians,stds,quantities)
+        (self.log_means, self.log_stds) = self.med10_std_to_log(medians, stds, quantities)
         
         self.prior_values = {}
-        for i,quantity in enumerate(quantities):
-            self.prior_values[quantity] = [(self.log_means[i],self.log_stds[i])]
+        for i, quantity in enumerate(quantities):
+            self.prior_values[quantity] = [(self.log_means[i], self.log_stds[i])]
             
-    def normal_to_log(self,means,stds,types):
+    def normal_to_log(self, means, stds, types):
         '''
         generates log values for normal values
         '''
         log_means = []
         log_stds  = []
 
-        for i,mean in enumerate(means):
-            if types and types[i] in self.thermodynamics:  #kJ/mol
+        for i, mean in enumerate(means):
+            if types and types[i] in self.thermodynamics:
                 log_means.append(float(mean))
                 log_stds.append(float(stds[i]))
                 
@@ -775,15 +751,15 @@ class ParameterBalancing:
         if 'nan' in log_means:
             raise ParameterBalancingError('The logarithm of one of your given mean values is invalid.')
 
-        return log_means,log_stds
+        return log_means, log_stds
 
-    def log_to_normal(self,log_means,log_stds,types=None):
+    def log_to_normal(self, log_means, log_stds, types=None):
         '''
         generates a list of the normal values from a list of the log values
         '''
         means = []
         stds  = []
-        for i,log_mean in enumerate(log_means):
+        for i, log_mean in enumerate(log_means):
             if types and types[i] in self.thermodynamics:
                 means.append(log_mean)
                 stds.append(log_stds[i])
@@ -791,9 +767,9 @@ class ParameterBalancing:
                 means.append(numpy.exp(log_mean+0.5*numpy.square(log_stds[i])))
                 stds.append(numpy.sqrt((numpy.exp(numpy.square(float(log_stds[i])))-1) * (numpy.exp(2*log_mean+numpy.square(float(log_stds[i]))))))
         
-        return means,stds
+        return means, stds
 
-    def med10_std_to_log(self,medians,stdlogs,types):
+    def med10_std_to_log(self, medians, stdlogs, types):
         '''
         this is the users default choice for missing values: inserted are the median and
         the stdlog10, the output are the corresponding mean value and the standard dev.
@@ -801,7 +777,7 @@ class ParameterBalancing:
         log_means = []
         log_stds  = []
 
-        for i,median in enumerate(medians):
+        for i, median in enumerate(medians):
             if types and types[i] in self.thermodynamics:
                 log_means.append(median)
                 log_stds.append(stdlogs[i])
@@ -809,17 +785,16 @@ class ParameterBalancing:
                 log_means.append(numpy.log(median))
                 log_stds.append(numpy.log(stdlogs[i]))
 
-        #if log_means == []: log_means = 0
-        return log_means,log_stds
+        return log_means, log_stds
 
     def add_config_to_log(self):
         '''
         adds config information for the balancing
         '''
-        self.log += '\n### You have used an options file for the parameter balancing. ###\nThe options are as follows:\n'
+        self.log += '\n### You have used an options file for the parameter balancing. ### \nThe options are as follows:\n'
         self.log += '!Option\t!Value\n'
         for entry in self.parameter_dict.keys():
-            self.log += '%s\t%s\n'%(entry,self.parameter_dict[entry])
+            self.log += '%s\t%s\n'%(entry, self.parameter_dict[entry])
 
 ###############################################################################
 
@@ -835,12 +810,12 @@ class ParameterBalancing:
         self.sbtab = sbtab_old
         self.sbtab_new = sbtab
 
-        #initialise log file
+        # initialise log file
         self.parameter_dict = parameter_dict
         if 'config' in self.parameter_dict.keys():
             self.add_config_to_log()
             
-        #initialize needed variables
+        # initialise needed variables
         self.pmin             = pmin
         self.pmax             = pmax
         self.new_header       = header_names
@@ -854,71 +829,70 @@ class ParameterBalancing:
         self.temperature      = float(self.parameter_dict['temperature'])
         self.pH               = float(self.parameter_dict['ph'])
 
-        #build needed vectors and matrices
+        # build needed vectors and matrices
         self.desired_parameters = self.build_desired_parameters()
         self.x_vector           = self.collect_available_values()
         self.theta_vector       = self.build_theta_vector()
-        (self.C_prior,self.C_x) = self.build_covariance_matrices()
+        (self.C_prior, self.C_x) = self.build_covariance_matrices()
         
-        #build the dependence matrix D and the data specific D_x
+        # build the dependence matrix D and the data specific D_x
         self.Q   = self.build_dependence_matrix()
         self.Q_star = self.build_specific_dependence_matrix()
 
-        #KEY PART: calculating the posteriori covariance matrix C_post and the posteriori mean vector mean_post
+        # KEY PART: calculating the posteriori covariance matrix C_post and the posteriori mean vector mean_post
         self.calculate_posteriori()
 
-        #make normal values again
-        (self.mean_post,self.stds_post) = self.log_to_normal(self.x_post,self.stds_log_post,self.quantities)
+        # make normal values again
+        (self.mean_post, self.stds_post) = self.log_to_normal(self.x_post, self.stds_log_post, self.quantities)
 
         ################################################################
-        #generating minimization problem
+        # generating minimization problem
         self.optimized = False
-        if self.bounds_inc.count((None,None)) != len(self.bounds_inc):# and False:                #and False ---> mustn't be loaded in web interface
-            #generating the medians to bound them                                     #because the files have to be generated manually!!
-            print('in optimiser')                                                      #only for super-cool users...
+        if self.bounds_inc.count((None, None)) != len(self.bounds_inc):  # and False:    # and False ---> mustn't be loaded in web interface
+            # generating the medians to bound them                                       # because the files have to be generated manually!!
+            print('in optimiser')                                                        # only for super-cool users...
             
             medians = []
             medstds = []
 
-            (self.means_inc,self.stds_inc) = self.log_to_normal(self.means_post_inc,self.stds_log_inc,self.quantities_inc)
+            (self.means_inc, self.stds_inc) = self.log_to_normal(self.means_post_inc, self.stds_log_inc, self.quantities_inc)
 
-            for i,value in enumerate(self.means_inc):
+            for i, value in enumerate(self.means_inc):
                 if not self.quantities_inc[i] in self.thermodynamics:
-                    (log_mean,log_std) = self.normal_to_log([self.means_inc[i]],[self.stds_inc[i]],self.quantities_inc[i])
+                    (log_mean, log_std) = self.normal_to_log([self.means_inc[i]], [self.stds_inc[i]], self.quantities_inc[i])
                     medians.append(numpy.exp(log_mean[0]))
                 else:
                     medians.append(self.means_inc[i])
-                medstds.append(max(self.stds_inc[i],10))
+                medstds.append(max(self.stds_inc[i], 10))
 
-            #optimization function
+            # optimisation function
             def log_mean_post_func(q):
-                return numpy.dot(((q-medians).transpose()),(numpy.dot(numpy.linalg.inv(self.C_post),(q-medians))))
+                return numpy.dot(((q-medians).transpose()), (numpy.dot(numpy.linalg.inv(self.C_post), (q-medians))))
 
-            #setting proper boundaries for parameters that have no boundaries set in SBtab
+            # setting proper boundaries for parameters that have no boundaries set in SBtab
             new_boundaries = []
             is_logarithmic = []
-            for i,bound in enumerate(self.bounds_inc):
-                if bound == ('','') or bound == (None,None):
-                    #setting boundaries for thermodynamic parameters (kJ/mol)
+            for i, bound in enumerate(self.bounds_inc):
+                if bound == ('', '') or bound == (None, None):
+                    # setting boundaries for thermodynamic parameters (kJ/mol)
                     # THIS NEEDS TO BE REWRITTEN DESPERATELY;
                     # NO USAGE OF NAME2INDEX OR THERMODYNAMIC_INDICES;
-                    # THATS NOOB STUFF:
                     if name2index[self.quantities_inc[i]] in thermodynamic_indices:
                         is_logarithmic.append(False)
-                        if (max(medians[i]-medstds[i]*2,-3000))<(min(3000,medians[i]+medstds[i]*2)):
-                            new_boundaries.append((max(medians[i]-medstds[i]*2,-3000),min(3000,medians[i]+medstds[i]*2)))
+                        if (max(medians[i]-medstds[i]*2, -3000))<(min(3000, medians[i]+medstds[i]*2)):
+                            new_boundaries.append((max(medians[i]-medstds[i]*2, -3000), min(3000, medians[i]+medstds[i]*2)))
                         else:
-                            new_boundaries.append((medians[i]+medstds[i]*2,medians[i]-medstds[i]*2))
-                    #setting boundaries for all other parameters
+                            new_boundaries.append((medians[i]+medstds[i]*2, medians[i]-medstds[i]*2))
+                    # setting boundaries for all other parameters
                     else:
                         is_logarithmic.append(True)
                         if (medians[i]-medstds[i]*4)<(medians[i]+medstds[i]*4):
-                            new_boundaries.append((max(medians[i]-medstds[i]*4,0.00001),medians[i]+medstds[i]*4))
+                            new_boundaries.append((max(medians[i]-medstds[i]*4, 0.00001), medians[i]+medstds[i]*4))
                         else:
-                            new_boundaries.append((medians[i]+medstds[i]*4,medians[i]-medstds[i]*4))
+                            new_boundaries.append((medians[i]+medstds[i]*4, medians[i]-medstds[i]*4))
                 else:
                     is_logarithmic.append(True)
-                    new_boundaries.append((float(bound[0]),float(bound[1])))
+                    new_boundaries.append((float(bound[0]), float(bound[1])))
 
             proper_boundaries = []
             for boundaries in new_boundaries:
@@ -933,17 +907,17 @@ class ParameterBalancing:
                     new_bound.append(boundaries[1])
                 proper_boundaries.append(new_bound)
 
-            f = open('medians.txt','w')
-            for i,element in enumerate(medians):
+            f = open('medians.txt', 'w')
+            for i, element in enumerate(medians):
                 if not i == len(medians)-1:
                     f.write(str(element)+',')
                 else:
                     f.write(str(element))
             f.close()
 
-            g = open('cpost.txt','w')
-            for line in self.C_post:   #self.C_post
-                for i,element in enumerate(line):
+            g = open('cpost.txt', 'w')
+            for line in self.C_post:
+                for i, element in enumerate(line):
                     if not i == len(line)-1:
                         g.write(str(element)+',')
                     else:
@@ -951,31 +925,31 @@ class ParameterBalancing:
                 g.write('\n')
             g.close()
 
-            #generating optimization and updating responsible mean vector
-            new_medians = misc.fmin_gen(log_mean_post_func,numpy.array(medians),population_size=20,survivors=5,generations=500,bounds=proper_boundaries,use_pp=False,variable_is_logarithmic=is_logarithmic,disp=1)
-            for i,value in enumerate(new_medians):
+            # generating optimization and updating responsible mean vector
+            new_medians = misc.fmin_gen(log_mean_post_func, numpy.array(medians), population_size=20, survivors=5, generations=500, bounds=proper_boundaries, use_pp=False, variable_is_logarithmic=is_logarithmic, disp=1)
+            for i, value in enumerate(new_medians):
                 if value+0.001 < proper_boundaries[i][0] or value-0.001 > proper_boundaries[i][1]:
                     self.quantities_inc[i]
-                    print('NEW_MODE value out of bound: ',value,' [bounds: ',proper_boundaries[i],']')
+                    print('NEW_MODE value out of bound: ', value, ' [bounds: ', proper_boundaries[i], ']')
 
-            (new_medians_log,new_stds_log) = self.normal_to_log(new_medians,self.stds_inc,self.quantities_inc)
-            self.C_xpost = numpy.dot((numpy.dot(self.Q,self.C_post)),self.Q.transpose())
-            self.x_post = numpy.dot(self.Q,new_medians_log)
+            (new_medians_log, new_stds_log) = self.normal_to_log(new_medians, self.stds_inc, self.quantities_inc)
+            self.C_xpost = numpy.dot((numpy.dot(self.Q, self.C_post)), self.Q.transpose())
+            self.x_post = numpy.dot(self.Q, new_medians_log)
             self.stds_log_post = self.extract_cpost()
 
-            (self.mean_post_opt,self.stds_post_opt) = self.log_to_normal(self.x_post,self.stds_log_post,self.quantities)
+            (self.mean_post_opt, self.stds_post_opt) = self.log_to_normal(self.x_post, self.stds_log_post, self.quantities)
             
             self.optimized = True
       
         #################################################################
-        #make value-dictionaries to realize the insertion of the computed values into the SBtab-file in GUI
+        # make value-dictionaries to realize the insertion of the computed values into the SBtab-file in GUI
         balanced_sbtab = self.build_new_sbtab()
 
         sbtab_string = []
         for entry in balanced_sbtab:
             sbtab_string.append('\t'.join(entry))
             
-        sbtab_new = SBtab.SBtabTable('\n'.join(sbtab_string),'sbtab_new.csv')
+        sbtab_new = SBtab.SBtabTable('\n'.join(sbtab_string), 'sbtab_new.csv')
         C_string = self.make_cpost_string()
         shannons = self.get_shannons()
 
@@ -985,13 +959,13 @@ class ParameterBalancing:
         '''
         get the sheet that tells us, how to build up which matrix and further stuff
         '''
-        sheet = {"equilibrium constant":((-1/2.4790,"A"),0,0,0,0,0,0),
-                 "substrate catalytic rate constant":((-0.5/2.4790,"A"),1,(-0.5,"Z"),0,0,0,0),
-                 "product catalytic rate constant":((0.5/2.4790,"A"),1,(0.5,"Z"),0,0,0,0),
-                 "forward maximal velocity":((-0.5/2.4790,"A"),1,(-0.5,"Z"),0,0,1,0),
-                 "reverse maximal velocity":((0.5/2.4790,"A"),1,(0.5,"Z"),0,0,1,0),
-                 "chemical potential":(1,0,0,0,0,0,(2.790,'1')),
-                 "reaction affinity":((-1,"A"),0,0,0,0,0,(-2.4790,"AB"))}
+        sheet = {"equilibrium constant": ((-1/2.4790, "A"), 0, 0, 0, 0, 0, 0),
+                 "substrate catalytic rate constant": ((-0.5/2.4790, "A"), 1, (-0.5, "Z"), 0, 0, 0, 0),
+                 "product catalytic rate constant": ((0.5/2.4790, "A"), 1, (0.5, "Z"), 0, 0, 0, 0),
+                 "forward maximal velocity": ((-0.5/2.4790, "A"), 1, (-0.5, "Z"), 0, 0, 1, 0),
+                 "reverse maximal velocity": ((0.5/2.4790, "A"), 1, (0.5, "Z"), 0, 0, 1, 0),
+                 "chemical potential": (1, 0, 0, 0, 0, 0, (2.790, '1')),
+                 "reaction affinity": ((-1, "A"), 0, 0, 0, 0, 0, (-2.4790, "AB"))}
 
         return sheet
 
@@ -999,21 +973,21 @@ class ParameterBalancing:
         '''
         builds up a dictionary of identifiers for those parameters that are chosen to
         be used for the balancing.
-        they are of the kind: [(equilibrium constant,reaction)]=keq_1
+        they are of the kind: [(equilibrium constant, reaction)]=keq_1
         '''
         desired_parameters       = {}
         for parameter_type in self.parameter_dict.keys():
             if self.parameter_dict[parameter_type] == True:
                 if parameter_type in self.species_parameters:
                     for species in self.species_list:
-                        desired_parameters[parameter_type,species] = self.quantity2identifier[parameter_type]+'_'+str(self.species2number[species])
+                        desired_parameters[parameter_type, species] = self.quantity2identifier[parameter_type]+'_'+str(self.species2number[species])
                 elif parameter_type in self.reaction_parameters:
                     for reaction in self.reaction_list:
-                        desired_parameters[parameter_type,reaction] = self.quantity2identifier[parameter_type]+'_'+str(self.reaction2number[reaction])
+                        desired_parameters[parameter_type, reaction] = self.quantity2identifier[parameter_type]+'_'+str(self.reaction2number[reaction])
                 elif parameter_type in self.reaction_species_parameters:
                     for reaction_species in self.model_specific:
                         if parameter_type == reaction_species[0]:
-                            desired_parameters[parameter_type,reaction_species[1],reaction_species[2]] = self.quantity2identifier[parameter_type]+'_'+str(self.reaction2number[reaction_species[1]])+'_'+str(self.species2number[reaction_species[2]])
+                            desired_parameters[parameter_type, reaction_species[1], reaction_species[2]] = self.quantity2identifier[parameter_type]+'_'+str(self.reaction2number[reaction_species[1]])+'_'+str(self.species2number[reaction_species[2]])
 
         return desired_parameters
 
@@ -1027,7 +1001,7 @@ class ParameterBalancing:
         self.quantities_x = []
         self.parameter2bounds = {}
 
-        #first: get the column indices of the initial SBtab file, so we can search it
+        # first: get the column indices of the initial SBtab file, so we can search it
         old_rows = self.tidy_up_sbtab(True)
 
         value_tuples_old = []
@@ -1042,7 +1016,6 @@ class ParameterBalancing:
         for row in old_rows:
             quantity = row[self.sbtab.columns_dict['!QuantityType']]
             if quantity in self.parameter_dict.keys():
-                #x = self.parameter_dict[quantity]    #this check is needed: see, if we know this quantity type
                 if len(row) == len(self.sbtab.columns):
                     single_tuple = []
                     single_tuple.append(row[self.sbtab.columns_dict['!QuantityType']])
@@ -1055,34 +1028,34 @@ class ParameterBalancing:
                     single_tuple.append(self.make_identifier(row))
                     self.quantities_x.append(row[self.sbtab.columns_dict['!QuantityType']])
                    
-                    #check, whether this parameter is really part of the model structure and store boundaries
+                    # check, whether this parameter is really part of the model structure and store boundaries
                     if not row[self.sbtab.columns_dict['!Reaction:SBML:reaction:id']] == '' and not row[self.sbtab.columns_dict['!Compound:SBML:species:id']] == '':
-                        row_identifier = (row[self.sbtab.columns_dict['!QuantityType']],row[self.sbtab.columns_dict['!Reaction:SBML:reaction:id']],row[self.sbtab.columns_dict['!Compound:SBML:species:id']])
+                        row_identifier = (row[self.sbtab.columns_dict['!QuantityType']], row[self.sbtab.columns_dict['!Reaction:SBML:reaction:id']], row[self.sbtab.columns_dict['!Compound:SBML:species:id']])
                         try:
                             if self.sbtab.columns_dict['!Min'] and self.sbtab.columns_dict['!Max']:
-                                self.parameter2bounds[row[self.sbtab.columns_dict['!QuantityType']],(row[self.sbtab.columns_dict['!Reaction:SBML:reaction:id']],row[self.sbtab.columns_dict['!Compound:SBML:species:id']])] = (row[self.sbtab.columns_dict['!Min']],row[self.sbtab.columns_dict['!Max']])
-                            else: self.parameter2bounds[row[self.sbtab.columns_dict['!QuantityType']],(row[self.sbtab.columns_dict['!Reaction:SBML:reaction:id']],row[self.sbtab.columns_dict['!Compound:SBML:species:id']])] = (None,None)
+                                self.parameter2bounds[row[self.sbtab.columns_dict['!QuantityType']], (row[self.sbtab.columns_dict['!Reaction:SBML:reaction:id']], row[self.sbtab.columns_dict['!Compound:SBML:species:id']])] = (row[self.sbtab.columns_dict['!Min']], row[self.sbtab.columns_dict['!Max']])
+                            else: self.parameter2bounds[row[self.sbtab.columns_dict['!QuantityType']], (row[self.sbtab.columns_dict['!Reaction:SBML:reaction:id']], row[self.sbtab.columns_dict['!Compound:SBML:species:id']])] = (None, None)
                         except: pass
                     elif not row[self.sbtab.columns_dict['!Reaction:SBML:reaction:id']] == '':
-                        row_identifier = (row[self.sbtab.columns_dict['!QuantityType']],row[self.sbtab.columns_dict['!Reaction:SBML:reaction:id']])
+                        row_identifier = (row[self.sbtab.columns_dict['!QuantityType']], row[self.sbtab.columns_dict['!Reaction:SBML:reaction:id']])
                         try:
                             if self.sbtab.columns_dict['!Min'] and self.sbtab.columns_dict['!Max']:
-                                self.parameter2bounds[row[self.sbtab.columns_dict['!QuantityType']],row[self.sbtab.columns_dict['!Reaction:SBML:reaction:id']]] = (row[self.sbtab.columns_dict['!Min']],row[self.sbtab.columns_dict['!Max']])
-                            else: self.parameter2bounds[row[self.sbtab.columns_dict['!QuantityType']],(row[self.sbtab.columns_dict['!Reaction:SBML:reaction:id']])] = (None,None)
+                                self.parameter2bounds[row[self.sbtab.columns_dict['!QuantityType']], row[self.sbtab.columns_dict['!Reaction:SBML:reaction:id']]] = (row[self.sbtab.columns_dict['!Min']], row[self.sbtab.columns_dict['!Max']])
+                            else: self.parameter2bounds[row[self.sbtab.columns_dict['!QuantityType']], (row[self.sbtab.columns_dict['!Reaction:SBML:reaction:id']])] = (None, None)
                         except: pass
                     else:
-                        row_identifier = (row[self.sbtab.columns_dict['!QuantityType']],row[self.sbtab.columns_dict['!Compound:SBML:species:id']])
+                        row_identifier = (row[self.sbtab.columns_dict['!QuantityType']], row[self.sbtab.columns_dict['!Compound:SBML:species:id']])
                         try:
                             if self.sbtab.columns_dict['!Min'] and self.sbtab.columns_dict['!Max']:
-                                self.parameter2bounds[row[self.sbtab.columns_dict['!QuantityType']],row[self.sbtab.columns_dict['!Compound:SBML:species:id']]] = (row[self.sbtab.columns_dict['!Min']],row[self.sbtab.columns_dict['!Max']])
-                            else: self.parameter2bounds[row[self.sbtab.columns_dict['!QuantityType']],(row[self.sbtab.columns_dict['!Compound:SBML:species:id']])] = (None,None)
+                                self.parameter2bounds[row[self.sbtab.columns_dict['!QuantityType']], row[self.sbtab.columns_dict['!Compound:SBML:species:id']]] = (row[self.sbtab.columns_dict['!Min']], row[self.sbtab.columns_dict['!Max']])
+                            else: self.parameter2bounds[row[self.sbtab.columns_dict['!QuantityType']], (row[self.sbtab.columns_dict['!Compound:SBML:species:id']])] = (None, None)
                         except: pass
                     row_identifiers.append(row_identifier)
                     if row_identifier in self.desired_parameters.keys(): value_tuples_old.append(single_tuple)
             else:
                 raise ParameterBalancingError('There is a quantity type in the SBtab that cannot be interpreted: %s'%(row[self.sbtab.columns_dict['!QuantityType']]))
 
-        #second: get column indices of the new SBtab file and search it
+        # second: get column indices of the new SBtab file and search it
         for row in self.new_rows:
             if row[self.sbtab_new.columns_dict['!UnconstrainedGeometricMean']] == '': continue
             if len(row) == len(self.sbtab_new.columns):
@@ -1095,13 +1068,13 @@ class ParameterBalancing:
                                       (row[self.sbtab_new.columns_dict['!Reaction:SBML:reaction:id']],
                                        row[self.sbtab_new.columns_dict['!Compound:SBML:species:id']]))
                 elif not row[self.sbtab_new.columns_dict['!Reaction:SBML:reaction:id']] == '':
-                    row_identifier = (row[self.sbtab_new.columns_dict['!QuantityType']],row[self.sbtab_new.columns_dict['!Reaction:SBML:reaction:id']])
-                else: row_identifier = (row[self.sbtab_new.columns_dict['!QuantityType']],row[self.sbtab_new.columns_dict['!Compound:SBML:species:id']])
+                    row_identifier = (row[self.sbtab_new.columns_dict['!QuantityType']], row[self.sbtab_new.columns_dict['!Reaction:SBML:reaction:id']])
+                else: row_identifier = (row[self.sbtab_new.columns_dict['!QuantityType']], row[self.sbtab_new.columns_dict['!Compound:SBML:species:id']])
 
                 if not row_identifier in row_identifiers:
                     try:
                         if self.sbtab_new.columns_dict['!Min'] and self.sbtab_new.columns_dict['!Max']:
-                            self.parameter2bounds[row_identifier] = (None,None)
+                            self.parameter2bounds[row_identifier] = (None, None)
                     except: pass
                 if row[self.sbtab_new.columns_dict['!QuantityType']] in self.prior_list and not self.pseudo_used: continue
                 elif row[self.sbtab_new.columns_dict['!QuantityType']] in self.pseudo_list and not self.pseudo_used: continue
@@ -1112,22 +1085,20 @@ class ParameterBalancing:
                     single_tuple.append(self.make_identifier(row))
                     try:
                         if self.sbtab_new.columns_dict['!Min'] and row[self.sbtab_new.columns_dict['!Min']] != '':
-                            single_tuple.append((float(row[self.sbtab_new.columns_dict['!Min']]),float(row[self.sbtab_new.columns_dict['!Max']])))
+                            single_tuple.append((float(row[self.sbtab_new.columns_dict['!Min']]), float(row[self.sbtab_new.columns_dict['!Max']])))
                         elif self.sbtab_new.columns_dict['!Min']:
-                            single_tuple.append((None,None))
+                            single_tuple.append((None, None))
                         if self.sbtab_new.columns_dict['!Min'] and self.sbtab_new.columns_dict['!Max']:
-                            self.parameter2bounds[row_identifier] = (None,None)
+                            self.parameter2bounds[row_identifier] = (None, None)
                     except: pass
                     value_tuples_new.append(single_tuple)
 
-        #generate logarithms
+        # generate logarithms
         means = []
         stds = []
         types = []
         vt = []
-        #x_star_old = []
         self.x_star = []
-        #log_stds_x_old = []
        
         for single_tuple in value_tuples_old:
             if single_tuple[3] == '': continue
@@ -1135,29 +1106,13 @@ class ParameterBalancing:
             stds.append(float(single_tuple[4]))
             types.append(single_tuple[0])
             vt.append(single_tuple)
-            (self.x_star,self.log_stds_x) = self.normal_to_log(means,stds,types)
+            (self.x_star, self.log_stds_x) = self.normal_to_log(means, stds, types)
 
-        '''
-        means = []
-        stds = []
-        types = []
-        x_star_new = []
-        log_stds_x_new = []
-        for single_tuple in value_tuples_new:
-            if single_tuple[3] == '': continue
-            means.append(float(single_tuple[3]))
-            stds.append(float(single_tuple[4]))
-            types.append(single_tuple[0])
-            vt.append(single_tuple)
-            (x_star_new,log_stds_x_new) = self.med10_std_to_log(means,stds,types)   
-        self.x_star = x_star_old + x_star_new
-        self.log_stds_x = log_stds_x_old + log_stds_x_new
-        '''
         self.new_rows = self.sbtab.value_rows + self.new_rows
         
         return vt
 
-    def sort_list(self,qlist):
+    def sort_list(self, qlist):
 
         quantities = ['standard chemical potential',
                       'catalytic rate constant geometric mean',
@@ -1181,13 +1136,13 @@ class ParameterBalancing:
                         new_list.append(quantity)
         return new_list
 
-    def make_identifier(self,row):
+    def make_identifier(self, row):
         '''
         generates a specific identifier that works for only this specific row
         '''
-        #qidentifier: kG, kV, kM, etc.
+        # qidentifier: kG, kV, kM, etc.
         qidentifier = self.quantity2identifier[row[self.sbtab.columns_dict['!QuantityType']]]
-        #qnumber: specific species and/or reaction number in the order of their appearance in SBML model
+        # qnumber: specific species and/or reaction number in the order of their appearance in SBML model
         if row[self.sbtab.columns_dict['!QuantityType']] in self.species_parameters: qnumber = str(self.species2number[row[self.sbtab.columns_dict['!Compound:SBML:species:id']]])
         elif row[self.sbtab.columns_dict['!QuantityType']] in self.reaction_parameters: qnumber = str(self.reaction2number[row[self.sbtab.columns_dict['!Reaction:SBML:reaction:id']]])
         else: qnumber = str(self.species2number[row[self.sbtab.columns_dict['!Compound:SBML:species:id']]])+'_'+str(self.reaction2number[row[self.sbtab.columns_dict['!Reaction:SBML:reaction:id']]])
@@ -1200,11 +1155,11 @@ class ParameterBalancing:
         calculate the shannon entropies of the prior and the posterior covariance matrices
         '''
         shannons = []
-        #first, shannon entropy of prior matrix self.C_prior
+        # first, shannon entropy of prior matrix self.C_prior
         shannon_prior = 0.5 * numpy.log((2*numpy.pi*numpy.exp(2)) * scipy.linalg.det(self.C_prior))
         shannons.append(shannon_prior)
 
-        #second, get shannon entropy of posterior matrix
+        # second, get shannon entropy of posterior matrix
         shannon_posterior = 0.5 * numpy.log((2*numpy.pi*numpy.exp(2)) * scipy.linalg.det(self.C_post))
         shannons.append(shannon_posterior)
 
@@ -1218,24 +1173,24 @@ class ParameterBalancing:
 
         return new_C
 
-    def sample_posterior_dist(self,posterior,posterior_inc,c_matrix_inc,r_matrix,new_SBtab,header,number):
+    def sample_posterior_dist(self, posterior, posterior_inc, c_matrix_inc, r_matrix, new_SBtab, header, number):
         '''
         give the posterior to this function and receive *number* times a sample from the posterior distribution
         '''
-        #first, get the matrix root of the posterior covariance matrix
+        # first, get the matrix root of the posterior covariance matrix
         C_root = scipy.linalg.matfuncs.sqrtm(c_matrix_inc)
         list_of_SBtab_strings = []
 
-        #do for *number* times:
+        # do for *number* times:
         for i in range(number):
-            #generate random variables of posteriors length
-            ksi = numpy.random.normal(0,1,len(posterior_inc))
+            # generate random variables of posteriors length
+            ksi = numpy.random.normal(0, 1, len(posterior_inc))
 
-            #third: get the new posterior for the new SBtab
-            new_posterior = numpy.array(posterior)+(numpy.dot(numpy.dot(r_matrix,C_root),ksi))
+            # third: get the new posterior for the new SBtab
+            new_posterior = numpy.array(posterior)+(numpy.dot(numpy.dot(r_matrix, C_root), ksi))
 
-            #last, but not least: get the new SBtab with the sampled values
-            new_SBtab = self.build_new_sbtab(new_sbtab=new_SBtab,posterior_sample=new_posterior,header=header)
+            # last, but not least: get the new SBtab with the sampled values
+            new_SBtab = self.build_new_sbtab(new_sbtab=new_SBtab, posterior_sample=new_posterior, header=header)
 
             list_of_SBtab_strings.append(new_SBtab)
 
@@ -1245,18 +1200,18 @@ class ParameterBalancing:
         '''
         builds the dependence matrix D from all the submatrices needed for the balancing
         '''
-        #the dependence matrix consists of two major parts: the unit matrix on top
-        #and the rows below the unit matrix
+        # the dependence matrix consists of two major parts: the unit matrix on top
+        # and the rows below the unit matrix
         D_matrix = []
         self.parameter2row = {}
         self.quantities = []
         
-        #first, we build up the unit matrix
+        # first, we build up the unit matrix
         unit_matrix = self.build_unit_matrix()
         for row in unit_matrix:
             D_matrix.append(row)
 
-        #second, we check which bottom rows we have to build up
+        # second, we check which bottom rows we have to build up
         for pseudo_quantity in self.pseudo_list:
             if self.parameter_dict[pseudo_quantity]:
                 rows = self.build_bottom_row(pseudo_quantity)
@@ -1275,15 +1230,15 @@ class ParameterBalancing:
         self.bounds     = []
         self.id_order   = {}
 
-        for i,x in enumerate(self.theta_basic):
+        for i, x in enumerate(self.theta_basic):
             row    = [0.0]*len(self.theta_basic)
             row[i] = 1.0
             unit_rows.append(row)
-            self.parameter2row[(x[0],x[2])] = row
+            self.parameter2row[(x[0], x[2])] = row
             self.quantities.append(x[0])
-            self.id_order[(x[0],x[2])] = i
+            self.id_order[(x[0], x[2])] = i
             if '!Min' in self.sbtab_new.columns_dict:
-                self.bounds.append(self.parameter2bounds[(x[0],x[2])])
+                self.bounds.append(self.parameter2bounds[(x[0], x[2])])
                 
         self.matrix_row_counter = len(self.id_order)
         return unit_rows
@@ -1293,9 +1248,9 @@ class ParameterBalancing:
         create a computable list of row specifics from the given string
         inherited from the prior file
         '''
-        variable2value = {'RT':'2.4790','Nt':'A'}        
+        variable2value = {'RT': '2.4790', 'Nt': 'A'}        
     
-    def build_bottom_row(self,pseudo_quantity):
+    def build_bottom_row(self, pseudo_quantity):
         '''
         builds one of the bottom rows of the dependence matrix D individually.
         of course, this function is not short. but the build up of the specific
@@ -1310,24 +1265,24 @@ class ParameterBalancing:
         
         use_list = self.quantity2list[pseudo_quantity]       
         sheet = self.sheet[pseudo_quantity]
-        self.remember_links = {}        #remember which parameter belongs to which row (important for generating D_x)
+        self.remember_links = {}
         rows = []
 
         row_index = 0
-        for i,element in enumerate(use_list):
+        for i, element in enumerate(use_list):
             row          = [0.0]*len(self.theta_basic)
             column_index = 0
             if '!Min' in self.sbtab.columns_dict and '!Max' in self.sbtab.columns_dict:
-                self.bounds.append(self.parameter2bounds[pseudo_quantity,element])
-            for j,matrix_type in enumerate(sheet):
+                self.bounds.append(self.parameter2bounds[pseudo_quantity, element])
+            for j, matrix_type in enumerate(sheet):
                 if self.parameter_dict[self.prior_list[j]]:
                     index_list = self.quantity2list[self.prior_list[j]]
 
-                    #build zero matrix
+                    # build zero matrix
                     if matrix_type == 0:
                         column_index += (len(index_list))
 
-                    #build unit matrix
+                    # build unit matrix
                     if matrix_type == 1:
                         for k in range(len(index_list)):
                             row[column_index+row_index] = 1.0
@@ -1335,10 +1290,10 @@ class ParameterBalancing:
                             break
                         column_index += len(index_list)-1
 
-                    #build specific matrices
+                    # build specific matrices
                     try:
                         if len(matrix_type)>1:
-                            factor = matrix_type[0]              #this factor represents e.g. R*T or 1/R*T
+                            factor = matrix_type[0]  # this factor represents e.g. R*T or 1/R*T
                             matrix = matrix_type[1]
                             try:
                                 reactants       = self.reactions_reactants[element][0]
@@ -1347,14 +1302,14 @@ class ParameterBalancing:
                                 stoichiometry_p = self.reactions_products[element][1]
                             except: pass
 
-                            #build N, the stoichiometric matrix
+                            # build N, the stoichiometric matrix
                             if matrix == 'A':
                                 for species in self.species_list:
-                                    for r,reactant in enumerate(reactants):
+                                    for r, reactant in enumerate(reactants):
                                         if species == reactant:
                                             row[column_index] = stoichiometry_r[r]*factor
                                             column_index += 1
-                                    for p,product in enumerate(products):
+                                    for p, product in enumerate(products):
                                         if species == product:
                                             row[column_index] = stoichiometry_p[p]*factor
                                             column_index += 1
@@ -1362,30 +1317,30 @@ class ParameterBalancing:
                             # for the end of reaction affinities
                             elif matrix == 'AB':
                                 for species in self.species_list:
-                                    for r,reactant in enumerate(reactants):
+                                    for r, reactant in enumerate(reactants):
                                         if species == reactant:
                                             row[column_index] = stoichiometry_r[r]*factor
                                             column_index += 1
-                                    for p,product in enumerate(products):
+                                    for p, product in enumerate(products):
                                         if species == product:
                                             row[column_index] = stoichiometry_p[p]*factor
                                             column_index += 1
 
-                            #build Z, the values for the Michaelis constant coefficients
+                            # build Z, the values for the Michaelis constant coefficients
                             elif matrix == 'Z':
                                 if matrix_type[0] < 0: factor = -1.0
                                 else: factor = 1.0
                                 for michaelis_tuple in self.model_michaelis:
                                     if michaelis_tuple[2] in reactants:
-                                        row[column_index] = -0.5*factor        #rmv factor if wrong
+                                        row[column_index] = -0.5*factor
                                         column_index += 1
                                     if michaelis_tuple[2] in products:
-                                        row[column_index] = 0.5*factor         #rmv factor if wrong
+                                        row[column_index] = 0.5*factor
                                         column_index += 1
                                     if michaelis_tuple[2] not in reactants and michaelis_tuple[2] not in products:
                                         column_index += 1
 
-                            #build 1, a simple alternative to N (for chemical potentials)
+                            # build 1, a simple alternative to N (for chemical potentials)
                             elif matrix == '1':
                                 for k in range(len(index_list)):
                                     row[column_index+row_index] = factor
@@ -1397,8 +1352,8 @@ class ParameterBalancing:
             row_index += 1
             rows.append(row)
             self.quantities.append(pseudo_quantity)
-            self.parameter2row[(pseudo_quantity,use_list[i])] = row
-            self.id_order[(pseudo_quantity,element)] = self.matrix_row_counter
+            self.parameter2row[(pseudo_quantity, use_list[i])] = row
+            self.id_order[(pseudo_quantity, element)] = self.matrix_row_counter
             self.matrix_row_counter += 1
             
         return rows
@@ -1411,14 +1366,14 @@ class ParameterBalancing:
         '''
         rows = []
         
-        for i,single_tuple in enumerate(self.x_vector):
+        for i, single_tuple in enumerate(self.x_vector):
             if single_tuple[0] in self.species_parameters:
-                rows.append(self.parameter2row[(single_tuple[0],single_tuple[2])])
+                rows.append(self.parameter2row[(single_tuple[0], single_tuple[2])])
             elif single_tuple[0] in self.reaction_parameters:
-                rows.append(self.parameter2row[(single_tuple[0],single_tuple[1])])
+                rows.append(self.parameter2row[(single_tuple[0], single_tuple[1])])
             elif single_tuple[0] in self.reaction_species_parameters:
-                rows.append(self.parameter2row[(single_tuple[0],(single_tuple[1],single_tuple[2]))])
-            else: print('row identifier not found: ',single_tuple[0],' ',single_tuple[1],' ',single_tuple[2])
+                rows.append(self.parameter2row[(single_tuple[0], (single_tuple[1], single_tuple[2]))])
+            else: print('row identifier not found: ', single_tuple[0], ' ', single_tuple[1], ' ', single_tuple[2])
 
         if rows == []: matrix = 0
         else: matrix = numpy.array(rows)
@@ -1443,76 +1398,76 @@ class ParameterBalancing:
             if self.parameter_dict[quantity]:
                 if quantity in self.species_parameters:
                     for species in self.species_list:
-                        if not (quantity,species) in used_identifiers:
-                            theta.append((quantity,self.prior_values[quantity][0][0],species))
-                            self.theta_basic.append((quantity,self.prior_values[quantity][0][0],species))
+                        if not (quantity, species) in used_identifiers:
+                            theta.append((quantity, self.prior_values[quantity][0][0], species))
+                            self.theta_basic.append((quantity, self.prior_values[quantity][0][0], species))
                             self.q_prior.append(self.prior_values[quantity][0][0])
                             self.log_stds_prior.append(self.prior_values[quantity][0][1])
                             types.append(quantity)
                             self.quantities_inc.append(quantity)
-                            if (quantity,species) in self.parameter2bounds.keys():
+                            if (quantity, species) in self.parameter2bounds.keys():
                                 if self.min_column:
-                                    self.bounds_inc.append(self.parameter2bounds[(quantity,species)])
-                            used_identifiers.append((quantity,species))
+                                    self.bounds_inc.append(self.parameter2bounds[(quantity, species)])
+                            used_identifiers.append((quantity, species))
                 elif quantity in self.reaction_parameters:
                     for reaction in self.reaction_list:
-                        if not (quantity,reaction) in used_identifiers:
-                            theta.append((quantity,self.prior_values[quantity][0][0],reaction))
-                            self.theta_basic.append((quantity,self.prior_values[quantity][0][0],reaction))
+                        if not (quantity, reaction) in used_identifiers:
+                            theta.append((quantity, self.prior_values[quantity][0][0], reaction))
+                            self.theta_basic.append((quantity, self.prior_values[quantity][0][0], reaction))
                             self.q_prior.append(self.prior_values[quantity][0][0])
                             self.log_stds_prior.append(self.prior_values[quantity][0][1])
                             types.append(quantity)
                             self.quantities_inc.append(quantity)
-                            if (quantity,reaction) in self.parameter2bounds.keys():
+                            if (quantity, reaction) in self.parameter2bounds.keys():
                                 if self.min_column:
-                                    self.bounds_inc.append(self.parameter2bounds[(quantity,reaction)])
-                            used_identifiers.append((quantity,reaction))
+                                    self.bounds_inc.append(self.parameter2bounds[(quantity, reaction)])
+                            used_identifiers.append((quantity, reaction))
                 elif quantity in self.reaction_species_parameters:
                     for reaction_species in self.model_dict[quantity]:
-                        if not (quantity,(reaction_species[1],reaction_species[2])) in used_identifiers:                        
-                            theta.append((quantity,self.prior_values[quantity][0][0],(reaction_species[1],reaction_species[2])))
-                            self.theta_basic.append((quantity,self.prior_values[quantity][0][0],(reaction_species[1],reaction_species[2])))
+                        if not (quantity, (reaction_species[1], reaction_species[2])) in used_identifiers:                        
+                            theta.append((quantity, self.prior_values[quantity][0][0], (reaction_species[1], reaction_species[2])))
+                            self.theta_basic.append((quantity, self.prior_values[quantity][0][0], (reaction_species[1], reaction_species[2])))
                             self.q_prior.append(self.prior_values[quantity][0][0])
                             self.log_stds_prior.append(self.prior_values[quantity][0][1])
                             types.append(quantity)
                             self.quantities_inc.append(quantity)
-                            if (quantity,(reaction_species[1],reaction_species[2])) in self.parameter2bounds.keys():
+                            if (quantity, (reaction_species[1], reaction_species[2])) in self.parameter2bounds.keys():
                                 if self.min_column:
-                                    self.bounds_inc.append(self.parameter2bounds[(quantity,(reaction_species[1],reaction_species[2]))])
-                            used_identifiers.append((quantity,(reaction_species[1],reaction_species[2])))
+                                    self.bounds_inc.append(self.parameter2bounds[(quantity, (reaction_species[1], reaction_species[2]))])
+                            used_identifiers.append((quantity, (reaction_species[1], reaction_species[2])))
 
         if self.pseudo_used:
             for quantity in self.pseudo_list:
                 if self.parameter_dict[quantity]:
                     if quantity in self.species_parameters:
                         for species in self.species_list:
-                            if not (quantity,species) in used_identifiers:
-                                theta.append((quantity,self.prior_values[quantity][0][0],species))
+                            if not (quantity, species) in used_identifiers:
+                                theta.append((quantity, self.prior_values[quantity][0][0], species))
                                 self.quantities_inc.append(quantity)
-                                if (quantity,species) in self.parameter2bounds.keys():
+                                if (quantity, species) in self.parameter2bounds.keys():
                                     if self.min_column:
-                                        self.bounds_inc.append(self.parameter2bounds[(quantity,species)])
-                                used_identifiers.append((quantity,species))
+                                        self.bounds_inc.append(self.parameter2bounds[(quantity, species)])
+                                used_identifiers.append((quantity, species))
                                 self.q_prior.append(self.prior_values[quantity][0][0])
                     elif quantity in self.reaction_parameters:
                         for reaction in self.reaction_list:
-                            if not (quantity,reaction) in used_identifiers:
-                                theta.append((quantity,self.prior_values[quantity][0][0],reaction))
+                            if not (quantity, reaction) in used_identifiers:
+                                theta.append((quantity, self.prior_values[quantity][0][0], reaction))
                                 self.quantities_inc.append(quantity)
-                                if (quantity,reaction) in self.parameter2bounds.keys():
+                                if (quantity, reaction) in self.parameter2bounds.keys():
                                     if self.min_column:
-                                        self.bounds_inc.append(self.parameter2bounds[(quantity,reaction)])
-                                used_identifiers.append((quantity,reaction))
+                                        self.bounds_inc.append(self.parameter2bounds[(quantity, reaction)])
+                                used_identifiers.append((quantity, reaction))
                                 self.q_prior.append(self.prior_values[quantity][0][0])
                     elif quantity in self.reaction_species_parameters:
                         for reaction_species in self.model_dict[quantity]:
-                            if not (quantity,(reaction_species[1],reaction_species[2])) in used_identifiers:
-                                theta.append((quantity,self.prior_values[quantity][0][0],(reaction_species[1],reaction_species[2])))
+                            if not (quantity, (reaction_species[1], reaction_species[2])) in used_identifiers:
+                                theta.append((quantity, self.prior_values[quantity][0][0], (reaction_species[1], reaction_species[2])))
                                 self.quantities_inc.append(quantity)
-                                if (quantity,(reaction_species[1],reaction_species[2])) in self.parameter2bounds.keys():
+                                if (quantity, (reaction_species[1], reaction_species[2])) in self.parameter2bounds.keys():
                                     if self.min_column:
-                                        self.bounds_inc.append(self.parameter2bounds[(quantity,(reaction_species[1],reaction_species[2]))])
-                                used_identifiers.append((quantity,(reaction_species[1],reaction_species[2])))
+                                        self.bounds_inc.append(self.parameter2bounds[(quantity, (reaction_species[1], reaction_species[2]))])
+                                used_identifiers.append((quantity, (reaction_species[1], reaction_species[2])))
                                 self.q_prior.append(self.prior_values[quantity][0][0])
         
         return theta
@@ -1521,19 +1476,19 @@ class ParameterBalancing:
         '''
         generate covariance matrix for measured values x (stds) from SBtab
         '''
-        #first, generate prior covariance matrix C_prior
+        # first, generate prior covariance matrix C_prior
         
         C_prior_rows = []
         
-        for i,theta in enumerate(self.theta_vector):
+        for i, theta in enumerate(self.theta_vector):
             row = [0.0]*len(self.theta_vector)
             row[i] = numpy.square(float(self.get_default_std(self.theta_vector[i][0])))
             C_prior_rows.append(row)
 
         C_prior = numpy.array(C_prior_rows)
-        #second, generate covariance matrix according to the input values in the x-vector
+        # second, generate covariance matrix according to the input values in the x-vector
         C_x_rows = []
-        for i,x_entry in enumerate(self.x_vector):
+        for i, x_entry in enumerate(self.x_vector):
             row = [0.0]*len(self.x_vector)
             row[i] = numpy.square(self.log_stds_x[i])
             C_x_rows.append(row)
@@ -1546,7 +1501,7 @@ class ParameterBalancing:
         return C_prior, C_x
 
 
-    def get_default_std(self,quantity):
+    def get_default_std(self, quantity):
         '''
         returns the default standard deviation
         '''
@@ -1571,38 +1526,38 @@ class ParameterBalancing:
             print("C_prior is not invertible\n")
             sys.exit()
 
-        #for i, row in enumerate(self.C_prior):
-        #    print(self.quantities_inc[i],',',list(row))
+        # for i, row in enumerate(self.C_prior):
+        #    print(self.quantities_inc[i], ',', list(row))
 
-        #for i, elem in enumerate(self.q_prior):
-        #    print(self.quantities_inc[i],',',elem)
+        # for i, elem in enumerate(self.q_prior):
+        #    print(self.quantities_inc[i], ',', elem)
 
-        #for i, row in enumerate(self.Q):
-        #    print(self.quantities[i],',',list(row))
+        # for i, row in enumerate(self.Q):
+        #    print(self.quantities[i], ',', list(row))
 
-        #print(self.C_x)
-        #for i, row in enumerate(self.quantities_x):
-        #    print(row,',',list(self.C_x[i]))
+        # print(self.C_x)
+        # for i, row in enumerate(self.quantities_x):
+        #    print(row, ',', list(self.C_x[i]))
 
-        #print(self.x_star)
-        #for i, row in enumerate(self.x_star):
-        #    print(self.quantities_x[i], ',', row)
+        # print(self.x_star)
+        # for i, row in enumerate(self.x_star):
+        #    print(self.quantities_x[i],  ',',  row)
 
-        #print(self.Q_star)
-        #for i, row in enumerate(self.Q_star):
-        #    print(self.quantities_x[i], ',',list(row))  
+        # print(self.Q_star)
+        # for i, row in enumerate(self.Q_star):
+        #    print(self.quantities_x[i],  ',', list(row))  
         
         # posterior covariance matrices
         if self.pseudo_used:
-            self.C_post = numpy.linalg.inv(numpy.dot(numpy.dot(self.Q.transpose(),self.C_prior_inv),self.Q) + numpy.dot(numpy.dot(Q_star_trans,self.C_x_inv),self.Q_star))
+            self.C_post = numpy.linalg.inv(numpy.dot(numpy.dot(self.Q.transpose(), self.C_prior_inv), self.Q) + numpy.dot(numpy.dot(Q_star_trans, self.C_x_inv), self.Q_star))
         else:
-            self.C_post = numpy.linalg.inv(self.C_prior_inv+numpy.dot(numpy.dot(Q_star_trans,self.C_x_inv),self.Q_star))
-        self.C_xpost = numpy.dot((numpy.dot(self.Q,self.C_post)),self.Q.transpose())
+            self.C_post = numpy.linalg.inv(self.C_prior_inv+numpy.dot(numpy.dot(Q_star_trans, self.C_x_inv), self.Q_star))
+        self.C_xpost = numpy.dot((numpy.dot(self.Q, self.C_post)), self.Q.transpose())
 
-        #for i,row in enumerate(self.C_post):
+        # for i,row in enumerate(self.C_post):
         #    print(list(row))
 
-        #for i,row in enumerate(self.C_xpost):
+        # for i, row in enumerate(self.C_xpost):
         #    print(list(row))
 
         # posterior stds
@@ -1611,18 +1566,18 @@ class ParameterBalancing:
         
         # posterior mean vector
         if self.pseudo_used:
-            self.q_post = numpy.dot(self.C_post, numpy.dot(numpy.dot(self.Q.transpose(),self.C_prior_inv),self.q_prior) + numpy.dot(numpy.dot(Q_star_trans,self.C_x_inv),self.x_star))
+            self.q_post = numpy.dot(self.C_post, numpy.dot(numpy.dot(self.Q.transpose(), self.C_prior_inv), self.q_prior) + numpy.dot(numpy.dot(Q_star_trans, self.C_x_inv), self.x_star))
         else:
-            self.q_post = numpy.dot(self.C_post,(numpy.dot(numpy.dot(Q_star_trans,self.C_x_inv),self.x_star)+numpy.dot(self.C_prior_inv,self.q_prior)))
-        self.x_post = numpy.dot(self.Q,self.q_post)
-        #print(self.x_post)
+            self.q_post = numpy.dot(self.C_post, (numpy.dot(numpy.dot(Q_star_trans, self.C_x_inv), self.x_star)+numpy.dot(self.C_prior_inv, self.q_prior)))
+        self.x_post = numpy.dot(self.Q, self.q_post)
+        # print(self.x_post)
         
-        #for elem in self.q_post:
+        # for elem in self.q_post:
         #    print(elem)
-        #print('\n')
+        # print('\n')
 
-        #for i,elem in enumerate(self.x_post):
-        #    print(elem,',(',self.quantities[i],')')
+        # for i,elem in enumerate(self.x_post):
+        #    print(elem, ',(', self.quantities[i], ')')
 
         
     def extract_cpost(self):
@@ -1631,7 +1586,7 @@ class ParameterBalancing:
         '''
         stds = []
         
-        for i,row in enumerate(self.C_xpost):
+        for i, row in enumerate(self.C_xpost):
             stds.append(numpy.sqrt(row[i]))
 
         return stds
@@ -1641,11 +1596,11 @@ class ParameterBalancing:
         extract the stds from the posterior diagonal covariance matrix C_post
         '''
         stds = []
-        for i,row in enumerate(self.C_post):
+        for i, row in enumerate(self.C_post):
             stds.append(numpy.sqrt(row[i]))
         return stds
 
-    def build_new_sbtab(self,new_sbtab=False,posterior_sample=False,header=False):
+    def build_new_sbtab(self, new_sbtab=False, posterior_sample=False, header=False):
         '''
         generates new SBtab
         '''
@@ -1670,32 +1625,32 @@ class ParameterBalancing:
         self.check_biomass()
         self.check_enzyme_species()
         
-        for i,row in enumerate(self.new_rows):
+        for i, row in enumerate(self.new_rows):
             if len(row) == len(self.new_header):
                 if row[0] == 'QuantityType': continue
 
                 # first: identify the row
-                if row[0] in self.species_parameters: row_identifier = (row[0],row[2])
-                elif row[0] in self.reaction_parameters: row_identifier = (row[0],row[1])
-                else: row_identifier = (row[0],(row[1],row[2]))
+                if row[0] in self.species_parameters: row_identifier = (row[0], row[2])
+                elif row[0] in self.reaction_parameters: row_identifier = (row[0], row[1])
+                else: row_identifier = (row[0], (row[1], row[2]))
                 try: row_number = self.id_order[row_identifier]
                 except: continue
 
                 # second: fill the row with the balanced values
                 if row[0] in self.thermodynamics:
-                    row[3] = str(format(float(means[row_number]),'.4f'))
+                    row[3] = str(format(float(means[row_number]), '.4f'))
                     row[5] = 'NaN'
                     row[6] = 'NaN'
                 else:
-                    row[3] = str(format(numpy.exp(float(self.x_post[row_number])),'.4f'))
-                    row[5] = str(format(numpy.exp(float(self.x_post[row_number])),'.4f'))
-                    row[6] = str(format(numpy.exp(float(self.stds_log_post[row_number])),'.4f'))
+                    row[3] = str(format(numpy.exp(float(self.x_post[row_number])), '.4f'))
+                    row[5] = str(format(numpy.exp(float(self.x_post[row_number])), '.4f'))
+                    row[6] = str(format(numpy.exp(float(self.stds_log_post[row_number])), '.4f'))
 
-                row[7] = str(format(float(means[row_number]),'.4f'))
-                row[8] = str(format(float(self.stds_post[row_number] ) ,'.4f'))
+                row[7] = str(format(float(means[row_number]), '.4f'))
+                row[8] = str(format(float(self.stds_post[row_number] ) , '.4f'))
                 if not row in finished_rows:
                     finished_rows.append(row)
-                first = self.check_extreme_values(row,first)
+                first = self.check_extreme_values(row, first)
 
         if not first: self.log += '\n'
         if self.hilo != []:
@@ -1706,7 +1661,7 @@ class ParameterBalancing:
                 
         return finished_rows
 
-    def check_extreme_values(self,row,first):
+    def check_extreme_values(self, row, first):
         '''
         this function checks whether the given parameter (in form of its corresponding SBtab row)
         has a significantly high or low value.
@@ -1714,16 +1669,14 @@ class ParameterBalancing:
         if self.pmin[row[0]] == None and self.pmax[row[0]] == None: return first
         elif float(row[5]) < self.pmin[row[0]]:
             if first:
-                self.log += '\n### Warnings about unusually high or low values ###\n'
+                self.log += '\n### Warnings about unusually high or low values ### \n'
                 first = False
-            #self.log += 'The value for the %s of %s,%s lies under the given lower bound: %s. Please check the accuracy and refer to the FAQ for help.\n'%(row[0],row[1],row[2],row[4])
-            self.hilo.append('The value for the %s of %s,%s lies under the given lower bound: %s. Please check the accuracy and refer to the FAQ for help.\n'%(row[0],row[1],row[2],row[5]))
+            self.hilo.append('The value for the %s of %s, %s lies under the given lower bound: %s. Please check the accuracy and refer to the FAQ for help.\n'%(row[0], row[1], row[2], row[5]))
         elif float(row[5]) > self.pmax[row[0]]:
             if first:
-                self.log += '### Warnings about unusually high or low values ###\n'
+                self.log += '### Warnings about unusually high or low values ### \n'
                 first = False
-            #self.log += 'The value for the %s of %s,%s lies over the given upper bound: %s. Please check the accuracy and refer to the FAQ for help.\n'%(row[0],row[1],row[2],row[4])
-            self.hilo.append('The value for the %s of %s,%s lies over the given upper bound: %s. Please check the accuracy and refer to the FAQ for help.\n'%(row[0],row[1],row[2],row[5]))
+            self.hilo.append('The value for the %s of %s, %s lies over the given upper bound: %s. Please check the accuracy and refer to the FAQ for help.\n'%(row[0], row[1], row[2], row[5]))
 
         return first
 
