@@ -1,6 +1,6 @@
 # Parameter Balancing
 
-Parameter balancing is a tool for metabolic modelling in systems biology. It is implemented in Python3 and its code underlies the PEP8 guidelines. There are 4 major ways of employing parameter balancing for your project:
+Parameter balancing is a tool for metabolic modelling in systems biology. It is implemented in Python3 and its code underlies the PEP8 guidelines. There are 5 major ways of employing parameter balancing for your project:
 
 1. Online version
 
@@ -54,6 +54,10 @@ these packages can be found in parameter_balancing/requirements.txt.
 4. Standalone server version
 
 The online tool, which is hosted on www.parameterbalancing.net, is open source and can also be hosted as an offline server. Thus, you can tailor it to your specific needs and use it via your browser of choice. You will need to download a version of the web framework [web2py](http://www.web2py.com/). Then, you can directly download the parameter balancing application into the applications folder of your web2py server (web2py/applications/). You will find the parameter balancing application in this repository (parameter_balancing/web_version). For manipulating the code and user interface, you will require basic knowledge about the web2py web framework.
+
+5. MATLAB
+
+There is a MATLAB version of parameter balancing which is part of the Metabolic Network Toolbox. It can be found in the [repository](https://github.com/liebermeister/mnt/)
 
 If you use parameter balancing, please cite http://pubs.acs.org/doi/abs/10.1021/jp108764b for details.
 
