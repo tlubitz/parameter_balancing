@@ -4848,7 +4848,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   list-style: none;
 }
 .pager li {
-    display: inline;
+  display: inline;
 }
 .pager li > a,
 .pager li > span {
@@ -5505,7 +5505,6 @@ button.list-group-item-danger.active:focus {
 .panel-heading > .dropdown .dropdown-toggle {
   color: inherit;
 }
-
 .panel-title {
   margin-top: 0;
   margin-bottom: 0;

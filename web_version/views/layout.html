@@ -12,8 +12,8 @@
     <!--<link rel="stylesheet" type="text/css" href="css/pb.css">-->
     <link href="../static/css/css_template/css/bootstrap.min.css" rel="stylesheet">
     <link href="../static/css/css_template/css/custom.css" rel="stylesheet">
-    <link rel="shortcut icon" href="/pb/static/images/pb-logo.png" type="image/icon">
-    <link rel="icon" href="/pb/static/images/pb-logo.png" type="image/icon">
+    <link rel="shortcut icon" href="../static/css/css_template/img/pb-logo.png" type="image/icon">
+    <link rel="icon" href="../static/css/css_template/img/pb-logo.png" type="image/icon">
   </head>
 
   <body>
@@ -22,6 +22,13 @@
       <!-- setting a max-width by using a container -->
       <div class="container">
 	<div class="navbar-header">
+	  <!-- button is hidden on desktop, becomes a hamburger on mobile! the span items are the hamburger lines --> 
+	  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+	    <span class="sr-only">Toggle navigation</span>
+	    <span class="icon-bar"></span>
+	    <span class="icon-bar"></span>
+	    <span class="icon-bar"></span>
+	  </button>
 	  <a class="navbar-brand" href="../static/css/css_template/main.html" title="Take me home">
 	    Parameter Balancing Home</a>
 	</div>
@@ -56,6 +63,8 @@
   });</script>
   {{pass}}
   <script src="{{=URL('static','js/share.js',vars=dict(static=URL('static','images')))}}"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="../static/css/css_template/js/bootstrap.min.js"></script>
 
 </body>
 </html>

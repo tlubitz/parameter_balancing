@@ -12,8 +12,8 @@
     <!--<link rel="stylesheet" type="text/css" href="css/pb.css">-->
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/custom.css" rel="stylesheet">
-    <link rel="shortcut icon" href="/pbnew/static/images/pb-logo.png" type="image/icon">
-    <link rel="icon" href="/pbnew/static/images/pb-logo.png" type="image/icon">
+    <link rel="shortcut icon" href="/pbnew/static/css/css_template/img/pb-logo.png" type="image/icon">
+    <link rel="icon" href="/pbnew/static/css/css_template/img/pb-logo.png" type="image/icon">
   </head>
 
   <body>
@@ -21,11 +21,16 @@
     <nav class="navbar navbar-inverse navbar-fixed-top">
       <!-- setting a max-width by using a container -->
       <div class="container">
-	<!--
 	<div class="navbar-header">
-	  <a class="navbar-brand" href="main.html" title="Take me home">Parameter Balancing</a>
+	  <!-- button is hidden on desktop, becomes a hamburger on mobile! the span items are the hamburger lines --> 
+	  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+	    <span class="sr-only">Toggle navigation</span>
+	    <span class="icon-bar"></span>
+	    <span class="icon-bar"></span>
+	    <span class="icon-bar"></span>
+	  </button>
+	  <a class="navbar-brand" href="#">Parameter Balancing</a>
 	</div>
-	-->
 	
 	<!-- simple right aligned list-->
 	<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -41,9 +46,9 @@
 
     <header>
       <div class="container-fluid bg-1 text-center">
-	<div class="jumbotron" align="center" style="padding-top:100px">
+	<div class="jumbotron" align="center" style="padding-top:100px;padding-bottom:0px">
 	  <p>
-	    <img width="150" src="img/pb-logo.png" alt="Parameter Balancing Logo">
+	    <img width="150" src="img/pb-logo.svg" alt="Parameter Balancing Logo">
 	  </p>
 	  <h1><small>Parameter balancing for kinetic metabolic models</small></h1>
 	</div>
@@ -90,8 +95,8 @@
     <footer class="container-fluid bg-3 text-center">
       <p>Thanks to <a href="https://getbootstrap.com/" target="_blank">Bootstrap</a> and <a href="http://web2py.com/" target="_blank">Web2py</a>. Code and further information on <a href="https://github.com/tlubitz/parameter_balancing" target="_blank">Github</a>.</p> 
     </footer>
-       
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="js/bootstrap.min.js">
+    <script src="js/bootstrap.min.js"></script>
   </body>
 </html>

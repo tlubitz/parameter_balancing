@@ -77,7 +77,7 @@ def balancing():
     ###                          1: SBML                                  #####################
     ###########################################################################################
     
-    sbmlform = SQLFORM.factory(Field('File', 'upload',uploadfolder="/tmp", label='Upload SBML file (.xml)',requires=IS_LENGTH(10485760, 1, error_message='Max upload size: 10MB')))
+    sbmlform = SQLFORM.factory(Field('File', 'upload',uploadfolder="/tmp", label='Upload SBML file (.xml)',requires=IS_LENGTH(5242880, 1, error_message='Max upload size: 5MB')))
     
     #File is uploaded, checked, and added to the list; variables are declared
     if sbmlform.process(formname='form_one').accepted:

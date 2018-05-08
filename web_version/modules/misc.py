@@ -753,39 +753,125 @@ def tsv_to_html(sbtab, filename=None):
     '''
     generates html view out of tsv file
     '''
+    sbtab_html = '''
+    <html lang="en">
+    <head>
+    <meta charset="utf-8">
+    <meta name="author" content="Timo Lubitz">
+    <meta name="description"  content="Parameter Balancing Website">
+    
+    <!-- this is required for responsiveness -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Parameter Balancing for Kinetic Models of Cell Metabolism</title>
+    <!--<link rel="stylesheet" type="text/css" href="css/pb.css">-->
+    <link href="../../static/css/css_template/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../static/css/css_template/css/custom.css" rel="stylesheet">
+    <link rel="shortcut icon" href="/pbnew/static/css/css_template/img/pb-logo.png" type="image/icon">
+    <link rel="icon" href="/pbnew/static/css/css_template/img/pb-logo.png" type="image/icon">
+    </head>
+
+    <body>
+    <!-- navbar: this is a navbar; navbar-inverse: it's dark; navbar-static-top: it's always at the top -->
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+    <!-- setting a max-width by using a container -->
+      <div class="container">
+        <div class="navbar-header">
+	  <!-- button is hidden on desktop, becomes a hamburger on mobile! the span items are the hamburger lines --> 
+	  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+	    <span class="sr-only">Toggle navigation</span>
+	    <span class="icon-bar"></span>
+	    <span class="icon-bar"></span>
+	    <span class="icon-bar"></span>
+	  </button>
+	  <a class="navbar-brand" href="#">Parameter Balancing</a>
+	</div>
+	
+	<!-- simple right aligned list-->
+	<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+	  <ul class="nav navbar-nav navbar-right">
+	    <li> <a href="../../default/balancing.html" title="Go to online balancing">Online Balancing</a></li>
+	    <li> <a href="../../static/css/css_template/documentation.html" title="Documentation and Manuals">Documentation</a></li>
+	    <li> <a href="../../static/css/css_template/download.html" title="Installation and Downloads">Download</a></li>
+	    <li> <a href="../../static/css/css_template/contact.html" title="Contact the balancing team">Contact</a></li>
+	  </ul>
+	</div>
+      </div>
+    </nav>
+
+    <header>
+    <div class="container-fluid bg-1 text-center" style="padding-top:50px">
+
+    '''    
     if type(sbtab) == str and filename:
         ugly_sbtab = sbtab.split('\n')
-        nice_sbtab = '<p><h2><b>%s</b></h2></p>' % filename
+        #nice_sbtab = '<p><h2><b>%s</b></h2></p>' % filename
+        sbtab_html += '<h2><small>%s</small></h2></div></header>'
         delimiter = check_delimiter(sbtab)
     else:
         ugly_sbtab = sbtab.return_table_string().split('\n')
-        nice_sbtab = '<p><h2><b>'+sbtab.filename+'</b></h2></p>'
+        #nice_sbtab = '<p><h2><b>'+sbtab.filename+'</b></h2></p>'
+        sbtab_html += '<h2><small>'+sbtab.filename+'</small></h2></div></header>'
         delimiter = sbtab.delimiter
 
-    first = True
-    for row in ugly_sbtab:
-        if row.startswith('!!') and first:
-            nice_sbtab += '<a style="background-color:#00BFFF">'+row+'</a><br>'
-            nice_sbtab += '<table>'
-            first = False
-        elif row.startswith('!!'):
-            nice_sbtab += '</table>'
-            nice_sbtab += '<a style="background-color:#00BFFF">'+row+'</a><br>'
-            nice_sbtab += '<table>'
-        elif row.startswith('!'):
-            nice_sbtab += '<tr bgcolor="#87CEFA">'
-            splitrow = row.split(delimiter)
-        elif row.startswith('%'):
-            nice_sbtab += '<tr bgcolor="#C0C0C0">'
-        elif row.startswith('Parameter balancing log file'):
-            nice_sbtab += '<table><tr>'
-        else: nice_sbtab += '<tr>'
+    sbtab_html += '<main><table class="table-striped">'
         
+    first = True
+    for i, row in enumerate(ugly_sbtab):
+        # declaration of first SBtab in document
+        if row.startswith('!!') and first:
+            sbtab_html += '<tr><th colspan="%s">%s</th></tr>' % (len(ugly_sbtab[i+2]), row)
+            first = False
+
+        # conclusion of SBtab and beginning of new SBtab (if there are more than one)
+        elif row.startswith('!!'):
+            sbtab_html += '</table><table class="table-striped">'
+            sbtab_html += '<tr><th colspan="%s">%s</th></tr>' % (len(ugly_sbtab[i+2]), row)
+
+        # column header row
+        elif row.startswith('!'):
+            splitrow = row.split(delimiter)
+            sbtab_html += '<tr>'
+            for col in splitrow:
+                sbtab_html += '<th>%s</th>' % col
+            sbtab_html += '</tr>'
+
+        # comment row
+        elif row.startswith('%'):
+            sbtab_html += '<tr bgcolor="#C0C0C0">%s</tr>' % row
+
+        # log file header
+        elif row.startswith('Parameter balancing log file'):
+            sbtab_html += '<tr>%s</tr>'
+
+        # normal row
+        else:
+            splitrow = row.split(delimiter)
+            sbtab_html += '<tr>'
+            for col in splitrow:
+                sbtab_html += '<td>%s</td>' % col
+            sbtab_html += '</tr>'
+
+        '''
+        # normal row
         for i,thing in enumerate(row.split(delimiter)):
             if thing.startswith('!!'): continue
-            new_row = '<td>'+str(thing)+'</td>'
-            nice_sbtab += new_row
-        nice_sbtab += '</tr>'
-    nice_sbtab += '</table>'     
-
-    return nice_sbtab  
+            #new_row = '<td>'+str(thing)+'</td>'
+            #nice_sbtab += new_row
+        #nice_sbtab += '</tr>'
+        '''
+    sbtab_html += '''
+    </table>
+    </main>
+    <hr>
+    <footer class="container-fluid bg-3 text-center">
+    <p>Thanks to <a href="https://getbootstrap.com/" target="_blank">Bootstrap</a> and <a href="http://web2py.com/" target="_blank">Web2py</a>. Code and further information on <a href="https://github.com/tlubitz/parameter_balancing" target="_blank">Github</a>.</p> 
+    </footer>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    </body>
+    </html>
+    '''
+    return sbtab_html
