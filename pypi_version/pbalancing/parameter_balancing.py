@@ -28,7 +28,7 @@ def parameter_balancing_wrapper(parser_args):
     model_name = args.sbml
     parameter_dict = {}
     log_file = 'Parameter balancing log file of model %s\n' % (model_name)
-    
+
     ###########################
     # 1: open and prepare the files; then check for some rudimentary validity:
     # 1.1: SBML model
@@ -58,14 +58,14 @@ def parameter_balancing_wrapper(parser_args):
             print('The SBtab data file %s has not the correct file '\
                   'extension.' % (args.sbtab_data))
         try:
-            f = open(args.sbtab_data,'r')
+            f = open(args.sbtab_data, 'r')
             f_content = f.read()
         except:
             print('The SBtab data file %s cannot be found or'\
                   'read.' % args.sbtab_data)
         try: sbtab_delimiter = misc.check_delimiter(f_content)
         except: sbtab_delimiter = '\t'
-        
+
         sbtab_data = SBtab.SBtabTable(f_content, args.sbtab_data)
         sbtab_data_validate = validatorSBtab.ValidateTable(sbtab_data,
                                                            args.sbtab_data)
@@ -75,8 +75,8 @@ def parameter_balancing_wrapper(parser_args):
                         '%s\n' % args.sbtab_data
             for warning in warnings:
                 log_file += warning + '\n'
-        
-    ###########################        
+
+    ###########################
     # 1.3: open and prepare an optional SBtab prior file;
     #      if this is not provided, open the default prior file
     if args.sbtab_prior:
@@ -87,7 +87,7 @@ def parameter_balancing_wrapper(parser_args):
             print('The SBtab prior file %s has not the correct file'\
                   'extension.' % (args.sbtab_prior))
         try:
-            f = open(args.sbtab_prior,'r')
+            f = open(args.sbtab_prior, 'r')
             f_content = f.read()
         except:
             print('The SBtab prior file %s cannot be found or'\
@@ -105,7 +105,7 @@ def parameter_balancing_wrapper(parser_args):
                         '%s\n\n' % args.sbtab_prior
             for warning in warnings:
                 log_file += warning + '\n'
-        
+
         valid_prior = misc.valid_prior(sbtab_prior)
         if valid_prior != []:
             log_file += 'Log warnings for SBtab prior file: '\
@@ -138,7 +138,7 @@ def parameter_balancing_wrapper(parser_args):
                         '%s\n\n' % args.sbtab_prior
             for warning in warnings:
                 log_file += warning + '\n'
-        
+
         valid_prior = misc.valid_prior(sbtab_prior)
         if valid_prior != []:
             log_file += 'Log warnings for SBtab prior file: '\
@@ -158,7 +158,7 @@ def parameter_balancing_wrapper(parser_args):
             print('The SBtab options file %s has not the correct file'\
                   ' extension.' % (args.sbtab_options))
         try:
-            f = open(args.sbtab_options,'r')
+            f = open(args.sbtab_options, 'r')
             f_content = f.read()
         except:
             print('The SBtab options file %s cannot be found or'\
@@ -175,7 +175,7 @@ def parameter_balancing_wrapper(parser_args):
                         '%s\n\n' % args.sbtab_options
             for warning in warnings:
                 log_file += warning + '\n'
-        
+
         (parameter_dict, log) = misc.readout_config(sbtab_options)
         if log != []:
             log_file += 'Log warnings for SBtab options file: '\
@@ -206,13 +206,12 @@ def parameter_balancing_wrapper(parser_args):
                 log_file += warning + '\n'
 
         (parameter_dict, log) = misc.readout_config(sbtab_options)
-        
+
         if log != []:
             log_file += 'Log warnings for SBtab options file: '\
                         '%s\n\n' % args.sbtab_options
             for element in log:
                 log_file += str(element) + '\n'
-
 
     # Make empty SBtab if required
     if args.sbtab_data:
@@ -280,14 +279,13 @@ def parameter_balancing_wrapper(parser_args):
         pseudo_flag = 'no_pseudos'
         if args.verbose:
             print('Parameter balancing is not using pseudo values.')
-           
+
     (sbtab_final, mean_vector, mean_vector_inc, c_post, c_post_inc,
      r_matrix, shannon, log) = pb.make_balancing(sbtab_new,
                                                  sbtab, pmin,
                                                  pmax,
                                                  parameter_dict)
 
-    
     # 3: inserting parameters and kinetics into SBML model
     transfer_mode = {'standard chemical potential': 'weg',
                      'equilibrium constant': 'hal',
@@ -318,7 +316,7 @@ def parameter_balancing_wrapper(parser_args):
 
     if args.verbose:
         print('Done... writing output files.')
-        
+
     # 5: If requested write log file
     if args.pb_log:
         if log_file.count('\n') == 2:
@@ -344,8 +342,6 @@ def parameter_balancing_wrapper(parser_args):
     if args.verbose:
         print('The SBML file %s has been written.' % (output_name + '.xml'))
         print('>> Goodbye.')
-        
-
 
 
 if __name__ == '__main__':
@@ -360,7 +356,8 @@ if __name__ == '__main__':
     parser.add_argument('-l', '--pb_log', help='Flag to print a log file.', action='store_true')
     parser.add_argument('-p', '--pb_pseudos', help='Flag for usage of pseudo values.', action='store_true')
     parser.add_argument('-v', '--verbose', help='Flag to display script messages.', action='store_true')
-   
+
     args = parser.parse_args()
 
     parameter_balancing_wrapper(args)
+
