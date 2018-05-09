@@ -125,10 +125,10 @@ class ParameterBalancing:
 
         for m_id in modifiers:
             if m_id not in involved_species:
-                self.log += ('The modifier %s is not involved in any reaction'\
-                             ' as either reactant or product. Please check if'\
-                             ' this modifier is required to be an SBML specie'\
-                             's. E.g., enzymes should not be SMBL '\
+                self.log += ('The modifier %s is not involved in any reaction'
+                             ' as either reactant or product. Please check if'
+                             ' this modifier is required to be an SBML specie'
+                             's. E.g., enzymes should not be SMBL '
                              'species.' % (m_id))
 
     def gain_model_information(self):
@@ -277,7 +277,7 @@ class ParameterBalancing:
                     activators.append(['activation constant', reaction.getId(),
                                        modifier.getSpecies()])
 
-            #second: Michaelis constants
+            # second: Michaelis constants
             for reactant in reaction.getListOfReactants():
                 Michaelis.append(['Michaelis constant', reaction.getId(),
                                   reactant.getSpecies()])
@@ -332,7 +332,7 @@ class ParameterBalancing:
                    pmin, pmax, parameter_dict):
         '''
         makes an insertable SBtab-file out of a possibly erraneous SBtab-File
-        '''        
+        '''
         # set warning message for numerical problems in numpy
         numpy.seterrcall(self.print_warning)
         numpy.seterr(all='call')
@@ -591,7 +591,7 @@ class ParameterBalancing:
                     if row[self.sbtab.columns_dict['!QuantityType']] == quantity \
                        and (row[self.sbtab.columns_dict['!Compound:SBML:species:id']] == name \
                             or row[self.sbtab.columns_dict['!Reaction:SBML:reaction:id']] == name) \
-                            and not row in used_rows:
+                            and row not in used_rows:
                         new_row[1] = \
                             row[self.sbtab.columns_dict['!Reaction:SBML:reaction:id']]
                         new_row[2] = \
@@ -804,7 +804,7 @@ class ParameterBalancing:
                 stds.append(numpy.sqrt((numpy.exp(numpy.square(float(log_stds[i]))) - 1) * \
                                        (numpy.exp(2 * log_mean + \
                                                   numpy.square(float(log_stds[i]))))))
-        
+
         return means, stds
 
     def med10_std_to_log(self, medians, stdlogs, types):
@@ -932,7 +932,7 @@ class ParameterBalancing:
                     # NO USAGE OF NAME2INDEX OR THERMODYNAMIC_INDICES;
                     if name2index[self.quantities_inc[i]] in thermodynamic_indices:
                         is_logarithmic.append(False)
-                        if (max(medians[i] - medstds[i] * 2,  -3000)) < \
+                        if (max(medians[i] - medstds[i] * 2, -3000)) < \
                            (min(3000, medians[i] + medstds[i] * 2)):
                             new_boundaries.append((max(medians[i] - medstds[i] * 2, -3000),
                                                    min(3000, medians[i] + medstds[i] * 2)))
@@ -1342,7 +1342,7 @@ class ParameterBalancing:
 
             list_of_SBtab_strings.append(new_SBtab)
 
-        return list_of_SBtab_strings 
+        return list_of_SBtab_strings
 
     def build_dependence_matrix(self):
         '''
@@ -1397,7 +1397,7 @@ class ParameterBalancing:
         create a computable list of row specifics from the given string
         inherited from the prior file
         '''
-        variable2value = {'RT': '2.4790', 'Nt': 'A'}        
+        variable2value = {'RT': '2.4790', 'Nt': 'A'}
 
     def build_bottom_row(self, pseudo_quantity):
         '''
@@ -1413,7 +1413,7 @@ class ParameterBalancing:
         row_specifics = self.create_row_specifics(row_specifics_str)
         #######################
 
-        use_list = self.quantity2list[pseudo_quantity]       
+        use_list = self.quantity2list[pseudo_quantity]
         sheet = self.sheet[pseudo_quantity]
         self.remember_links = {}
         rows = []
@@ -1445,7 +1445,7 @@ class ParameterBalancing:
                     # build specific matrices
                     try:
                         if len(matrix_type) > 1:
-                            factor = matrix_type[0]  #  R*T or 1/R*T
+                            factor = matrix_type[0]   # R*T or 1/R*T
                             matrix = matrix_type[1]
                             try:
                                 reactants = \
@@ -1556,11 +1556,11 @@ class ParameterBalancing:
         theta = []
         self.theta_basic = []
         self.q_prior = []
-        self.log_stds_prior  = []
+        self.log_stds_prior = []
         types = []
         used_identifiers = []
-        self.quantities_inc   = []
-        self.bounds_inc  = []
+        self.quantities_inc = []
+        self.bounds_inc = []
 
         for quantity in self.prior_list:
             if self.parameter_dict[quantity]:
@@ -1604,7 +1604,7 @@ class ParameterBalancing:
                     for reaction_species in self.model_dict[quantity]:
                         if (quantity,
                             (reaction_species[1],
-                             reaction_species[2])) not in used_identifiers:                        
+                             reaction_species[2])) not in used_identifiers:
                             theta.append((quantity,
                                           self.prior_values[quantity][0][0],
                                           (reaction_species[1],
@@ -1750,7 +1750,7 @@ class ParameterBalancing:
 
         # print(self.Q_star)
         # for i, row in enumerate(self.Q_star):
-        #    print(self.quantities_x[i],  ',', list(row))  
+        #    print(self.quantities_x[i],  ',', list(row))
 
         # posterior covariance matrices
         if self.pseudo_used:
@@ -1881,7 +1881,7 @@ class ParameterBalancing:
                                         '.4f')))
 
                 row[7] = str(format(float(means[row_number]), '.4f'))
-                row[8] = str(format(float(self.stds_post[row_number] ), '.4f'))
+                row[8] = str(format(float(self.stds_post[row_number]), '.4f'))
                 if row not in finished_rows:
                     finished_rows.append(row)
                 first = self.check_extreme_values(row, first)
