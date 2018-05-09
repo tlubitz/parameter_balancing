@@ -119,9 +119,7 @@ def extract_pseudos_priors(sbtab_prior):
     pmax = {}
     pseudos = {}
     priors = {}
-    
-    
-    
+
     for row in sbtab_prior.value_rows:
         pmin[row[sbtab_prior.columns_dict['!QuantityType']]] = float(row[sbtab_prior.columns_dict['!LowerBound']])
         pmax[row[sbtab_prior.columns_dict['!QuantityType']]] = float(row[sbtab_prior.columns_dict['!UpperBound']])
@@ -137,7 +135,6 @@ def extract_pseudos_priors(sbtab_prior):
         else:
             priors[row[sbtab_prior.columns_dict['!QuantityType']]] = [float(median),
                                                                       float(std)]
-       
     return pseudos, priors, pmin, pmax
 
 
@@ -209,7 +206,6 @@ def readout_config(sbtab_options):
                        'default_activation', 'model_name', 'boundary_values',
                        'samples']
 
-
     if '!Option' not in sbtab_options.columns_dict:
         log.append('Error: The crucial option column is missing from the'\
                    'options file')
@@ -225,7 +221,7 @@ def readout_config(sbtab_options):
             if row[sbtab_options.columns_dict['!Value']] == '':
                 log.append('There is no value set for option:'\
                            '%s' % row[sbtab_options.columns_dict['!Option']])
-    
+
         parameter_dict[row[sbtab_options.columns_dict['!Option']]] = row[sbtab_options.columns_dict['!Value']]
 
     return parameter_dict, log
