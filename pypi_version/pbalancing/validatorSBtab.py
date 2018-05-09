@@ -50,14 +50,14 @@ class ValidateTable:
         '''
         # initialize warning string
         self.warnings = []
-        
+
         # define self variables
         self.sbtab = sbtab
         self.filename = sbtab_name
 
         # read definition table
         self.read_definition(def_table)
-       
+
         # create set of valid table types
         self.allowed_table_types = list(set([row[2] for row in self.definitions[2:][0]]))
 
@@ -71,7 +71,7 @@ class ValidateTable:
 
         self.column2format = {}
         defs = self.definitions[2]
-        
+
         for row in defs:
             if row[2] == self.sbtab.table_type:
                 self.column2format[row[0]] = row[3]
@@ -98,7 +98,7 @@ class ValidateTable:
                 print('''Definition file could not be loaded, so the validation
                 could not be started. Please provide definition file
                 as argument''')
-                sys.exit() 
+                sys.exit()
         else:
             try:
                 d = os.path.dirname(os.path.abspath(__file__)) + '/files/default_'\
@@ -112,7 +112,7 @@ class ValidateTable:
                 could not be started. Please provide definition file
                 as argument''')
                 sys.exit()
-            
+
     def check_general_format(self):
         '''
         Validates format of SBtab file, checks file format and header row.
@@ -160,7 +160,6 @@ class ValidateTable:
                 correspond to the amount of columns,
                 which is %s.''' % (vr, len(self.sbtab.columns)))
 
-
     def check_table_content(self):
         '''
         Validates the mandatory format of the SBtab in accordance to the
@@ -181,7 +180,7 @@ class ValidateTable:
         for row in self.sbtab.value_rows:
             try: identifier = row[self.sbtab.columns_dict['!ID']]
             except: break
-            
+
             if identifier not in unique: unique.append(identifier)
             else:
                 warning = 'Warning: There is an identifier that is not unique'\
@@ -282,7 +281,6 @@ class ValidateTable:
                                      n this SBtab file. Please remove it:
                                      %s''' % (str(column[0])))
 
-                
     def return_output(self):
         '''
         Returns the warnings from the validation process.
