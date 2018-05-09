@@ -328,7 +328,6 @@ def parameter_balancing_wrapper(parser_args):
             print('The log file %s has been written.' % (output_name + '_log.txt'))
 
     # 6: Write SBtab and SBML model
-    model_name = str(model_name)[:-4]
     sbtab_file_new = open(output_name + '.tsv', 'w')
     sbtab_file_new.write(sbtab_final.return_table_string())
     sbtab_file_new.close()
