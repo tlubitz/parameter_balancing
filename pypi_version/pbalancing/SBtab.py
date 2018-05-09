@@ -78,7 +78,7 @@ class SBtabTable():
         valid_extensions = ['tsv', 'csv', 'xls']
         if self.filename[-3:] not in valid_extensions:
             raise SBtabError('The file extension is not valid for an SBtab file.')
-        
+
     def cut_table_string(self, table_string):
         '''
         the SBtab is initially given as one long string;
@@ -112,7 +112,7 @@ class SBtabTable():
          self.table_name,
          self.table_document,
          self.table_version) = self.get_table_information()
-        
+
         # Read the columns of the table
         (self.columns, self.columns_dict) = self.get_columns()
 
@@ -123,7 +123,7 @@ class SBtabTable():
 
         # Update the list and tablib object
         self.update()
-        
+
     def check_ascii(self, table):
         '''
         Checks for ASCII violations, so that the parser will not crash
@@ -148,7 +148,7 @@ class SBtabTable():
 
         tablibtable = tablibIO.importSetNew('\n'.join(new_table),
                                             self.filename + '.csv')
-        
+
         return tablibtable, new_table
 
     def _get_header_row(self):
@@ -387,7 +387,7 @@ class SBtabTable():
 
         # Make all rows the same length
         longest = max([len(x) for x in sb1])
-        
+
         for row in sb1:
             if len(row) < longest:
                 for i in range(longest - len(row)):
@@ -453,7 +453,7 @@ class SBtabTable():
 
         # Update object
         self.table = sbtab_dataset
-        #self.initialize_table()
+        # self.initialize_table()
 
     def add_column(self, column_list, position=None):
         '''
@@ -468,7 +468,7 @@ class SBtabTable():
         '''
         # Empty column to fill up sbtab_dataset with ''
         empty_list = []
-        
+
         # If new column is too small, add empty entries to new column
         if len(column_list) < (len(self.sbtab_dataset.dict) - 1):
             for i in range((len(self.sbtab_dataset.dict) - 1) -
