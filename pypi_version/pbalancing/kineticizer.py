@@ -852,7 +852,6 @@ class KineticizerRP(Kineticizer):
     ''' mass action implementation '''
     _kinetic_law_sbo = 531
 
-
     def _get_denominator(self, reaction, mode):
         return '(1)'
 
