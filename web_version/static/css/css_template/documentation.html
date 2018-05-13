@@ -93,33 +93,31 @@
 	      <header>
 		<h3>Overview</h3>
 	      </header>
-	      <ul align="left">
-		<dt>What is parameter balancing?</dt>
-		<dd>
+	      <p align="left">
+		<strong>What is parameter balancing?</strong>
 		  Parameter balancing is a way to determine consistent parameter sets for kinetic models of metabolism.
 		  Inserting experimentally measured values directly into a model will probably yield incomplete or
 		  inconsistent parameter sets, violating the thermodynamic Haldane relationships. Balanced parameter
 		  sets avoid this problem. They are computed based on kinetic constants and other data collected from
 		  experiments or the literature, but also based on known constraints between biochemical quantities and
 		  on assumptions about typical ranges, represented by prior values and bounds.
-		</dd>
+	      </p>
 
-		<dt>How can I run parameter balancing?</dt>
-		<dd>
+	      <p align="left">
+		<strong>How can I run parameter balancing?</strong>
 		  After preparing your model and data files, you can run
 		  parameter balancing interactively on this website.  If you
 		  prefer working in the commandline, or if you would like to
 		  include parameter balancing in your programs, you may check
 		  out the various opportunities based on <a href="/pbnew/static/download.html">Python3 and Matlab code</a>.
-		</dd>
-
-		<dt>Which parameters of a metabolic model can be balanced?</dt>
-		<dd>
+	      </p>
+	      <p align="left">
+		<strong>Which parameters of a metabolic model can be balanced?</strong>
 		  In general, parameter balancing concerns the kinetic and thermodynamic constants in kinetic metabolic models.
 		  It can also cover metabolite concentrations, chemical potentials, and reaction Gibbs free energies (or,
 		  equivalently, "reaction affinities" or "driving forces"). Metabolic fluxes cannot be balanced, but they can
 		  be included in the analysis (this is described below). There are different typical application cases:
-		</dd>
+		</p>
 		<ul class="list-group" align="left">
 		  <li class="list-group-item">Kinetic constants, where equilibrium constants are fixed and given</li>
 		  <div class="list-group-item-text">This can be done separately
@@ -130,9 +128,10 @@
 		  <li class="list-group-item">Equilibrium constants and concentrations in a network</li>
 		  <li class="list-group-item">Equilibrium constants, kinetic constants, and concentrations in a network</li>
 		</ul>
-		      
-		<dt>What input data are needed?</dt>
-		<dd> Parameter balancing employs SBML (Systems
+
+	      <p align="left">
+		<strong>What input data are needed?</strong>
+		 Parameter balancing employs SBML (Systems
 		  Biology Markup Language) files or <a href="http://www.sbtab.net/">SBtab files</a> for model structures and
 		  SBtab table files for data and configuration files. Parameter balancing imports a model (SBML, obligatory) and a
 		  data table (SBtab, optional) with experimental data values. Furthermore, tables with information on the prior
@@ -141,16 +140,15 @@
 		  described below. The validity of these files can be checked on the <a href="http://www.sbtab.net/">SBtab website</a>. The quantities
 		  described in your data table will be linked to elements of the SBML model, via the entries in the columns !SBML:reaction:id and
 		  !SBML:species:id.  The IDs in these columns must match the IDs chosen in the SBML file.
-		</dd>
-
-		<dt>References and citation</dt>
-		<dd>
+		</p>
+	      <p align="left">
+		<strong>References and citation</strong>
 		  Parameter balancing has been developed at Humboldt Universität Berlin and Charité - Universitätsmedizin Berlin. The concept of parameter
 		  balancing is described in <a href="http://pubs.acs.org/doi/abs/10.1021/jp108764b">The Journal of Physical Chemistry B</a>.
 		  Please cite this publication if you use parameter balancing for your research. <br>
 		  Parameter balancing is applied as part of larger workflows in Stanford et al. (<a href="http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0079195">Plos One</a>) and Noor et al. (<a href="http://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1005167">Plos Computational Biology</a>). <br>
 		  Additional information on Systems Biology applications can be found in "Systems Biology: A textbook" by Edda Klipp, Wolfram Liebermeister, Christoph Wierling, and Axel Kowald.
-		</dd>
+		</p>
 	      </ul>
 	    </div>
 	    <div class="col-sm-2"></div>
@@ -262,7 +260,7 @@
 	      <header>
 		<h3 id="quant">Table of biochemical quantities</h3>
 	      </header>
-	      <p>
+	      <p align="left">
 		At the beginning of parameter balancing, a metabolic network structure is read from
 		an SBML file. It is assumed that all kinetic rate laws will be substituted by
 		<a href="http://bioinformatics.oxfordjournals.org/content/26/12/1528.abstract">modular rate laws</a> and
