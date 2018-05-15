@@ -19,7 +19,7 @@
 
 	  <div class="container-fluid" style="padding-bottom:5px">
 	    <h4>
-	      <a href="/pbnew/default/show_sbml2/{{=str(0)}}" target="_new"> {{=RESULT_SBML_NAME[0]}}</a>
+	      <a href="/pb/default/show_sbml2/{{=str(0)}}" target="_new"> {{=RESULT_SBML_NAME[0]}}</a>
 	    </h4>
 	    <div class="btn-group">
 	      <form>
@@ -39,7 +39,7 @@
 	  <div class="container-fluid" style="padding-bottom:5px">
 	    {{for pos,f in enumerate(RESULT_SBTAB_NAME):}}
 	    <h4>
-	      <a href="/pbnew/default/show_sbtab2/{{=str(pos)}}" target="_new"> {{=f}}</a>
+	      <a href="/pb/default/show_sbtab2/{{=str(pos)}}" target="_new"> {{=f}}</a>
 	    </h4>
 	    <div class="btn-group">
 	      <form>
@@ -59,7 +59,7 @@
 	  {{pass}}
 	  
 	  {{elif RESULT_SBML_NAME or RESULT_SBTAB_NAME:}}
-	  No file warnings detected. Please see <a href="/pbnew/default/show_log/{{=str(0)}}" target="_new">log file</a> for parameter balancing warnings.
+	  No file warnings detected. Please see <a href="/pb/default/show_log/{{=str(0)}}" target="_new">log file</a> for parameter balancing warnings.
 	  {{else:}}
 	  There are no more files to show here. Please return to the <a href="../static/css/css_template/main.html">homepage</a>.
 	  {{pass}}

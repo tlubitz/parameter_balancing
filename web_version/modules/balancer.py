@@ -615,13 +615,13 @@ class ParameterBalancing:
                     new_row[4] = \
                         self.quantity_type2unit[row[self.sbtab.columns_dict['!QuantityType']]]
                     # optional columns (columns 9 and more)
-
-                    # MIN and MAX is currently out of order. Reinstall later.
+                    '''
+                    # MIN and MAX is currently out of order. Reinstate later.
                     if '!Min' in self.sbtab.columns_dict and \
                        '!Max' in self.sbtab.columns_dict:
                         new_row[j] = row[self.sbtab.columns_dict['!Min']]
                         new_row[j + 1] = row[self.sbtab.columns_dict['!Max']]
-
+                    '''
                     # required?
                     if amount > 1 and i < amount:
                         multi_rows.append(new_row)

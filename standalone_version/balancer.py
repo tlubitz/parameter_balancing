@@ -190,8 +190,9 @@ class ParameterBalancing:
         and how to build the dependency matrix for the different parameter
         types
         '''
-        p = os.path.dirname(os.path.abspath(__file__)) + '/files/default_'\
-            'files/pb_prior.tsv'
+        #p = os.path.dirname(os.path.abspath(__file__)) + '/files/default_'\
+        #    'files/pb_prior.tsv'
+        p = './applications/pb/static/files/default_files/pb_prior.tsv'
         try: pf = open(p, 'r')
         except:
             print('The prior file (/files/default_files/pb_prior.tsv) coul'\
@@ -614,13 +615,13 @@ class ParameterBalancing:
                     new_row[4] = \
                         self.quantity_type2unit[row[self.sbtab.columns_dict['!QuantityType']]]
                     # optional columns (columns 9 and more)
-
-                    # MIN and MAX is currently out of order. Reinstall later.
+                    '''
+                    # MIN and MAX is currently out of order. Reinstate later.
                     if '!Min' in self.sbtab.columns_dict and \
                        '!Max' in self.sbtab.columns_dict:
                         new_row[j] = row[self.sbtab.columns_dict['!Min']]
                         new_row[j + 1] = row[self.sbtab.columns_dict['!Max']]
-
+                    '''
                     # required?
                     if amount > 1 and i < amount:
                         multi_rows.append(new_row)
@@ -1869,12 +1870,12 @@ class ParameterBalancing:
 
                 # second: fill the row with the balanced values
                 if row[0] in self.thermodynamics:
-                    row[3] = str(format(float(means[row_number]), '.4f'))
+                    row[3] = str(float(format(float(means[row_number]), '.4f')))
                     row[5] = 'NaN'
                     row[6] = 'NaN'
                 else:
-                    row[3] = str(format(numpy.exp(float(self.x_post[row_number])),
-                                        '.4f'))
+                    row[3] = str(float(format(numpy.exp(float(self.x_post[row_number])),
+                                        '.4f')))
                     row[5] = str(float(format(numpy.exp(float(self.x_post[row_number])),
                                         '.4f')))
                     row[6] = str(float(format(numpy.exp(float(self.stds_log_post[row_number])),

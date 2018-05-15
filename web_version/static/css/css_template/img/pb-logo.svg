@@ -1,66 +1,53 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-
-<svg
-   xmlns:dc="http://purl.org/dc/elements/1.1/"
-   xmlns:cc="http://creativecommons.org/ns#"
-   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-   xmlns:svg="http://www.w3.org/2000/svg"
-   xmlns="http://www.w3.org/2000/svg"
-   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
-   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   version="1.1"
-   id="Capa_1"
-   x="0px"
-   y="0px"
-   width="494.285px"
-   height="494.286px"
-   viewBox="0 0 494.285 494.286"
-   style="enable-background:new 0 0 494.285 494.286;"
-   xml:space="preserve"
-   inkscape:version="0.91 r13725"
-   sodipodi:docname="pb-logo.svg"
-   inkscape:export-filename="/home/timo/web2py/applications/pb/static/css/css_template/img/pb-logo.svg.png"
-   inkscape:export-xdpi="90"
-   inkscape:export-ydpi="90"><metadata
-     id="metadata41"><rdf:RDF><cc:Work
-         rdf:about=""><dc:format>image/svg+xml</dc:format><dc:type
-           rdf:resource="http://purl.org/dc/dcmitype/StillImage" /></cc:Work></rdf:RDF></metadata><defs
-     id="defs39" /><sodipodi:namedview
-     pagecolor="#ffffff"
-     bordercolor="#666666"
-     borderopacity="1"
-     objecttolerance="10"
-     gridtolerance="10"
-     guidetolerance="10"
-     inkscape:pageopacity="0"
-     inkscape:pageshadow="2"
-     inkscape:window-width="739"
-     inkscape:window-height="480"
-     id="namedview37"
-     showgrid="false"
-     inkscape:zoom="0.47745636"
-     inkscape:cx="247.1425"
-     inkscape:cy="247.14301"
-     inkscape:window-x="65"
-     inkscape:window-y="24"
-     inkscape:window-maximized="0"
-     inkscape:current-layer="Capa_1" /><g
-     id="g3"><path
-       d="M477.469,175.201l0.149-0.088L408.312,54.311l1.496-0.32c6.263-1.353,10.73-6.895,10.73-13.301v-6.174   c0-8.663-7.997-15.123-16.47-13.294L84.47,90.154c-6.263,1.353-10.73,6.895-10.73,13.301v6.174c0,8.412,7.541,14.674,15.729,13.369   L16.66,249.913l0.149,0.089H0c0,43.159,45.451,78.146,101.517,78.146s101.518-34.986,101.518-78.146h-14.416l0.149-0.089   l-75.684-131.926l117.055-25.249v350.887c-56.841,4.393-70.604,29.75-70.604,29.75h175.563c0,0-13.818-25.466-70.958-29.784V85.407   l105.95-22.854l-64.565,112.56l0.149,0.088h-14.423c0,43.16,45.451,78.146,101.518,78.146c56.065,0,101.517-34.986,101.517-78.146   H477.469z M40.127,250.001l62.58-109.092l62.581,109.092H40.127z M328.984,175.201l62.58-109.099l62.587,109.099H328.984z"
-       id="path5" /></g><g
-     id="g7" /><g
-     id="g9" /><g
-     id="g11" /><g
-     id="g13" /><g
-     id="g15" /><g
-     id="g17" /><g
-     id="g19" /><g
-     id="g21" /><g
-     id="g23" /><g
-     id="g25" /><g
-     id="g27" /><g
-     id="g29" /><g
-     id="g31" /><g
-     id="g33" /><g
-     id="g35" /></svg>
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 22.0.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1"
+	 id="Capa_1" inkscape:export-filename="/home/timo/web2py/applications/pb/static/css/css_template/img/pb-logo.svg.png" inkscape:export-xdpi="90" inkscape:export-ydpi="90" inkscape:version="0.91 r13725" sodipodi:docname="pb-logo.svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:svg="http://www.w3.org/2000/svg"
+	 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 494.3 494.3"
+	 style="enable-background:new 0 0 494.3 494.3;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#5DBFFB;}
+	.st1{opacity:0.4;fill:#B2DFFC;}
+</style>
+<sodipodi:namedview  bordercolor="#666666" borderopacity="1" gridtolerance="10" guidetolerance="10" id="namedview37" inkscape:current-layer="Capa_1" inkscape:cx="247.1425" inkscape:cy="247.14301" inkscape:pageopacity="0" inkscape:pageshadow="2" inkscape:window-height="480" inkscape:window-maximized="0" inkscape:window-width="739" inkscape:window-x="65" inkscape:window-y="24" inkscape:zoom="0.47745636" objecttolerance="10" pagecolor="#ffffff" showgrid="false">
+	</sodipodi:namedview>
+<g id="g7">
+</g>
+<g id="g9">
+</g>
+<g id="g11">
+</g>
+<g id="g13">
+</g>
+<g id="g15">
+</g>
+<g id="g17">
+</g>
+<g id="g19">
+</g>
+<g id="g21">
+</g>
+<g id="g23">
+</g>
+<g id="g25">
+</g>
+<g id="g27">
+</g>
+<g id="g29">
+</g>
+<g id="g31">
+</g>
+<g id="g33">
+</g>
+<g id="g35">
+</g>
+<rect x="-21" y="-19.3" class="st0" width="541" height="541"/>
+<g id="g3">
+	<path id="path5" d="M477.5,175.2l0.1-0.1L408.3,54.3l1.5-0.3c6.3-1.4,10.7-6.9,10.7-13.3v-6.2c0-8.7-8-15.1-16.5-13.3L84.5,90.2
+		c-6.3,1.4-10.7,6.9-10.7,13.3v6.2c0,8.4,7.5,14.7,15.7,13.4L16.7,249.9l0.1,0.1H0c0,43.2,45.5,78.1,101.5,78.1S203,293.2,203,250
+		h-14.4l0.1-0.1L113.1,118l117.1-25.2v350.9c-56.8,4.4-70.6,29.8-70.6,29.8h175.6c0,0-13.8-25.5-71-29.8V85.4l106-22.9l-64.6,112.6
+		l0.1,0.1h-14.4c0,43.2,45.5,78.1,101.5,78.1c56.1,0,101.5-35,101.5-78.1L477.5,175.2L477.5,175.2z M40.1,250l62.6-109.1L165.3,250
+		H40.1z M329,175.2l62.6-109.1l62.6,109.1H329z"/>
+</g>
+<path class="st1" d="M520-19.3c0,46.5,1.6,194.5,1.6,194.5c-70.9,36.5-173.4,59.5-287.5,59.5c-97.7,0-186.9-16.9-255.1-44.7
+	c0,0,0-155.2,0-209.3c0,0,52.9,0,266.9,0S520-19.3,520-19.3z"/>
+</svg>
