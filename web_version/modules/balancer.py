@@ -1886,8 +1886,8 @@ class ParameterBalancing:
                     row[6] = str(float(format(numpy.exp(float(self.stds_log_post[row_number])),
                                         '.4f')))
 
-                row[7] = str(format(float(means[row_number]), '.4f'))
-                row[8] = str(format(float(self.stds_post[row_number]), '.4f'))
+                row[7] = str(float(format(float(means[row_number]), '.4f')))
+                row[8] = str(float(format(float(self.stds_post[row_number]), '.4f')))
                 if row not in finished_rows:
                     finished_rows.append(row)
                 first = self.check_extreme_values(row, first)
