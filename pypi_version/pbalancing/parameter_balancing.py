@@ -217,8 +217,7 @@ def parameter_balancing_wrapper(parser_args):
     if args.sbtab_data:
         sbtab = pb.make_sbtab(sbtab_data, args.sbtab_data, 'All organisms', 43,
                               pmin, pmax, parameter_dict)
-        sbtabid2sbmlid = misc.id_checker(sbtab.return_table_string(),
-                                         sbml_model)
+        sbtabid2sbmlid = misc.id_checker(sbtab, sbml_model)
         if sbtabid2sbmlid != []:
             log_file += 'Log warnings for SBtab data file: '\
                         '%s\n\n' % args.sbtab_data

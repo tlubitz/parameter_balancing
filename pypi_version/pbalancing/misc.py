@@ -143,61 +143,6 @@ def extract_pseudos_priors(sbtab_prior):
     return pseudos, priors, pmin, pmax
 
 
-def id_checker(sbtab, sbml):
-    '''
-    this function checks, whether all the entries of the SBML ID columns of
-    the SBtab file can also be found in the SBML file. If not, these are
-    omitted during the balancing. But there should be a warning to raise user
-    awareness.
-    '''
-    sbtabid2sbmlid = []
-    reaction_ids_sbml = []
-    species_ids_sbml = []
-    s_id = None
-    r_id = None
-
-    for reaction in sbml.getListOfReactions():
-        reaction_ids_sbml.append(reaction.getId())
-    for species in sbml.getListOfSpecies():
-        species_ids_sbml.append(species.getId())
-
-    for row in sbtab.split('\n'):
-        splitrow = row.split('\t')
-        if len(splitrow) < 3: continue
-        if row.startswith('!!'): continue
-        elif row.startswith('!'):
-            for i, element in enumerate(splitrow):
-                if element == '!Compound:SBML:species:id': s_id = i
-                elif element == '!Reaction:SBML:reaction:id': r_id = i
-            if s_id is None:
-                sbtabid2sbmlid.append('''Error: The SBtab file lacks the obliga
-                tory column "'"!Compound:SBML:species:id"'" to link the paramet
-                er entries to the SBML model species.''')
-            if r_id is None:
-                sbtabid2sbmlid.append('''Error: The SBtab file lacks the obliga
-                tory column "'"!Reaction:SBML:reaction:id"'" to link the parame
-                ter entries to the SBML model reactions.''')
-        else:
-            try:
-                if splitrow[s_id] != '' \
-                   and splitrow[s_id] not in species_ids_sbml \
-                   and splitrow[s_id] != 'nan' and splitrow[s_id] != 'None':
-                    sbtabid2sbmlid.append('''Warning: The SBtab file holds a sp
-                    ecies ID which does not comply to any species ID in the SBM
-                    L file: %s''' % (splitrow[s_id]))
-            except: pass
-            try:
-                if splitrow[r_id] != '' \
-                   and splitrow[r_id] not in reaction_ids_sbml \
-                   and splitrow[r_id] != 'nan' and splitrow[r_id] != 'None':
-                    sbtabid2sbmlid.append('''Warning: The SBtab file holds a re
-                    action ID which does not comply to any reaction ID in the S
-                    BML file: %s''' % (splitrow[r_id]))
-            except: pass
-
-    return sbtabid2sbmlid
-
-
 def readout_config(sbtab_options):
     '''
     reads out the content of an optional config file and returns a parameter
