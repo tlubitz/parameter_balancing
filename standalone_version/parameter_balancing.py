@@ -367,7 +367,7 @@ if __name__ == '__main__':
     parser.add_argument('--sbtab_options', help='Path to an SBtab options file.')
     parser.add_argument('--output_name', help='Choose a name for the output files.')
     parser.add_argument('-l', '--pb_log', help='Flag to print a log file.', action='store_true')
-    parser.add_argument('-p', '--pb_pseudos', help='Flag for usage of pseudo values.', action='store_true')
+    parser.add_argument('-p', '--pb_pseudos', help='Flag for disabling the usage of pseudo values.', action='store_true')
     parser.add_argument('-v', '--verbose', help='Flag to display script messages.', action='store_true')
 
     args = parser.parse_args()
