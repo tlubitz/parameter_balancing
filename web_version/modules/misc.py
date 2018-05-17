@@ -801,21 +801,25 @@ def tsv_to_html(sbtab, filename=None):
     </nav>
 
     <header>
-    <div class="container-fluid bg-1 text-center" style="padding-top:50px">
-
-    '''    
+    '''
     if type(sbtab) == str and filename:
         ugly_sbtab = sbtab.split('\n')
         #nice_sbtab = '<p><h2><b>%s</b></h2></p>' % filename
-        sbtab_html += '<h2><small>%s</small></h2></div></header>'
+        sbtab_html += '<h2 style="padding-top:50px" align="center"><small>%s</small></h2></div></header>' % filename
         delimiter = check_delimiter(sbtab)
     else:
         ugly_sbtab = sbtab.return_table_string().split('\n')
         #nice_sbtab = '<p><h2><b>'+sbtab.filename+'</b></h2></p>'
-        sbtab_html += '<h2><small>'+sbtab.filename+'</small></h2></div></header>'
+        sbtab_html += '<h2 style="padding-top:50px" align="center"><small>'+sbtab.filename+'</small></h2></div></header>'
         delimiter = sbtab.delimiter
 
-    sbtab_html += '<main><table class="table-striped">'
+    sbtab_html += '''
+    <main>
+    <div class="container-fluid bg-1 text-center" style="padding-top:50px">
+    <div class="row">
+    <div class="col-sm-1"></div>
+    <div class="col-sm-10">
+    <table class="table-striped" style="font-size:13px">'''
         
     first = True
     for i, row in enumerate(ugly_sbtab):
@@ -826,7 +830,7 @@ def tsv_to_html(sbtab, filename=None):
 
         # conclusion of SBtab and beginning of new SBtab (if there are more than one)
         elif row.startswith('!!'):
-            sbtab_html += '</table><table class="table-striped">'
+            sbtab_html += '</table><br><table class="table-striped" style="font-size:13px">'
             sbtab_html += '<tr><th colspan="%s">%s</th></tr>' % (len(ugly_sbtab[i+2]), row)
 
         # column header row
@@ -863,6 +867,11 @@ def tsv_to_html(sbtab, filename=None):
         '''
     sbtab_html += '''
     </table>
+    </div>
+    <div class="col-sm-1"></div>
+    </div>
+    </div>
+
     </main>
     <hr>
     <footer class="container-fluid bg-3 text-center">

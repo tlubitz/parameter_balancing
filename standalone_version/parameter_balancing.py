@@ -329,7 +329,7 @@ def parameter_balancing_wrapper(parser_args):
         print('Done... writing output files.')
 
     if warn_flag:
-        print('The parameter balancing issued warnings. Please generate the l'
+        print('The parameter balancing issued warnings. Please generate the '
         'log file with the -l flag and check the warnings.')
         
     # 5: If requested write log file

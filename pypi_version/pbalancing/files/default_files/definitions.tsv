@@ -299,7 +299,7 @@ Abbreviation	Column	QuantityInfo	string	Abbreviation of quantity type
 ID	Column	QuantityInfo	string	Abbreviation of quantity type
 MatrixInfo	Column	QuantityInfo	string	Information on the matrix production
 Option	Column	PbConfig	string	Which option is addressed
-Value	Column	PbConfig	float	What value is the option set to
+Value	Column	PbConfig	string	What value is the option set to
 UID:Contingency	Column	rxnconContingencyList	integer	ID for contingency
 Target	Column	rxnconContingencyList	string	Contingency target
 Contingency	Column	rxnconContingencyList	string	Contingency type

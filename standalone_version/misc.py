@@ -9,6 +9,10 @@ import scipy.optimize
 import random
 import copy
 import math
+try:
+    from . import SBtab
+except:
+    import SBtab
 
 
 def table_type(sbtab):
@@ -119,8 +123,6 @@ def extract_pseudos_priors(sbtab_prior):
     pmax = {}
     pseudos = {}
     priors = {}
-    
-    
     
     for row in sbtab_prior.value_rows:
         pmin[row[sbtab_prior.columns_dict['!QuantityType']]] = float(row[sbtab_prior.columns_dict['!LowerBound']])
@@ -632,3 +634,253 @@ def fmin_differential_evolution(f, x0, population_size=100, generations=20000,
             print("Stopping computation")
 
     return best_indiv
+
+
+def xml2html(sbml_file):
+    '''
+    generates html view out of xml file
+    '''
+    old_sbml = str(sbml_file).split('\\n')
+    new_sbml = '<xmp>'
+
+    for row in old_sbml:
+        new_sbml += row + '\n'
+
+    new_sbml += '</xmp>'
+        
+    return new_sbml
+
+
+def id_checker(sbtab, sbml):
+    '''
+    this function checks, whether all the entries of the SBML ID columns of the SBtab file can also be
+    found in the SBML file. If not, these are omitted during the balancing. But there should be a warning
+    to raise user awareness.
+    '''
+    sbtabid2sbmlid = []
+
+    reaction_ids_sbml = []
+    species_ids_sbml  = []
+
+    s_id = None
+    r_id = None
+
+    for reaction in sbml.getListOfReactions():
+        reaction_ids_sbml.append(reaction.getId())
+    for species in sbml.getListOfSpecies():
+        species_ids_sbml.append(species.getId())
+
+    for row in sbtab.value_rows:
+        if len(row) < 3: continue
+        try:
+            s_id = sbtab.columns_dict['!Compound:SBML:species:id']
+            r_id = sbtab.columns_dict['!Reaction:SBML:reaction:id']
+        except:
+            sbtabid2sbmlid.append('Error: The SBtab file lacks either of the obligatory columns "'"!Compound:SBML:species:id"'" or "'"!Reaction:SBML:reaction:id"'" to link the parameter entries to the SBML model species.')
+        try:
+            if row[s_id] != '' and row[s_id] not in species_ids_sbml and row[s_id] != 'nan' and row[s_id] != 'None':
+                sbtabid2sbmlid.append('Warning: The SBtab file holds a species ID which does not comply to any species ID in the SBML file: %s'%(row[s_id]))
+        except: pass
+        try:
+            if row[r_id] != '' and row[r_id] not in reaction_ids_sbml and row[r_id] != 'nan' and row[r_id] != 'None':
+                sbtabid2sbmlid.append('Warning: The SBtab file holds a reaction ID which does not comply to any reaction ID in the SBML file: %s'%(row[r_id]))
+        except: pass
+            
+    return sbtabid2sbmlid
+
+
+def cut_tabs(sbtab_strings):
+    '''
+    cuts an SBtab document in single SBtab files
+    '''
+    sbtabs = []
+    sbtab_string = ''
+    counter = 1
+
+    for row in sbtab_strings.split('\n'):
+        if row.startswith('!!'):
+            if sbtab_string == '':
+                sbtab_string = row + '\n'
+                continue
+            else:
+                try:
+                    sbtabs.append(sbtab_string)
+                    sbtab_string = row + '\n'
+                    counter += 1
+                except:
+                    print('Warning: Could not write SBtab %s' % counter)
+                    counter += 1
+        else:
+            sbtab_string += row + '\n'
+    sbtabs.append(sbtab_string) 
+                    
+    return sbtabs
+
+
+    
+    '''
+    # THIS HERE DOESN'T HELP US WITHOUT THE SBTAB DOCUMENT CLASS
+    sbtabs = []
+    sbtab_string = ''
+    counter = 1
+
+    for row in sbtab_strings.split('\n'):
+        print(row)
+        if row.startswith('!!'):
+            if sbtab_string == '':
+                sbtab_string = row + '\n'
+                continue
+            else:
+                try:
+                    sbtab = SBtab.SBtabTable(sbtab_string, 'sbtab_%s.tsv' % counter)
+                    sbtabs.append(sbtab)
+                    sbtab_string = row + '\n'
+                    print('Tis written')
+                    counter += 1
+                except:
+                    print('Warning: Could not write SBtab %s' % counter)
+                    counter += 1
+        else:
+            sbtab_string += row + '\n'
+
+    sbtab = SBtab.SBtabTable(sbtab_string, 'sbtab_%s.tsv' % counter)
+    sbtabs.append(sbtab) 
+                    
+    return sbtabs
+    '''
+
+def tsv_to_html(sbtab, filename=None):
+    '''
+    generates html view out of tsv file
+    '''
+    sbtab_html = '''
+    <html lang="en">
+    <head>
+    <meta charset="utf-8">
+    <meta name="author" content="Timo Lubitz">
+    <meta name="description"  content="Parameter Balancing Website">
+    
+    <!-- this is required for responsiveness -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Parameter Balancing for Kinetic Models of Cell Metabolism</title>
+    <!--<link rel="stylesheet" type="text/css" href="css/pb.css">-->
+    <link href="../../static/css/css_template/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../static/css/css_template/css/custom.css" rel="stylesheet">
+    <link rel="shortcut icon" href="/pb/static/css/css_template/img/pb-logo.png" type="image/icon">
+    <link rel="icon" href="/pb/static/css/css_template/img/pb-logo.png" type="image/icon">
+    </head>
+
+    <body>
+    <!-- navbar: this is a navbar; navbar-inverse: it's dark; navbar-static-top: it's always at the top -->
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+    <!-- setting a max-width by using a container -->
+      <div class="container">
+        <div class="navbar-header">
+	  <!-- button is hidden on desktop, becomes a hamburger on mobile! the span items are the hamburger lines --> 
+	  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+	    <span class="sr-only">Toggle navigation</span>
+	    <span class="icon-bar"></span>
+	    <span class="icon-bar"></span>
+	    <span class="icon-bar"></span>
+	  </button>
+	  <a class="navbar-brand" href="#">Parameter Balancing</a>
+	</div>
+	
+	<!-- simple right aligned list-->
+	<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+	  <ul class="nav navbar-nav navbar-right">
+	    <li> <a href="../../default/balancing.html" title="Go to online balancing">Online Balancing</a></li>
+	    <li> <a href="../../static/css/css_template/documentation.html" title="Documentation and Manuals">Documentation</a></li>
+	    <li> <a href="../../static/css/css_template/download.html" title="Installation and Downloads">Download</a></li>
+	    <li> <a href="../../static/css/css_template/contact.html" title="Contact the balancing team">Contact</a></li>
+	  </ul>
+	</div>
+      </div>
+    </nav>
+
+    <header>
+    '''
+    if type(sbtab) == str and filename:
+        ugly_sbtab = sbtab.split('\n')
+        #nice_sbtab = '<p><h2><b>%s</b></h2></p>' % filename
+        sbtab_html += '<h2 style="padding-top:50px" align="center"><small>%s</small></h2></div></header>' % filename
+        delimiter = check_delimiter(sbtab)
+    else:
+        ugly_sbtab = sbtab.return_table_string().split('\n')
+        #nice_sbtab = '<p><h2><b>'+sbtab.filename+'</b></h2></p>'
+        sbtab_html += '<h2 style="padding-top:50px" align="center"><small>'+sbtab.filename+'</small></h2></div></header>'
+        delimiter = sbtab.delimiter
+
+    sbtab_html += '''
+    <main>
+    <div class="container-fluid bg-1 text-center" style="padding-top:50px">
+    <div class="row">
+    <div class="col-sm-1"></div>
+    <div class="col-sm-10">
+    <table class="table-striped" style="font-size:13px">'''
+        
+    first = True
+    for i, row in enumerate(ugly_sbtab):
+        # declaration of first SBtab in document
+        if row.startswith('!!') and first:
+            sbtab_html += '<tr><th colspan="%s">%s</th></tr>' % (len(ugly_sbtab[i+2]), row)
+            first = False
+
+        # conclusion of SBtab and beginning of new SBtab (if there are more than one)
+        elif row.startswith('!!'):
+            sbtab_html += '</table><br><table class="table-striped" style="font-size:13px">'
+            sbtab_html += '<tr><th colspan="%s">%s</th></tr>' % (len(ugly_sbtab[i+2]), row)
+
+        # column header row
+        elif row.startswith('!'):
+            splitrow = row.split(delimiter)
+            sbtab_html += '<tr>'
+            for col in splitrow:
+                sbtab_html += '<th>%s</th>' % col
+            sbtab_html += '</tr>'
+
+        # comment row
+        elif row.startswith('%'):
+            sbtab_html += '<tr bgcolor="#C0C0C0">%s</tr>' % row
+
+        # log file header
+        elif row.startswith('Parameter balancing log file'):
+            sbtab_html += '<tr>%s</tr>'
+
+        # normal row
+        else:
+            splitrow = row.split(delimiter)
+            sbtab_html += '<tr>'
+            for col in splitrow:
+                sbtab_html += '<td>%s</td>' % col
+            sbtab_html += '</tr>'
+
+        '''
+        # normal row
+        for i,thing in enumerate(row.split(delimiter)):
+            if thing.startswith('!!'): continue
+            #new_row = '<td>'+str(thing)+'</td>'
+            #nice_sbtab += new_row
+        #nice_sbtab += '</tr>'
+        '''
+    sbtab_html += '''
+    </table>
+    </div>
+    <div class="col-sm-1"></div>
+    </div>
+    </div>
+
+    </main>
+    <hr>
+    <footer class="container-fluid bg-3 text-center">
+    <p>Thanks to <a href="https://getbootstrap.com/" target="_blank">Bootstrap</a> and <a href="http://web2py.com/" target="_blank">Web2py</a>. Code and further information on <a href="https://github.com/tlubitz/parameter_balancing" target="_blank">Github</a>.</p> 
+    </footer>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    </body>
+    </html>
+    '''
+    return sbtab_html

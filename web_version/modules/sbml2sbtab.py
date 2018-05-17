@@ -406,7 +406,9 @@ class SBMLDocument:
             elif len(modifiers)==1:
                 for modifier in modifiers: value_row[4] = modifier.getSpecies()
             else: pass
-            try: value_row[5] = react.getKineticLaw().getFormula()
+            try:
+                fm = react.getKineticLaw().getFormula()
+                value_row[5] = fm.replace('\n','')
             except: pass
             if str(react.getSBOTerm()) != '-1': value_row[6] ='SBO:%.7d'%react.getSBOTerm()
             try: value_row[7] = str(react.getReversible())
