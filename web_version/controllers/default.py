@@ -601,6 +601,13 @@ def balancing():
                 try: redirect(URL('../default/balancing'))
                 except: redirect(URL('../balancing'))
 
+        # 2b: update prior information for model if alternate prior is used
+        try:
+            pb.get_parameter_information(sbtab_prior)
+        except:
+            session.warnings_prior.append('The alternate prior could not'
+                                          ' be loaded.')
+                       
         # 3: fill them in the SBtab file
         try:
             if 'use_pseudo_values' in session.parameter_dict and \

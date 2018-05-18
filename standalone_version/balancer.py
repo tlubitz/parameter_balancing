@@ -183,29 +183,32 @@ class ParameterBalancing:
                     'Species.\n' % (self.model.getNumReactions(),
                                     self.model.getNumSpecies())
 
-    def get_parameter_information(self):
+    def get_parameter_information(self, alternate_prior = None):
         '''
         read a table file from the resources directory holding numerous
         informations on the handling of the parameters, the parameter details,
         and how to build the dependency matrix for the different parameter
         types
         '''
-        # prior file path for standalone version
-        p = os.path.dirname(os.path.abspath(__file__)) + '/files/default_'\
-            'files/pb_prior.tsv'
-        # prior file path for web version
-        p2 = './applications/pb/static/files/default_files/pb_prior.tsv'
-        try:
-            pf = open(p, 'r')
-        except:
+        if alternate_prior:
+            sbtab_prior = alternate_prior
+        else:
+            # prior file path for standalone version
+            p = os.path.dirname(os.path.abspath(__file__)) + '/files/default_'\
+                'files/pb_prior.tsv'
+            # prior file path for web version
+            p2 = './applications/pb/static/files/default_files/pb_prior.tsv'
             try:
-                pf = open(p2, 'r')
+                pf = open(p, 'r')
             except:
-                print('The prior file could not be found. I quit.')
-                sys.exit()
+                try:
+                    pf = open(p2, 'r')
+                except:
+                    print('The prior file could not be found. I quit.')
+                    sys.exit()
 
-        p = pf.read()
-        sbtab_prior = SBtab.SBtabTable(p, 'pb_prior.tsv')
+            p = pf.read()
+            sbtab_prior = SBtab.SBtabTable(p, 'pb_prior.tsv')
 
         self.quantity2identifier = {}
         self.quantity_type2unit = {}

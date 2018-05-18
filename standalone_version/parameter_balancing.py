@@ -97,6 +97,7 @@ def parameter_balancing_wrapper(parser_args):
 
         # initialise an SBtab object with the content and check its validity
         sbtab_prior = SBtab.SBtabTable(f_content, args.sbtab_prior)
+        pb.get_parameter_information(sbtab_prior)
         sbtab_prior_validate = validatorSBtab.ValidateTable(sbtab_prior,
                                                             args.sbtab_prior)
 
@@ -155,6 +156,7 @@ def parameter_balancing_wrapper(parser_args):
         # extract crucial information from prior
         (pseudos, priors, pmin, pmax) = misc.extract_pseudos_priors(sbtab_prior)
 
+        
     ###########################
     # 1.4: open and prepare an optional SBtab options file;
     #      if this is not provided, open the default options file
@@ -284,18 +286,20 @@ def parameter_balancing_wrapper(parser_args):
         pseudo_flag = 'pseudos'
         if args.verbose:
             print('Parameter balancing is using pseudo values.')
+
     else:
         sbtab_new = pb.fill_sbtab(sbtab)
         pseudo_flag = 'no_pseudos'
         if args.verbose:
             print('Parameter balancing is not using pseudo values.')
-
+            
     (sbtab_final, mean_vector, mean_vector_inc, c_post, c_post_inc,
      r_matrix, shannon, log) = pb.make_balancing(sbtab_new,
                                                  sbtab, pmin,
                                                  pmax,
                                                  parameter_dict)
 
+    
     log_file += '\n' + log + '\n'
 
     # 3: inserting parameters and kinetics into SBML model
