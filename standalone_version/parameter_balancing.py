@@ -296,6 +296,8 @@ def parameter_balancing_wrapper(parser_args):
                                                  pmax,
                                                  parameter_dict)
 
+    log_file += '\n' + log + '\n'
+
     # 3: inserting parameters and kinetics into SBML model
     transfer_mode = {'standard chemical potential': 'weg',
                      'equilibrium constant': 'hal',

@@ -54,7 +54,7 @@ class ParameterBalancing:
         self.model = sbml_model
 
         # initialise log file
-        self.log = 'Parameter balancing log file; %s\n\n' % (time.asctime())
+        self.log = '%s\n\n' % (time.asctime())
 
         # rudimentary validity check and model initialisation
         if req:
@@ -841,6 +841,7 @@ class ParameterBalancing:
         self.log += '!Option\t!Value\n'
         for entry in self.parameter_dict.keys():
             self.log += '%s\t%s\n' % (entry, self.parameter_dict[entry])
+        self.log += '\n'
 
 ###############################################################################
 
