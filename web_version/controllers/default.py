@@ -817,11 +817,12 @@ def balancing():
                               '_prior.tsv')
             prior_file = prior_open.read()
             session.prior_name = 'pb_prior.tsv'
-            session.prior = SBtab.SBtabTable(prior_file, session.prior_name)
+            sbtab_prior = SBtab.SBtabTable(prior_file, session.prior_name)
+            session.prior = sbtab_prior
             session.priors = []
             session.prior_names = []
             try:
-                session.priors.append(session.prior)
+                session.priors.append(sbtab_prior)
                 session.prior_names.append(session.prior_name)
             except:
                 session.warnings_fl.append('Error loading the default prior table.')
@@ -910,6 +911,13 @@ def balancing():
                 try: redirect(URL('../default/balancing'))
                 except: redirect(URL('../balancing'))
 
+        # 2b: update prior information for model if alternate prior is used
+        try:
+            pb.get_parameter_information(sbtab_prior)
+        except:
+            session.warnings_prior.append('The alternate prior could not'
+                                          ' be loaded.')
+                                
         # 3: fill them in the SBtab file
         try: pseudo = bool(session.parameter_dict['use_pseudo_values'])
         except: pseudo = True
