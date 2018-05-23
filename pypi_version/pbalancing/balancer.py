@@ -445,12 +445,12 @@ class ParameterBalancing:
 
         for row in self.sbtab.value_rows:
             if len(row) == len(self.sbtab.value_rows[0]):
-                # irregular entries are set to empty string
-                for i, value in enumerate(row):
-                    if value == 'nan' or value == '-' or value == 'NaN':
-                        row[i] = ''
-                    elif value == 'None' or value is None:
-                        row[i] = ''
+                # due to problems in reactions with a high discrepancy between
+                # amount of reactants and products, we need to omit the
+                # provision of Gibbs free energies:
+                if row[self.sbtab.columns_dict['!QuantityType']] == \
+                   'standard chemical potential':
+                    continue
 
                 # if the user has specified an organism then remove all others
                 if self.organism and self.organism != 'All organisms':
@@ -478,6 +478,13 @@ class ParameterBalancing:
                     if row[self.sbtab.columns_dict['!Unit']] == \
                        'molecules/cell':
                         continue
+
+                # irregular entries are set to empty string
+                for i, value in enumerate(row):
+                    if value == 'nan' or value == '-' or value == 'NaN':
+                        row[i] = ''
+                    elif value == 'None' or value is None:
+                        row[i] = ''
 
                 # exclude values that lie outside of the given boundaries;
                 # this exclusion is triggered by flag ig_bounds
