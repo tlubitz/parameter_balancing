@@ -469,6 +469,7 @@ class ParameterBalancing:
                    row[mean_column] == '0':
                     continue
 
+
                 # Michaelis constants need reaction AND species
                 if row[self.sbtab.columns_dict['!QuantityType']] == \
                    'Michaelis constant':
@@ -1515,14 +1516,17 @@ class ParameterBalancing:
 
                             # build Z, the values for the Michaelis constant coefficients
                             elif matrix == 'Z':
+                                #print(matrix_type)
                                 if matrix_type[0] < 0: factor = -1.0
                                 else: factor = 1.0
                                 for t, michaelis_tuple in enumerate(self.model_michaelis):
                                     t2 = t + len(self.species_list) + len(self.reaction_list)
-                                    if michaelis_tuple[2] in reactants and element == michaelis_tuple[1]:
-                                        row[t2] = -0.5 * factor
-                                    if michaelis_tuple[2] in products and element == michaelis_tuple[1]:
-                                        row[t2] = 0.5 * factor
+                                    for r, reactant in enumerate(reactants):
+                                        if michaelis_tuple[2] == reactant and element == michaelis_tuple[1]:
+                                            row[t2] = -0.5 * stoichiometry_r[r] * factor
+                                    for p, product in enumerate(products):
+                                        if michaelis_tuple[2] == product and element == michaelis_tuple[1]:
+                                            row[t2] = -0.5 * stoichiometry_p[p] * factor
                                 column_index += len(self.model_michaelis)
 
                             # build 1, a simple alternative to N
@@ -1762,7 +1766,7 @@ class ParameterBalancing:
         #     print(self.quantities_inc[i], ',', elem)
 
         # for i, row in enumerate(self.Q):
-        #     print(self.quantities[i], ',', list(row))
+        #    print(self.quantities[i], ',', list(row))
 
         # print(self.C_x)
         # for i, row in enumerate(self.quantities_x):
