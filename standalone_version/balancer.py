@@ -1481,18 +1481,22 @@ class ParameterBalancing:
                             except: pass
 
                             # build N, the stoichiometric matrix
+                            # required for, e.g., substr/product catalytic rc,
+                            # and eq constants
                             if matrix == 'A':
-                                for species in self.species_list:
+                                for t, species in enumerate(self.species_list):
                                     for r, reactant in enumerate(reactants):
                                         if species == reactant:
-                                            row[column_index] = \
+                                            row[t] = \
                                                 stoichiometry_r[r] * factor
-                                            column_index += 1
+                                            break
+                                       
                                     for p, product in enumerate(products):
                                         if species == product:
-                                            row[column_index] = \
+                                            row[t] = \
                                                 stoichiometry_p[p] * factor
-                                            column_index += 1
+                                            break
+                                column_index += len(self.species_list)
 
                             # for the end of reaction affinities
                             elif matrix == 'AB':
@@ -1754,13 +1758,13 @@ class ParameterBalancing:
             sys.exit()
 
         # for i, row in enumerate(self.C_prior):
-        #    print(self.quantities_inc[i], ',', list(row))
+        #     print(self.quantities_inc[i], ',', list(row))
 
         # for i, elem in enumerate(self.q_prior):
-        #    print(self.quantities_inc[i], ',', elem)
+        #     print(self.quantities_inc[i], ',', elem)
 
         # for i, row in enumerate(self.Q):
-        #    print(self.quantities[i], ',', list(row))
+        #     print(self.quantities[i], ',', list(row))
 
         # print(self.C_x)
         # for i, row in enumerate(self.quantities_x):
