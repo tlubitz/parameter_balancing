@@ -1500,32 +1500,30 @@ class ParameterBalancing:
 
                             # for the end of reaction affinities
                             elif matrix == 'AB':
-                                for species in self.species_list:
+                                for t, species in enumerate(self.species_list):
                                     for r, reactant in enumerate(reactants):
                                         if species == reactant:
-                                            row[column_index] = \
+                                            row[t] = \
                                                 stoichiometry_r[r] * factor
-                                            column_index += 1
+                                            #column_index += 1
                                     for p, product in enumerate(products):
                                         if species == product:
-                                            row[column_index] = \
+                                            row[t] = \
                                                 stoichiometry_p[p] * factor
-                                            column_index += 1
+                                            #column_index += 1
+                                column_index += len(self.species_list)
 
                             # build Z, the values for the Michaelis constant coefficients
                             elif matrix == 'Z':
                                 if matrix_type[0] < 0: factor = -1.0
                                 else: factor = 1.0
-                                for michaelis_tuple in self.model_michaelis:
-                                    if michaelis_tuple[2] in reactants:
-                                        row[column_index] = -0.5 * factor
-                                        column_index += 1
-                                    if michaelis_tuple[2] in products:
-                                        row[column_index] = 0.5 * factor
-                                        column_index += 1
-                                    if michaelis_tuple[2] not in reactants and \
-                                       michaelis_tuple[2] not in products:
-                                        column_index += 1
+                                for t, michaelis_tuple in enumerate(self.model_michaelis):
+                                    t2 = t + len(self.species_list) + len(self.reaction_list)
+                                    if michaelis_tuple[2] in reactants and element == michaelis_tuple[1]:
+                                        row[t2] = -0.5 * factor
+                                    if michaelis_tuple[2] in products and element == michaelis_tuple[1]:
+                                        row[t2] = 0.5 * factor
+                                column_index += len(self.model_michaelis)
 
                             # build 1, a simple alternative to N
                             elif matrix == '1':
