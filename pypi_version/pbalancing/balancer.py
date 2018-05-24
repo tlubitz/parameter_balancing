@@ -464,6 +464,11 @@ class ParameterBalancing:
                 if row[mean_column] == '':
                     continue
 
+                # exclude multiplicative quantities with a value of 0
+                if row[self.sbtab.columns_dict['!QuantityType']] in self.quantity_type2median_std and \
+                   row[mean_column] == '0':
+                    continue
+
                 # Michaelis constants need reaction AND species
                 if row[self.sbtab.columns_dict['!QuantityType']] == \
                    'Michaelis constant':

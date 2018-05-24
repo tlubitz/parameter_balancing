@@ -30,6 +30,7 @@ KineticLaw	Column	Reaction	string	Kinetic law of the reaction
 KineticLaw:Name	Column	Reaction	string	Name of the kinetic law
 KineticLaw:Formula	Column	Reaction	string	Rate law formula
 Gene	Column	Reaction	string	Name of the gene for the catalysing enzyme
+Gene:Symbol	Column	Reaction	string	Name of the gene for the catalysing enzyme
 Operon	Column	Reaction	string	Operon for the gene of the catalysing enzyme
 Enzyme:SBML:species:id	Column	Reaction	string	SBML ID of enzyme
 Enzyme:SBML:parameter:id	Column	Reaction	string	SBML ID of enzyme
@@ -49,6 +50,7 @@ Type	Column	Compound	string	Biochemical type of entity
 Symbol	Column	Compound	string	Short symbol (e.g. gene symbol)
 PositionX	Column	Compound	float	x coordinate for graphical display
 PositionY	Column	Compound	float	y coordinate for graphical display
+CompoundReactionFormula	Column	Compound	string	Chemical reaction formula
 ID	Column	Compound	string	Compound shortname
 SBML:species:id	Column	Compound	string	SBML species ID of the entity
 SBML:speciestype:id	Column	Compound	string	SBML speciestype ID of the entity
@@ -167,6 +169,7 @@ SBOTerm	Column	Quantity	string	SBO term of the entity
 Identifiers	Column	Quantity	string	Annotation of the entity
 BiologicalElement	Column	Quantity	string	Biological element
 MathematicalType	Column	Quantity	string	Mathematical type
+DataGeometricStd	Column	Quantity	float	Data geometric standard error
 PriorMedian	Column	Quantity	float	Prior Median
 PriorStd	Column	Quantity	float	Prior Std
 PriorGeometricStd	Column	Quantity	float	Prior Geometric Std
