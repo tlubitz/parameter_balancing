@@ -58,18 +58,21 @@ def parameter_balancing_wrapper(parser_args):
         if not valid_extension:
             print('The SBtab data file %s has not the correct file '\
                   'extension.' % (args.sbtab_data))
+
         try:
             f = open(args.sbtab_data, 'r')
             f_content = f.read()
         except:
             print('The SBtab data file %s cannot be found or'\
                   'read.' % args.sbtab_data)
+
         try: sbtab_delimiter = misc.check_delimiter(f_content)
         except: sbtab_delimiter = '\t'
 
         sbtab_data = SBtab.SBtabTable(f_content, args.sbtab_data)
         sbtab_data_validate = validatorSBtab.ValidateTable(sbtab_data,
                                                            args.sbtab_data)
+
         warnings = sbtab_data_validate.return_output()
         if warnings != []:
             warn_flag = True
@@ -77,6 +80,8 @@ def parameter_balancing_wrapper(parser_args):
                         '%s\n' % args.sbtab_data
             for warning in warnings:
                 log_file += warning + '\n'
+
+        #print(sbtab_data.value_rows)
 
     ###########################
     # 1.3: open and prepare an optional SBtab prior file;
@@ -299,7 +304,8 @@ def parameter_balancing_wrapper(parser_args):
                                                  pmax,
                                                  parameter_dict)
 
-    
+    #for row in sbtab_final.value_rows:
+    #    print(row)
     log_file += '\n' + log + '\n'
 
     # 3: inserting parameters and kinetics into SBML model

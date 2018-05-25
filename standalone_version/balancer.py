@@ -311,6 +311,13 @@ class ParameterBalancing:
             for reactant in reaction.getListOfReactants():
                 reactants.append(reactant.getSpecies())
                 this_stoich = reactant.getStoichiometry()
+                if this_stoich != 2.0 and this_stoich != 1.0:
+                    self.log += 'The stoichiometric coefficient %s of reactan'\
+                                't %s in reaction %s was set '\
+                                'to 1.\n' % (this_stoich,
+                                             reactant.getSpecies(),
+                                             reaction.getId())
+                    this_stoich = 1
                 stoich.append(this_stoich * (-1.0))
             self.reactions_reactants[reaction.getId()] = (reactants, stoich)
 
@@ -468,7 +475,6 @@ class ParameterBalancing:
                 if row[self.sbtab.columns_dict['!QuantityType']] in self.quantity_type2median_std and \
                    row[mean_column] == '0':
                     continue
-
 
                 # Michaelis constants need reaction AND species
                 if row[self.sbtab.columns_dict['!QuantityType']] == \
@@ -1255,7 +1261,6 @@ class ParameterBalancing:
         types = []
         vt = []
         self.x_star = []
-
         for single_tuple in value_tuples_old:
             if single_tuple[3] == '': continue
             means.append(float(single_tuple[3]))
@@ -1265,7 +1270,7 @@ class ParameterBalancing:
             (self.x_star, self.log_stds_x) = self.normal_to_log(means,
                                                                 stds,
                                                                 types)
-
+        
         self.new_rows = self.sbtab.value_rows + self.new_rows
 
         return vt
@@ -1516,7 +1521,6 @@ class ParameterBalancing:
 
                             # build Z, the values for the Michaelis constant coefficients
                             elif matrix == 'Z':
-                                #print(matrix_type)
                                 if matrix_type[0] < 0: factor = -1.0
                                 else: factor = 1.0
                                 for t, michaelis_tuple in enumerate(self.model_michaelis):
@@ -1724,9 +1728,17 @@ class ParameterBalancing:
         # second, generate covariance matrix according to the input values in
         # the x-vector
         C_x_rows = []
+
         for i, x_entry in enumerate(self.x_vector):
             row = [0.0] * len(self.x_vector)
-            row[i] = numpy.square(self.log_stds_x[i])
+            sqstd = numpy.square(self.log_stds_x[i])
+            if sqstd == 0.0:
+                row[i] = float(self.data_std[x_entry[0]])
+                self.log += 'Warning: The given standard deviation of a %s'\
+                            ' equals 0. This is not allowed due to numerical'\
+                            ' reasons. It is set to %s instead.' % (x_entry[0],
+                                                                    self.data_std[x_entry[0]])
+            else: row[i] = numpy.square(self.log_stds_x[i])
             C_x_rows.append(row)
 
         if C_x_rows == []: C_x = 0
@@ -1746,9 +1758,11 @@ class ParameterBalancing:
         '''
         # if no data is given, these variables are zero
         if self.x_star == []: self.x_star = 0
-
+       
         try: self.C_x_inv = numpy.linalg.inv(self.C_x)
-        except: self.C_x_inv = 0
+        except:
+            print("C_x is not invertible\n")
+            self.C_x_inv = 0
 
         try: Q_star_trans = self.Q_star.transpose()
         except: Q_star_trans = 0
@@ -1762,6 +1776,9 @@ class ParameterBalancing:
         # for i, row in enumerate(self.C_prior):
         #     print(self.quantities_inc[i], ',', list(row))
 
+        #for i, row in enumerate(self.C_prior_inv):
+        #    print(self.quantities_inc[i], ',', list(row))
+
         # for i, elem in enumerate(self.q_prior):
         #     print(self.quantities_inc[i], ',', elem)
 
@@ -1769,16 +1786,25 @@ class ParameterBalancing:
         #    print(self.quantities[i], ',', list(row))
 
         # print(self.C_x)
-        # for i, row in enumerate(self.quantities_x):
+        #for i, row in enumerate(self.quantities_x):
         #    print(row, ',', list(self.C_x[i]))
+        #    #print(len(list(self.C_x[i])))
+        #print(len(self.C_x))
+        
+        #print(self.C_x_inv)
+        #for i, row in enumerate(self.quantities_x):
+        #    print(row, ',', list(self.C_x_inv[i]))
 
         # print(self.x_star)
-        # for i, row in enumerate(self.x_star):
+        #for i, row in enumerate(self.x_star):
         #    print(self.quantities_x[i],  ',',  row)
 
         # print(self.Q_star)
-        # for i, row in enumerate(self.Q_star):
+        #for i, row in enumerate(self.Q_star):
         #    print(self.quantities_x[i],  ',', list(row))
+
+        #for i, row in enumerate(Q_star_trans):
+        #    print(list(row))
 
         # posterior covariance matrices
         if self.pseudo_used:
@@ -1793,10 +1819,14 @@ class ParameterBalancing:
                                            numpy.dot(numpy.dot(Q_star_trans,
                                                                self.C_x_inv),
                                                      self.Q_star))
+
         self.C_xpost = numpy.dot((numpy.dot(self.Q,
                                             self.C_post)),
                                  self.Q.transpose())
+        #for i, row in enumerate(self.quantities_x):
+        #    print(row, ',', list(self.C_post[i]))
 
+        
         # for i,row in enumerate(self.C_post):
         #    print(list(row))
 
@@ -1806,7 +1836,7 @@ class ParameterBalancing:
         # posterior stds
         self.stds_log_inc = self.extract_cpost_inc()
         self.stds_log_post = self.extract_cpost()
-
+        
         # posterior mean vector
         if self.pseudo_used:
             self.q_post = numpy.dot(self.C_post,
@@ -1824,6 +1854,7 @@ class ParameterBalancing:
                                      numpy.dot(self.C_prior_inv,
                                                self.q_prior)))
         self.x_post = numpy.dot(self.Q, self.q_post)
+
         # print(self.x_post)
 
         # for elem in self.q_post:
@@ -1863,8 +1894,7 @@ class ParameterBalancing:
             means = posterior_sample
             try: self.new_header = header.split('\t')
             except: self.new_header = header
-        else:
-            means = self.mean_post
+        else: means = self.mean_post
 
         if self.optimized: means = self.mean_post_opt
         else: means = self.mean_post
