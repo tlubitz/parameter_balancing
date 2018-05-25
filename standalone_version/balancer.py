@@ -116,12 +116,26 @@ class ParameterBalancing:
         modifiers = []
 
         for reaction in self.model.getListOfReactions():
+            reactants = 0
+            products = 0
             for species in reaction.getListOfReactants():
                 involved_species.append(species.getId())
+                reactants += 1
             for species in reaction.getListOfProducts():
                 involved_species.append(species.getId())
+                products += 1
             for species in reaction.getListOfModifiers():
                 modifiers.append(species.getSpecies())
+            if reactants == 0:
+                self.log += ('Warning: The reaction %s has no reactants. '
+                             'Parameter balancing is not appropriate for thes'\
+                             'e kinds of reactions. Please choose another kin'\
+                             'etic for this reaction.\n' % reaction.getId())
+            if products == 0:
+                self.log += ('Warning: The reaction %s has no products. '
+                             'Parameter balancing is not appropriate for thes'\
+                             'e kinds of reactions. Please choose another kin'\
+                             'etic for this reaction.\n' % reaction.getId())
 
         for m_id in modifiers:
             if m_id not in involved_species:
@@ -1761,7 +1775,7 @@ class ParameterBalancing:
        
         try: self.C_x_inv = numpy.linalg.inv(self.C_x)
         except:
-            print("C_x is not invertible\n")
+            #print("C_x is not invertible\n")
             self.C_x_inv = 0
 
         try: Q_star_trans = self.Q_star.transpose()
