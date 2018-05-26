@@ -116,22 +116,18 @@ class ParameterBalancing:
         modifiers = []
 
         for reaction in self.model.getListOfReactions():
-            reactants = 0
-            products = 0
             for species in reaction.getListOfReactants():
                 involved_species.append(species.getId())
-                reactants += 1
             for species in reaction.getListOfProducts():
                 involved_species.append(species.getId())
-                products += 1
             for species in reaction.getListOfModifiers():
                 modifiers.append(species.getSpecies())
-            if reactants == 0:
+            if reaction.getNumReactants() == 0:
                 self.log += ('Warning: The reaction %s has no reactants. '
                              'Parameter balancing is not appropriate for thes'\
                              'e kinds of reactions. Please choose another kin'\
                              'etic for this reaction.\n' % reaction.getId())
-            if products == 0:
+            if reaction.getNumProducts() == 0:
                 self.log += ('Warning: The reaction %s has no products. '
                              'Parameter balancing is not appropriate for thes'\
                              'e kinds of reactions. Please choose another kin'\
@@ -143,7 +139,7 @@ class ParameterBalancing:
                              ' as either reactant or product. Please check if'
                              ' this modifier is required to be an SBML specie'
                              's. E.g., enzymes should not be SMBL '
-                             'species.' % (m_id))
+                             'species.\n' % (m_id))
 
     def gain_model_information(self):
         '''
@@ -1535,8 +1531,8 @@ class ParameterBalancing:
 
                             # build Z, the values for the Michaelis constant coefficients
                             elif matrix == 'Z':
-                                if matrix_type[0] < 0: factor = -1.0
-                                else: factor = 1.0
+                                if matrix_type[0] < 0: factor = 1.0
+                                else: factor = -1.0
                                 for t, michaelis_tuple in enumerate(self.model_michaelis):
                                     t2 = t + len(self.species_list) + len(self.reaction_list)
                                     for r, reactant in enumerate(reactants):
