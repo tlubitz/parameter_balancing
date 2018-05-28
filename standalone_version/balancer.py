@@ -336,6 +336,13 @@ class ParameterBalancing:
             for product in reaction.getListOfProducts():
                 products.append(product.getSpecies())
                 this_stoich = product.getStoichiometry()
+                if this_stoich != 2.0 and this_stoich != 1.0:
+                    self.log += 'The stoichiometric coefficient %s of reactan'\
+                                't %s in reaction %s was set '\
+                                'to 1.\n' % (this_stoich,
+                                             reactant.getSpecies(),
+                                             reaction.getId())
+                    this_stoich = 1
                 stoich.append(this_stoich)
             self.reactions_products[reaction.getId()] = (products, stoich)
 

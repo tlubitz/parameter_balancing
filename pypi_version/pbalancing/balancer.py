@@ -336,6 +336,13 @@ class ParameterBalancing:
             for product in reaction.getListOfProducts():
                 products.append(product.getSpecies())
                 this_stoich = product.getStoichiometry()
+                if this_stoich != 2.0 and this_stoich != 1.0:
+                    self.log += 'The stoichiometric coefficient %s of reactan'\
+                                't %s in reaction %s was set '\
+                                'to 1.\n' % (this_stoich,
+                                             reactant.getSpecies(),
+                                             reaction.getId())
+                    this_stoich = 1
                 stoich.append(this_stoich)
             self.reactions_products[reaction.getId()] = (products, stoich)
 
@@ -608,12 +615,18 @@ class ParameterBalancing:
                 value_dict = self.mean_row(name, quantity)
         elif self.available_parameters.count([quantity, name]) > 1:
             value_dict = self.mean_row(name, quantity)
-
+            
         # after the averaging, the row is built
         used_rows = []
         new_row = [''] * len(self.new_header)
 
+        ids = []
         for row in self.rows:
+            p = [row[self.sbtab.columns_dict['!QuantityType']],
+                 row[self.sbtab.columns_dict['!Reaction:SBML:reaction:id']],
+                 row[self.sbtab.columns_dict['!Compound:SBML:species:id']]]
+            if p in ids: continue
+            
             for i in range(0, amount):
                 further = False
                 if quantity in self.reaction_species_parameters:
@@ -666,6 +679,7 @@ class ParameterBalancing:
                         used_rows.append(row)
                         if len(multi_rows) == amount:
                             return multi_rows
+            ids.append(p)
 
         return new_row
 
@@ -706,6 +720,7 @@ class ParameterBalancing:
                                                       False)[0])[0]
             else: median = mean
             value_dict = dict([('Mean', mean), ('Std', std), ('Mode', median)])
+            return value_dict
         else:
             # arithmetic mean for all additive/thermodynamic quantities
             denominator = 0
@@ -1746,8 +1761,8 @@ class ParameterBalancing:
                 row[i] = float(self.data_std[x_entry[0]])
                 self.log += 'Warning: The given standard deviation of a %s'\
                             ' equals 0. This is not allowed due to numerical'\
-                            ' reasons. It is set to %s instead.' % (x_entry[0],
-                                                                    self.data_std[x_entry[0]])
+                            ' reasons. It is set to %s instead.\n' % (x_entry[0],
+                                                                      self.data_std[x_entry[0]])
             else: row[i] = numpy.square(self.log_stds_x[i])
             C_x_rows.append(row)
 
