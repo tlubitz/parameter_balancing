@@ -1967,7 +1967,8 @@ class ParameterBalancing:
                 row[8] = str(float(format(float(self.stds_post[row_number]), '.4f')))
                 if row not in finished_rows:
                     finished_rows.append(row)
-                first = self.check_extreme_values(row, first)
+                first = self.check_extreme_values(row, first,
+                                                  numpy.exp(float(self.x_post[row_number])))
 
         if not first: self.log += '\n'
         if self.hilo != []:
@@ -1977,28 +1978,28 @@ class ParameterBalancing:
 
         return finished_rows
 
-    def check_extreme_values(self, row, first):
+    def check_extreme_values(self, row, first, val):
         '''
         this function checks whether the given parameter (in form of its
         corresponding SBtab row) has a significantly high or low value.
         '''
         if self.pmin[row[0]] is None and self.pmax[row[0]] is None:
             return first
-        elif float(row[5]) < self.pmin[row[0]]:
+        elif float(val) < self.pmin[row[0]]:
             if first:
                 self.log += '\nWarnings about unusually high or low values \n'
                 first = False
             self.hilo.append('The value for the %s of %s, %s lies under the g'\
                              'iven lower bound: %s. Please check the accuracy'\
                              ' and refer to the FAQ for help.'\
-                             '\n' % (row[0], row[1], row[2], row[5]))
-        elif float(row[5]) > self.pmax[row[0]]:
+                             '\n' % (row[0], row[1], row[2], val))
+        elif float(val) > self.pmax[row[0]]:
             if first:
                 self.log += '### Warnings about unusually high or low values\n'
                 first = False
             self.hilo.append('The value for the %s of %s, %s lies over the gi'\
                              'ven upper bound: %s. Please check the accuracy '\
                              'and refer to the FAQ for help.'\
-                             '\n' % (row[0], row[1], row[2], row[5]))
+                             '\n' % (row[0], row[1], row[2], val))
 
         return first

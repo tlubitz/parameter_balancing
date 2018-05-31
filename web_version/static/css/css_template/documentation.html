@@ -72,25 +72,6 @@
 	    <div class="col-sm-2"></div>
 	    <div class="col-sm-8">
 	      <header>
-		<h3>Clearing the session</h3>
-	      </header>
-              <p align="left">
-		The variables of the browser session can be reset by clicking the 'Clear Session' button on bottom
-		of the online balancing page. This can be handy, if e.g. large files have caused proxy errors and
-		the tool shows random behaviour.
-	      </p>
-	    </div>
-	  </div>
-	  <div class="col-sm-2"></div>
-	</div>
-      </article>
-
-      <article>
-	<div class="container-fluid bg-3 text-center">
-	  <div class="row">
-	    <div class="col-sm-2"></div>
-	    <div class="col-sm-8">
-	      <header>
 		<h3>Overview</h3>
 	      </header>
 	      <p align="left">
@@ -142,14 +123,15 @@
 		  !SBML:species:id.  The IDs in these columns must match the IDs chosen in the SBML file.
 		</p>
 	      <p align="left">
-		<strong>References and citation</strong>
-		  Parameter balancing has been developed at Humboldt Universität Berlin and Charité - Universitätsmedizin Berlin. The concept of parameter
-		  balancing is described in <a href="http://pubs.acs.org/doi/abs/10.1021/jp108764b">The Journal of Physical Chemistry B</a>.
-		  Please cite this publication if you use parameter balancing for your research. <br>
-		  Parameter balancing is applied as part of larger workflows in Stanford et al. (<a href="http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0079195">Plos One</a>) and Noor et al. (<a href="http://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1005167">Plos Computational Biology</a>). <br>
+		<strong>General information</strong>
+		Parameter balancing has been developed at Humboldt Universität Berlin, Charité - Universitätsmedizin Berlin, and at INRA (Institut Nationale de la Recherche Agronomique) Jouy-en_Josas. 		  Parameter balancing is applied as part of larger workflows in Stanford et al. (<a href="http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0079195">Plos One</a>) and Noor et al. (<a href="http://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1005167">Plos Computational Biology</a>). <br>
 		  Additional information on Systems Biology applications can be found in "Systems Biology: A textbook" by Edda Klipp, Wolfram Liebermeister, Christoph Wierling, and Axel Kowald.
-		</p>
-	      </ul>
+	      </p>
+	      <p align="left">
+		<strong>Citing the parameter balancing method</strong>
+		The concept of parameter balancing is described in <a href="http://pubs.acs.org/doi/abs/10.1021/jp108764b">The Journal of Physical Chemistry B</a>.
+		Please cite this publication if you use parameter balancing for your research. <br>
+	      </p>
 	    </div>
 	    <div class="col-sm-2"></div>
 	  </div>
@@ -219,33 +201,52 @@
 	<div class="container-fluid bg-3 text-center">
 	  <div class="row">
 	    <div class="col-sm-2"></div>
+	    <div class="col-sm-8">
+	      <header>
+		<h3>Clearing the session</h3>
+	      </header>
+              <p align="left">
+		The variables of the browser session can be reset by clicking the 'Clear Session' button on bottom
+		of the online balancing page. This can be handy, if e.g. large files have caused proxy errors and
+		the tool shows random behaviour.
+	      </p>
+	    </div>
+	  </div>
+	  <div class="col-sm-2"></div>
+	</div>
+      </article>
+      
+      <article>
+	<div class="container-fluid bg-3 text-center">
+	  <div class="row">
+	    <div class="col-sm-2"></div>
 	    <div class="col-sm-8" align="left">
 	      <header>
 		<h3 align="center">File formats</h3>
 	      </header>
-	      <p>
+	      <ul align="left">
+	      <li>
 		The model can be provided in <a href="http://www.sbml.org/">SBML</a> format.
-	      </p>
-	      <p>Input files for parameter balancing must be prepared in the SBtab format.
+	      </li>
+	      <li>Input files for parameter balancing must be prepared in the SBtab format.
 		(<a href="/pb/static/css/css_template/download.html">example files</a>).
-	      </p>
-	      <div class="list-group">
-		<div class="list-group-item-text">
+	      </li>
+	      <li>
 		  Data tables must be provided as tab-seperated text (.tsv) in a specific file format. The columns
 		  !QuantityType, !SBML:reaction:id, !SBML:species:id, and !Mean (data value, arithmetic mean) are obligatory,
 		  while the columns !Std (data value, standard error), !Unit, and other columns are optional.
 		  Example files can be found <a href="/pb/static/css/css_template/download.html">here</a>.
-		</div>
-		<div class="list-group-item-text">
+	      </li>
+	      <li>
 		  Entries in the data table have to refer to species and reactions in the SBML file via the SBML
 		  element identifiers ("id") given in the columns !SBML:species:id and !SBML:reaction:id.
-		</div>
-		<div class="list-group-item-text">
+	      </li>
+	      <li>
 		  Please make sure that the modifiers (inhibitors or stimulators) in your model are identified
 		  clearly by the corresponding SBO terms (inhibitor:20, stimulator:459). Otherwise, the software
 		  will not recognize them, and allosteric regulations will be ignored.
-		</div>
-	      </div>
+	      </li>
+	      </ul>
 	    </div>
 	    <div class="col-sm-2"></div>
 	  </div>
@@ -279,9 +280,15 @@
 		    <th>PhysicalType     </th>
 		    <th>Dependence</th>
 		    <th>PriorMedian</th>
-		    <th>PriorStd/GeometricStd</th>
+		    <th>PriorStd</th>
+		    <th>PriorGeometricStd</th>
+		    <th>LowerBound</th>
+		    <th>UpperBound</th>
+		    <th>DataStd</th>
+		    <th>DataGeometricStd</th>
 		    <th>SBML element    </th>
-		    <th>Abbreviation </th>
+		    <th>UseAsPriorInformation</th>
+		    <th>MatrixInfo</th>
 		  </tr>
 		</thead>
 		<tbody>
@@ -293,10 +300,16 @@
 		    <td>Additive</td>
 		    <td>Thermodynamic</td>
 		    <td>Basic     </td>
-		    <td> -880 kJ/mol         </td>
-		    <td> 1500 kJ/mol            </td>
+		    <td> 0 kJ/mol         </td>
+		    <td> 500 kJ/mol            </td>
+		    <td></td>
+		    <td>-500</td>
+		    <td>500</td>
+		    <td>10</td>
+		    <td></td>
 		    <td>Global parameter</td>
-		    <td>scp          </td>
+		    <td>1</td>
+		    <td>[I_species, 0, 0, 0, 0, 0, 0, 0]</td>
 		  </tr>
 		  <tr>
 		    <td>Catalytic rate constant geometric mean</td>
@@ -306,10 +319,16 @@
 		    <td>Multiplicative</td>
 		    <td>Kinetic      </td>
 		    <td>Basic     </td>
-		    <td> 10 s<sup>-1</sup>   </td>
-		    <td> 100       </td>
+		    <td> 10              </td>
+		    <td>        </td>
+		    <td>100</td>
+		    <td>0.00000001</td>
+		    <td>10000</td>
+		    <td>10</td>
+		    <td>1.2</td>
 		    <td>Local parameter </td>
-		    <td>kcrg         </td>
+		    <td>1</td>
+		    <td>[0, I_reaction, 0, 0, 0, 0, 0, 0]</td>
 		  </tr>
 		  <tr>
 		    <td>Michaelis constant</td>
@@ -319,10 +338,16 @@
 		    <td>Multiplicative</td>
 		    <td>Kinetic      </td>
 		    <td>Basic     </td>
-		    <td> 0.1 mM              </td>
-		    <td> 10       </td>
+		    <td> 0.1              </td>
+		    <td>        </td>
+		    <td>10</td>
+		    <td>0.0000001</td>
+		    <td>1000</td>
+		    <td>1</td>
+		    <td>1.2</td>
 		    <td>Local parameter </td>
-		    <td>kmc          </td>
+		    <td>1</td>
+		    <td>[0, 0, I_KM, 0, 0, 0, 0, 0]</td>
 		  </tr>
 		  <tr>
 		    <td>Activation constant</td>
@@ -332,10 +357,16 @@
 		    <td>Multiplicative</td>
 		    <td>Kinetic      </td>
 		    <td>Basic     </td>
-		    <td> 0.1 mM              </td>
-		    <td> 10       </td>
+		    <td> 0.1               </td>
+		    <td>        </td>
+		    <td>10</td>
+		    <td>0.0001</td>
+		    <td>100</td>
+		    <td>1</td>
+		    <td>1.2</td>
 		    <td>Local parameter </td>
-		    <td>kac          </td>
+		    <td>1</td>
+		    <td>[0, 0, 0, I_KA, 0, 0, 0, 0]</td>
 		  </tr>
 		  <tr>
 		    <td>Inhibitory constant</td>
@@ -345,10 +376,16 @@
 		    <td>Multiplicative</td>
 		    <td>Kinetic      </td>
 		    <td>Basic     </td>
-		    <td> 0.1 mM              </td>
-		    <td> 10       </td>
+		    <td> 0.1               </td>
+		    <td>        </td>
+		    <td>10</td>
+		    <td>0.0001</td>
+		    <td>100</td>
+		    <td>1</td>
+		    <td>1.2</td>
 		    <td>Local parameter </td>
-		    <td>kic          </td>
+		    <td>1</td>
+		    <td>[0, 0, 0, 0, I_KI, 0, 0, 0]</td>
 		  </tr>
 		  <tr>
 		    <td>Concentration</td>
@@ -358,10 +395,16 @@
 		    <td>Multiplicative</td>
 		    <td>Dynamic      </td>
 		    <td>Basic     </td>
-		    <td> 0.1 mM              </td>
-		    <td> 10       </td>
+		    <td> 0.1               </td>
+		    <td>        </td>
+		    <td>10</td>
+		    <td>0.0000001</td>
+		    <td>1000</td>
+		    <td>1</td>
+		    <td>1.2</td>
 		    <td>Species (conc.) </td>
-		    <td>             </td>
+		    <td>1</td>
+		    <td>[0, 0, 0, 0, 0, I_species, 0, 0]</td>
 		  </tr>
 		  <tr>
 		    <td>Concentration of enzyme</td>
@@ -371,24 +414,74 @@
 		    <td>Multiplicative</td>
 		    <td>Dynamic      </td>
 		    <td>Basic     </td>
-		    <td> 0.001 mM           </td>
-		    <td> 100       </td>
+		    <td> 0.001            </td>
+		    <td>        </td>
+		    <td>100</td>
+		    <td>0.0000001</td>
+		    <td>0.5</td>
+		    <td>0.05</td>
+		    <td>1.2</td>
 		    <td>Local parameter </td>
-		    <td>eco          </td>
+		    <td>1</td>
+		    <td>[[-1/RT * Nt], 0, 0, 0, 0, 0, 0, 0]</td>
+		  </tr>	
+		  <tr>
+		    <td>pH</td>
+		    <td>pH</td>
+		    <td>dimensionless</td>
+		    <td>None</td>
+		    <td>Additive</td>
+		    <td>Dynamic</td>
+		    <td>Basic</td>
+		    <td>7</td>
+		    <td>1</td>
+		    <td></td>
+		    <td>0</td>
+		    <td>14</td>
+		    <td>1</td>
+		    <td></td>
+		    <td>Global parameter</td>
+		    <td>1</td>
+		    <td>[0, 0, 0, 0, 0, 0, 0, 1]</td>
+		  </tr>
+		  <tr>
+		    <td>Standard Gibbs energy of reaction</td>
+		    <td>dmuO</td>
+		    <td>kJ/mol</td>
+		    <td>Reaction</td>
+		    <td>Additive</td>
+		    <td>Thermodynamic</td>
+		    <td>Derived</td>
+		    <td>0</td>
+		    <td>500</td>
+		    <td></td>
+		    <td>-1000</td>
+		    <td>1000</td>
+		    <td>10</td>
+		    <td></td>
+		    <td>Global parameter</td>
+		    <td>0</td>
+		    <td>[Nt, 0, 0, 0, 0, 0, 0, 0]</td>
 		  </tr>
 		  <tr>
 		    <td>Equilibrium constant</td>
-		    <td> k<sup>eq</sup>   </td>
+		    <td> k<sup>eq</sup> </td>
 		    <td>dimensionless</td>
 		    <td>Reaction</td>
 		    <td>Multiplicative</td>
-		    <td>Thermodynamic</td>
+		    <td>Thermodynamic      </td>
 		    <td>Derived   </td>
-		    <td> 1                   </td>
-		    <td> 100       </td>
+		    <td> 1   </td>
+		    <td>       </td>
+		    <td>100</td>
+		    <td>0.00000000001</td>
+		    <td>10000000000</td>
+		    <td>10</td>
+		    <td>1.2</td>
 		    <td>Local parameter </td>
-		    <td>keq          </td>
-		  </tr>	
+		    <td>1</td>
+		    <td>[[-1/RT * Nt], 0, 0, 0, 0, 0, 0, 0]</td>
+		  </tr>
 		  <tr>
 		    <td>Substrate catalytic rate constant</td>
 		    <td> k<sup>cat+</sup> </td>
@@ -397,10 +490,16 @@
 		    <td>Multiplicative</td>
 		    <td>Kinetic      </td>
 		    <td>Derived   </td>
-		    <td> 10 s<sup>-1</sup>   </td>
-		    <td> 100       </td>
+		    <td> 10    </td>
+		    <td>        </td>
+		    <td>100</td>
+		    <td>0.01</td>
+		    <td>1000000000</td>
+		    <td>10</td>
+		    <td>1.2</td>
 		    <td>Local parameter </td>
-		    <td>kcrf         </td>
+		    <td>1</td>
+		    <td>[[-0.5/RT * Nt], I_reaction, [-0.5 * Nkm], 0, 0, 0, 0, 0]</td>
 		  </tr>
 		  <tr>
 		    <td>Product catalytic rate constant</td>
@@ -410,10 +509,16 @@
 		    <td>Multiplicative</td>
 		    <td>Kinetic      </td>
 		    <td>Derived   </td>
-		    <td> 10 s<sup>-1</sup>   </td>
-		    <td> 100       </td>
+		    <td> 10    </td>
+		    <td>        </td>
+		    <td>100</td>
+		    <td>0.00000000001</td>
+		    <td>1000000000</td>
+		    <td>10</td>
+		    <td>1.2</td>
 		    <td>Local parameter </td>
-		    <td>kcrr         </td>
+		    <td>1</td>
+		    <td>[[0.5/RT * Nt], I_reaction, [0.5 * Nkm], 0, 0, 0, 0, 0]</td>
 		  </tr>
 		  <tr>
 		    <td>Chemical potential</td>
@@ -423,10 +528,16 @@
 		    <td>Additive</td>
 		    <td>Dynamic      </td>
 		    <td>Derived   </td>
-		    <td> -880  kJ/mol        </td>
-		    <td> 1500            </td>
+		    <td> 0        </td>
+		    <td> 500            </td>
+		    <td></td>
+		    <td>-500</td>
+		    <td>500</td>
+		    <td>10</td>
+		    <td></td>
 		    <td>                </td>
-		    <td>             </td>
+		    <td>0</td>
+		    <td>[I_species, 0, 0, 0, 0, [RT * I_species], 0, 0]</td>
 		  </tr>
 		  <tr>
 		    <td>Reaction affinity</td>
@@ -436,10 +547,16 @@
 		    <td>Additive</td>
 		    <td>Dynamic      </td>
 		    <td>Derived   </td>
-		    <td> 0.0   kJ/mol        </td>
-		    <td> 10.0 kJ/mol           </td>
+		    <td> 0        </td>
+		    <td> 500           </td>
+		    <td></td>
+		    <td>-100</td>
+		    <td>100</td>
+		    <td>10</td>
+		    <td></td>
 		    <td>                </td>
-		    <td>             </td>
+		    <td>0</td>
+		    <td>[[-1 * Nt], 0, 0, 0, 0, [-RT * Nt], 0, 0]</td>
 		  </tr>
 		  <tr>
 		    <td>Forward maximal velocity</td>
@@ -449,10 +566,16 @@
 		    <td>Multiplicative</td>
 		    <td>Dynamic      </td>
 		    <td>Derived   </td>
-		    <td> 0.001 mM/s          </td>
-		    <td> 100       </td>
+		    <td> 0.01          </td>
+		    <td>       </td>
+		    <td>100</td>
+		    <td>0.000000001</td>
+		    <td>10000000</td>
+		    <td>0.1</td>
+		    <td>2</td>
 		    <td>Local parameter </td>
-		    <td>vmaf         </td>
+		    <td>0</td>
+		    <td>[[-0.5/RT * Nt], I_reaction, [-0.5 * Nkm], 0, 0, 0, I_reaction, 0]</td>
 		  </tr>
 		  <tr>
 		    <td>Reverse maximal velocity</td>
@@ -462,11 +585,132 @@
 		    <td>Multiplicative</td>
 		    <td>Dynamic      </td>
 		    <td>Derived   </td>
-		    <td> 0.001 mM/s          </td>
-		    <td> 100       </td>
+		    <td> 0.01           </td>
+		    <td>       </td>
+		    <td>100</td>
+		    <td>0.000000001</td>
+		    <td>10000000</td>
+		    <td>0.1</td>
+		    <td>2</td>
 		    <td>Local parameter </td>
-		    <td>vmar         </td>
+		    <td>0</td>
+		    <td>[[0.5/RT * Nt], I_reaction, [0.5 * Nkm], 0, 0, 0, I_reaction, 0]</td>
 		  </tr>
+		  <tr>
+		    <td>Forward mass action term</td>
+		    <td>thetaf</td>
+		    <td>1/s</td>
+		    <td>Reaction</td>
+		    <td>Multiplicative</td>
+		    <td>Dynamic</td>
+		    <td>Derived</td>
+		    <td>1</td>
+		    <td></td>
+		    <td>1000</td>
+		    <td>0.000000001</td>
+		    <td>100000000</td>
+		    <td>1</td>
+		    <td>2</td>
+		    <td></td>
+		    <td>0</td>
+		    <td>[[-1/(2*RT) * h * Nt], I_reaction, - 1/2 * h * abs(Nkm), 0, 0, h * Nft, 0, 0]</td>
+		  </tr>
+		  <tr>
+		    <td>Reverse mass action term</td>
+		    <td>thetar</td>
+		    <td>1/s</td>
+		    <td>Reaction</td>
+		    <td>Multiplicative</td>
+		    <td>Dynamic</td>
+		    <td>Derived</td>
+		    <td>1</td>
+		    <td></td>
+		    <td>1000</td>
+		    <td>0.000000001</td>
+		    <td>100000000</td>
+		    <td>1</td>
+		    <td>2</td>
+		    <td></td>
+		    <td>0</td>
+		    <td>[[ 1/(2*RT) * h * Nt], I_reaction, - 1/2 * h * abs(Nkm), 0, 0, h * Nrt, 0, 0]</td>
+		  </tr>
+		  <tr>
+		    <td>Forward enzyme mass action term</td>
+		    <td>tauf</td>
+		    <td>mM/s</td>
+		    <td>Reaction</td>
+		    <td>Multiplicative</td>
+		    <td>Dynamic</td>
+		    <td>Derived</td>
+		    <td>1</td>
+		    <td></td>
+		    <td>1000</td>
+		    <td>0.000000001</td>
+		    <td>100000000</td>
+		    <td>1</td>
+		    <td>2</td>
+		    <td></td>
+		    <td>0</td>
+		    <td>[[-1/(2*RT) * h * Nt], I_reaction, - 1/2 * h * abs(Nkm), 0, 0, h * Nft, I_reaction, 0]</td>
+		  </tr>
+		  <tr>
+		    <td>Reverse enzyme mass action term</td>
+		    <td>taur</td>
+		    <td>mM/s</td>
+		    <td>Reaction</td>
+		    <td>Multiplicative</td>
+		    <td>Dynamic</td>
+		    <td>Derived</td>
+		    <td>1</td>
+		    <td></td>
+		    <td>1000</td>
+		    <td>0.000000001</td>
+		    <td>100000000</td>
+		    <td>1</td>
+		    <td>2</td>
+		    <td></td>
+		    <td>0</td>
+		    <td>[[ 1/(2*RT) * h * Nt], I_reaction, - 1/2 * h * abs(Nkm), 0, 0, h * Nrt, I_reaction, 0]</td>
+		  </tr>
+		  <tr>
+		    <td>Michaelis constant product</td>
+		    <td>KMprod</td>
+		    <td>mM</td>
+		    <td>Reaction</td>
+		    <td>Multiplicative</td>
+		    <td>Kinetic</td>
+		    <td>Derived</td>
+		    <td>1</td>
+		    <td>1000</td>
+		    <td></td>
+		    <td>0.001</td>
+		    <td>1000</td>
+		    <td>1</td>
+		    <td>2</td>
+		    <td>Local parameter</td>
+		    <td>0</td>
+		    <td>[0, 0, Nkm, 0, 0, 0, 0, 0]</td>
+		  </tr>
+		  <tr>
+		    <td>Catalytic constant ratio</td>
+		    <td>Kcatratio</td>
+		    <td>dimensionless</td>
+		    <td>Reaction</td>
+		    <td>Multiplicative</td>
+		    <td>Kinetic</td>
+		    <td>Derived</td>
+		    <td>1</td>
+		    <td></td>
+		    <td>10</td>
+		    <td>0.00000000001</td>
+		    <td>10000000000</td>
+		    <td>1</td>
+		    <td>2</td>
+		    <td>Local parameter</td>
+		    <td>0</td>
+		    <td>[-1/RT * Nt], I_reaction, [-1 * Nkm], 0, 0, 0, 0, 0]</td>
+		  </tr>
+
 		</tbody>
 	      </table>
 	    </div>
@@ -481,7 +725,7 @@
 	    <div class="col-sm-2"></div>
 	    <div class="col-sm-8" align="left">
 	      <header>
-		<h3 align="center">Remarks</h3>
+		<h4 align="center">Remarks</h4>
 	      </header>
 	      <ul>
 		<li>Note that the thermodynamic quantities refer to biochemical
@@ -525,10 +769,10 @@
 		  constants, and maximal velocities, make sure that the definitions match between model and data set.
 		</li>
 		<li>
-		  Gibbs free energies can be used as proxies for the standard chemical potentials. However, make sure
-		  not to mix values from different data sets. It is possible that they will follow different conventions
-		  (setting the GFE for some large molecules to zero values for convenience) and will therefore be
-		  incompatible.
+		  Chemical potentials and standard chemical potentials are estimated during parameter balancing (e.g.,
+		  based on equilibrium constants and metabolite concentrations in the data file), but they cannot be
+		  provided directly as data. The purpose of this restriction is to avoid consistency problems due to
+		  different scaling conventions (e.g., the choice of offset values in Gibbs free energies of formation)
 		</li>
 	      </ul>
 	    </div>
@@ -696,11 +940,14 @@
 		  that can typically lead to problems:
 		  <ul>
 		    <li><b>Large models</b> Large networks lead to large parameter 
-		    sets, which increase
-		    the numerical effort of parameter balancing. One possibility to 
-		    avoid this problem is to use fixed, precalculated equilibrium
-		    constants. Then, the kinetic constants of each reaction can be 
-		    balanced separately, which reduces the effort.</li>
+		      sets, which increase
+		      the numerical effort of parameter balancing. One possibility to 
+		      avoid this problem is to use fixed, precalculated equilibrium
+		      constants. Then, the kinetic constants of each reaction can be 
+		      balanced separately, which reduces the effort.
+		      In our code for parameter balancing, there is a restriction on
+		      model size to avoid numerical problems.
+		    </li>
 		    <li><b>Biomass reaction or polymerisation reactions</b> Many 
 		    metabolic models (especially, models used in flux balance analysis)
 		    contain a "biomass" reaction that involves a large number of 
@@ -742,8 +989,37 @@
 		      parameters. If they are provided as species, they cannot correctly be
 		      assigned as reaction modifiers and thus are ignored.
 		    </li>
+		    <li><b>Annotation of modifiers as activators or inhibitors</b>
+To recognise a reaction modifier, listed in an SBML model, as an activator or inhibitor, the parameter balancing code relies on SBO terms in the model. If these terms are missing (which is the case in many existing models), the allosteric regulator will be ignored and no activation or inhibition constant will be estimated.
+		    </li>
 		  </ul>
 		</li>
+		    <li><b>Can I sample data sets from the posterior distribution?</b>
+		      The matlab version of parameter balancing allows for sampling parameter sets. To generate a sample, a parameter set is randomly sampled from the (multi-variate Gaussian) posterior. If the sample violates constraints, it is replaced by a parameter vector that satisfies all constraints and is closest to the initially sampled vector, where "closeness" is defined by a quadratic norm based on the posterior covariance matrix. The resulting constrained samples satisfy all constraints and give an impression about the posterior uncertainties, but they do not strictly represent the posterior distribution (which is defined as the multi-variate unconstrained Gaussian posterior, constrained to the feasible region).
+		    </li>
+		    <li><b>What happens to reactions with many reactants?</b>
+		      Reactions with many reactants (e.g., biomass-producing reactions) are not properly described by modular rate laws, and parameters estimated for such reactions should at least be taken with care. We recommend to remove such reactions from the model before running parameter balancing.
+		    </li>
+		    <li><b> What happens to reactions without any substrate or without any product?</b>
+		      Reactions without any substrate or without any product are not properly described by modular rate laws, and parameters estimated for such reactions should be taken with care. We recommend to remove such reactions from the model before running parameter balancing.
+		    </li>
+		    <li><b>What happens to reactions with unusual stoichiometric coefficients?</b>
+		      Reactions with high stoichiometric coefficients are not properly described by modular rate laws; in reactions with non-integer stoichiometric coefficients, it is likely that these coefficients do not properly describe molecularities. To avoid problems in such cases, our code allows only stoichiometric coefficients of 1 and 2. All other values (non-integer or values larger than 2) are internally replaced by values of 1. This rule is likely to yield realistic balanced parameter sets; however when checking Haldane relationships with these parameters, please not that the molecularities in these Haldane relationships must represent the adjusted (and not the original) stoichiometric coefficients. In case of doubt, we recommend to remove such reactions from the model before running parameter balancing.
+		    </li>
+		    <li><b>What happens to irreversible reactions?</b>
+		      Parameter balancing is designed to assume thermodynamic correctness, which implies reversible rate laws. Some reactions (e.g., macromolecule synthesis or biomass-producing reactions) are practically irreversible. In parameter balancing, these reactions will still be treated as reversible, but will obtain very large equilibrium constants. In some cases, this may lead to numerical problems. It is recommended to remove such reactions from the model before running parameter balancing. Likewise, the rate laws inserted in the SBML model will have a reversible form.
+		    </li>
+		    <li><b>What is the purpose of pseudo values?</b>
+In parameter balancing, some types of parameters are treated as "basic" (e.g., standard chemical potentials), while others are treated as "derived" (e.g., equilibrium constants). By considering independent marginal priors for all basic parameters, we obtain an uncorrelated  prior distribution for the subset of basic parameters, and an ensuing distribution for the derived parameters. However, the variances of derived parameters in this distribution is still large. Therefore, the prior is modified by assuming "pseudo values" for derived parameters. The result is correlated prior distribution for all (basic and derived) parameter types. In this prior distribution "with pseudo values", basic and derived parameters are treated on an equal footing, resulting in realistic variances for all parameters. Please note that pseudo values are not a simple replacement for missing data values: instead, a pseudo value and a data value for the same parameter will be used at the same time.
+		    </li>
+		    <li><b>Enzymes as model species</b>
+		      The parameter balancing tool assumes that the SBML model contains all reactions and metabolites, but not the catalysing enzymes. If enzymes appear explicitly in the model as <species>, they need to be tagged as enzymes by an SBO term. Otherwise, they will be treated as metabolites. In the parameter balancing results, this may lead to redundant (and contradictory) results, defining a "concentration" of the enzyme, and a (contradictory) "concentration of enzyme" of the enzyme-catalysed reaction.
+		    </li>
+		    <li><b>How can I impose lower or upper bounds on data values?</b>
+		      For each parameter type (e.g. substrate catalytic constant), lower and upper bounds are defined in the (modifiable) pb_prior file. Lower and upper bounds for individual parameters (e.g., the substrate catalytic constant of a specific reaction in the model), lower and upper bounds can be defined in the data file. Specifically in the case of catalytic constants, lower bounds could derived from measured flux and proteomics data, and an upper bound is given by the diffusion limit.
+		    </li>
+
+		
 		<li>
 		  <b>Who can answer my other questions?</b>
 		  Please refer to the <a href="/pb/static/css/css_template/contact.html">Contact Page</a>.
