@@ -300,8 +300,8 @@
 		    <td>Additive</td>
 		    <td>Thermodynamic</td>
 		    <td>Basic     </td>
-		    <td> 0 kJ/mol         </td>
-		    <td> 500 kJ/mol            </td>
+		    <td> 0         </td>
+		    <td> 500            </td>
 		    <td></td>
 		    <td>-500</td>
 		    <td>500</td>
@@ -728,14 +728,15 @@
 		<h4 align="center">Remarks</h4>
 	      </header>
 	      <ul>
-		<li>Note that the thermodynamic quantities refer to biochemical
+		<li><strong>Transformed thermodynamic quantities </strong>
+		  Note that the thermodynamic quantities refer to biochemical
 		  reactants (e.g.ATP) rather than chemical species
 		  (e.g. ATP<sup>4-</sup>). Therefore, they
 		  represent <em>transformed</em> quantities. In Alberty's exact notation,
 		  they  would be written as K' (for k<sup>eq</sup>),  μ' (for μ), and 
 		  μ'<sup>0</sup> (for  μ<sup>0</sup>).
 		</li>  
-		<li>
+		<li><strong>Additive and multiplicative quantities </strong>
 		  In parameter balancing, all quantities representing energies (in
 		  kJ/mol) are treated in their original scale, while all other
 		  quantities are converted to logarithmic scale (column
@@ -746,7 +747,7 @@
 		  <a href="http://www.sciencedirect.com/science/article/pii/0167483894900450">Biochemical thermodynamics
 		    by R. Alberty</a>.
 		</li>
-		<li>
+		<li><strong>Basic quantities and derived quantities </strong>
 		  We further distinguish between <em>basic</em> and
 		  <em>derived</em> quantities (column "Type"). The difference is
 		  that the basis quantities can be freely chosen (e.g., as a result
@@ -756,19 +757,19 @@
 		  <em>prior distributions</em> and for the derived quantities by
 		  <em>pseudo values</em>.
 		</li>
-		<li>
+		<li><strong>Parameters in SBML </strong>
 		  When inserted into the SBML model, most quantities are inserted into
 		  kinetic rate laws as local parameters. Exceptions are concentrations
 		  (initial concentration attribute in species), standard chemical
 		  potentials (global parameters), and reaction affinities and chemical
 		  potentials, which could just be computed from other elements.
 		</li>
-		<li>
+		<li><strong>Importance of reaction orientation </strong>
 		  Some quantities depend on the specific definition of the reaction sum formula (nominal direction,
 		  appearance of small molecules like water); in particular for equilibrium constants, catalytic rate
 		  constants, and maximal velocities, make sure that the definitions match between model and data set.
 		</li>
-		<li>
+		<li><strong>Chemical potentials </strong>
 		  Chemical potentials and standard chemical potentials are estimated during parameter balancing (e.g.,
 		  based on equilibrium constants and metabolite concentrations in the data file), but they cannot be
 		  provided directly as data. The purpose of this restriction is to avoid consistency problems due to
@@ -1019,7 +1020,22 @@ In parameter balancing, some types of parameters are treated as "basic" (e.g., s
 		      For each parameter type (e.g. substrate catalytic constant), lower and upper bounds are defined in the (modifiable) pb_prior file. Lower and upper bounds for individual parameters (e.g., the substrate catalytic constant of a specific reaction in the model), lower and upper bounds can be defined in the data file. Specifically in the case of catalytic constants, lower bounds could derived from measured flux and proteomics data, and an upper bound is given by the diffusion limit.
 		    </li>
 
-		
+		<li>
+		  <b>How are the data values preprocessed? </b>
+		  When the data file is read, some checks are performed and
+		  changes are made in the following order. (i) If a zero value is given for a multiplicative quantitity, this value
+		  is ignored. (ii) If a data value is outside the allowed bound for this type of parameter, it is ignored. (iii) If
+		  a zero standard deviation is given for a value, this standard deviation is ignored. (iv) If a data value has no
+		  standard deviation, a default standard deviation (column DataStd from the prior file) is inserted. In the matlab
+		  version, it is also possible to use default geometric standard deviations (column DataGeomStd from the prior
+		  file) instead. (v) If several data values are given for the same parameter (e.g., several values for the same
+		  equilibrium constant), the arithmetic mean of these values is used as the final data value (both for additive
+		  and multiplicative quantities), and the arithmetic mean of the standard deviations is used as the final standard
+		  deviation. After this procedure, each model parameter has either no or one data value, and a data value is
+		  characterised by arithmetic mean and standard deviation). For multiplicative parameters, the arithmetic mean
+		  and standard deviation (for an assumed log-normal distribution) and then translated into the arithmetic mean
+		  and standard deviation of the logarithmic parameter values (assumed to follow a normal distribution).
+		</li>
 		<li>
 		  <b>Who can answer my other questions?</b>
 		  Please refer to the <a href="/pb/static/css/css_template/contact.html">Contact Page</a>.
