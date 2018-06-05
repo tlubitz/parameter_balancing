@@ -484,8 +484,20 @@ class ParameterBalancing:
                     if row[self.sbtab.columns_dict['!Organism']] != '':
                         continue
 
+                # irregular entries are set to empty string
+                for i, value in enumerate(row):
+                    if value == 'nan' or value == '-' or value == 'NaN':
+                        row[i] = ''
+                    elif value == 'None' or value is None:
+                        row[i] = ''
+                    
                 # exclude entries without a numeric value
                 if row[mean_column] == '':
+                    continue
+                try:
+                    float(row[mean_column])
+                except:
+                    self.log += 'The row %s holds no numeric input value.\n' % row
                     continue
 
                 # exclude multiplicative quantities with a value of 0
@@ -507,13 +519,6 @@ class ParameterBalancing:
                     if row[self.sbtab.columns_dict['!Unit']] == \
                        'molecules/cell':
                         continue
-
-                # irregular entries are set to empty string
-                for i, value in enumerate(row):
-                    if value == 'nan' or value == '-' or value == 'NaN':
-                        row[i] = ''
-                    elif value == 'None' or value is None:
-                        row[i] = ''
 
                 # exclude values that lie outside of the given boundaries;
                 # this exclusion is triggered by flag ig_bounds
@@ -1807,7 +1812,7 @@ class ParameterBalancing:
         # for i, elem in enumerate(self.q_prior):
         #     print(self.quantities_inc[i], ',', elem)
 
-        # for i, row in enumerate(self.Q):
+        #for i, row in enumerate(self.Q):
         #    print(self.quantities[i], ',', list(row))
 
         # print(self.C_x)
