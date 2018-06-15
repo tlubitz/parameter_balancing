@@ -831,15 +831,19 @@ class ParameterBalancing:
         for i, mean in enumerate(means):
             if types and types[i] in self.thermodynamics:
                 log_means.append(float(mean))
-                log_stds.append(float(stds[i]))
+                if float(stds[i]) < 0.001: log_stds.append(0.001)
+                else: log_stds.append(float(stds[i]))
             else:
                 term = numpy.log(1 + (numpy.square(float(stds[i])) / \
                                       numpy.square(float(mean))))
                 log_means.append(numpy.log(float(mean)) - 0.5 * term)
-                log_stds.append(numpy.sqrt(numpy.log(1 + \
-                               (numpy.square(float(stds[i])) / \
-                                numpy.square(float(mean))))))
 
+                std_prelim = numpy.sqrt(numpy.log(1 + \
+                                                  (numpy.square(float(stds[i])) / \
+                                                   numpy.square(float(mean)))))
+                if std_prelim < 0.001: log_stds.append(0.001)
+                else: log_stds.append(std_prelim)
+                
         if 'nan' in log_means:
             raise ParameterBalancingError('The logarithm of one of your given '\
                                           'mean values is invalid.')

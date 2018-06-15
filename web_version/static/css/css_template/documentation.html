@@ -35,10 +35,10 @@
 	<!-- simple right aligned list-->
 	<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 	  <ul class="nav navbar-nav navbar-right">
-	    <li> <a href="../../../default/balancing.html" title="Go to online balancing">Online Balancing</a></li>
-	    <li> <a href="documentation.html" title="Documentation and Manuals">Documentation</a></li>
-	    <li> <a href="download.html" title="Installation and Downloads">Download</a></li>
-	    <li> <a href="contact.html" title="Contact the balancing team">Contact</a></li>
+	    <li style="margin-bottom:8px;"> <a href="../../../default/balancing.html" title="Go to online balancing">Online Balancing</a></li>
+	    <li style="margin-bottom:8px;"> <a href="documentation.html" title="Documentation and Manuals">Documentation</a></li>
+	    <li style="margin-bottom:8px;"> <a href="download.html" title="Installation and Downloads">Download</a></li>
+	    <li style="margin-bottom:8px;"> <a href="contact.html" title="Contact the balancing team">Contact</a></li>
 	  </ul>
 	</div>
       </div>
@@ -225,23 +225,23 @@
 		<h3 align="center">File formats</h3>
 	      </header>
 	      <ul align="left">
-	      <li>
+	      <li style="margin-bottom:8px;">
 		The model can be provided in <a href="http://www.sbml.org/">SBML</a> format.
 	      </li>
-	      <li>Input files for parameter balancing must be prepared in the SBtab format.
+	      <li style="margin-bottom:8px;">Input files for parameter balancing must be prepared in the SBtab format.
 		(<a href="/pb/static/css/css_template/download.html">example files</a>).
 	      </li>
-	      <li>
+	      <li style="margin-bottom:8px;">
 		  Data tables must be provided as tab-seperated text (.tsv) in a specific file format. The columns
 		  !QuantityType, !SBML:reaction:id, !SBML:species:id, and !Mean (data value, arithmetic mean) are obligatory,
 		  while the columns !Std (data value, standard error), !Unit, and other columns are optional.
 		  Example files can be found <a href="/pb/static/css/css_template/download.html">here</a>.
 	      </li>
-	      <li>
+	      <li style="margin-bottom:8px;">
 		  Entries in the data table have to refer to species and reactions in the SBML file via the SBML
 		  element identifiers ("id") given in the columns !SBML:species:id and !SBML:reaction:id.
 	      </li>
-	      <li>
+	      <li style="margin-bottom:8px;">
 		  Please make sure that the modifiers (inhibitors or stimulators) in your model are identified
 		  clearly by the corresponding SBO terms (inhibitor:20, stimulator:459). Otherwise, the software
 		  will not recognize them, and allosteric regulations will be ignored.
@@ -728,7 +728,7 @@
 		<h4 align="center">Remarks</h4>
 	      </header>
 	      <ul>
-		<li><strong>Transformed thermodynamic quantities </strong>
+		<li style="margin-bottom:8px;"><strong>Transformed thermodynamic quantities </strong>
 		  Note that the thermodynamic quantities refer to biochemical
 		  reactants (e.g.ATP) rather than chemical species
 		  (e.g. ATP<sup>4-</sup>). Therefore, they
@@ -736,7 +736,7 @@
 		  they  would be written as K' (for k<sup>eq</sup>),  μ' (for μ), and 
 		  μ'<sup>0</sup> (for  μ<sup>0</sup>).
 		</li>  
-		<li><strong>Additive and multiplicative quantities </strong>
+		<li style="margin-bottom:8px;"><strong>Additive and multiplicative quantities </strong>
 		  In parameter balancing, all quantities representing energies (in
 		  kJ/mol) are treated in their original scale, while all other
 		  quantities are converted to logarithmic scale (column
@@ -747,7 +747,7 @@
 		  <a href="http://www.sciencedirect.com/science/article/pii/0167483894900450">Biochemical thermodynamics
 		    by R. Alberty</a>.
 		</li>
-		<li><strong>Basic quantities and derived quantities </strong>
+		<li style="margin-bottom:8px;"><strong>Basic quantities and derived quantities </strong>
 		  We further distinguish between <em>basic</em> and
 		  <em>derived</em> quantities (column "Type"). The difference is
 		  that the basis quantities can be freely chosen (e.g., as a result
@@ -757,19 +757,19 @@
 		  <em>prior distributions</em> and for the derived quantities by
 		  <em>pseudo values</em>.
 		</li>
-		<li><strong>Parameters in SBML </strong>
+		<li style="margin-bottom:8px;"><strong>Parameters in SBML </strong>
 		  When inserted into the SBML model, most quantities are inserted into
 		  kinetic rate laws as local parameters. Exceptions are concentrations
 		  (initial concentration attribute in species), standard chemical
 		  potentials (global parameters), and reaction affinities and chemical
 		  potentials, which could just be computed from other elements.
 		</li>
-		<li><strong>Importance of reaction orientation </strong>
+		<li style="margin-bottom:8px;"><strong>Importance of reaction orientation </strong>
 		  Some quantities depend on the specific definition of the reaction sum formula (nominal direction,
 		  appearance of small molecules like water); in particular for equilibrium constants, catalytic rate
 		  constants, and maximal velocities, make sure that the definitions match between model and data set.
 		</li>
-		<li><strong>Chemical potentials </strong>
+		<li style="margin-bottom:8px;"><strong>Chemical potentials </strong>
 		  Chemical potentials and standard chemical potentials are estimated during parameter balancing (e.g.,
 		  based on equilibrium constants and metabolite concentrations in the data file), but they cannot be
 		  provided directly as data. The purpose of this restriction is to avoid consistency problems due to
@@ -791,13 +791,13 @@
 		<h3 id="faq" align="center">Frequently asked questions</h3>
 	      </header>
 	      <ul align="left">
-		<li>
+		<li style="margin-bottom:8px;">
 		  <b>Where is the parameter balancing method described?</b>
 		  Parameter balancing is described in <a href="http://pubs.acs.org/doi/abs/10.1021/jp108764b">Lubitz et al. (2010)</a>.
 		  If you use parameter balancing in your work, please refer to this article. A  modelling workflow based on parameter balancing is described
 		  in <a href="http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0079195">Stanford et al. (2013)</a>.
 		</li>
-		<li>
+		<li style="margin-bottom:8px;">
 		  <b>How does parameter balancing work mathematically?</b>
 		  Parameter balancing employs Bayesian estimation to determine
 		  a consistent set of all model parameters. To use it
@@ -823,7 +823,7 @@
 		  realistic and guaranteed to satisfy the relevant
 		  constraints) are inserted into the model.
 		</li>
-		<li>
+		<li style="margin-bottom:8px;">
 		  <b>Which kinetic rate laws are assumed in parameter balancing?</b>
 		  Parameter balancing is based on <a href="http://bioinformatics.oxfordjournals.org/content/26/12/1528.abstract">modular
 		    rate laws</a>, a generalised version of the convenience kinetics. The modular rate laws include reversible mass-action
@@ -832,16 +832,16 @@
 		  rate laws into SBML models. In parameter balancing, rate laws and rate constants can be directly inserted into your model
 		  at the end of the workflow. Note that all rate laws previously present in your model will be removed.
 		</li>
-		<li>
+		<li style="margin-bottom:8px;">
 		  <b>What files do I need to prepare?</b>
 		  A valid SBML file and a corresponding data file, provided in the SBtab format.
 		</li>
-		<li>
+		<li style="margin-bottom:8px;">
 		  <b>Where can I find example files?</b>
 		  A number of example files (SBML models and SBtab data tables for parameter balancing) can be found
 		  <a href="/pb/static/css/css_template/download.html">here</a>.
 		</li>
-		<li>
+		<li style="margin-bottom:8px;">
 		  <b>What is the SBtab format?</b>
 		  SBtab tables can express various kinds of data. For the parameter balancing you need an
 		  SBtab file of the type "Quantity". You can also edit the prior distribution for the
@@ -852,43 +852,43 @@
 		  <a href="http://www.sbtab.net/">here</a>. SBtab files are provided in the .tsv-format (tab
 		  separated values). 
 		</li>
-		<li>
+		<li style="margin-bottom:8px;">
 		  <b>What does a SBtab file look like?</b>
 		  In writing SBtab files, please regard the following rules:
 		  <ol>
-		    <li>The SBtab file begins with a specification line:
+		    <li style="margin-bottom:8px;">The SBtab file begins with a specification line:
 		      "!!SBtab TableType='QuantityType' Level='1' Version '0.1'". Please do not alter
 		      this specification row, it will lead to trouble.</li>
-		    <li>The next row holds the headers of the different columns.
+		    <li style="margin-bottom:8px;">The next row holds the headers of the different columns.
 		      Each header has to be started with an exclamation mark to be recognized as a header
 		      name properly.</li>
-		    <li>There are several mandatory column headers: !QuantityType,
+		    <li style="margin-bottom:8px;">There are several mandatory column headers: !QuantityType,
 		      !SBMLReactionID, ! SBMLSpeciesID, !Mean, !Std, !Unit</li>
-		    <li>Please consider the following rules concerning the columns:
+		    <li style="margin-bottom:8px;">Please consider the following rules concerning the columns:
 		      <ul>
-			<li>!QuantityType can only hold the specific names of parameter
+			<li style="margin-bottom:8px;">!QuantityType can only hold the specific names of parameter
 			  types. You can have a look at the QuantityTypes.tsv-file in the <a href="/pb/static/css/css_template/download.html">Download area</a> to see
 			  which those are. Watch spelling!</li>
-			<li>!SBML:reaction:id and !SBML:species:id hold the identifiers of the
+			<li style="margin-bottom:8px;">!SBML:reaction:id and !SBML:species:id hold the identifiers of the
 			  corresponding reaction and species. Watch out: they HAVE TO be the same identifier
 			  names like in the SBML file that is used. Watch spelling, too. No capital switches
 			  or anything.</li>
-			<li>!Mean: this column HAS TO hold a numeric value. If you do not
+			<li style="margin-bottom:8px;">!Mean: this column HAS TO hold a numeric value. If you do not
 			  have one, you do not need this row.</li>
-			<li>!Std: the standard deviation of the mean value. This can be
+			<li style="margin-bottom:8px;">!Std: the standard deviation of the mean value. This can be
 			  left blank, if you have no std.</li>
-			<li>!Unit: please enter the unit of the mean value here.</li>
-			<li>Please note that different parameter types need either the
+			<li style="margin-bottom:8px;">!Unit: please enter the unit of the mean value here.</li>
+			<li style="margin-bottom:8px;">Please note that different parameter types need either the
 			  !SBML:reaction:id (e.g. equilibrium constant), or the !SBML:species:id (e.g. concentration),
 			  or even both (e.g. Michaelis constant). If this is not entered correctly, the value
 			  will not be taken into account. Whether you need Reaction, Species, or both you can
 			  see in the default prior table.</li>
-			<li>To support consistent style, please stick to the presented order of the columns.</li>
+			<li style="margin-bottom:8px;">To support consistent style, please stick to the presented order of the columns.</li>
 		      </ul>
 		    </li>
 		  </ol>
 		</li>
-		<li>
+		<li style="margin-bottom:8px;">
 		  <b>Where can I find kinetic and other data for parameter balancing?</b>
 		  The parameter balancing relies on a posterior distribution of the different parameter
 		  types and on a collection of kinetic data provided by the user. 
@@ -898,20 +898,20 @@
 		  Data obtained from experiments can be found in the 
 		  literature and in  web resources:
 		  <ul>
-		    <li>A large collection of kinetic data is provided by the <a href="http://www.brenda-enzymes.org/">BRENDA
+		    <li style="margin-bottom:8px;">A large collection of kinetic data is provided by the <a href="http://www.brenda-enzymes.org/">BRENDA
 			Enzyme Database</a>.</li>
-		    <li>Thermodynamic data for many reactions can be obtained from the website
+		    <li style="margin-bottom:8px;">Thermodynamic data for many reactions can be obtained from the website
 		      <a href="http://equilibrator.weizmann.ac.il/">eQuilibrator</a>. This comprises calculated equilibrium constants and
 		      standard reaction Gibbs free energies for different values of pH and ionic strength. We provide a collection of
 		      these data for parameter balancing <a href="/pb/static/files/kegg_reactions_CC_ph7.0.tsv">here</a>.</li>
 		  </ul>
 		</li>
-		<li>
+		<li style="margin-bottom:8px;">
 		  <b>What physical units are used?</b>
 		  The units are predefined in the <a href="/pb/static/css/css_template/download.html">prior table</a> and cannot be changed,
 		  unless you provide your own customised prior table.
 		</li>
-		<li>
+		<li style="margin-bottom:8px;">
 		  <b>Can I also use flux data?</b>
 		  Metabolic fluxes do not directly fit into the dependence scheme that parameter balancing uses internally to link
 		  different quantitities. Therefore, fluxes cannot be used as input data, nor can they be predicted directly.
@@ -926,21 +926,21 @@
 		  for this to work, the predefined fluxes must be thermodynamically feasible (i.e., loop-free, and realisable for the
 		  (potentially predefined) external metabolite levels.
 		</li>
-		<li>
+		<li style="margin-bottom:8px;">
 		  <b>How can I define or modify the priors on model parameters?</b>
 		  Experimental data alone will usually not suffice to determine all model parameters. To determine underdetermined
 		  parameters, and to keep parameters in realistic ranges, parameter balancing uses prior distributions and constraints
 		  for each type of parameter. These priors and constraints are defined in a data table, which can be customised by the
 		  user. The table is described <a href="/pb/static/css/css_template/download.html">here</a>.
 		</li>
-		<li>
+		<li style="margin-bottom:8px;">
 		  <b>What known caveats exist in parameter balancing?</b>
 		  Parameter balancing makes specific assumptions about the rate laws 
 		  used. In some cases, this can lead to problems, or parameter
 		  balancing may not be suitable for your modelling. Here we list points
 		  that can typically lead to problems:
 		  <ul>
-		    <li><b>Large models</b> Large networks lead to large parameter 
+		    <li style="margin-bottom:8px;"><b>Large models</b> Large networks lead to large parameter 
 		      sets, which increase
 		      the numerical effort of parameter balancing. One possibility to 
 		      avoid this problem is to use fixed, precalculated equilibrium
@@ -949,7 +949,7 @@
 		      In our code for parameter balancing, there is a restriction on
 		      model size to avoid numerical problems.
 		    </li>
-		    <li><b>Biomass reaction or polymerisation reactions</b> Many 
+		    <li style="margin-bottom:8px;"><b>Biomass reaction or polymerisation reactions</b> Many 
 		    metabolic models (especially, models used in flux balance analysis)
 		    contain a "biomass" reaction that involves a large number of 
 		    compounds with largely varying stoichiometric coefficients.
@@ -962,10 +962,10 @@
 		    and insert a more realistic kinetics instead (see, for instance, 
 		    the rate laws proposed in
 		    <a href="http://www.sciencedirect.com/science/article/pii/S0014579313005267">Hofmeyr et al., (2013))</a>.</li>
-		    <li><b>Very large or small parameter values</b>Very large or small parameter values can lead to unrealistic models and
+		    <li style="margin-bottom:8px;"><b>Very large or small parameter values</b>Very large or small parameter values can lead to unrealistic models and
 		    numerical problems. Extreme values should be avoided by using proper bounds. In any case, we suggest to have a look at all
 		    balanced values and to see if they are in realistic ranges.</li>
-		    <li><b>Large uncertainties and strongly shifted mean values</b>Each
+		    <li style="margin-bottom:8px;"><b>Large uncertainties and strongly shifted mean values</b>Each
 		    balanced parameter value comes with an uncertainty.
 		    The uncertainties are described by normal distributions for the 
 		    logarithmic parameter values, so median and mean value on
@@ -978,49 +978,49 @@
 		    range - by providing more data that constraints the parameter 
 		    value, by using narrower priors or constraints, or by using "pseudo"
 		    values.</li>
-		    <li><b>What if the model cannot be simulated?</b>Problems in 
+		    <li style="margin-bottom:8px;"><b>What if the model cannot be simulated?</b>Problems in 
 		    simulating the model (e.g., using COPASI) may be caused by
 		    unrealistically high or low parameter values. If you notice such 
 		    parameter values in your model and would like to avoid them, you
 		    may use tighter priors or pseudo values to exclude extreme 
 		    parameter values.</li>
-		    <li><b>How are enzymes handled in the balancing?</b>In SBML, enzymes
+		    <li style="margin-bottom:8px;"><b>How are enzymes handled in the balancing?</b>In SBML, enzymes
 		      are sometimes treated as SBML species and sometimes as SBML parameters; this
 		      is mainly up to the modeller. In parameter balancing, enzymes need to be
 		      parameters. If they are provided as species, they cannot correctly be
 		      assigned as reaction modifiers and thus are ignored.
 		    </li>
-		    <li><b>Annotation of modifiers as activators or inhibitors</b>
+		    <li style="margin-bottom:8px;"><b>Annotation of modifiers as activators or inhibitors</b>
 To recognise a reaction modifier, listed in an SBML model, as an activator or inhibitor, the parameter balancing code relies on SBO terms in the model. If these terms are missing (which is the case in many existing models), the allosteric regulator will be ignored and no activation or inhibition constant will be estimated.
 		    </li>
 		  </ul>
 		</li>
-		    <li><b>Can I sample data sets from the posterior distribution?</b>
+		    <li style="margin-bottom:8px;"><b>Can I sample data sets from the posterior distribution?</b>
 		      The matlab version of parameter balancing allows for sampling parameter sets. To generate a sample, a parameter set is randomly sampled from the (multi-variate Gaussian) posterior. If the sample violates constraints, it is replaced by a parameter vector that satisfies all constraints and is closest to the initially sampled vector, where "closeness" is defined by a quadratic norm based on the posterior covariance matrix. The resulting constrained samples satisfy all constraints and give an impression about the posterior uncertainties, but they do not strictly represent the posterior distribution (which is defined as the multi-variate unconstrained Gaussian posterior, constrained to the feasible region).
 		    </li>
-		    <li><b>What happens to reactions with many reactants?</b>
+		    <li style="margin-bottom:8px;"><b>What happens to reactions with many reactants?</b>
 		      Reactions with many reactants (e.g., biomass-producing reactions) are not properly described by modular rate laws, and parameters estimated for such reactions should at least be taken with care. We recommend to remove such reactions from the model before running parameter balancing.
 		    </li>
-		    <li><b> What happens to reactions without any substrate or without any product?</b>
+		    <li style="margin-bottom:8px;"><b> What happens to reactions without any substrate or without any product?</b>
 		      Reactions without any substrate or without any product are not properly described by modular rate laws, and parameters estimated for such reactions should be taken with care. We recommend to remove such reactions from the model before running parameter balancing.
 		    </li>
-		    <li><b>What happens to reactions with unusual stoichiometric coefficients?</b>
+		    <li style="margin-bottom:8px;"><b>What happens to reactions with unusual stoichiometric coefficients?</b>
 		      Reactions with high stoichiometric coefficients are not properly described by modular rate laws; in reactions with non-integer stoichiometric coefficients, it is likely that these coefficients do not properly describe molecularities. To avoid problems in such cases, our code allows only stoichiometric coefficients of 1 and 2. All other values (non-integer or values larger than 2) are internally replaced by values of 1. This rule is likely to yield realistic balanced parameter sets; however when checking Haldane relationships with these parameters, please not that the molecularities in these Haldane relationships must represent the adjusted (and not the original) stoichiometric coefficients. In case of doubt, we recommend to remove such reactions from the model before running parameter balancing.
 		    </li>
-		    <li><b>What happens to irreversible reactions?</b>
+		    <li style="margin-bottom:8px;"><b>What happens to irreversible reactions?</b>
 		      Parameter balancing is designed to assume thermodynamic correctness, which implies reversible rate laws. Some reactions (e.g., macromolecule synthesis or biomass-producing reactions) are practically irreversible. In parameter balancing, these reactions will still be treated as reversible, but will obtain very large equilibrium constants. In some cases, this may lead to numerical problems. It is recommended to remove such reactions from the model before running parameter balancing. Likewise, the rate laws inserted in the SBML model will have a reversible form.
 		    </li>
-		    <li><b>What is the purpose of pseudo values?</b>
+		    <li style="margin-bottom:8px;"><b>What is the purpose of pseudo values?</b>
 In parameter balancing, some types of parameters are treated as "basic" (e.g., standard chemical potentials), while others are treated as "derived" (e.g., equilibrium constants). By considering independent marginal priors for all basic parameters, we obtain an uncorrelated  prior distribution for the subset of basic parameters, and an ensuing distribution for the derived parameters. However, the variances of derived parameters in this distribution is still large. Therefore, the prior is modified by assuming "pseudo values" for derived parameters. The result is correlated prior distribution for all (basic and derived) parameter types. In this prior distribution "with pseudo values", basic and derived parameters are treated on an equal footing, resulting in realistic variances for all parameters. Please note that pseudo values are not a simple replacement for missing data values: instead, a pseudo value and a data value for the same parameter will be used at the same time.
 		    </li>
-		    <li><b>Enzymes as model species</b>
+		    <li style="margin-bottom:8px;"><b>Enzymes as model species</b>
 		      The parameter balancing tool assumes that the SBML model contains all reactions and metabolites, but not the catalysing enzymes. If enzymes appear explicitly in the model as <species>, they need to be tagged as enzymes by an SBO term. Otherwise, they will be treated as metabolites. In the parameter balancing results, this may lead to redundant (and contradictory) results, defining a "concentration" of the enzyme, and a (contradictory) "concentration of enzyme" of the enzyme-catalysed reaction.
 		    </li>
-		    <li><b>How can I impose lower or upper bounds on data values?</b>
+		    <li style="margin-bottom:8px;"><b>How can I impose lower or upper bounds on data values?</b>
 		      For each parameter type (e.g. substrate catalytic constant), lower and upper bounds are defined in the (modifiable) pb_prior file. Lower and upper bounds for individual parameters (e.g., the substrate catalytic constant of a specific reaction in the model), lower and upper bounds can be defined in the data file. Specifically in the case of catalytic constants, lower bounds could derived from measured flux and proteomics data, and an upper bound is given by the diffusion limit.
 		    </li>
 
-		<li>
+		<li style="margin-bottom:8px;">
 		  <b>How are the data values preprocessed? </b>
 		  When the data file is read, some checks are performed and
 		  changes are made in the following order. (i) If a zero value is given for a multiplicative quantitity, this value
@@ -1036,7 +1036,7 @@ In parameter balancing, some types of parameters are treated as "basic" (e.g., s
 		  and standard deviation (for an assumed log-normal distribution) and then translated into the arithmetic mean
 		  and standard deviation of the logarithmic parameter values (assumed to follow a normal distribution).
 		</li>
-		<li>
+		<li style="margin-bottom:8px;">
 		  <b>Who can answer my other questions?</b>
 		  Please refer to the <a href="/pb/static/css/css_template/contact.html">Contact Page</a>.
 		</li>
