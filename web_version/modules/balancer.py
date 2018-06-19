@@ -586,7 +586,9 @@ class ParameterBalancing:
 
                 # if the std is missing, use default std from prior file
                 if row[std_column] == '':
-                    row[std_column] = self.data_std[row[self.sbtab.columns_dict['!QuantityType']]]
+                    try:
+                        row[std_column] = self.data_std[row[self.sbtab.columns_dict['!QuantityType']]]
+                    except: continue   # this is executed in case of unknown quantity types
 
                 consistent_rows.append(row)
 
@@ -833,6 +835,7 @@ class ParameterBalancing:
                 log_means.append(float(mean))
                 if float(stds[i]) < 0.001: log_stds.append(0.001)
                 else: log_stds.append(float(stds[i]))
+                log_stds.append(float(stds[i]))
             else:
                 term = numpy.log(1 + (numpy.square(float(stds[i])) / \
                                       numpy.square(float(mean))))
@@ -843,6 +846,7 @@ class ParameterBalancing:
                                                    numpy.square(float(mean)))))
                 if std_prelim < 0.001: log_stds.append(0.001)
                 else: log_stds.append(std_prelim)
+                #log_stds.append(std_prelim)
                 
         if 'nan' in log_means:
             raise ParameterBalancingError('The logarithm of one of your given '\
