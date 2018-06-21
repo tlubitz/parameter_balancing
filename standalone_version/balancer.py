@@ -833,7 +833,7 @@ class ParameterBalancing:
         for i, mean in enumerate(means):
             if types and types[i] in self.thermodynamics:
                 log_means.append(float(mean))
-                if float(stds[i]) < 0.001: log_stds.append(0.001)
+                if float(stds[i]) < 0.05: log_stds.append(0.05)
                 else: log_stds.append(float(stds[i]))
                 log_stds.append(float(stds[i]))
             else:
@@ -844,7 +844,7 @@ class ParameterBalancing:
                 std_prelim = numpy.sqrt(numpy.log(1 + \
                                                   (numpy.square(float(stds[i])) / \
                                                    numpy.square(float(mean)))))
-                if std_prelim < 0.001: log_stds.append(0.001)
+                if std_prelim < 0.05: log_stds.append(0.05)
                 else: log_stds.append(std_prelim)
                 #log_stds.append(std_prelim)
                 
