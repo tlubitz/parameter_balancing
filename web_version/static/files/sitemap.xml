@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
+
+
+<url>
+  <loc>https://www.parameterbalancing.net/pb/default/../static/css/css_template/main.html</loc>
+  <lastmod>2018-06-19T11:43:26+00:00</lastmod>
+  <priority>1.00</priority>
+</url>
+<url>
+  <loc>https://www.parameterbalancing.net/pb/default/balancing.html</loc>
+  <lastmod>2018-06-26T15:20:41+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.parameterbalancing.net/pb/static/css/css_template/documentation.html</loc>
+  <lastmod>2018-06-15T19:20:43+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.parameterbalancing.net/pb/static/css/css_template/download.html</loc>
+  <lastmod>2018-06-19T07:10:21+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.parameterbalancing.net/pb/static/css/css_template/contact.html</loc>
+  <lastmod>2018-06-05T15:05:24+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.parameterbalancing.net/pb/static/files/manual.pdf</loc>
+  <lastmod>2018-05-15T13:22:47+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.parameterbalancing.net/pb/static/css/css_template/main.html</loc>
+  <lastmod>2018-06-19T11:43:26+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+
+
+</urlset>
