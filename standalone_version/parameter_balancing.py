@@ -19,7 +19,7 @@ except:
     import validatorSBtab
 
 
-def parameter_balancing_wrapper(sbml, sbtab_data, sbtab_prior, sbtab_options, verbose, no_pseudo_values, output_name, pb_log):
+def parameter_balancing_wrapper(sbml, sbtab_data=None, sbtab_prior=None, sbtab_options=None, verbose=False, no_pseudo_values=False, output_name=None, pb_log=False):
     '''
     wrapper for parameter balancing.
 
@@ -376,3 +376,5 @@ def parameter_balancing_wrapper(sbml, sbtab_data, sbtab_prior, sbtab_options, ve
     if verbose:
         print('The SBML file %s has been written.' % (output_name + '.xml'))
         print('>> Goodbye.')
+
+    return (sbml_model_new, sbtab_final)
