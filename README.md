@@ -46,10 +46,9 @@ and example files can be found in parameter_balancing/standalone_version/files/e
 If you do not want to install the pip package, you can still use the commandline modules in the subdirectory parameter_balancing/standalone_version.
 The usage works as a standard call of a Python module:
 
-> python3 parameter_balancing.py model.xml
+> python3 cl_balancing.py model.xml
 
-Here, as well, you can use the optional file provision like explained above. You will be required to install several Python packages, though. A list of
-these packages can be found in parameter_balancing/requirements.txt.
+Here, as well, you can use the optional file provision like explained above. You will be required to install several Python packages, though. A list of these packages can be found in parameter_balancing/requirements.txt.
 
 4. Standalone server version
 
