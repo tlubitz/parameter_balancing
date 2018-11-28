@@ -12,14 +12,17 @@ To install parameter balancing as a Python3 package, first of all you need Pytho
 on how to do this here: https://pip.pypa.io/en/stable/installing/
 Afterwards, install parameter balancing by typing in your command line:
 
-> sudo pip3 install pbalancing
+```python
+  sudo pip3 install pbalancing
+```
 
 This will also install libsbml and tablib on your computer if these libraries are missing. You can now employ
 parameter balancing as a Python3 package by, e.g., writing a script such as
 
-> from pbalancing import parameter_balancing
-> 
-> parameter_balancing.parameter_balancing_wrapper('model.xml')
+```python
+from pbalancing import parameter_balancing
+parameter_balancing.parameter_balancing_wrapper('model.xml')
+```
 
 In this example case, 'model.xml' is the file name of an SBML model. Further optional arguments are an SBtab parameter
 file, an SBtab prior distribution file, and an SBtab configuration file. You will find examples for all these
@@ -30,13 +33,17 @@ file types in parameter_balancing/standalone_version/files/.
 To run parameter balancing as a commandline tool, the package needs to be installed as explained in (2). Then,
 it can be executed in the commandline as follows:
 
-> python3 -m pbalancing.parameter_balancing model.xml
+```python
+python3 -m pbalancing.parameter_balancing model.xml
+```
 
 where model.xml corresponds to the path of your SBML model. It is also possible to provide further input files, such as
 an SBtab parameter files (.tsv), an SBtab prior information file (.tsv), and an SBtab options file (.tsv) for the
 configuration of parameter balancing. Providing complete file information would look like this:
 
-> python3 -m pbalancing.parameter_balancing model.xml --sbtab_data data_file.tsv --sbtab_prior prior_file.tsv --sbtab_options options_file.tsv
+```python
+python3 -m pbalancing.parameter_balancing model.xml --sbtab_data data_file.tsv --sbtab_prior prior_file.tsv --sbtab_options options_file.tsv
+```
 
 You can create a log file by setting the flag -l, you can use pseudo values to account for a lack of data by setting the flag -p, you can
 watch program outputs on your commandline by setting the flag -v. Information on the SBtab format can be found on www.sbtab.net, more information
@@ -46,7 +53,9 @@ and example files can be found in parameter_balancing/standalone_version/files/e
 If you do not want to install the pip package, you can still use the commandline modules in the subdirectory parameter_balancing/standalone_version.
 The usage works as a standard call of a Python module:
 
-> python3 cl_balancing.py model.xml
+```python
+python3 cl_balancing.py model.xml
+```
 
 Here, as well, you can use the optional file provision like explained above. You will be required to install several Python packages, though. A list of these packages can be found in parameter_balancing/requirements.txt.
 
