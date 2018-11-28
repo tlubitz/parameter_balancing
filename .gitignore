@@ -103,6 +103,7 @@ ENV/
 DMPy.pdf
 pb_manual.tgz
 pb_manual/
+applications_note/
 standalone_version/tests/
 web_version/sessions/
 web_version/static/css/old/
