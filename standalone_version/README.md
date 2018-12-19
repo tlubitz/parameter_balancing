@@ -6,13 +6,13 @@ Parameter balancing is a tool for metabolic modelling in systems biology. It is 
 
 Parameter balancing can be employed on the commandline by
 
-> python3 cl_balancing.py model.xml
+> python3 parameter_balancing.py model.xml
 
 where model.xml corresponds to the path of your SBML model. It is also possible to provide further input files, such as
 an SBtab parameter files (.tsv), an SBtab prior information file (.tsv), and an SBtab options file (.tsv) for the
 configuration of parameter balancing. Providing complete file information would look like this:
 
-> python3 cl_balancing.py model.xml --sbtab_data data_file.tsv --sbtab_prior prior_file.tsv --sbtab_options options_file.tsv
+> python3 parameter_balancing.py model.xml --sbtab_data data_file.tsv --sbtab_prior prior_file.tsv --sbtab_options options_file.tsv
 
 You can create a log file by setting the flag -l, you can use pseudo values to account for a lack of data by setting the flag -p, you can watch program outputs on your commandline by setting the flag -v. Information on the SBtab format can be found on www.sbtab.net, more information on the mentioned file types can be found in the parameter balancing manual in this repository's parameter_balancing/standalone_version/files/manual.pdf, and example files can be found in parameter_balancing/standalone_version/files/example_files/.
 
@@ -21,9 +21,9 @@ You can create a log file by setting the flag -l, you can use pseudo values to a
 You can embed the modules of parameter balancing in your own Python3 workflow.
 
 ```python
-  import parameter_balancing
+  import parameter_balancing_core
   
-  (balanced_sbml, balanced_sbtab) = parameter_balancing.parameter_balancing_wrapper(sbml, sbtab_data, sbtab_prior, sbtab_options, verbose, no_pseudo_values, output_name, pb_log)
+  (balanced_sbml, balanced_sbtab) = parameter_balancing_core.parameter_balancing_wrapper(sbml, sbtab_data, sbtab_prior, sbtab_options, verbose, no_pseudo_values, output_name, pb_log)
 ```
 <strong>Input arguments</strong>
 <ul>
