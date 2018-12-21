@@ -19,14 +19,14 @@ except:
     import validatorSBtab
 
 
-def parameter_balancing_wrapper(sbml, sbtab_data=None, sbtab_prior=None, sbtab_options=None, verbose=False, no_pseudo_values=False, output_name=None, pb_log=False):
+def parameter_balancing_wrapper(sbml, sbtab_data_name=None, sbtab_prior=None, sbtab_options=None, verbose=False, no_pseudo_values=False, output_name=None, pb_log=False):
     '''
     wrapper for parameter balancing.
 
     Parameters
     ==========
     sbml: string (path to sbml file)
-    sbtab_data: string (path to sbtab data file)
+    sbtab_data_name: string (path to sbtab data file)
     sbtab_prior: string (path to sbtab prior file)
     sbtab_options: string (path to sbtab options file)
     verbose: Boolean (enable messages on commandline)
@@ -61,32 +61,32 @@ def parameter_balancing_wrapper(sbml, sbtab_data=None, sbtab_prior=None, sbtab_o
 
     ###########################
     # 1.2: open and prepare the optional SBtab data file
-    if sbtab_data:
-        valid_extension = misc.validate_file_extension(sbtab_data,
+    if sbtab_data_name:
+        valid_extension = misc.validate_file_extension(sbtab_data_name,
                                                        'sbtab')
         if not valid_extension:
             print('The SBtab data file %s has not the correct file '\
-                  'extension.' % (sbtab_data))
+                  'extension.' % (sbtab_data_name))
 
         try:
-            f = open(sbtab_data, 'r')
+            f = open(sbtab_data_name, 'r')
             f_content = f.read()
         except:
             print('The SBtab data file %s cannot be found or'\
-                  'read.' % sbtab_data)
+                  'read.' % sbtab_data_name)
 
         try: sbtab_delimiter = misc.check_delimiter(f_content)
         except: sbtab_delimiter = '\t'
 
-        sbtab_data = SBtab.SBtabTable(f_content, sbtab_data)
+        sbtab_data = SBtab.SBtabTable(f_content, sbtab_data_name)
         sbtab_data_validate = validatorSBtab.ValidateTable(sbtab_data,
-                                                           sbtab_data)
+                                                           sbtab_data_name)
 
         warnings = sbtab_data_validate.return_output()
         if warnings != []:
             warn_flag = True
             log_file += 'Log warnings for SBtab data file: '\
-                        '%s\n' % sbtab_data
+                        '%s\n' % sbtab_data_name
             for warning in warnings:
                 log_file += warning + '\n'
 
@@ -240,14 +240,14 @@ def parameter_balancing_wrapper(sbml, sbtab_data=None, sbtab_prior=None, sbtab_o
                 log_file += str(element) + '\n'
 
     # Make empty SBtab if required
-    if sbtab_data:
-        sbtab = pb.make_sbtab(sbtab_data, sbtab_data, 'All organisms', 43,
+    if sbtab_data_name:
+        sbtab = pb.make_sbtab(sbtab_data, sbtab_data_name, 'All organisms', 43,
                               pmin, pmax, parameter_dict)
         sbtabid2sbmlid = misc.id_checker(sbtab, sbml_model)
         if sbtabid2sbmlid != []:
             warn_flag = True
             log_file += 'Log warnings for SBtab data file: '\
-                        '%s\n\n' % sbtab_data
+                        '%s\n\n' % sbtab_data_name
             for element in sbtabid2sbmlid:
                 log_file += element + '\n'
     else:
