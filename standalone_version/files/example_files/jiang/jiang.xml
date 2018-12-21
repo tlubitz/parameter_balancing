@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <sbml xmlns="http://www.sbml.org/sbml/level2/version4" level="2" version="4">
-  <model metaid="metaid_jiang" id="Jiang2007_GSISsystem_PancreaticBetaCells" name="Jiang2007_GSISsystem_PancreaticBetaCells">
+  <model id="Jiang2007_GSISsystem_PancreaticBetaCells" name="Jiang2007_GSISsystem_PancreaticBetaCells">
     <notes>
       <body xmlns="http://www.w3.org/1999/xhtml">
         <p>
@@ -25,21 +25,6 @@ The construction and characterization of a core kinetic model of the glucose-sti
       </p>
     </body>
   </notes>
-  <annotation>
-    <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
-      <rdf:Description rdf:about="#metaid_jiang">
-        <dc:creator>
-          <rdf:Bag/>
-        </dc:creator>
-        <dcterms:modified rdf:parseType="Resource">
-          <dcterms:W3CDTF>2007-01-01T00:00:00Z</dcterms:W3CDTF>
-        </dcterms:modified>
-        <dcterms:modified rdf:parseType="Resource">
-          <dcterms:W3CDTF>2009-08-28T00:00:00Z</dcterms:W3CDTF>
-        </dcterms:modified>
-      </rdf:Description>
-    </rdf:RDF>
-  </annotation>
   <listOfCompartments>
     <compartment metaid="metaid_CYTOPLASM" id="CYTOPLASM" name="cytoplasm" size="1">
       <annotation>
