@@ -57,8 +57,8 @@ def parameter_balancing_wrapper(sbml, sbtab_data_name=None, sbtab_prior_name=Non
               '. I quit.''' % (model_name))
         sys.exit()
         
-    if sbml_model.getNumReactions() > 300:
-        print('The given model has more than 300 reactions and we '\
+    if sbml_model.getNumReactions() > 250:
+        print('The given model has more than 250 reactions and we '\
               'do not recommend employing models that large for '\
               'parameter balancing.')
         sys.exit()
