@@ -79,8 +79,7 @@ def size_warning(sbml_file):
         return ('Warning: The model has more than 300 reactions, which may'\
                 ' slow down the computation time significantly. Proceed'\
                 ' with care.')
-    else: return False
-    
+    else: return False    
 
 
 def valid_prior(sbtab_prior):
