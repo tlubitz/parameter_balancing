@@ -1,0 +1,15 @@
+!!SBtab SBtabVersion='1.0' Document='pfk_reaction' TableType='Compartment' TableName='Compartment'				
+!ID	!Name	!Size		
+c	cytosol	1		
+				
+!!SBtab SBtabVersion='1.0' Document='pfk_reaction' TableType='Compound' TableName='Compound'				
+!ID	!Name	!Location	!Charge	!IsConstant
+ATP_c	ATP	c	0	False
+beta_D_6_P	beta-D-fructofuranose 6-phosphate	c	0	False
+ADP_c	ADP	c	0	False
+beta_D_16_PP	beta-D-fructofuranose 1_6-bisphosphate	c	0	False
+enzyme_R04779_c	enzyme_R04779	c	0	False
+				
+!!SBtab SBtabVersion='1.0' Document='pfk_reaction' TableType='Reaction' TableName='Reaction'				
+!ID	!Name	!ReactionFormula	!Regulator	!IsReversible
+R04779	_6_phosphofructokinase_activity	ATP_c + beta_D_6_P <=> ADP_c + beta_D_16_PP	ATP_c	True

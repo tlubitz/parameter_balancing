@@ -56,6 +56,9 @@ class ParameterBalancing:
         # initialise log file
         self.log = '%s\n\n' % (time.asctime())
 
+        # get time stamp
+        self.starting_time = time.time()
+        
         # rudimentary validity check and model initialisation
         if req:
             try: self.model.getListOfSpecies()
@@ -135,7 +138,7 @@ class ParameterBalancing:
 
         for m_id in modifiers:
             if m_id not in involved_species:
-                self.log += ('The modifier %s is not involved in any reaction'
+                self.log += ('Warning: The modifier %s is not involved in any reaction'
                              ' as either reactant or product. Please check if'
                              ' this modifier is required to be an SBML specie'
                              's. E.g., enzymes should not be SMBL '
@@ -424,18 +427,18 @@ class ParameterBalancing:
                     self.new_rows.append(self.new_row(reaction_species,
                                                       self.reaction_species_parameters[i]))
 
-        self.log += 'You have used %s values to describe %s unique kinetic '\
+        self.log += 'You have used %s data values to describe %s unique kinetic '\
                     'parameters as input for the balancing.\n' % (len(self.rows),
                                                                   len(self.new_rows))
         nr = self.model.getNumReactions()
-        self.log += 'The parameter balancing will output %s standard chemical'\
-                    ' potentials, %s catalytic rate constants geometric mean,'\
-                    ' %s activation constants, %s inhibitory constants, %s co'\
-                    'ncentrations, %s concentrations of enzyme, %s equilibriu'\
-                    'm constants, %s substrate catalytic rate constants, %s p'\
-                    'roduct catalytic rate constants, %s forward maximal velo'\
-                    'cities, %s reverse maximal velocities, %s chemical poten'\
-                    'tials, and %s reaction affinities.'\
+        self.log += 'The parameter balancing will output \n%s standard chemical'\
+                    ' potentials, \n%s catalytic rate constants geometric mean,'\
+                    ' \n%s activation constants, \n%s inhibitory constants, \n%s co'\
+                    'ncentrations, \n%s concentrations of enzyme, \n%s equilibriu'\
+                    'm constants, \n%s substrate catalytic rate constants, \n%s p'\
+                    'roduct catalytic rate constants, \n%s forward maximal velo'\
+                    'cities, \n%s reverse maximal velocities, \n%s chemical poten'\
+                    'tials, and \n%s reaction affinities.'\
                     '\n' % (self.model.getNumSpecies(), nr, nr, nr,
                             self.model.getNumSpecies(), nr, nr, nr, nr, nr, nr,
                             self.model.getNumSpecies(), nr)
@@ -532,7 +535,7 @@ class ParameterBalancing:
                                         self.log += '\n### Warnings about ignored values that '\
                                                     'lie out of the boundaries ### \n'
                                         log_header = True
-                                    self.log += 'The value %s for the %s of %s, %s lies below t'\
+                                    self.log += 'Warning: The value %s for the %s of %s, %s lies below t'\
                                                 'he requested minimum value of %s. It is ignor'\
                                                 'ed for the balancing.\n' % (row[mean_column],
                                                                              row[self.sbtab.columns_dict['!QuantityType']],
@@ -548,7 +551,7 @@ class ParameterBalancing:
                                         self.log += '\n### Warnings about ignored values that '\
                                                     'lie out of the boundaries ### \n'
                                         log_header = True
-                                    self.log += 'The value %s for the %s of %s, %s lies above t'\
+                                    self.log += 'Warning: The value %s for the %s of %s, %s lies above t'\
                                                 'he requested maximum value of %s. It is ignor'\
                                                 'ed for the balancing.\n' % (row[mean_column],
                                                                              row[self.sbtab.columns_dict['!QuantityType']],
@@ -835,7 +838,6 @@ class ParameterBalancing:
                 log_means.append(float(mean))
                 if float(stds[i]) < 0.05: log_stds.append(0.05)
                 else: log_stds.append(float(stds[i]))
-                log_stds.append(float(stds[i]))
             else:
                 term = numpy.log(1 + (numpy.square(float(stds[i])) / \
                                       numpy.square(float(mean))))
@@ -1095,9 +1097,19 @@ class ParameterBalancing:
         C_string = self.make_cpost_string()
         shannons = self.get_shannons()
 
+        self.compute_running_time()
+        
         return (sbtab_new, self.mean_post, self.q_post, C_string, self.C_post,
                 self.Q, shannons, self.log)
 
+    def compute_running_time(self):
+        '''
+        compute overall running time in seconds from __init__ to return of results
+        '''
+        end_time = time.time()
+        running_time = end_time - self.starting_time
+        self.log += 'Total running time (s): %s\n' % running_time        
+    
     def get_sheet(self):
         '''
         get the sheet that tells us, how to build up which matrix
@@ -2002,7 +2014,7 @@ class ParameterBalancing:
             if first:
                 self.log += '\nWarnings about unusually high or low values \n'
                 first = False
-            self.hilo.append('The value for the %s of %s, %s lies under the g'\
+            self.hilo.append('Warning: The value for the %s of %s, %s lies under the g'\
                              'iven lower bound: %s. Please check the accuracy'\
                              ' and refer to the FAQ for help.'\
                              '\n' % (row[0], row[1], row[2], val))
@@ -2010,7 +2022,7 @@ class ParameterBalancing:
             if first:
                 self.log += '### Warnings about unusually high or low values\n'
                 first = False
-            self.hilo.append('The value for the %s of %s, %s lies over the gi'\
+            self.hilo.append('Warning: The value for the %s of %s, %s lies over the gi'\
                              'ven upper bound: %s. Please check the accuracy '\
                              'and refer to the FAQ for help.'\
                              '\n' % (row[0], row[1], row[2], val))

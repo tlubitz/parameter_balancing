@@ -1,0 +1,21 @@
+!!SBtab TableType='Quantity' Version='0.1' Level='1.0'							
+!QuantityType	!Reaction:SBML:reaction:id	!Compound:SBML:species:id	!Mean	!Std	!Unit	!Reaction:Identifiers:kegg.reaction	!Reference
+concentration of enzyme	R04779	nan	0.089	nan	mM	R04779	yeastGFP
+concentration of enzyme	R04779	nan	0.09	nan	mM	R04779	yeastGFP
+inhibitory constant	R04779	ATP_c	2.5	nan	mM	R04779	Brenda
+inhibitory constant	R04779	ATP_c	0.8	nan	mM	R04779	Brenda
+inhibitory constant	R04779	ATP_c	0.5	nan	mM	R04779	Brenda
+inhibitory constant	R04779	ATP_c	1.4	nan	mM	R04779	Brenda
+inhibitory constant	R04779	ATP_c	0.3	nan	mM	R04779	Brenda
+inhibitory constant	R04779	ADP_c	1.8	nan	mM	R04779	Brenda
+standard chemical potential	nan	beta_D_16_PP	-2206.1	nan	kJ/mol	nan	Alberty
+concentration	nan	ATP_c	1.5	0.4	mM	nan	nan
+standard chemical potential	nan	ATP_c	-2292.3	nan	kJ/mol	nan	Alberty
+standard chemical potential	nan	beta_D_6_P	-1316.6	nan	kJ/mol	nan	Alberty
+concentration	nan	ADP_c	0.8	0.5	mM	nan	nan
+standard chemical potential	nan	ADP_c	-1425.2	nan	kJ/mol	nan	Alberty
+Michaelis constant	R04779	beta_D_6_P	0.7	nan	mM	nan	Brenda
+Michaelis constant	R04779	beta_D_16_PP	12.5	nan	mM	nan	Brenda
+Michaelis constant	R04779	ATP_c	0.1	nan	mM	nan	Brenda
+Michaelis constant	R04779	ADP_c	0.9	nan	mM	nan	Brenda
+equilibrium constant	R04779	nan	0.1	nan	dimensionless	R04779	Nissler et. al

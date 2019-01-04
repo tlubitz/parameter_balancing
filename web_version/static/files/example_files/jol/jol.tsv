@@ -1,0 +1,1986 @@
+!!SBtab Document='Model' TableName='Parameter' TableType='Quantity' SBtabVersion='1.0' Date='2018-12-21'				
+!QuantityType	!Reaction:SBML:reaction:id	!Compound:SBML:species:id	!Mean	!Unit	!Std
+equilibrium constant	R_ASPTA		1	dimensionless	
+equilibrium constant	R_ASPKi		1	dimensionless	
+equilibrium constant	R_ASNS1		1	dimensionless	
+equilibrium constant	R_ASADi		1	dimensionless	
+equilibrium constant	R_ALATA_Lm		1	dimensionless	
+equilibrium constant	R_ALATA_L		1	dimensionless	
+equilibrium constant	R_PPCK		1	dimensionless	
+equilibrium constant	R_PC		1	dimensionless	
+equilibrium constant	R_ME2m		1	dimensionless	
+equilibrium constant	R_ICL		1	dimensionless	
+equilibrium constant	R_FBP		1	dimensionless	
+equilibrium constant	R_P5CR		1	dimensionless	
+equilibrium constant	R_ORNTACim		1	dimensionless	
+equilibrium constant	R_OCBTi		1	dimensionless	
+equilibrium constant	R_GLU5K		1	dimensionless	
+equilibrium constant	R_G5SD		1	dimensionless	
+equilibrium constant	R_G5SADr		1	dimensionless	
+equilibrium constant	R_CBPS		1	dimensionless	
+equilibrium constant	R_ARGSSr		1	dimensionless	
+equilibrium constant	R_ARGSL		1	dimensionless	
+equilibrium constant	R_AGPRim		1	dimensionless	
+equilibrium constant	R_ACOTAim		1	dimensionless	
+equilibrium constant	R_ACGKm		1	dimensionless	
+equilibrium constant	R_SUCOAS1m		1	dimensionless	
+equilibrium constant	R_SUCD2_u6m		1	dimensionless	
+equilibrium constant	R_ICDHy		1	dimensionless	
+equilibrium constant	R_ICDHxm		1	dimensionless	
+equilibrium constant	R_CSm		1	dimensionless	
+equilibrium constant	R_AKGDam		1	dimensionless	
+equilibrium constant	R_ACONTm		1	dimensionless	
+equilibrium constant	R_ACONT		1	dimensionless	
+equilibrium constant	R_SULR		1	dimensionless	
+equilibrium constant	R_SLFAT		1	dimensionless	
+equilibrium constant	R_PAPSR		1	dimensionless	
+equilibrium constant	R_BPNT		1	dimensionless	
+equilibrium constant	R_ADSK		1	dimensionless	
+equilibrium constant	R_MTHFR3		1	dimensionless	
+equilibrium constant	R_MTHFD		1	dimensionless	
+equilibrium constant	R_MTHFC		1	dimensionless	
+equilibrium constant	R_FTHFL		1	dimensionless	
+equilibrium constant	R_GLUDy		1	dimensionless	
+equilibrium constant	R_GLNS		1	dimensionless	
+equilibrium constant	R_ANS		1	dimensionless	
+equilibrium constant	R_GLYK		1	dimensionless	
+equilibrium constant	R_G3PT		1	dimensionless	
+equilibrium constant	R_G3PD1ir		1	dimensionless	
+equilibrium constant	R_ALCD2m		1	dimensionless	
+equilibrium constant	R_PSP_L		1	dimensionless	
+equilibrium constant	R_PSERT		1	dimensionless	
+equilibrium constant	R_PGCD		1	dimensionless	
+equilibrium constant	R_HSK		1	dimensionless	
+equilibrium constant	R_HSDyi		1	dimensionless	
+equilibrium constant	R_GHMT2r		1	dimensionless	
+equilibrium constant	R_CYSTS		1	dimensionless	
+equilibrium constant	R_TPI		1	dimensionless	
+equilibrium constant	R_PYK		1	dimensionless	
+equilibrium constant	R_PGM		1	dimensionless	
+equilibrium constant	R_PGK		1	dimensionless	
+equilibrium constant	R_PGI		1	dimensionless	
+equilibrium constant	R_PFK		1	dimensionless	
+equilibrium constant	R_PDHm		1	dimensionless	
+equilibrium constant	R_HEX1		1	dimensionless	
+equilibrium constant	R_GAPD		1	dimensionless	
+equilibrium constant	R_FBA		1	dimensionless	
+equilibrium constant	R_ENO		1	dimensionless	
+equilibrium constant	R_PRPPS		1	dimensionless	
+equilibrium constant	R_PRMICIi		1	dimensionless	
+equilibrium constant	R_PRATPP		1	dimensionless	
+equilibrium constant	R_PRAMPC		1	dimensionless	
+equilibrium constant	R_IGPDH		1	dimensionless	
+equilibrium constant	R_IG3PS		1	dimensionless	
+equilibrium constant	R_HSTPT		1	dimensionless	
+equilibrium constant	R_HISTP		1	dimensionless	
+equilibrium constant	R_HISTD		1	dimensionless	
+equilibrium constant	R_ATPPRT		1	dimensionless	
+equilibrium constant	R_FDH		1	dimensionless	
+equilibrium constant	R_METS		1	dimensionless	
+equilibrium constant	R_HSERTA		1	dimensionless	
+equilibrium constant	R_CYSTGL		1	dimensionless	
+equilibrium constant	R_AHSERL2		1	dimensionless	
+equilibrium constant	R_ADK1m		1	dimensionless	
+equilibrium constant	R_ADK1		1	dimensionless	
+equilibrium constant	R_PPAm		1	dimensionless	
+equilibrium constant	R_PPA		1	dimensionless	
+equilibrium constant	R_NADH2_DASH_u6m		1	dimensionless	
+equilibrium constant	R_NADH2_DASH_u6cm		1	dimensionless	
+equilibrium constant	R_MDHm		1	dimensionless	
+equilibrium constant	R_MDH		1	dimensionless	
+equilibrium constant	R_FUMm		1	dimensionless	
+equilibrium constant	R_FUM		1	dimensionless	
+equilibrium constant	R_CYOR_u6m		1	dimensionless	
+equilibrium constant	R_CYOOm		1	dimensionless	
+equilibrium constant	R_ATPS3m		1	dimensionless	
+equilibrium constant	R_TKT2		1	dimensionless	
+equilibrium constant	R_TKT1		1	dimensionless	
+equilibrium constant	R_TALA		1	dimensionless	
+equilibrium constant	R_RPI		1	dimensionless	
+equilibrium constant	R_RPE		1	dimensionless	
+equilibrium constant	R_PGL		1	dimensionless	
+equilibrium constant	R_GND		1	dimensionless	
+equilibrium constant	R_G6PDH2		1	dimensionless	
+equilibrium constant	R_PYRDC		1	dimensionless	
+equilibrium constant	R_ALCD2x		1	dimensionless	
+equilibrium constant	R_ACSm		1	dimensionless	
+equilibrium constant	R_ACS		1	dimensionless	
+equilibrium constant	R_ACOAH		1	dimensionless	
+equilibrium constant	R_THRS		1	dimensionless	
+equilibrium constant	R_THRD_Lm		1	dimensionless	
+equilibrium constant	R_THRA		1	dimensionless	
+equilibrium constant	R_SACCD2		1	dimensionless	
+equilibrium constant	R_SACCD1		1	dimensionless	
+equilibrium constant	R_OXAGm		1	dimensionless	
+equilibrium constant	R_MCITDm		1	dimensionless	
+equilibrium constant	R_HICITDm		1	dimensionless	
+equilibrium constant	R_HACNHm		1	dimensionless	
+equilibrium constant	R_AATA		1	dimensionless	
+equilibrium constant	R_AASAD1		1	dimensionless	
+equilibrium constant	R_TYRTA		1	dimensionless	
+equilibrium constant	R_TRPS1		1	dimensionless	
+equilibrium constant	R_SHKK		1	dimensionless	
+equilibrium constant	R_SHK3D		1	dimensionless	
+equilibrium constant	R_PSCVTi		1	dimensionless	
+equilibrium constant	R_PRAIi		1	dimensionless	
+equilibrium constant	R_PPNDH		1	dimensionless	
+equilibrium constant	R_PPND2		1	dimensionless	
+equilibrium constant	R_PHETA1		1	dimensionless	
+equilibrium constant	R_IGPS		1	dimensionless	
+equilibrium constant	R_DHQTi		1	dimensionless	
+equilibrium constant	R_DHQS		1	dimensionless	
+equilibrium constant	R_DDPA		1	dimensionless	
+equilibrium constant	R_CHORS		1	dimensionless	
+equilibrium constant	R_CHORM		1	dimensionless	
+equilibrium constant	R_ANPRT		1	dimensionless	
+equilibrium constant	R_ALDD2ym		1	dimensionless	
+equilibrium constant	R_ALDD2y		1	dimensionless	
+equilibrium constant	R_ALDD2xm		1	dimensionless	
+equilibrium constant	R_VALTA		1	dimensionless	
+equilibrium constant	R_OMCDC		1	dimensionless	
+equilibrium constant	R_LEUTA		1	dimensionless	
+equilibrium constant	R_KARA2im		1	dimensionless	
+equilibrium constant	R_KARA1im		1	dimensionless	
+equilibrium constant	R_IPPS		1	dimensionless	
+equilibrium constant	R_IPPMIb		1	dimensionless	
+equilibrium constant	R_IPPMIa		1	dimensionless	
+equilibrium constant	R_IPMD		1	dimensionless	
+equilibrium constant	R_ILETA		1	dimensionless	
+equilibrium constant	R_DHAD2m		1	dimensionless	
+equilibrium constant	R_DHAD1m		1	dimensionless	
+equilibrium constant	R_ACLSm		1	dimensionless	
+equilibrium constant	R_ACHBSm		1	dimensionless	
+equilibrium constant	R_GLUSxm		1	dimensionless	
+equilibrium constant	R_AGTm		1	dimensionless	
+equilibrium constant	R_HCITS		1	dimensionless	
+equilibrium constant	R_MALS		1	dimensionless	
+equilibrium constant	R_GLUDym		1	dimensionless	
+equilibrium constant	R_CSc		1	dimensionless	
+equilibrium constant	R_SUCCt2r		1	dimensionless	
+equilibrium constant	R_SO4ti		1	dimensionless	
+equilibrium constant	R_PYRt2		1	dimensionless	
+equilibrium constant	R_PIt2r		1	dimensionless	
+equilibrium constant	R_O2t		1	dimensionless	
+equilibrium constant	R_NH4t		1	dimensionless	
+equilibrium constant	R_H2Ot		1	dimensionless	
+equilibrium constant	R_GLYCt		1	dimensionless	
+equilibrium constant	R_GLCt1		1	dimensionless	
+equilibrium constant	R_ETOHt		1	dimensionless	
+equilibrium constant	R_CO2t		1	dimensionless	
+equilibrium constant	R_ATPS		1	dimensionless	
+equilibrium constant	R_ACt2r		1	dimensionless	
+equilibrium constant	R_THRt2m		1	dimensionless	
+equilibrium constant	R_SUCFUMtm		1	dimensionless	
+equilibrium constant	R_SUCCtm		1	dimensionless	
+equilibrium constant	R_PYRt2m		1	dimensionless	
+equilibrium constant	R_PIt2m		1	dimensionless	
+equilibrium constant	R_ORNt3m		1	dimensionless	
+equilibrium constant	R_OAAt2m		1	dimensionless	
+equilibrium constant	R_O2tm		1	dimensionless	
+equilibrium constant	R_NH4tm		1	dimensionless	
+equilibrium constant	R_MALtm		1	dimensionless	
+equilibrium constant	R_H2Otm		1	dimensionless	
+equilibrium constant	R_GLYt2m		1	dimensionless	
+equilibrium constant	R_GLUt2m		1	dimensionless	
+equilibrium constant	R_ETOHtm		1	dimensionless	
+equilibrium constant	R_CO2tm		1	dimensionless	
+equilibrium constant	R_CITtcm		1	dimensionless	
+equilibrium constant	R_CITtam		1	dimensionless	
+equilibrium constant	R_ATPtm_DASH_H		1	dimensionless	
+equilibrium constant	R_ACtm		1	dimensionless	
+equilibrium constant	R_3MOPtm		1	dimensionless	
+equilibrium constant	R_3MOBtm		1	dimensionless	
+equilibrium constant	R_2OXOADPtim		1	dimensionless	
+equilibrium constant	R_GLNt2m		1	dimensionless	
+equilibrium constant	R_2OBUTtm		1	dimensionless	
+equilibrium constant	R_ALAt2m		1	dimensionless	
+equilibrium constant	R_HCITtm		1	dimensionless	
+equilibrium constant	R_GLXtm		1	dimensionless	
+equilibrium constant	R_ACALDtm		1	dimensionless	
+equilibrium constant	R_ac_LSQBKT_e_RSQBKT__EX		1	dimensionless	
+equilibrium constant	R_co2_LSQBKT_e_RSQBKT__EX		1	dimensionless	
+equilibrium constant	R_etoh_LSQBKT_e_RSQBKT__EX		1	dimensionless	
+equilibrium constant	R_glc_DASH_D_LSQBKT_e_RSQBKT__EX		1	dimensionless	
+equilibrium constant	R_glyc_LSQBKT_e_RSQBKT__EX		1	dimensionless	
+equilibrium constant	R_h_LSQBKT_e_RSQBKT__EX		1	dimensionless	
+equilibrium constant	R_h2o_LSQBKT_e_RSQBKT__EX		1	dimensionless	
+equilibrium constant	R_nh4_LSQBKT_e_RSQBKT__EX		1	dimensionless	
+equilibrium constant	R_o2_LSQBKT_e_RSQBKT__EX		1	dimensionless	
+equilibrium constant	R_pi_LSQBKT_e_RSQBKT__EX		1	dimensionless	
+equilibrium constant	R_pyr_LSQBKT_e_RSQBKT__EX		1	dimensionless	
+equilibrium constant	R_so4_LSQBKT_e_RSQBKT__EX		1	dimensionless	
+equilibrium constant	R_succ_LSQBKT_e_RSQBKT__EX		1	dimensionless	
+equilibrium constant	R_aicarSYN		1	dimensionless	
+equilibrium constant	R_ampSYN		1	dimensionless	
+equilibrium constant	R_dampSYN		1	dimensionless	
+equilibrium constant	R_gmpSYN		1	dimensionless	
+equilibrium constant	R_dgmpSYN		1	dimensionless	
+equilibrium constant	R_umpSYN		1	dimensionless	
+equilibrium constant	R_cmpSYN		1	dimensionless	
+equilibrium constant	R_dcmpSYN		1	dimensionless	
+equilibrium constant	R_dtmpSYN		1	dimensionless	
+equilibrium constant	R_13BDglcnSYN		1	dimensionless	
+equilibrium constant	R_mannanSYN		1	dimensionless	
+equilibrium constant	R_zymstSYN		1	dimensionless	
+equilibrium constant	R_ergstSYN		1	dimensionless	
+equilibrium constant	R_paSYN		1	dimensionless	
+equilibrium constant	R_psSYN		1	dimensionless	
+equilibrium constant	R_peSYN		1	dimensionless	
+equilibrium constant	R_pcSYN		1	dimensionless	
+equilibrium constant	R_ptd1inoSYN		1	dimensionless	
+equilibrium constant	R_triglycSYN		1	dimensionless	
+equilibrium constant	R_biomass		1	dimensionless	
+catalytic rate constant geometric mean	R_ASPTA		1	1/s	
+catalytic rate constant geometric mean	R_ASPKi		1	1/s	
+catalytic rate constant geometric mean	R_ASNS1		1	1/s	
+catalytic rate constant geometric mean	R_ASADi		1	1/s	
+catalytic rate constant geometric mean	R_ALATA_Lm		1	1/s	
+catalytic rate constant geometric mean	R_ALATA_L		1	1/s	
+catalytic rate constant geometric mean	R_PPCK		1	1/s	
+catalytic rate constant geometric mean	R_PC		1	1/s	
+catalytic rate constant geometric mean	R_ME2m		1	1/s	
+catalytic rate constant geometric mean	R_ICL		1	1/s	
+catalytic rate constant geometric mean	R_FBP		1	1/s	
+catalytic rate constant geometric mean	R_P5CR		1	1/s	
+catalytic rate constant geometric mean	R_ORNTACim		1	1/s	
+catalytic rate constant geometric mean	R_OCBTi		1	1/s	
+catalytic rate constant geometric mean	R_GLU5K		1	1/s	
+catalytic rate constant geometric mean	R_G5SD		1	1/s	
+catalytic rate constant geometric mean	R_G5SADr		1	1/s	
+catalytic rate constant geometric mean	R_CBPS		1	1/s	
+catalytic rate constant geometric mean	R_ARGSSr		1	1/s	
+catalytic rate constant geometric mean	R_ARGSL		1	1/s	
+catalytic rate constant geometric mean	R_AGPRim		1	1/s	
+catalytic rate constant geometric mean	R_ACOTAim		1	1/s	
+catalytic rate constant geometric mean	R_ACGKm		1	1/s	
+catalytic rate constant geometric mean	R_SUCOAS1m		1	1/s	
+catalytic rate constant geometric mean	R_SUCD2_u6m		1	1/s	
+catalytic rate constant geometric mean	R_ICDHy		1	1/s	
+catalytic rate constant geometric mean	R_ICDHxm		1	1/s	
+catalytic rate constant geometric mean	R_CSm		1	1/s	
+catalytic rate constant geometric mean	R_AKGDam		1	1/s	
+catalytic rate constant geometric mean	R_ACONTm		1	1/s	
+catalytic rate constant geometric mean	R_ACONT		1	1/s	
+catalytic rate constant geometric mean	R_SULR		1	1/s	
+catalytic rate constant geometric mean	R_SLFAT		1	1/s	
+catalytic rate constant geometric mean	R_PAPSR		1	1/s	
+catalytic rate constant geometric mean	R_BPNT		1	1/s	
+catalytic rate constant geometric mean	R_ADSK		1	1/s	
+catalytic rate constant geometric mean	R_MTHFR3		1	1/s	
+catalytic rate constant geometric mean	R_MTHFD		1	1/s	
+catalytic rate constant geometric mean	R_MTHFC		1	1/s	
+catalytic rate constant geometric mean	R_FTHFL		1	1/s	
+catalytic rate constant geometric mean	R_GLUDy		1	1/s	
+catalytic rate constant geometric mean	R_GLNS		1	1/s	
+catalytic rate constant geometric mean	R_ANS		1	1/s	
+catalytic rate constant geometric mean	R_GLYK		1	1/s	
+catalytic rate constant geometric mean	R_G3PT		1	1/s	
+catalytic rate constant geometric mean	R_G3PD1ir		1	1/s	
+catalytic rate constant geometric mean	R_ALCD2m		1	1/s	
+catalytic rate constant geometric mean	R_PSP_L		1	1/s	
+catalytic rate constant geometric mean	R_PSERT		1	1/s	
+catalytic rate constant geometric mean	R_PGCD		1	1/s	
+catalytic rate constant geometric mean	R_HSK		1	1/s	
+catalytic rate constant geometric mean	R_HSDyi		1	1/s	
+catalytic rate constant geometric mean	R_GHMT2r		1	1/s	
+catalytic rate constant geometric mean	R_CYSTS		1	1/s	
+catalytic rate constant geometric mean	R_TPI		1	1/s	
+catalytic rate constant geometric mean	R_PYK		1	1/s	
+catalytic rate constant geometric mean	R_PGM		1	1/s	
+catalytic rate constant geometric mean	R_PGK		1	1/s	
+catalytic rate constant geometric mean	R_PGI		1	1/s	
+catalytic rate constant geometric mean	R_PFK		1	1/s	
+catalytic rate constant geometric mean	R_PDHm		1	1/s	
+catalytic rate constant geometric mean	R_HEX1		1	1/s	
+catalytic rate constant geometric mean	R_GAPD		1	1/s	
+catalytic rate constant geometric mean	R_FBA		1	1/s	
+catalytic rate constant geometric mean	R_ENO		1	1/s	
+catalytic rate constant geometric mean	R_PRPPS		1	1/s	
+catalytic rate constant geometric mean	R_PRMICIi		1	1/s	
+catalytic rate constant geometric mean	R_PRATPP		1	1/s	
+catalytic rate constant geometric mean	R_PRAMPC		1	1/s	
+catalytic rate constant geometric mean	R_IGPDH		1	1/s	
+catalytic rate constant geometric mean	R_IG3PS		1	1/s	
+catalytic rate constant geometric mean	R_HSTPT		1	1/s	
+catalytic rate constant geometric mean	R_HISTP		1	1/s	
+catalytic rate constant geometric mean	R_HISTD		1	1/s	
+catalytic rate constant geometric mean	R_ATPPRT		1	1/s	
+catalytic rate constant geometric mean	R_FDH		1	1/s	
+catalytic rate constant geometric mean	R_METS		1	1/s	
+catalytic rate constant geometric mean	R_HSERTA		1	1/s	
+catalytic rate constant geometric mean	R_CYSTGL		1	1/s	
+catalytic rate constant geometric mean	R_AHSERL2		1	1/s	
+catalytic rate constant geometric mean	R_ADK1m		1	1/s	
+catalytic rate constant geometric mean	R_ADK1		1	1/s	
+catalytic rate constant geometric mean	R_PPAm		1	1/s	
+catalytic rate constant geometric mean	R_PPA		1	1/s	
+catalytic rate constant geometric mean	R_NADH2_DASH_u6m		1	1/s	
+catalytic rate constant geometric mean	R_NADH2_DASH_u6cm		1	1/s	
+catalytic rate constant geometric mean	R_MDHm		1	1/s	
+catalytic rate constant geometric mean	R_MDH		1	1/s	
+catalytic rate constant geometric mean	R_FUMm		1	1/s	
+catalytic rate constant geometric mean	R_FUM		1	1/s	
+catalytic rate constant geometric mean	R_CYOR_u6m		1	1/s	
+catalytic rate constant geometric mean	R_CYOOm		1	1/s	
+catalytic rate constant geometric mean	R_ATPS3m		1	1/s	
+catalytic rate constant geometric mean	R_TKT2		1	1/s	
+catalytic rate constant geometric mean	R_TKT1		1	1/s	
+catalytic rate constant geometric mean	R_TALA		1	1/s	
+catalytic rate constant geometric mean	R_RPI		1	1/s	
+catalytic rate constant geometric mean	R_RPE		1	1/s	
+catalytic rate constant geometric mean	R_PGL		1	1/s	
+catalytic rate constant geometric mean	R_GND		1	1/s	
+catalytic rate constant geometric mean	R_G6PDH2		1	1/s	
+catalytic rate constant geometric mean	R_PYRDC		1	1/s	
+catalytic rate constant geometric mean	R_ALCD2x		1	1/s	
+catalytic rate constant geometric mean	R_ACSm		1	1/s	
+catalytic rate constant geometric mean	R_ACS		1	1/s	
+catalytic rate constant geometric mean	R_ACOAH		1	1/s	
+catalytic rate constant geometric mean	R_THRS		1	1/s	
+catalytic rate constant geometric mean	R_THRD_Lm		1	1/s	
+catalytic rate constant geometric mean	R_THRA		1	1/s	
+catalytic rate constant geometric mean	R_SACCD2		1	1/s	
+catalytic rate constant geometric mean	R_SACCD1		1	1/s	
+catalytic rate constant geometric mean	R_OXAGm		1	1/s	
+catalytic rate constant geometric mean	R_MCITDm		1	1/s	
+catalytic rate constant geometric mean	R_HICITDm		1	1/s	
+catalytic rate constant geometric mean	R_HACNHm		1	1/s	
+catalytic rate constant geometric mean	R_AATA		1	1/s	
+catalytic rate constant geometric mean	R_AASAD1		1	1/s	
+catalytic rate constant geometric mean	R_TYRTA		1	1/s	
+catalytic rate constant geometric mean	R_TRPS1		1	1/s	
+catalytic rate constant geometric mean	R_SHKK		1	1/s	
+catalytic rate constant geometric mean	R_SHK3D		1	1/s	
+catalytic rate constant geometric mean	R_PSCVTi		1	1/s	
+catalytic rate constant geometric mean	R_PRAIi		1	1/s	
+catalytic rate constant geometric mean	R_PPNDH		1	1/s	
+catalytic rate constant geometric mean	R_PPND2		1	1/s	
+catalytic rate constant geometric mean	R_PHETA1		1	1/s	
+catalytic rate constant geometric mean	R_IGPS		1	1/s	
+catalytic rate constant geometric mean	R_DHQTi		1	1/s	
+catalytic rate constant geometric mean	R_DHQS		1	1/s	
+catalytic rate constant geometric mean	R_DDPA		1	1/s	
+catalytic rate constant geometric mean	R_CHORS		1	1/s	
+catalytic rate constant geometric mean	R_CHORM		1	1/s	
+catalytic rate constant geometric mean	R_ANPRT		1	1/s	
+catalytic rate constant geometric mean	R_ALDD2ym		1	1/s	
+catalytic rate constant geometric mean	R_ALDD2y		1	1/s	
+catalytic rate constant geometric mean	R_ALDD2xm		1	1/s	
+catalytic rate constant geometric mean	R_VALTA		1	1/s	
+catalytic rate constant geometric mean	R_OMCDC		1	1/s	
+catalytic rate constant geometric mean	R_LEUTA		1	1/s	
+catalytic rate constant geometric mean	R_KARA2im		1	1/s	
+catalytic rate constant geometric mean	R_KARA1im		1	1/s	
+catalytic rate constant geometric mean	R_IPPS		1	1/s	
+catalytic rate constant geometric mean	R_IPPMIb		1	1/s	
+catalytic rate constant geometric mean	R_IPPMIa		1	1/s	
+catalytic rate constant geometric mean	R_IPMD		1	1/s	
+catalytic rate constant geometric mean	R_ILETA		1	1/s	
+catalytic rate constant geometric mean	R_DHAD2m		1	1/s	
+catalytic rate constant geometric mean	R_DHAD1m		1	1/s	
+catalytic rate constant geometric mean	R_ACLSm		1	1/s	
+catalytic rate constant geometric mean	R_ACHBSm		1	1/s	
+catalytic rate constant geometric mean	R_GLUSxm		1	1/s	
+catalytic rate constant geometric mean	R_AGTm		1	1/s	
+catalytic rate constant geometric mean	R_HCITS		1	1/s	
+catalytic rate constant geometric mean	R_MALS		1	1/s	
+catalytic rate constant geometric mean	R_GLUDym		1	1/s	
+catalytic rate constant geometric mean	R_CSc		1	1/s	
+catalytic rate constant geometric mean	R_SUCCt2r		1	1/s	
+catalytic rate constant geometric mean	R_SO4ti		1	1/s	
+catalytic rate constant geometric mean	R_PYRt2		1	1/s	
+catalytic rate constant geometric mean	R_PIt2r		1	1/s	
+catalytic rate constant geometric mean	R_O2t		1	1/s	
+catalytic rate constant geometric mean	R_NH4t		1	1/s	
+catalytic rate constant geometric mean	R_H2Ot		1	1/s	
+catalytic rate constant geometric mean	R_GLYCt		1	1/s	
+catalytic rate constant geometric mean	R_GLCt1		1	1/s	
+catalytic rate constant geometric mean	R_ETOHt		1	1/s	
+catalytic rate constant geometric mean	R_CO2t		1	1/s	
+catalytic rate constant geometric mean	R_ATPS		1	1/s	
+catalytic rate constant geometric mean	R_ACt2r		1	1/s	
+catalytic rate constant geometric mean	R_THRt2m		1	1/s	
+catalytic rate constant geometric mean	R_SUCFUMtm		1	1/s	
+catalytic rate constant geometric mean	R_SUCCtm		1	1/s	
+catalytic rate constant geometric mean	R_PYRt2m		1	1/s	
+catalytic rate constant geometric mean	R_PIt2m		1	1/s	
+catalytic rate constant geometric mean	R_ORNt3m		1	1/s	
+catalytic rate constant geometric mean	R_OAAt2m		1	1/s	
+catalytic rate constant geometric mean	R_O2tm		1	1/s	
+catalytic rate constant geometric mean	R_NH4tm		1	1/s	
+catalytic rate constant geometric mean	R_MALtm		1	1/s	
+catalytic rate constant geometric mean	R_H2Otm		1	1/s	
+catalytic rate constant geometric mean	R_GLYt2m		1	1/s	
+catalytic rate constant geometric mean	R_GLUt2m		1	1/s	
+catalytic rate constant geometric mean	R_ETOHtm		1	1/s	
+catalytic rate constant geometric mean	R_CO2tm		1	1/s	
+catalytic rate constant geometric mean	R_CITtcm		1	1/s	
+catalytic rate constant geometric mean	R_CITtam		1	1/s	
+catalytic rate constant geometric mean	R_ATPtm_DASH_H		1	1/s	
+catalytic rate constant geometric mean	R_ACtm		1	1/s	
+catalytic rate constant geometric mean	R_3MOPtm		1	1/s	
+catalytic rate constant geometric mean	R_3MOBtm		1	1/s	
+catalytic rate constant geometric mean	R_2OXOADPtim		1	1/s	
+catalytic rate constant geometric mean	R_GLNt2m		1	1/s	
+catalytic rate constant geometric mean	R_2OBUTtm		1	1/s	
+catalytic rate constant geometric mean	R_ALAt2m		1	1/s	
+catalytic rate constant geometric mean	R_HCITtm		1	1/s	
+catalytic rate constant geometric mean	R_GLXtm		1	1/s	
+catalytic rate constant geometric mean	R_ACALDtm		1	1/s	
+catalytic rate constant geometric mean	R_ac_LSQBKT_e_RSQBKT__EX		1	1/s	
+catalytic rate constant geometric mean	R_co2_LSQBKT_e_RSQBKT__EX		1	1/s	
+catalytic rate constant geometric mean	R_etoh_LSQBKT_e_RSQBKT__EX		1	1/s	
+catalytic rate constant geometric mean	R_glc_DASH_D_LSQBKT_e_RSQBKT__EX		1	1/s	
+catalytic rate constant geometric mean	R_glyc_LSQBKT_e_RSQBKT__EX		1	1/s	
+catalytic rate constant geometric mean	R_h_LSQBKT_e_RSQBKT__EX		1	1/s	
+catalytic rate constant geometric mean	R_h2o_LSQBKT_e_RSQBKT__EX		1	1/s	
+catalytic rate constant geometric mean	R_nh4_LSQBKT_e_RSQBKT__EX		1	1/s	
+catalytic rate constant geometric mean	R_o2_LSQBKT_e_RSQBKT__EX		1	1/s	
+catalytic rate constant geometric mean	R_pi_LSQBKT_e_RSQBKT__EX		1	1/s	
+catalytic rate constant geometric mean	R_pyr_LSQBKT_e_RSQBKT__EX		1	1/s	
+catalytic rate constant geometric mean	R_so4_LSQBKT_e_RSQBKT__EX		1	1/s	
+catalytic rate constant geometric mean	R_succ_LSQBKT_e_RSQBKT__EX		1	1/s	
+catalytic rate constant geometric mean	R_aicarSYN		1	1/s	
+catalytic rate constant geometric mean	R_ampSYN		1	1/s	
+catalytic rate constant geometric mean	R_dampSYN		1	1/s	
+catalytic rate constant geometric mean	R_gmpSYN		1	1/s	
+catalytic rate constant geometric mean	R_dgmpSYN		1	1/s	
+catalytic rate constant geometric mean	R_umpSYN		1	1/s	
+catalytic rate constant geometric mean	R_cmpSYN		1	1/s	
+catalytic rate constant geometric mean	R_dcmpSYN		1	1/s	
+catalytic rate constant geometric mean	R_dtmpSYN		1	1/s	
+catalytic rate constant geometric mean	R_13BDglcnSYN		1	1/s	
+catalytic rate constant geometric mean	R_mannanSYN		1	1/s	
+catalytic rate constant geometric mean	R_zymstSYN		1	1/s	
+catalytic rate constant geometric mean	R_ergstSYN		1	1/s	
+catalytic rate constant geometric mean	R_paSYN		1	1/s	
+catalytic rate constant geometric mean	R_psSYN		1	1/s	
+catalytic rate constant geometric mean	R_peSYN		1	1/s	
+catalytic rate constant geometric mean	R_pcSYN		1	1/s	
+catalytic rate constant geometric mean	R_ptd1inoSYN		1	1/s	
+catalytic rate constant geometric mean	R_triglycSYN		1	1/s	
+catalytic rate constant geometric mean	R_biomass		1	1/s	
+Michaelis constant	R_MTHFC	M_10fthf_c	1	mM	
+Michaelis constant	R_FTHFL	M_10fthf_c	1	mM	
+Michaelis constant	R_aicarSYN	M_10fthf_c	1	mM	
+Michaelis constant	R_ampSYN	M_10fthf_c	1	mM	
+Michaelis constant	R_gmpSYN	M_10fthf_c	1	mM	
+Michaelis constant	R_13BDglcnSYN	M_13BDglcn_c	1	mM	
+Michaelis constant	R_biomass	M_13BDglcn_c	1	mM	
+Michaelis constant	R_PGK	M_13dpg_c	1	mM	
+Michaelis constant	R_GAPD	M_13dpg_c	1	mM	
+Michaelis constant	R_P5CR	M_1pyr5c_c	1	mM	
+Michaelis constant	R_G5SADr	M_1pyr5c_c	1	mM	
+Michaelis constant	R_KARA1im	M_23dhmb_m	1	mM	
+Michaelis constant	R_DHAD1m	M_23dhmb_m	1	mM	
+Michaelis constant	R_KARA2im	M_23dhmp_m	1	mM	
+Michaelis constant	R_DHAD2m	M_23dhmp_m	1	mM	
+Michaelis constant	R_KARA2im	M_2ahbut_m	1	mM	
+Michaelis constant	R_ACHBSm	M_2ahbut_m	1	mM	
+Michaelis constant	R_PRAIi	M_2cpr5p_c	1	mM	
+Michaelis constant	R_IGPS	M_2cpr5p_c	1	mM	
+Michaelis constant	R_DHQS	M_2dda7p_c	1	mM	
+Michaelis constant	R_DDPA	M_2dda7p_c	1	mM	
+Michaelis constant	R_IPPMIb	M_2ippm_c	1	mM	
+Michaelis constant	R_IPPMIa	M_2ippm_c	1	mM	
+Michaelis constant	R_CYSTGL	M_2obut_c	1	mM	
+Michaelis constant	R_2OBUTtm	M_2obut_c	1	mM	
+Michaelis constant	R_THRD_Lm	M_2obut_m	1	mM	
+Michaelis constant	R_ACHBSm	M_2obut_m	1	mM	
+Michaelis constant	R_2OBUTtm	M_2obut_m	1	mM	
+Michaelis constant	R_AATA	M_2oxoadp_c	1	mM	
+Michaelis constant	R_2OXOADPtim	M_2oxoadp_c	1	mM	
+Michaelis constant	R_OXAGm	M_2oxoadp_m	1	mM	
+Michaelis constant	R_2OXOADPtim	M_2oxoadp_m	1	mM	
+Michaelis constant	R_PGM	M_2pg_c	1	mM	
+Michaelis constant	R_ENO	M_2pg_c	1	mM	
+Michaelis constant	R_TYRTA	M_34hpp_c	1	mM	
+Michaelis constant	R_PPND2	M_34hpp_c	1	mM	
+Michaelis constant	R_IPPMIa	M_3c2hmp_c	1	mM	
+Michaelis constant	R_IPMD	M_3c2hmp_c	1	mM	
+Michaelis constant	R_IPPS	M_3c3hmp_c	1	mM	
+Michaelis constant	R_IPPMIb	M_3c3hmp_c	1	mM	
+Michaelis constant	R_OMCDC	M_3c4mop_c	1	mM	
+Michaelis constant	R_IPMD	M_3c4mop_c	1	mM	
+Michaelis constant	R_DHQTi	M_3dhq_c	1	mM	
+Michaelis constant	R_DHQS	M_3dhq_c	1	mM	
+Michaelis constant	R_SHK3D	M_3dhsk_c	1	mM	
+Michaelis constant	R_DHQTi	M_3dhsk_c	1	mM	
+Michaelis constant	R_TRPS1	M_3ig3p_c	1	mM	
+Michaelis constant	R_IGPS	M_3ig3p_c	1	mM	
+Michaelis constant	R_VALTA	M_3mob_c	1	mM	
+Michaelis constant	R_IPPS	M_3mob_c	1	mM	
+Michaelis constant	R_3MOBtm	M_3mob_c	1	mM	
+Michaelis constant	R_DHAD1m	M_3mob_m	1	mM	
+Michaelis constant	R_3MOBtm	M_3mob_m	1	mM	
+Michaelis constant	R_ILETA	M_3mop_c	1	mM	
+Michaelis constant	R_3MOPtm	M_3mop_c	1	mM	
+Michaelis constant	R_DHAD2m	M_3mop_m	1	mM	
+Michaelis constant	R_3MOPtm	M_3mop_m	1	mM	
+Michaelis constant	R_PGCD	M_3pg_c	1	mM	
+Michaelis constant	R_PGM	M_3pg_c	1	mM	
+Michaelis constant	R_PGK	M_3pg_c	1	mM	
+Michaelis constant	R_PSERT	M_3php_c	1	mM	
+Michaelis constant	R_PGCD	M_3php_c	1	mM	
+Michaelis constant	R_PSCVTi	M_3psme_c	1	mM	
+Michaelis constant	R_CHORS	M_3psme_c	1	mM	
+Michaelis constant	R_OMCDC	M_4mop_c	1	mM	
+Michaelis constant	R_LEUTA	M_4mop_c	1	mM	
+Michaelis constant	R_ASPKi	M_4pasp_c	1	mM	
+Michaelis constant	R_ASADi	M_4pasp_c	1	mM	
+Michaelis constant	R_MTHFR3	M_5mthf_c	1	mM	
+Michaelis constant	R_METS	M_5mthf_c	1	mM	
+Michaelis constant	R_PGL	M_6pgc_c	1	mM	
+Michaelis constant	R_GND	M_6pgc_c	1	mM	
+Michaelis constant	R_PGL	M_6pgl_c	1	mM	
+Michaelis constant	R_G6PDH2	M_6pgl_c	1	mM	
+Michaelis constant	R_PYRDC	M_acald_c	1	mM	
+Michaelis constant	R_ALCD2x	M_acald_c	1	mM	
+Michaelis constant	R_THRA	M_acald_c	1	mM	
+Michaelis constant	R_ALDD2y	M_acald_c	1	mM	
+Michaelis constant	R_ACALDtm	M_acald_c	1	mM	
+Michaelis constant	R_ALCD2m	M_acald_m	1	mM	
+Michaelis constant	R_ALDD2ym	M_acald_m	1	mM	
+Michaelis constant	R_ALDD2xm	M_acald_m	1	mM	
+Michaelis constant	R_ACALDtm	M_acald_m	1	mM	
+Michaelis constant	R_HSERTA	M_accoa_c	1	mM	
+Michaelis constant	R_ACS	M_accoa_c	1	mM	
+Michaelis constant	R_ACOAH	M_accoa_c	1	mM	
+Michaelis constant	R_IPPS	M_accoa_c	1	mM	
+Michaelis constant	R_HCITS	M_accoa_c	1	mM	
+Michaelis constant	R_MALS	M_accoa_c	1	mM	
+Michaelis constant	R_CSc	M_accoa_c	1	mM	
+Michaelis constant	R_zymstSYN	M_accoa_c	1	mM	
+Michaelis constant	R_paSYN	M_accoa_c	1	mM	
+Michaelis constant	R_triglycSYN	M_accoa_c	1	mM	
+Michaelis constant	R_CSm	M_accoa_m	1	mM	
+Michaelis constant	R_PDHm	M_accoa_m	1	mM	
+Michaelis constant	R_ACSm	M_accoa_m	1	mM	
+Michaelis constant	R_AGPRim	M_acg5p_m	1	mM	
+Michaelis constant	R_ACGKm	M_acg5p_m	1	mM	
+Michaelis constant	R_AGPRim	M_acg5sa_m	1	mM	
+Michaelis constant	R_ACOTAim	M_acg5sa_m	1	mM	
+Michaelis constant	R_ORNTACim	M_acglu_m	1	mM	
+Michaelis constant	R_ACGKm	M_acglu_m	1	mM	
+Michaelis constant	R_HSERTA	M_achms_c	1	mM	
+Michaelis constant	R_AHSERL2	M_achms_c	1	mM	
+Michaelis constant	R_ORNTACim	M_acorn_m	1	mM	
+Michaelis constant	R_ACOTAim	M_acorn_m	1	mM	
+Michaelis constant	R_AHSERL2	M_ac_c	1	mM	
+Michaelis constant	R_ACS	M_ac_c	1	mM	
+Michaelis constant	R_ACOAH	M_ac_c	1	mM	
+Michaelis constant	R_ALDD2y	M_ac_c	1	mM	
+Michaelis constant	R_ACt2r	M_ac_c	1	mM	
+Michaelis constant	R_ACtm	M_ac_c	1	mM	
+Michaelis constant	R_ACt2r	M_ac_e	1	mM	
+Michaelis constant	R_ac_LSQBKT_e_RSQBKT__EX	M_ac_e	1	mM	
+Michaelis constant	R_ACSm	M_ac_m	1	mM	
+Michaelis constant	R_ALDD2ym	M_ac_m	1	mM	
+Michaelis constant	R_ALDD2xm	M_ac_m	1	mM	
+Michaelis constant	R_ACtm	M_ac_m	1	mM	
+Michaelis constant	R_ASPKi	M_adp_c	1	mM	
+Michaelis constant	R_PPCK	M_adp_c	1	mM	
+Michaelis constant	R_PC	M_adp_c	1	mM	
+Michaelis constant	R_GLU5K	M_adp_c	1	mM	
+Michaelis constant	R_CBPS	M_adp_c	1	mM	
+Michaelis constant	R_SLFAT	M_adp_c	1	mM	
+Michaelis constant	R_ADSK	M_adp_c	1	mM	
+Michaelis constant	R_FTHFL	M_adp_c	1	mM	
+Michaelis constant	R_GLNS	M_adp_c	1	mM	
+Michaelis constant	R_GLYK	M_adp_c	1	mM	
+Michaelis constant	R_HSK	M_adp_c	1	mM	
+Michaelis constant	R_PYK	M_adp_c	1	mM	
+Michaelis constant	R_PGK	M_adp_c	1	mM	
+Michaelis constant	R_PFK	M_adp_c	1	mM	
+Michaelis constant	R_HEX1	M_adp_c	1	mM	
+Michaelis constant	R_ADK1	M_adp_c	1	mM	
+Michaelis constant	R_SHKK	M_adp_c	1	mM	
+Michaelis constant	R_ATPS	M_adp_c	1	mM	
+Michaelis constant	R_ATPtm_DASH_H	M_adp_c	1	mM	
+Michaelis constant	R_aicarSYN	M_adp_c	1	mM	
+Michaelis constant	R_ampSYN	M_adp_c	1	mM	
+Michaelis constant	R_umpSYN	M_adp_c	1	mM	
+Michaelis constant	R_cmpSYN	M_adp_c	1	mM	
+Michaelis constant	R_13BDglcnSYN	M_adp_c	1	mM	
+Michaelis constant	R_mannanSYN	M_adp_c	1	mM	
+Michaelis constant	R_zymstSYN	M_adp_c	1	mM	
+Michaelis constant	R_ergstSYN	M_adp_c	1	mM	
+Michaelis constant	R_paSYN	M_adp_c	1	mM	
+Michaelis constant	R_psSYN	M_adp_c	1	mM	
+Michaelis constant	R_pcSYN	M_adp_c	1	mM	
+Michaelis constant	R_ptd1inoSYN	M_adp_c	1	mM	
+Michaelis constant	R_triglycSYN	M_adp_c	1	mM	
+Michaelis constant	R_biomass	M_adp_c	1	mM	
+Michaelis constant	R_ACGKm	M_adp_m	1	mM	
+Michaelis constant	R_SUCOAS1m	M_adp_m	1	mM	
+Michaelis constant	R_ADK1m	M_adp_m	1	mM	
+Michaelis constant	R_ATPS3m	M_adp_m	1	mM	
+Michaelis constant	R_ATPtm_DASH_H	M_adp_m	1	mM	
+Michaelis constant	R_IG3PS	M_aicar_c	1	mM	
+Michaelis constant	R_aicarSYN	M_aicar_c	1	mM	
+Michaelis constant	R_ampSYN	M_aicar_c	1	mM	
+Michaelis constant	R_gmpSYN	M_aicar_c	1	mM	
+Michaelis constant	R_ASPTA	M_akg_c	1	mM	
+Michaelis constant	R_ALATA_L	M_akg_c	1	mM	
+Michaelis constant	R_ICDHy	M_akg_c	1	mM	
+Michaelis constant	R_GLUDy	M_akg_c	1	mM	
+Michaelis constant	R_PSERT	M_akg_c	1	mM	
+Michaelis constant	R_HSTPT	M_akg_c	1	mM	
+Michaelis constant	R_SACCD2	M_akg_c	1	mM	
+Michaelis constant	R_AATA	M_akg_c	1	mM	
+Michaelis constant	R_TYRTA	M_akg_c	1	mM	
+Michaelis constant	R_PHETA1	M_akg_c	1	mM	
+Michaelis constant	R_VALTA	M_akg_c	1	mM	
+Michaelis constant	R_LEUTA	M_akg_c	1	mM	
+Michaelis constant	R_ILETA	M_akg_c	1	mM	
+Michaelis constant	R_HCITS	M_akg_c	1	mM	
+Michaelis constant	R_2OXOADPtim	M_akg_c	1	mM	
+Michaelis constant	R_ALATA_Lm	M_akg_m	1	mM	
+Michaelis constant	R_ACOTAim	M_akg_m	1	mM	
+Michaelis constant	R_ICDHxm	M_akg_m	1	mM	
+Michaelis constant	R_AKGDam	M_akg_m	1	mM	
+Michaelis constant	R_GLUSxm	M_akg_m	1	mM	
+Michaelis constant	R_GLUDym	M_akg_m	1	mM	
+Michaelis constant	R_2OXOADPtim	M_akg_m	1	mM	
+Michaelis constant	R_ALATA_L	M_ala_DASH_L_c	1	mM	
+Michaelis constant	R_ALAt2m	M_ala_DASH_L_c	1	mM	
+Michaelis constant	R_biomass	M_ala_DASH_L_c	1	mM	
+Michaelis constant	R_ALATA_Lm	M_ala_DASH_L_m	1	mM	
+Michaelis constant	R_AGTm	M_ala_DASH_L_m	1	mM	
+Michaelis constant	R_ALAt2m	M_ala_DASH_L_m	1	mM	
+Michaelis constant	R_KARA1im	M_alac_DASH_S_m	1	mM	
+Michaelis constant	R_ACLSm	M_alac_DASH_S_m	1	mM	
+Michaelis constant	R_ASNS1	M_amp_c	1	mM	
+Michaelis constant	R_ARGSSr	M_amp_c	1	mM	
+Michaelis constant	R_BPNT	M_amp_c	1	mM	
+Michaelis constant	R_PRPPS	M_amp_c	1	mM	
+Michaelis constant	R_ADK1	M_amp_c	1	mM	
+Michaelis constant	R_ACS	M_amp_c	1	mM	
+Michaelis constant	R_AASAD1	M_amp_c	1	mM	
+Michaelis constant	R_aicarSYN	M_amp_c	1	mM	
+Michaelis constant	R_ampSYN	M_amp_c	1	mM	
+Michaelis constant	R_dampSYN	M_amp_c	1	mM	
+Michaelis constant	R_gmpSYN	M_amp_c	1	mM	
+Michaelis constant	R_umpSYN	M_amp_c	1	mM	
+Michaelis constant	R_ergstSYN	M_amp_c	1	mM	
+Michaelis constant	R_pcSYN	M_amp_c	1	mM	
+Michaelis constant	R_biomass	M_amp_c	1	mM	
+Michaelis constant	R_ADK1m	M_amp_m	1	mM	
+Michaelis constant	R_ACSm	M_amp_m	1	mM	
+Michaelis constant	R_ANS	M_anth_c	1	mM	
+Michaelis constant	R_ANPRT	M_anth_c	1	mM	
+Michaelis constant	R_SLFAT	M_aps_c	1	mM	
+Michaelis constant	R_ADSK	M_aps_c	1	mM	
+Michaelis constant	R_ARGSL	M_arg_DASH_L_c	1	mM	
+Michaelis constant	R_biomass	M_arg_DASH_L_c	1	mM	
+Michaelis constant	R_ARGSSr	M_argsuc_c	1	mM	
+Michaelis constant	R_ARGSL	M_argsuc_c	1	mM	
+Michaelis constant	R_ASNS1	M_asn_DASH_L_c	1	mM	
+Michaelis constant	R_biomass	M_asn_DASH_L_c	1	mM	
+Michaelis constant	R_ASPTA	M_asp_DASH_L_c	1	mM	
+Michaelis constant	R_ASPKi	M_asp_DASH_L_c	1	mM	
+Michaelis constant	R_ASNS1	M_asp_DASH_L_c	1	mM	
+Michaelis constant	R_ARGSSr	M_asp_DASH_L_c	1	mM	
+Michaelis constant	R_aicarSYN	M_asp_DASH_L_c	1	mM	
+Michaelis constant	R_ampSYN	M_asp_DASH_L_c	1	mM	
+Michaelis constant	R_umpSYN	M_asp_DASH_L_c	1	mM	
+Michaelis constant	R_biomass	M_asp_DASH_L_c	1	mM	
+Michaelis constant	R_ASADi	M_aspsa_c	1	mM	
+Michaelis constant	R_HSDyi	M_aspsa_c	1	mM	
+Michaelis constant	R_ASPKi	M_atp_c	1	mM	
+Michaelis constant	R_ASNS1	M_atp_c	1	mM	
+Michaelis constant	R_PPCK	M_atp_c	1	mM	
+Michaelis constant	R_PC	M_atp_c	1	mM	
+Michaelis constant	R_GLU5K	M_atp_c	1	mM	
+Michaelis constant	R_CBPS	M_atp_c	1	mM	
+Michaelis constant	R_ARGSSr	M_atp_c	1	mM	
+Michaelis constant	R_ADSK	M_atp_c	1	mM	
+Michaelis constant	R_FTHFL	M_atp_c	1	mM	
+Michaelis constant	R_GLNS	M_atp_c	1	mM	
+Michaelis constant	R_GLYK	M_atp_c	1	mM	
+Michaelis constant	R_HSK	M_atp_c	1	mM	
+Michaelis constant	R_PYK	M_atp_c	1	mM	
+Michaelis constant	R_PGK	M_atp_c	1	mM	
+Michaelis constant	R_PFK	M_atp_c	1	mM	
+Michaelis constant	R_HEX1	M_atp_c	1	mM	
+Michaelis constant	R_PRPPS	M_atp_c	1	mM	
+Michaelis constant	R_ATPPRT	M_atp_c	1	mM	
+Michaelis constant	R_ADK1	M_atp_c	1	mM	
+Michaelis constant	R_ACS	M_atp_c	1	mM	
+Michaelis constant	R_AASAD1	M_atp_c	1	mM	
+Michaelis constant	R_SHKK	M_atp_c	1	mM	
+Michaelis constant	R_ATPS	M_atp_c	1	mM	
+Michaelis constant	R_ATPtm_DASH_H	M_atp_c	1	mM	
+Michaelis constant	R_aicarSYN	M_atp_c	1	mM	
+Michaelis constant	R_ampSYN	M_atp_c	1	mM	
+Michaelis constant	R_gmpSYN	M_atp_c	1	mM	
+Michaelis constant	R_umpSYN	M_atp_c	1	mM	
+Michaelis constant	R_cmpSYN	M_atp_c	1	mM	
+Michaelis constant	R_13BDglcnSYN	M_atp_c	1	mM	
+Michaelis constant	R_mannanSYN	M_atp_c	1	mM	
+Michaelis constant	R_zymstSYN	M_atp_c	1	mM	
+Michaelis constant	R_ergstSYN	M_atp_c	1	mM	
+Michaelis constant	R_paSYN	M_atp_c	1	mM	
+Michaelis constant	R_psSYN	M_atp_c	1	mM	
+Michaelis constant	R_pcSYN	M_atp_c	1	mM	
+Michaelis constant	R_ptd1inoSYN	M_atp_c	1	mM	
+Michaelis constant	R_triglycSYN	M_atp_c	1	mM	
+Michaelis constant	R_biomass	M_atp_c	1	mM	
+Michaelis constant	R_ACGKm	M_atp_m	1	mM	
+Michaelis constant	R_SUCOAS1m	M_atp_m	1	mM	
+Michaelis constant	R_ADK1m	M_atp_m	1	mM	
+Michaelis constant	R_ATPS3m	M_atp_m	1	mM	
+Michaelis constant	R_ACSm	M_atp_m	1	mM	
+Michaelis constant	R_ATPtm_DASH_H	M_atp_m	1	mM	
+Michaelis constant	R_MCITDm	M_b124tc_m	1	mM	
+Michaelis constant	R_HACNHm	M_b124tc_m	1	mM	
+Michaelis constant	R_OCBTi	M_cbp_c	1	mM	
+Michaelis constant	R_CBPS	M_cbp_c	1	mM	
+Michaelis constant	R_ANS	M_chor_c	1	mM	
+Michaelis constant	R_CHORS	M_chor_c	1	mM	
+Michaelis constant	R_CHORM	M_chor_c	1	mM	
+Michaelis constant	R_OCBTi	M_citr_DASH_L_c	1	mM	
+Michaelis constant	R_ARGSSr	M_citr_DASH_L_c	1	mM	
+Michaelis constant	R_ACONT	M_cit_c	1	mM	
+Michaelis constant	R_CSc	M_cit_c	1	mM	
+Michaelis constant	R_CITtcm	M_cit_c	1	mM	
+Michaelis constant	R_CITtam	M_cit_c	1	mM	
+Michaelis constant	R_CSm	M_cit_m	1	mM	
+Michaelis constant	R_ACONTm	M_cit_m	1	mM	
+Michaelis constant	R_CITtcm	M_cit_m	1	mM	
+Michaelis constant	R_CITtam	M_cit_m	1	mM	
+Michaelis constant	R_cmpSYN	M_cmp_c	1	mM	
+Michaelis constant	R_dcmpSYN	M_cmp_c	1	mM	
+Michaelis constant	R_biomass	M_cmp_c	1	mM	
+Michaelis constant	R_PPCK	M_co2tot_c	1	mM	
+Michaelis constant	R_PC	M_co2tot_c	1	mM	
+Michaelis constant	R_CBPS	M_co2tot_c	1	mM	
+Michaelis constant	R_ICDHy	M_co2tot_c	1	mM	
+Michaelis constant	R_FDH	M_co2tot_c	1	mM	
+Michaelis constant	R_GND	M_co2tot_c	1	mM	
+Michaelis constant	R_PYRDC	M_co2tot_c	1	mM	
+Michaelis constant	R_PPNDH	M_co2tot_c	1	mM	
+Michaelis constant	R_PPND2	M_co2tot_c	1	mM	
+Michaelis constant	R_IGPS	M_co2tot_c	1	mM	
+Michaelis constant	R_OMCDC	M_co2tot_c	1	mM	
+Michaelis constant	R_CO2t	M_co2tot_c	1	mM	
+Michaelis constant	R_CO2tm	M_co2tot_c	1	mM	
+Michaelis constant	R_aicarSYN	M_co2tot_c	1	mM	
+Michaelis constant	R_zymstSYN	M_co2tot_c	1	mM	
+Michaelis constant	R_peSYN	M_co2tot_c	1	mM	
+Michaelis constant	R_CO2t	M_co2tot_e	1	mM	
+Michaelis constant	R_co2_LSQBKT_e_RSQBKT__EX	M_co2tot_e	1	mM	
+Michaelis constant	R_ME2m	M_co2tot_m	1	mM	
+Michaelis constant	R_ICDHxm	M_co2tot_m	1	mM	
+Michaelis constant	R_AKGDam	M_co2tot_m	1	mM	
+Michaelis constant	R_PDHm	M_co2tot_m	1	mM	
+Michaelis constant	R_OXAGm	M_co2tot_m	1	mM	
+Michaelis constant	R_ACLSm	M_co2tot_m	1	mM	
+Michaelis constant	R_ACHBSm	M_co2tot_m	1	mM	
+Michaelis constant	R_CO2tm	M_co2tot_m	1	mM	
+Michaelis constant	R_HSERTA	M_coa_c	1	mM	
+Michaelis constant	R_ACS	M_coa_c	1	mM	
+Michaelis constant	R_ACOAH	M_coa_c	1	mM	
+Michaelis constant	R_IPPS	M_coa_c	1	mM	
+Michaelis constant	R_HCITS	M_coa_c	1	mM	
+Michaelis constant	R_MALS	M_coa_c	1	mM	
+Michaelis constant	R_CSc	M_coa_c	1	mM	
+Michaelis constant	R_zymstSYN	M_coa_c	1	mM	
+Michaelis constant	R_paSYN	M_coa_c	1	mM	
+Michaelis constant	R_triglycSYN	M_coa_c	1	mM	
+Michaelis constant	R_SUCOAS1m	M_coa_m	1	mM	
+Michaelis constant	R_CSm	M_coa_m	1	mM	
+Michaelis constant	R_AKGDam	M_coa_m	1	mM	
+Michaelis constant	R_PDHm	M_coa_m	1	mM	
+Michaelis constant	R_ACSm	M_coa_m	1	mM	
+Michaelis constant	R_CYSTGL	M_cys_DASH_L_c	1	mM	
+Michaelis constant	R_biomass	M_cys_DASH_L_c	1	mM	
+Michaelis constant	R_CYSTS	M_cyst_DASH_L_c	1	mM	
+Michaelis constant	R_CYSTGL	M_cyst_DASH_L_c	1	mM	
+Michaelis constant	R_dampSYN	M_damp_c	1	mM	
+Michaelis constant	R_biomass	M_damp_c	1	mM	
+Michaelis constant	R_dcmpSYN	M_dcmp_c	1	mM	
+Michaelis constant	R_dtmpSYN	M_dcmp_c	1	mM	
+Michaelis constant	R_biomass	M_dcmp_c	1	mM	
+Michaelis constant	R_dgmpSYN	M_dgmp_c	1	mM	
+Michaelis constant	R_biomass	M_dgmp_c	1	mM	
+Michaelis constant	R_G3PD1ir	M_dhap_c	1	mM	
+Michaelis constant	R_TPI	M_dhap_c	1	mM	
+Michaelis constant	R_FBA	M_dhap_c	1	mM	
+Michaelis constant	R_dtmpSYN	M_dtmp_c	1	mM	
+Michaelis constant	R_biomass	M_dtmp_c	1	mM	
+Michaelis constant	R_TKT2	M_e4p_c	1	mM	
+Michaelis constant	R_TALA	M_e4p_c	1	mM	
+Michaelis constant	R_DDPA	M_e4p_c	1	mM	
+Michaelis constant	R_IGPDH	M_eig3p_c	1	mM	
+Michaelis constant	R_IG3PS	M_eig3p_c	1	mM	
+Michaelis constant	R_ergstSYN	M_ergst_c	1	mM	
+Michaelis constant	R_biomass	M_ergst_c	1	mM	
+Michaelis constant	R_ALCD2x	M_etoh_c	1	mM	
+Michaelis constant	R_ETOHt	M_etoh_c	1	mM	
+Michaelis constant	R_ETOHtm	M_etoh_c	1	mM	
+Michaelis constant	R_ETOHt	M_etoh_e	1	mM	
+Michaelis constant	R_etoh_LSQBKT_e_RSQBKT__EX	M_etoh_e	1	mM	
+Michaelis constant	R_ALCD2m	M_etoh_m	1	mM	
+Michaelis constant	R_ETOHtm	M_etoh_m	1	mM	
+Michaelis constant	R_FBP	M_f6p_c	1	mM	
+Michaelis constant	R_PGI	M_f6p_c	1	mM	
+Michaelis constant	R_PFK	M_f6p_c	1	mM	
+Michaelis constant	R_TKT2	M_f6p_c	1	mM	
+Michaelis constant	R_TALA	M_f6p_c	1	mM	
+Michaelis constant	R_mannanSYN	M_f6p_c	1	mM	
+Michaelis constant	R_FBP	M_fdp_c	1	mM	
+Michaelis constant	R_PFK	M_fdp_c	1	mM	
+Michaelis constant	R_FBA	M_fdp_c	1	mM	
+Michaelis constant	R_CYOR_u6m	M_ficytc_m	1	mM	
+Michaelis constant	R_CYOOm	M_ficytc_m	1	mM	
+Michaelis constant	R_CYOR_u6m	M_focytc_m	1	mM	
+Michaelis constant	R_CYOOm	M_focytc_m	1	mM	
+Michaelis constant	R_FTHFL	M_for_c	1	mM	
+Michaelis constant	R_FDH	M_for_c	1	mM	
+Michaelis constant	R_zymstSYN	M_for_c	1	mM	
+Michaelis constant	R_ARGSL	M_fum_c	1	mM	
+Michaelis constant	R_FUM	M_fum_c	1	mM	
+Michaelis constant	R_SUCFUMtm	M_fum_c	1	mM	
+Michaelis constant	R_aicarSYN	M_fum_c	1	mM	
+Michaelis constant	R_ampSYN	M_fum_c	1	mM	
+Michaelis constant	R_SUCD2_u6m	M_fum_m	1	mM	
+Michaelis constant	R_FUMm	M_fum_m	1	mM	
+Michaelis constant	R_SUCFUMtm	M_fum_m	1	mM	
+Michaelis constant	R_TPI	M_g3p_c	1	mM	
+Michaelis constant	R_GAPD	M_g3p_c	1	mM	
+Michaelis constant	R_FBA	M_g3p_c	1	mM	
+Michaelis constant	R_TKT2	M_g3p_c	1	mM	
+Michaelis constant	R_TKT1	M_g3p_c	1	mM	
+Michaelis constant	R_TALA	M_g3p_c	1	mM	
+Michaelis constant	R_TRPS1	M_g3p_c	1	mM	
+Michaelis constant	R_PGI	M_g6p_c	1	mM	
+Michaelis constant	R_HEX1	M_g6p_c	1	mM	
+Michaelis constant	R_G6PDH2	M_g6p_c	1	mM	
+Michaelis constant	R_13BDglcnSYN	M_g6p_c	1	mM	
+Michaelis constant	R_ptd1inoSYN	M_g6p_c	1	mM	
+Michaelis constant	R_HEX1	M_glc_DASH_D_c	1	mM	
+Michaelis constant	R_GLCt1	M_glc_DASH_D_c	1	mM	
+Michaelis constant	R_GLCt1	M_glc_DASH_D_e	1	mM	
+Michaelis constant	R_glc_DASH_D_LSQBKT_e_RSQBKT__EX	M_glc_DASH_D_e	1	mM	
+Michaelis constant	R_ASNS1	M_gln_DASH_L_c	1	mM	
+Michaelis constant	R_CBPS	M_gln_DASH_L_c	1	mM	
+Michaelis constant	R_GLNS	M_gln_DASH_L_c	1	mM	
+Michaelis constant	R_ANS	M_gln_DASH_L_c	1	mM	
+Michaelis constant	R_IG3PS	M_gln_DASH_L_c	1	mM	
+Michaelis constant	R_GLNt2m	M_gln_DASH_L_c	1	mM	
+Michaelis constant	R_aicarSYN	M_gln_DASH_L_c	1	mM	
+Michaelis constant	R_gmpSYN	M_gln_DASH_L_c	1	mM	
+Michaelis constant	R_umpSYN	M_gln_DASH_L_c	1	mM	
+Michaelis constant	R_biomass	M_gln_DASH_L_c	1	mM	
+Michaelis constant	R_GLUSxm	M_gln_DASH_L_m	1	mM	
+Michaelis constant	R_GLNt2m	M_gln_DASH_L_m	1	mM	
+Michaelis constant	R_ASPTA	M_glu_DASH_L_c	1	mM	
+Michaelis constant	R_ASNS1	M_glu_DASH_L_c	1	mM	
+Michaelis constant	R_ALATA_L	M_glu_DASH_L_c	1	mM	
+Michaelis constant	R_GLU5K	M_glu_DASH_L_c	1	mM	
+Michaelis constant	R_CBPS	M_glu_DASH_L_c	1	mM	
+Michaelis constant	R_GLUDy	M_glu_DASH_L_c	1	mM	
+Michaelis constant	R_GLNS	M_glu_DASH_L_c	1	mM	
+Michaelis constant	R_ANS	M_glu_DASH_L_c	1	mM	
+Michaelis constant	R_PSERT	M_glu_DASH_L_c	1	mM	
+Michaelis constant	R_IG3PS	M_glu_DASH_L_c	1	mM	
+Michaelis constant	R_HSTPT	M_glu_DASH_L_c	1	mM	
+Michaelis constant	R_SACCD1	M_glu_DASH_L_c	1	mM	
+Michaelis constant	R_AATA	M_glu_DASH_L_c	1	mM	
+Michaelis constant	R_TYRTA	M_glu_DASH_L_c	1	mM	
+Michaelis constant	R_PHETA1	M_glu_DASH_L_c	1	mM	
+Michaelis constant	R_VALTA	M_glu_DASH_L_c	1	mM	
+Michaelis constant	R_LEUTA	M_glu_DASH_L_c	1	mM	
+Michaelis constant	R_ILETA	M_glu_DASH_L_c	1	mM	
+Michaelis constant	R_GLUt2m	M_glu_DASH_L_c	1	mM	
+Michaelis constant	R_aicarSYN	M_glu_DASH_L_c	1	mM	
+Michaelis constant	R_gmpSYN	M_glu_DASH_L_c	1	mM	
+Michaelis constant	R_umpSYN	M_glu_DASH_L_c	1	mM	
+Michaelis constant	R_biomass	M_glu_DASH_L_c	1	mM	
+Michaelis constant	R_ALATA_Lm	M_glu_DASH_L_m	1	mM	
+Michaelis constant	R_ORNTACim	M_glu_DASH_L_m	1	mM	
+Michaelis constant	R_ACOTAim	M_glu_DASH_L_m	1	mM	
+Michaelis constant	R_GLUSxm	M_glu_DASH_L_m	1	mM	
+Michaelis constant	R_GLUDym	M_glu_DASH_L_m	1	mM	
+Michaelis constant	R_GLUt2m	M_glu_DASH_L_m	1	mM	
+Michaelis constant	R_GLU5K	M_glu5p_c	1	mM	
+Michaelis constant	R_G5SD	M_glu5p_c	1	mM	
+Michaelis constant	R_G5SD	M_glu5sa_c	1	mM	
+Michaelis constant	R_G5SADr	M_glu5sa_c	1	mM	
+Michaelis constant	R_ICL	M_glx_c	1	mM	
+Michaelis constant	R_MALS	M_glx_c	1	mM	
+Michaelis constant	R_GLXtm	M_glx_c	1	mM	
+Michaelis constant	R_AGTm	M_glx_m	1	mM	
+Michaelis constant	R_GLXtm	M_glx_m	1	mM	
+Michaelis constant	R_GLYK	M_glyc3p_c	1	mM	
+Michaelis constant	R_G3PT	M_glyc3p_c	1	mM	
+Michaelis constant	R_G3PD1ir	M_glyc3p_c	1	mM	
+Michaelis constant	R_paSYN	M_glyc3p_c	1	mM	
+Michaelis constant	R_GLYK	M_glyc_c	1	mM	
+Michaelis constant	R_G3PT	M_glyc_c	1	mM	
+Michaelis constant	R_GLYCt	M_glyc_c	1	mM	
+Michaelis constant	R_GLYCt	M_glyc_e	1	mM	
+Michaelis constant	R_glyc_LSQBKT_e_RSQBKT__EX	M_glyc_e	1	mM	
+Michaelis constant	R_GHMT2r	M_gly_c	1	mM	
+Michaelis constant	R_THRA	M_gly_c	1	mM	
+Michaelis constant	R_GLYt2m	M_gly_c	1	mM	
+Michaelis constant	R_aicarSYN	M_gly_c	1	mM	
+Michaelis constant	R_biomass	M_gly_c	1	mM	
+Michaelis constant	R_AGTm	M_gly_m	1	mM	
+Michaelis constant	R_GLYt2m	M_gly_m	1	mM	
+Michaelis constant	R_gmpSYN	M_gmp_c	1	mM	
+Michaelis constant	R_dgmpSYN	M_gmp_c	1	mM	
+Michaelis constant	R_biomass	M_gmp_c	1	mM	
+Michaelis constant	R_ASNS1	M_h2o_c	1	mM	
+Michaelis constant	R_PPCK	M_h2o_c	1	mM	
+Michaelis constant	R_FBP	M_h2o_c	1	mM	
+Michaelis constant	R_G5SADr	M_h2o_c	1	mM	
+Michaelis constant	R_CBPS	M_h2o_c	1	mM	
+Michaelis constant	R_ICDHy	M_h2o_c	1	mM	
+Michaelis constant	R_SULR	M_h2o_c	1	mM	
+Michaelis constant	R_BPNT	M_h2o_c	1	mM	
+Michaelis constant	R_MTHFC	M_h2o_c	1	mM	
+Michaelis constant	R_GLUDy	M_h2o_c	1	mM	
+Michaelis constant	R_G3PT	M_h2o_c	1	mM	
+Michaelis constant	R_PSP_L	M_h2o_c	1	mM	
+Michaelis constant	R_GHMT2r	M_h2o_c	1	mM	
+Michaelis constant	R_CYSTS	M_h2o_c	1	mM	
+Michaelis constant	R_ENO	M_h2o_c	1	mM	
+Michaelis constant	R_PRATPP	M_h2o_c	1	mM	
+Michaelis constant	R_PRAMPC	M_h2o_c	1	mM	
+Michaelis constant	R_IGPDH	M_h2o_c	1	mM	
+Michaelis constant	R_HISTP	M_h2o_c	1	mM	
+Michaelis constant	R_HISTD	M_h2o_c	1	mM	
+Michaelis constant	R_FDH	M_h2o_c	1	mM	
+Michaelis constant	R_CYSTGL	M_h2o_c	1	mM	
+Michaelis constant	R_PPA	M_h2o_c	1	mM	
+Michaelis constant	R_FUM	M_h2o_c	1	mM	
+Michaelis constant	R_PGL	M_h2o_c	1	mM	
+Michaelis constant	R_GND	M_h2o_c	1	mM	
+Michaelis constant	R_PYRDC	M_h2o_c	1	mM	
+Michaelis constant	R_ACOAH	M_h2o_c	1	mM	
+Michaelis constant	R_THRS	M_h2o_c	1	mM	
+Michaelis constant	R_SACCD2	M_h2o_c	1	mM	
+Michaelis constant	R_SACCD1	M_h2o_c	1	mM	
+Michaelis constant	R_TRPS1	M_h2o_c	1	mM	
+Michaelis constant	R_PPND2	M_h2o_c	1	mM	
+Michaelis constant	R_DHQTi	M_h2o_c	1	mM	
+Michaelis constant	R_DDPA	M_h2o_c	1	mM	
+Michaelis constant	R_ALDD2y	M_h2o_c	1	mM	
+Michaelis constant	R_OMCDC	M_h2o_c	1	mM	
+Michaelis constant	R_IPPS	M_h2o_c	1	mM	
+Michaelis constant	R_IPPMIb	M_h2o_c	1	mM	
+Michaelis constant	R_IPPMIa	M_h2o_c	1	mM	
+Michaelis constant	R_HCITS	M_h2o_c	1	mM	
+Michaelis constant	R_MALS	M_h2o_c	1	mM	
+Michaelis constant	R_CSc	M_h2o_c	1	mM	
+Michaelis constant	R_H2Ot	M_h2o_c	1	mM	
+Michaelis constant	R_ATPS	M_h2o_c	1	mM	
+Michaelis constant	R_H2Otm	M_h2o_c	1	mM	
+Michaelis constant	R_aicarSYN	M_h2o_c	1	mM	
+Michaelis constant	R_ampSYN	M_h2o_c	1	mM	
+Michaelis constant	R_dampSYN	M_h2o_c	1	mM	
+Michaelis constant	R_gmpSYN	M_h2o_c	1	mM	
+Michaelis constant	R_dgmpSYN	M_h2o_c	1	mM	
+Michaelis constant	R_dcmpSYN	M_h2o_c	1	mM	
+Michaelis constant	R_dtmpSYN	M_h2o_c	1	mM	
+Michaelis constant	R_zymstSYN	M_h2o_c	1	mM	
+Michaelis constant	R_ergstSYN	M_h2o_c	1	mM	
+Michaelis constant	R_paSYN	M_h2o_c	1	mM	
+Michaelis constant	R_peSYN	M_h2o_c	1	mM	
+Michaelis constant	R_pcSYN	M_h2o_c	1	mM	
+Michaelis constant	R_ptd1inoSYN	M_h2o_c	1	mM	
+Michaelis constant	R_triglycSYN	M_h2o_c	1	mM	
+Michaelis constant	R_biomass	M_h2o_c	1	mM	
+Michaelis constant	R_H2Ot	M_h2o_e	1	mM	
+Michaelis constant	R_h2o_LSQBKT_e_RSQBKT__EX	M_h2o_e	1	mM	
+Michaelis constant	R_ME2m	M_h2o_m	1	mM	
+Michaelis constant	R_ICDHxm	M_h2o_m	1	mM	
+Michaelis constant	R_CSm	M_h2o_m	1	mM	
+Michaelis constant	R_AKGDam	M_h2o_m	1	mM	
+Michaelis constant	R_PDHm	M_h2o_m	1	mM	
+Michaelis constant	R_PPAm	M_h2o_m	1	mM	
+Michaelis constant	R_FUMm	M_h2o_m	1	mM	
+Michaelis constant	R_CYOOm	M_h2o_m	1	mM	
+Michaelis constant	R_ATPS3m	M_h2o_m	1	mM	
+Michaelis constant	R_OXAGm	M_h2o_m	1	mM	
+Michaelis constant	R_MCITDm	M_h2o_m	1	mM	
+Michaelis constant	R_HACNHm	M_h2o_m	1	mM	
+Michaelis constant	R_ALDD2ym	M_h2o_m	1	mM	
+Michaelis constant	R_ALDD2xm	M_h2o_m	1	mM	
+Michaelis constant	R_DHAD2m	M_h2o_m	1	mM	
+Michaelis constant	R_DHAD1m	M_h2o_m	1	mM	
+Michaelis constant	R_ACLSm	M_h2o_m	1	mM	
+Michaelis constant	R_ACHBSm	M_h2o_m	1	mM	
+Michaelis constant	R_GLUDym	M_h2o_m	1	mM	
+Michaelis constant	R_H2Otm	M_h2o_m	1	mM	
+Michaelis constant	R_SULR	M_h2s_c	1	mM	
+Michaelis constant	R_AHSERL2	M_h2s_c	1	mM	
+Michaelis constant	R_HCITS	M_hcit_c	1	mM	
+Michaelis constant	R_HCITtm	M_hcit_c	1	mM	
+Michaelis constant	R_MCITDm	M_hcit_m	1	mM	
+Michaelis constant	R_HCITtm	M_hcit_m	1	mM	
+Michaelis constant	R_CYSTS	M_hcys_DASH_L_c	1	mM	
+Michaelis constant	R_METS	M_hcys_DASH_L_c	1	mM	
+Michaelis constant	R_AHSERL2	M_hcys_DASH_L_c	1	mM	
+Michaelis constant	R_ergstSYN	M_hcys_DASH_L_c	1	mM	
+Michaelis constant	R_pcSYN	M_hcys_DASH_L_c	1	mM	
+Michaelis constant	R_CYOR_u6m	M_hcyt_c	1	mM	
+Michaelis constant	R_CYOOm	M_hcyt_c	1	mM	
+Michaelis constant	R_ATPS3m	M_hcyt_c	1	mM	
+Michaelis constant	R_HICITDm	M_hicit_m	1	mM	
+Michaelis constant	R_HACNHm	M_hicit_m	1	mM	
+Michaelis constant	R_HISTD	M_his_DASH_L_c	1	mM	
+Michaelis constant	R_biomass	M_his_DASH_L_c	1	mM	
+Michaelis constant	R_HSTPT	M_hisp_c	1	mM	
+Michaelis constant	R_HISTP	M_hisp_c	1	mM	
+Michaelis constant	R_HISTP	M_histd_c	1	mM	
+Michaelis constant	R_HISTD	M_histd_c	1	mM	
+Michaelis constant	R_HSK	M_hom_DASH_L_c	1	mM	
+Michaelis constant	R_HSDyi	M_hom_DASH_L_c	1	mM	
+Michaelis constant	R_HSERTA	M_hom_DASH_L_c	1	mM	
+Michaelis constant	R_ASNS1	M_h_c	1	mM	
+Michaelis constant	R_ASADi	M_h_c	1	mM	
+Michaelis constant	R_PC	M_h_c	1	mM	
+Michaelis constant	R_P5CR	M_h_c	1	mM	
+Michaelis constant	R_OCBTi	M_h_c	1	mM	
+Michaelis constant	R_G5SD	M_h_c	1	mM	
+Michaelis constant	R_G5SADr	M_h_c	1	mM	
+Michaelis constant	R_CBPS	M_h_c	1	mM	
+Michaelis constant	R_ARGSSr	M_h_c	1	mM	
+Michaelis constant	R_SULR	M_h_c	1	mM	
+Michaelis constant	R_SLFAT	M_h_c	1	mM	
+Michaelis constant	R_PAPSR	M_h_c	1	mM	
+Michaelis constant	R_ADSK	M_h_c	1	mM	
+Michaelis constant	R_MTHFR3	M_h_c	1	mM	
+Michaelis constant	R_MTHFD	M_h_c	1	mM	
+Michaelis constant	R_GLUDy	M_h_c	1	mM	
+Michaelis constant	R_GLNS	M_h_c	1	mM	
+Michaelis constant	R_ANS	M_h_c	1	mM	
+Michaelis constant	R_GLYK	M_h_c	1	mM	
+Michaelis constant	R_G3PD1ir	M_h_c	1	mM	
+Michaelis constant	R_PGCD	M_h_c	1	mM	
+Michaelis constant	R_HSK	M_h_c	1	mM	
+Michaelis constant	R_HSDyi	M_h_c	1	mM	
+Michaelis constant	R_PYK	M_h_c	1	mM	
+Michaelis constant	R_PFK	M_h_c	1	mM	
+Michaelis constant	R_HEX1	M_h_c	1	mM	
+Michaelis constant	R_GAPD	M_h_c	1	mM	
+Michaelis constant	R_PRPPS	M_h_c	1	mM	
+Michaelis constant	R_PRATPP	M_h_c	1	mM	
+Michaelis constant	R_IG3PS	M_h_c	1	mM	
+Michaelis constant	R_HISTD	M_h_c	1	mM	
+Michaelis constant	R_AHSERL2	M_h_c	1	mM	
+Michaelis constant	R_PPA	M_h_c	1	mM	
+Michaelis constant	R_NADH2_DASH_u6cm	M_h_c	1	mM	
+Michaelis constant	R_MDH	M_h_c	1	mM	
+Michaelis constant	R_PGL	M_h_c	1	mM	
+Michaelis constant	R_G6PDH2	M_h_c	1	mM	
+Michaelis constant	R_PYRDC	M_h_c	1	mM	
+Michaelis constant	R_ALCD2x	M_h_c	1	mM	
+Michaelis constant	R_ACOAH	M_h_c	1	mM	
+Michaelis constant	R_SACCD2	M_h_c	1	mM	
+Michaelis constant	R_SACCD1	M_h_c	1	mM	
+Michaelis constant	R_AASAD1	M_h_c	1	mM	
+Michaelis constant	R_SHKK	M_h_c	1	mM	
+Michaelis constant	R_SHK3D	M_h_c	1	mM	
+Michaelis constant	R_PPNDH	M_h_c	1	mM	
+Michaelis constant	R_IGPS	M_h_c	1	mM	
+Michaelis constant	R_ALDD2y	M_h_c	1	mM	
+Michaelis constant	R_OMCDC	M_h_c	1	mM	
+Michaelis constant	R_IPPS	M_h_c	1	mM	
+Michaelis constant	R_IPMD	M_h_c	1	mM	
+Michaelis constant	R_HCITS	M_h_c	1	mM	
+Michaelis constant	R_MALS	M_h_c	1	mM	
+Michaelis constant	R_CSc	M_h_c	1	mM	
+Michaelis constant	R_SUCCt2r	M_h_c	1	mM	
+Michaelis constant	R_PIt2r	M_h_c	1	mM	
+Michaelis constant	R_PYRt2m	M_h_c	1	mM	
+Michaelis constant	R_PIt2m	M_h_c	1	mM	
+Michaelis constant	R_OAAt2m	M_h_c	1	mM	
+Michaelis constant	R_GLUt2m	M_h_c	1	mM	
+Michaelis constant	R_aicarSYN	M_h_c	1	mM	
+Michaelis constant	R_ampSYN	M_h_c	1	mM	
+Michaelis constant	R_dampSYN	M_h_c	1	mM	
+Michaelis constant	R_gmpSYN	M_h_c	1	mM	
+Michaelis constant	R_dgmpSYN	M_h_c	1	mM	
+Michaelis constant	R_umpSYN	M_h_c	1	mM	
+Michaelis constant	R_cmpSYN	M_h_c	1	mM	
+Michaelis constant	R_dcmpSYN	M_h_c	1	mM	
+Michaelis constant	R_dtmpSYN	M_h_c	1	mM	
+Michaelis constant	R_zymstSYN	M_h_c	1	mM	
+Michaelis constant	R_ergstSYN	M_h_c	1	mM	
+Michaelis constant	R_paSYN	M_h_c	1	mM	
+Michaelis constant	R_peSYN	M_h_c	1	mM	
+Michaelis constant	R_pcSYN	M_h_c	1	mM	
+Michaelis constant	R_triglycSYN	M_h_c	1	mM	
+Michaelis constant	R_biomass	M_h_c	1	mM	
+Michaelis constant	R_SUCCt2r	M_h_e	1	mM	
+Michaelis constant	R_PIt2r	M_h_e	1	mM	
+Michaelis constant	R_ATPS	M_h_e	1	mM	
+Michaelis constant	R_h_LSQBKT_e_RSQBKT__EX	M_h_e	1	mM	
+Michaelis constant	R_AGPRim	M_h_m	1	mM	
+Michaelis constant	R_CSm	M_h_m	1	mM	
+Michaelis constant	R_ALCD2m	M_h_m	1	mM	
+Michaelis constant	R_PPAm	M_h_m	1	mM	
+Michaelis constant	R_NADH2_DASH_u6m	M_h_m	1	mM	
+Michaelis constant	R_MDHm	M_h_m	1	mM	
+Michaelis constant	R_CYOR_u6m	M_h_m	1	mM	
+Michaelis constant	R_CYOOm	M_h_m	1	mM	
+Michaelis constant	R_ATPS3m	M_h_m	1	mM	
+Michaelis constant	R_OXAGm	M_h_m	1	mM	
+Michaelis constant	R_HICITDm	M_h_m	1	mM	
+Michaelis constant	R_ALDD2ym	M_h_m	1	mM	
+Michaelis constant	R_ALDD2xm	M_h_m	1	mM	
+Michaelis constant	R_KARA2im	M_h_m	1	mM	
+Michaelis constant	R_KARA1im	M_h_m	1	mM	
+Michaelis constant	R_ACLSm	M_h_m	1	mM	
+Michaelis constant	R_ACHBSm	M_h_m	1	mM	
+Michaelis constant	R_GLUSxm	M_h_m	1	mM	
+Michaelis constant	R_GLUDym	M_h_m	1	mM	
+Michaelis constant	R_PYRt2m	M_h_m	1	mM	
+Michaelis constant	R_PIt2m	M_h_m	1	mM	
+Michaelis constant	R_OAAt2m	M_h_m	1	mM	
+Michaelis constant	R_GLUt2m	M_h_m	1	mM	
+Michaelis constant	R_ICL	M_icit_c	1	mM	
+Michaelis constant	R_ICDHy	M_icit_c	1	mM	
+Michaelis constant	R_ACONT	M_icit_c	1	mM	
+Michaelis constant	R_CITtcm	M_icit_c	1	mM	
+Michaelis constant	R_ICDHxm	M_icit_m	1	mM	
+Michaelis constant	R_ACONTm	M_icit_m	1	mM	
+Michaelis constant	R_CITtcm	M_icit_m	1	mM	
+Michaelis constant	R_ILETA	M_ile_DASH_L_c	1	mM	
+Michaelis constant	R_biomass	M_ile_DASH_L_c	1	mM	
+Michaelis constant	R_IGPDH	M_imacp_c	1	mM	
+Michaelis constant	R_HSTPT	M_imacp_c	1	mM	
+Michaelis constant	R_SACCD1	M_L2aadp6sa_c	1	mM	
+Michaelis constant	R_AASAD1	M_L2aadp6sa_c	1	mM	
+Michaelis constant	R_AATA	M_L2aadp_c	1	mM	
+Michaelis constant	R_AASAD1	M_L2aadp_c	1	mM	
+Michaelis constant	R_LEUTA	M_leu_DASH_L_c	1	mM	
+Michaelis constant	R_biomass	M_leu_DASH_L_c	1	mM	
+Michaelis constant	R_SACCD2	M_lys_DASH_L_c	1	mM	
+Michaelis constant	R_biomass	M_lys_DASH_L_c	1	mM	
+Michaelis constant	R_MDH	M_mal_DASH_L_c	1	mM	
+Michaelis constant	R_FUM	M_mal_DASH_L_c	1	mM	
+Michaelis constant	R_MALS	M_mal_DASH_L_c	1	mM	
+Michaelis constant	R_MALtm	M_mal_DASH_L_c	1	mM	
+Michaelis constant	R_CITtam	M_mal_DASH_L_c	1	mM	
+Michaelis constant	R_ME2m	M_mal_DASH_L_m	1	mM	
+Michaelis constant	R_MDHm	M_mal_DASH_L_m	1	mM	
+Michaelis constant	R_FUMm	M_mal_DASH_L_m	1	mM	
+Michaelis constant	R_MALtm	M_mal_DASH_L_m	1	mM	
+Michaelis constant	R_CITtam	M_mal_DASH_L_m	1	mM	
+Michaelis constant	R_mannanSYN	M_mannan_c	1	mM	
+Michaelis constant	R_biomass	M_mannan_c	1	mM	
+Michaelis constant	R_METS	M_met_DASH_L_c	1	mM	
+Michaelis constant	R_ergstSYN	M_met_DASH_L_c	1	mM	
+Michaelis constant	R_pcSYN	M_met_DASH_L_c	1	mM	
+Michaelis constant	R_biomass	M_met_DASH_L_c	1	mM	
+Michaelis constant	R_MTHFD	M_methf_c	1	mM	
+Michaelis constant	R_MTHFC	M_methf_c	1	mM	
+Michaelis constant	R_MTHFR3	M_mlthf_c	1	mM	
+Michaelis constant	R_MTHFD	M_mlthf_c	1	mM	
+Michaelis constant	R_GHMT2r	M_mlthf_c	1	mM	
+Michaelis constant	R_dtmpSYN	M_mlthf_c	1	mM	
+Michaelis constant	R_G3PD1ir	M_nadh_c	1	mM	
+Michaelis constant	R_PGCD	M_nadh_c	1	mM	
+Michaelis constant	R_GAPD	M_nadh_c	1	mM	
+Michaelis constant	R_HISTD	M_nadh_c	1	mM	
+Michaelis constant	R_FDH	M_nadh_c	1	mM	
+Michaelis constant	R_NADH2_DASH_u6cm	M_nadh_c	1	mM	
+Michaelis constant	R_MDH	M_nadh_c	1	mM	
+Michaelis constant	R_ALCD2x	M_nadh_c	1	mM	
+Michaelis constant	R_SACCD2	M_nadh_c	1	mM	
+Michaelis constant	R_IPMD	M_nadh_c	1	mM	
+Michaelis constant	R_gmpSYN	M_nadh_c	1	mM	
+Michaelis constant	R_zymstSYN	M_nadh_c	1	mM	
+Michaelis constant	R_ICDHxm	M_nadh_m	1	mM	
+Michaelis constant	R_AKGDam	M_nadh_m	1	mM	
+Michaelis constant	R_ALCD2m	M_nadh_m	1	mM	
+Michaelis constant	R_PDHm	M_nadh_m	1	mM	
+Michaelis constant	R_NADH2_DASH_u6m	M_nadh_m	1	mM	
+Michaelis constant	R_MDHm	M_nadh_m	1	mM	
+Michaelis constant	R_HICITDm	M_nadh_m	1	mM	
+Michaelis constant	R_ALDD2xm	M_nadh_m	1	mM	
+Michaelis constant	R_GLUSxm	M_nadh_m	1	mM	
+Michaelis constant	R_ASADi	M_nadph_c	1	mM	
+Michaelis constant	R_P5CR	M_nadph_c	1	mM	
+Michaelis constant	R_G5SD	M_nadph_c	1	mM	
+Michaelis constant	R_ICDHy	M_nadph_c	1	mM	
+Michaelis constant	R_SULR	M_nadph_c	1	mM	
+Michaelis constant	R_PAPSR	M_nadph_c	1	mM	
+Michaelis constant	R_MTHFR3	M_nadph_c	1	mM	
+Michaelis constant	R_MTHFD	M_nadph_c	1	mM	
+Michaelis constant	R_GLUDy	M_nadph_c	1	mM	
+Michaelis constant	R_HSDyi	M_nadph_c	1	mM	
+Michaelis constant	R_GND	M_nadph_c	1	mM	
+Michaelis constant	R_G6PDH2	M_nadph_c	1	mM	
+Michaelis constant	R_SACCD1	M_nadph_c	1	mM	
+Michaelis constant	R_AASAD1	M_nadph_c	1	mM	
+Michaelis constant	R_SHK3D	M_nadph_c	1	mM	
+Michaelis constant	R_PPND2	M_nadph_c	1	mM	
+Michaelis constant	R_ALDD2y	M_nadph_c	1	mM	
+Michaelis constant	R_dampSYN	M_nadph_c	1	mM	
+Michaelis constant	R_dgmpSYN	M_nadph_c	1	mM	
+Michaelis constant	R_dcmpSYN	M_nadph_c	1	mM	
+Michaelis constant	R_dtmpSYN	M_nadph_c	1	mM	
+Michaelis constant	R_zymstSYN	M_nadph_c	1	mM	
+Michaelis constant	R_ergstSYN	M_nadph_c	1	mM	
+Michaelis constant	R_paSYN	M_nadph_c	1	mM	
+Michaelis constant	R_triglycSYN	M_nadph_c	1	mM	
+Michaelis constant	R_ME2m	M_nadph_m	1	mM	
+Michaelis constant	R_AGPRim	M_nadph_m	1	mM	
+Michaelis constant	R_ALDD2ym	M_nadph_m	1	mM	
+Michaelis constant	R_KARA2im	M_nadph_m	1	mM	
+Michaelis constant	R_KARA1im	M_nadph_m	1	mM	
+Michaelis constant	R_GLUDym	M_nadph_m	1	mM	
+Michaelis constant	R_ASADi	M_nadp_c	1	mM	
+Michaelis constant	R_P5CR	M_nadp_c	1	mM	
+Michaelis constant	R_G5SD	M_nadp_c	1	mM	
+Michaelis constant	R_ICDHy	M_nadp_c	1	mM	
+Michaelis constant	R_SULR	M_nadp_c	1	mM	
+Michaelis constant	R_PAPSR	M_nadp_c	1	mM	
+Michaelis constant	R_MTHFR3	M_nadp_c	1	mM	
+Michaelis constant	R_MTHFD	M_nadp_c	1	mM	
+Michaelis constant	R_GLUDy	M_nadp_c	1	mM	
+Michaelis constant	R_HSDyi	M_nadp_c	1	mM	
+Michaelis constant	R_GND	M_nadp_c	1	mM	
+Michaelis constant	R_G6PDH2	M_nadp_c	1	mM	
+Michaelis constant	R_SACCD1	M_nadp_c	1	mM	
+Michaelis constant	R_AASAD1	M_nadp_c	1	mM	
+Michaelis constant	R_SHK3D	M_nadp_c	1	mM	
+Michaelis constant	R_PPND2	M_nadp_c	1	mM	
+Michaelis constant	R_ALDD2y	M_nadp_c	1	mM	
+Michaelis constant	R_dampSYN	M_nadp_c	1	mM	
+Michaelis constant	R_dgmpSYN	M_nadp_c	1	mM	
+Michaelis constant	R_dcmpSYN	M_nadp_c	1	mM	
+Michaelis constant	R_dtmpSYN	M_nadp_c	1	mM	
+Michaelis constant	R_zymstSYN	M_nadp_c	1	mM	
+Michaelis constant	R_ergstSYN	M_nadp_c	1	mM	
+Michaelis constant	R_paSYN	M_nadp_c	1	mM	
+Michaelis constant	R_triglycSYN	M_nadp_c	1	mM	
+Michaelis constant	R_ME2m	M_nadp_m	1	mM	
+Michaelis constant	R_AGPRim	M_nadp_m	1	mM	
+Michaelis constant	R_ALDD2ym	M_nadp_m	1	mM	
+Michaelis constant	R_KARA2im	M_nadp_m	1	mM	
+Michaelis constant	R_KARA1im	M_nadp_m	1	mM	
+Michaelis constant	R_GLUDym	M_nadp_m	1	mM	
+Michaelis constant	R_G3PD1ir	M_nad_c	1	mM	
+Michaelis constant	R_PGCD	M_nad_c	1	mM	
+Michaelis constant	R_GAPD	M_nad_c	1	mM	
+Michaelis constant	R_HISTD	M_nad_c	1	mM	
+Michaelis constant	R_FDH	M_nad_c	1	mM	
+Michaelis constant	R_NADH2_DASH_u6cm	M_nad_c	1	mM	
+Michaelis constant	R_MDH	M_nad_c	1	mM	
+Michaelis constant	R_ALCD2x	M_nad_c	1	mM	
+Michaelis constant	R_SACCD2	M_nad_c	1	mM	
+Michaelis constant	R_IPMD	M_nad_c	1	mM	
+Michaelis constant	R_gmpSYN	M_nad_c	1	mM	
+Michaelis constant	R_zymstSYN	M_nad_c	1	mM	
+Michaelis constant	R_ICDHxm	M_nad_m	1	mM	
+Michaelis constant	R_AKGDam	M_nad_m	1	mM	
+Michaelis constant	R_ALCD2m	M_nad_m	1	mM	
+Michaelis constant	R_PDHm	M_nad_m	1	mM	
+Michaelis constant	R_NADH2_DASH_u6m	M_nad_m	1	mM	
+Michaelis constant	R_MDHm	M_nad_m	1	mM	
+Michaelis constant	R_HICITDm	M_nad_m	1	mM	
+Michaelis constant	R_ALDD2xm	M_nad_m	1	mM	
+Michaelis constant	R_GLUSxm	M_nad_m	1	mM	
+Michaelis constant	R_GLUDy	M_nh4_c	1	mM	
+Michaelis constant	R_GLNS	M_nh4_c	1	mM	
+Michaelis constant	R_CYSTGL	M_nh4_c	1	mM	
+Michaelis constant	R_NH4t	M_nh4_c	1	mM	
+Michaelis constant	R_NH4tm	M_nh4_c	1	mM	
+Michaelis constant	R_cmpSYN	M_nh4_c	1	mM	
+Michaelis constant	R_dtmpSYN	M_nh4_c	1	mM	
+Michaelis constant	R_NH4t	M_nh4_e	1	mM	
+Michaelis constant	R_nh4_LSQBKT_e_RSQBKT__EX	M_nh4_e	1	mM	
+Michaelis constant	R_THRD_Lm	M_nh4_m	1	mM	
+Michaelis constant	R_GLUDym	M_nh4_m	1	mM	
+Michaelis constant	R_NH4tm	M_nh4_m	1	mM	
+Michaelis constant	R_O2t	M_o2_c	1	mM	
+Michaelis constant	R_O2tm	M_o2_c	1	mM	
+Michaelis constant	R_umpSYN	M_o2_c	1	mM	
+Michaelis constant	R_zymstSYN	M_o2_c	1	mM	
+Michaelis constant	R_ergstSYN	M_o2_c	1	mM	
+Michaelis constant	R_paSYN	M_o2_c	1	mM	
+Michaelis constant	R_triglycSYN	M_o2_c	1	mM	
+Michaelis constant	R_O2t	M_o2_e	1	mM	
+Michaelis constant	R_o2_LSQBKT_e_RSQBKT__EX	M_o2_e	1	mM	
+Michaelis constant	R_CYOOm	M_o2_m	1	mM	
+Michaelis constant	R_O2tm	M_o2_m	1	mM	
+Michaelis constant	R_ASPTA	M_oaa_c	1	mM	
+Michaelis constant	R_PPCK	M_oaa_c	1	mM	
+Michaelis constant	R_PC	M_oaa_c	1	mM	
+Michaelis constant	R_MDH	M_oaa_c	1	mM	
+Michaelis constant	R_CSc	M_oaa_c	1	mM	
+Michaelis constant	R_OAAt2m	M_oaa_c	1	mM	
+Michaelis constant	R_CSm	M_oaa_m	1	mM	
+Michaelis constant	R_MDHm	M_oaa_m	1	mM	
+Michaelis constant	R_OAAt2m	M_oaa_m	1	mM	
+Michaelis constant	R_OCBTi	M_orn_c	1	mM	
+Michaelis constant	R_ORNt3m	M_orn_c	1	mM	
+Michaelis constant	R_ORNTACim	M_orn_m	1	mM	
+Michaelis constant	R_ORNt3m	M_orn_m	1	mM	
+Michaelis constant	R_OXAGm	M_oxag_m	1	mM	
+Michaelis constant	R_HICITDm	M_oxag_m	1	mM	
+Michaelis constant	R_PAPSR	M_paps_c	1	mM	
+Michaelis constant	R_ADSK	M_paps_c	1	mM	
+Michaelis constant	R_PAPSR	M_pap_c	1	mM	
+Michaelis constant	R_BPNT	M_pap_c	1	mM	
+Michaelis constant	R_paSYN	M_pa_SC_c	1	mM	
+Michaelis constant	R_psSYN	M_pa_SC_c	1	mM	
+Michaelis constant	R_ptd1inoSYN	M_pa_SC_c	1	mM	
+Michaelis constant	R_triglycSYN	M_pa_SC_c	1	mM	
+Michaelis constant	R_biomass	M_pa_SC_c	1	mM	
+Michaelis constant	R_pcSYN	M_pc_SC_c	1	mM	
+Michaelis constant	R_biomass	M_pc_SC_c	1	mM	
+Michaelis constant	R_PPCK	M_pep_c	1	mM	
+Michaelis constant	R_PYK	M_pep_c	1	mM	
+Michaelis constant	R_ENO	M_pep_c	1	mM	
+Michaelis constant	R_PSCVTi	M_pep_c	1	mM	
+Michaelis constant	R_DDPA	M_pep_c	1	mM	
+Michaelis constant	R_peSYN	M_pe_SC_c	1	mM	
+Michaelis constant	R_pcSYN	M_pe_SC_c	1	mM	
+Michaelis constant	R_biomass	M_pe_SC_c	1	mM	
+Michaelis constant	R_PHETA1	M_phe_DASH_L_c	1	mM	
+Michaelis constant	R_biomass	M_phe_DASH_L_c	1	mM	
+Michaelis constant	R_HSK	M_phom_c	1	mM	
+Michaelis constant	R_THRS	M_phom_c	1	mM	
+Michaelis constant	R_PPNDH	M_phpyr_c	1	mM	
+Michaelis constant	R_PHETA1	M_phpyr_c	1	mM	
+Michaelis constant	R_ASADi	M_pi_c	1	mM	
+Michaelis constant	R_PC	M_pi_c	1	mM	
+Michaelis constant	R_FBP	M_pi_c	1	mM	
+Michaelis constant	R_OCBTi	M_pi_c	1	mM	
+Michaelis constant	R_G5SD	M_pi_c	1	mM	
+Michaelis constant	R_CBPS	M_pi_c	1	mM	
+Michaelis constant	R_SLFAT	M_pi_c	1	mM	
+Michaelis constant	R_BPNT	M_pi_c	1	mM	
+Michaelis constant	R_FTHFL	M_pi_c	1	mM	
+Michaelis constant	R_GLNS	M_pi_c	1	mM	
+Michaelis constant	R_G3PT	M_pi_c	1	mM	
+Michaelis constant	R_PSP_L	M_pi_c	1	mM	
+Michaelis constant	R_GAPD	M_pi_c	1	mM	
+Michaelis constant	R_HISTP	M_pi_c	1	mM	
+Michaelis constant	R_PPA	M_pi_c	1	mM	
+Michaelis constant	R_THRS	M_pi_c	1	mM	
+Michaelis constant	R_PSCVTi	M_pi_c	1	mM	
+Michaelis constant	R_DHQS	M_pi_c	1	mM	
+Michaelis constant	R_DDPA	M_pi_c	1	mM	
+Michaelis constant	R_CHORS	M_pi_c	1	mM	
+Michaelis constant	R_PIt2r	M_pi_c	1	mM	
+Michaelis constant	R_ATPS	M_pi_c	1	mM	
+Michaelis constant	R_SUCCtm	M_pi_c	1	mM	
+Michaelis constant	R_PIt2m	M_pi_c	1	mM	
+Michaelis constant	R_MALtm	M_pi_c	1	mM	
+Michaelis constant	R_aicarSYN	M_pi_c	1	mM	
+Michaelis constant	R_ampSYN	M_pi_c	1	mM	
+Michaelis constant	R_umpSYN	M_pi_c	1	mM	
+Michaelis constant	R_cmpSYN	M_pi_c	1	mM	
+Michaelis constant	R_zymstSYN	M_pi_c	1	mM	
+Michaelis constant	R_ergstSYN	M_pi_c	1	mM	
+Michaelis constant	R_paSYN	M_pi_c	1	mM	
+Michaelis constant	R_pcSYN	M_pi_c	1	mM	
+Michaelis constant	R_ptd1inoSYN	M_pi_c	1	mM	
+Michaelis constant	R_triglycSYN	M_pi_c	1	mM	
+Michaelis constant	R_biomass	M_pi_c	1	mM	
+Michaelis constant	R_PIt2r	M_pi_e	1	mM	
+Michaelis constant	R_pi_LSQBKT_e_RSQBKT__EX	M_pi_e	1	mM	
+Michaelis constant	R_AGPRim	M_pi_m	1	mM	
+Michaelis constant	R_SUCOAS1m	M_pi_m	1	mM	
+Michaelis constant	R_PPAm	M_pi_m	1	mM	
+Michaelis constant	R_ATPS3m	M_pi_m	1	mM	
+Michaelis constant	R_SUCCtm	M_pi_m	1	mM	
+Michaelis constant	R_PIt2m	M_pi_m	1	mM	
+Michaelis constant	R_MALtm	M_pi_m	1	mM	
+Michaelis constant	R_PPNDH	M_pphn_c	1	mM	
+Michaelis constant	R_PPND2	M_pphn_c	1	mM	
+Michaelis constant	R_CHORM	M_pphn_c	1	mM	
+Michaelis constant	R_ASNS1	M_ppi_c	1	mM	
+Michaelis constant	R_ARGSSr	M_ppi_c	1	mM	
+Michaelis constant	R_PRATPP	M_ppi_c	1	mM	
+Michaelis constant	R_ATPPRT	M_ppi_c	1	mM	
+Michaelis constant	R_PPA	M_ppi_c	1	mM	
+Michaelis constant	R_ACS	M_ppi_c	1	mM	
+Michaelis constant	R_AASAD1	M_ppi_c	1	mM	
+Michaelis constant	R_ANPRT	M_ppi_c	1	mM	
+Michaelis constant	R_aicarSYN	M_ppi_c	1	mM	
+Michaelis constant	R_gmpSYN	M_ppi_c	1	mM	
+Michaelis constant	R_umpSYN	M_ppi_c	1	mM	
+Michaelis constant	R_13BDglcnSYN	M_ppi_c	1	mM	
+Michaelis constant	R_mannanSYN	M_ppi_c	1	mM	
+Michaelis constant	R_zymstSYN	M_ppi_c	1	mM	
+Michaelis constant	R_ergstSYN	M_ppi_c	1	mM	
+Michaelis constant	R_psSYN	M_ppi_c	1	mM	
+Michaelis constant	R_pcSYN	M_ppi_c	1	mM	
+Michaelis constant	R_ptd1inoSYN	M_ppi_c	1	mM	
+Michaelis constant	R_PPAm	M_ppi_m	1	mM	
+Michaelis constant	R_ACSm	M_ppi_m	1	mM	
+Michaelis constant	R_PRAIi	M_pran_c	1	mM	
+Michaelis constant	R_ANPRT	M_pran_c	1	mM	
+Michaelis constant	R_PRATPP	M_prbamp_c	1	mM	
+Michaelis constant	R_PRAMPC	M_prbamp_c	1	mM	
+Michaelis constant	R_PRATPP	M_prbatp_c	1	mM	
+Michaelis constant	R_ATPPRT	M_prbatp_c	1	mM	
+Michaelis constant	R_PRMICIi	M_prfp_c	1	mM	
+Michaelis constant	R_PRAMPC	M_prfp_c	1	mM	
+Michaelis constant	R_PRMICIi	M_prlp_c	1	mM	
+Michaelis constant	R_IG3PS	M_prlp_c	1	mM	
+Michaelis constant	R_P5CR	M_pro_DASH_L_c	1	mM	
+Michaelis constant	R_biomass	M_pro_DASH_L_c	1	mM	
+Michaelis constant	R_PRPPS	M_prpp_c	1	mM	
+Michaelis constant	R_ATPPRT	M_prpp_c	1	mM	
+Michaelis constant	R_ANPRT	M_prpp_c	1	mM	
+Michaelis constant	R_PSP_L	M_pser_DASH_L_c	1	mM	
+Michaelis constant	R_PSERT	M_pser_DASH_L_c	1	mM	
+Michaelis constant	R_psSYN	M_ps_SC_c	1	mM	
+Michaelis constant	R_peSYN	M_ps_SC_c	1	mM	
+Michaelis constant	R_biomass	M_ps_SC_c	1	mM	
+Michaelis constant	R_ptd1inoSYN	M_ptd1ino_SC_c	1	mM	
+Michaelis constant	R_biomass	M_ptd1ino_SC_c	1	mM	
+Michaelis constant	R_ALATA_L	M_pyr_c	1	mM	
+Michaelis constant	R_PC	M_pyr_c	1	mM	
+Michaelis constant	R_ANS	M_pyr_c	1	mM	
+Michaelis constant	R_PYK	M_pyr_c	1	mM	
+Michaelis constant	R_PYRDC	M_pyr_c	1	mM	
+Michaelis constant	R_PYRt2	M_pyr_c	1	mM	
+Michaelis constant	R_PYRt2m	M_pyr_c	1	mM	
+Michaelis constant	R_PYRt2	M_pyr_e	1	mM	
+Michaelis constant	R_pyr_LSQBKT_e_RSQBKT__EX	M_pyr_e	1	mM	
+Michaelis constant	R_ALATA_Lm	M_pyr_m	1	mM	
+Michaelis constant	R_ME2m	M_pyr_m	1	mM	
+Michaelis constant	R_PDHm	M_pyr_m	1	mM	
+Michaelis constant	R_ACLSm	M_pyr_m	1	mM	
+Michaelis constant	R_ACHBSm	M_pyr_m	1	mM	
+Michaelis constant	R_AGTm	M_pyr_m	1	mM	
+Michaelis constant	R_PYRt2m	M_pyr_m	1	mM	
+Michaelis constant	R_SUCD2_u6m	M_q6h2_m	1	mM	
+Michaelis constant	R_NADH2_DASH_u6m	M_q6h2_m	1	mM	
+Michaelis constant	R_NADH2_DASH_u6cm	M_q6h2_m	1	mM	
+Michaelis constant	R_CYOR_u6m	M_q6h2_m	1	mM	
+Michaelis constant	R_SUCD2_u6m	M_q6_m	1	mM	
+Michaelis constant	R_NADH2_DASH_u6m	M_q6_m	1	mM	
+Michaelis constant	R_NADH2_DASH_u6cm	M_q6_m	1	mM	
+Michaelis constant	R_CYOR_u6m	M_q6_m	1	mM	
+Michaelis constant	R_PRPPS	M_r5p_c	1	mM	
+Michaelis constant	R_TKT1	M_r5p_c	1	mM	
+Michaelis constant	R_RPI	M_r5p_c	1	mM	
+Michaelis constant	R_aicarSYN	M_r5p_c	1	mM	
+Michaelis constant	R_umpSYN	M_r5p_c	1	mM	
+Michaelis constant	R_RPI	M_ru5p_DASH_D_c	1	mM	
+Michaelis constant	R_RPE	M_ru5p_DASH_D_c	1	mM	
+Michaelis constant	R_GND	M_ru5p_DASH_D_c	1	mM	
+Michaelis constant	R_TKT1	M_s7p_c	1	mM	
+Michaelis constant	R_TALA	M_s7p_c	1	mM	
+Michaelis constant	R_SACCD2	M_saccrp_DASH_L_c	1	mM	
+Michaelis constant	R_SACCD1	M_saccrp_DASH_L_c	1	mM	
+Michaelis constant	R_PSP_L	M_ser_DASH_L_c	1	mM	
+Michaelis constant	R_GHMT2r	M_ser_DASH_L_c	1	mM	
+Michaelis constant	R_CYSTS	M_ser_DASH_L_c	1	mM	
+Michaelis constant	R_TRPS1	M_ser_DASH_L_c	1	mM	
+Michaelis constant	R_psSYN	M_ser_DASH_L_c	1	mM	
+Michaelis constant	R_biomass	M_ser_DASH_L_c	1	mM	
+Michaelis constant	R_SHKK	M_skm5p_c	1	mM	
+Michaelis constant	R_PSCVTi	M_skm5p_c	1	mM	
+Michaelis constant	R_SHKK	M_skm_c	1	mM	
+Michaelis constant	R_SHK3D	M_skm_c	1	mM	
+Michaelis constant	R_SULR	M_so3_c	1	mM	
+Michaelis constant	R_PAPSR	M_so3_c	1	mM	
+Michaelis constant	R_SLFAT	M_so4_c	1	mM	
+Michaelis constant	R_SO4ti	M_so4_c	1	mM	
+Michaelis constant	R_biomass	M_so4_c	1	mM	
+Michaelis constant	R_SO4ti	M_so4_e	1	mM	
+Michaelis constant	R_so4_LSQBKT_e_RSQBKT__EX	M_so4_e	1	mM	
+Michaelis constant	R_SUCOAS1m	M_succoa_m	1	mM	
+Michaelis constant	R_AKGDam	M_succoa_m	1	mM	
+Michaelis constant	R_ICL	M_succ_c	1	mM	
+Michaelis constant	R_SUCCt2r	M_succ_c	1	mM	
+Michaelis constant	R_SUCFUMtm	M_succ_c	1	mM	
+Michaelis constant	R_SUCCtm	M_succ_c	1	mM	
+Michaelis constant	R_SUCCt2r	M_succ_e	1	mM	
+Michaelis constant	R_succ_LSQBKT_e_RSQBKT__EX	M_succ_e	1	mM	
+Michaelis constant	R_SUCOAS1m	M_succ_m	1	mM	
+Michaelis constant	R_SUCD2_u6m	M_succ_m	1	mM	
+Michaelis constant	R_SUCFUMtm	M_succ_m	1	mM	
+Michaelis constant	R_SUCCtm	M_succ_m	1	mM	
+Michaelis constant	R_FTHFL	M_thf_c	1	mM	
+Michaelis constant	R_GHMT2r	M_thf_c	1	mM	
+Michaelis constant	R_METS	M_thf_c	1	mM	
+Michaelis constant	R_aicarSYN	M_thf_c	1	mM	
+Michaelis constant	R_ampSYN	M_thf_c	1	mM	
+Michaelis constant	R_gmpSYN	M_thf_c	1	mM	
+Michaelis constant	R_dtmpSYN	M_thf_c	1	mM	
+Michaelis constant	R_THRS	M_thr_DASH_L_c	1	mM	
+Michaelis constant	R_THRA	M_thr_DASH_L_c	1	mM	
+Michaelis constant	R_THRt2m	M_thr_DASH_L_c	1	mM	
+Michaelis constant	R_biomass	M_thr_DASH_L_c	1	mM	
+Michaelis constant	R_THRD_Lm	M_thr_DASH_L_m	1	mM	
+Michaelis constant	R_THRt2m	M_thr_DASH_L_m	1	mM	
+Michaelis constant	R_triglycSYN	M_triglyc_SC_c	1	mM	
+Michaelis constant	R_biomass	M_triglyc_SC_c	1	mM	
+Michaelis constant	R_TRPS1	M_trp_DASH_L_c	1	mM	
+Michaelis constant	R_biomass	M_trp_DASH_L_c	1	mM	
+Michaelis constant	R_TYRTA	M_tyr_DASH_L_c	1	mM	
+Michaelis constant	R_biomass	M_tyr_DASH_L_c	1	mM	
+Michaelis constant	R_umpSYN	M_ump_c	1	mM	
+Michaelis constant	R_cmpSYN	M_ump_c	1	mM	
+Michaelis constant	R_biomass	M_ump_c	1	mM	
+Michaelis constant	R_VALTA	M_val_DASH_L_c	1	mM	
+Michaelis constant	R_biomass	M_val_DASH_L_c	1	mM	
+Michaelis constant	R_TKT2	M_xu5p_DASH_D_c	1	mM	
+Michaelis constant	R_TKT1	M_xu5p_DASH_D_c	1	mM	
+Michaelis constant	R_RPE	M_xu5p_DASH_D_c	1	mM	
+Michaelis constant	R_zymstSYN	M_zymst_c	1	mM	
+Michaelis constant	R_ergstSYN	M_zymst_c	1	mM	
+Michaelis constant	R_biomass	M_zymst_c	1	mM	
+concentration		M_10fthf_c	1	mM	
+concentration		M_13BDglcn_c	1	mM	
+concentration		M_13dpg_c	1	mM	
+concentration		M_1pyr5c_c	1	mM	
+concentration		M_23dhmb_m	1	mM	
+concentration		M_23dhmp_m	1	mM	
+concentration		M_2ahbut_m	1	mM	
+concentration		M_2cpr5p_c	1	mM	
+concentration		M_2dda7p_c	1	mM	
+concentration		M_2ippm_c	1	mM	
+concentration		M_2obut_c	1	mM	
+concentration		M_2obut_m	1	mM	
+concentration		M_2oxoadp_c	1	mM	
+concentration		M_2oxoadp_m	1	mM	
+concentration		M_2pg_c	1	mM	
+concentration		M_34hpp_c	1	mM	
+concentration		M_3c2hmp_c	1	mM	
+concentration		M_3c3hmp_c	1	mM	
+concentration		M_3c4mop_c	1	mM	
+concentration		M_3dhq_c	1	mM	
+concentration		M_3dhsk_c	1	mM	
+concentration		M_3ig3p_c	1	mM	
+concentration		M_3mob_c	1	mM	
+concentration		M_3mob_m	1	mM	
+concentration		M_3mop_c	1	mM	
+concentration		M_3mop_m	1	mM	
+concentration		M_3pg_c	1	mM	
+concentration		M_3php_c	1	mM	
+concentration		M_3psme_c	1	mM	
+concentration		M_4mop_c	1	mM	
+concentration		M_4pasp_c	1	mM	
+concentration		M_5mthf_c	1	mM	
+concentration		M_6pgc_c	1	mM	
+concentration		M_6pgl_c	1	mM	
+concentration		M_acald_c	1	mM	
+concentration		M_acald_m	1	mM	
+concentration		M_accoa_c	1	mM	
+concentration		M_accoa_m	1	mM	
+concentration		M_acg5p_m	1	mM	
+concentration		M_acg5sa_m	1	mM	
+concentration		M_acglu_m	1	mM	
+concentration		M_achms_c	1	mM	
+concentration		M_acorn_m	1	mM	
+concentration		M_ac_c	1	mM	
+concentration		M_ac_e	1	mM	
+concentration		M_ac_m	1	mM	
+concentration		M_adp_c	1	mM	
+concentration		M_adp_m	1	mM	
+concentration		M_aicar_c	1	mM	
+concentration		M_akg_c	1	mM	
+concentration		M_akg_m	1	mM	
+concentration		M_ala_DASH_L_c	1	mM	
+concentration		M_ala_DASH_L_m	1	mM	
+concentration		M_alac_DASH_S_m	1	mM	
+concentration		M_amp_c	1	mM	
+concentration		M_amp_m	1	mM	
+concentration		M_anth_c	1	mM	
+concentration		M_aps_c	1	mM	
+concentration		M_arg_DASH_L_c	1	mM	
+concentration		M_argsuc_c	1	mM	
+concentration		M_asn_DASH_L_c	1	mM	
+concentration		M_asp_DASH_L_c	1	mM	
+concentration		M_aspsa_c	1	mM	
+concentration		M_atp_c	1	mM	
+concentration		M_atp_m	1	mM	
+concentration		M_b124tc_m	1	mM	
+concentration		M_cbp_c	1	mM	
+concentration		M_chor_c	1	mM	
+concentration		M_citr_DASH_L_c	1	mM	
+concentration		M_cit_c	1	mM	
+concentration		M_cit_m	1	mM	
+concentration		M_cmp_c	1	mM	
+concentration		M_co2tot_c	1	mM	
+concentration		M_co2tot_e	1	mM	
+concentration		M_co2tot_m	1	mM	
+concentration		M_coa_c	1	mM	
+concentration		M_coa_m	1	mM	
+concentration		M_cys_DASH_L_c	1	mM	
+concentration		M_cyst_DASH_L_c	1	mM	
+concentration		M_damp_c	1	mM	
+concentration		M_dcmp_c	1	mM	
+concentration		M_dgmp_c	1	mM	
+concentration		M_dhap_c	1	mM	
+concentration		M_dtmp_c	1	mM	
+concentration		M_e4p_c	1	mM	
+concentration		M_eig3p_c	1	mM	
+concentration		M_ergst_c	1	mM	
+concentration		M_etoh_c	1	mM	
+concentration		M_etoh_e	1	mM	
+concentration		M_etoh_m	1	mM	
+concentration		M_f6p_c	1	mM	
+concentration		M_fdp_c	1	mM	
+concentration		M_ficytc_m	1	mM	
+concentration		M_focytc_m	1	mM	
+concentration		M_for_c	1	mM	
+concentration		M_fum_c	1	mM	
+concentration		M_fum_m	1	mM	
+concentration		M_g3p_c	1	mM	
+concentration		M_g6p_c	1	mM	
+concentration		M_glc_DASH_D_c	1	mM	
+concentration		M_glc_DASH_D_e	1	mM	
+concentration		M_gln_DASH_L_c	1	mM	
+concentration		M_gln_DASH_L_m	1	mM	
+concentration		M_glu_DASH_L_c	1	mM	
+concentration		M_glu_DASH_L_m	1	mM	
+concentration		M_glu5p_c	1	mM	
+concentration		M_glu5sa_c	1	mM	
+concentration		M_glx_c	1	mM	
+concentration		M_glx_m	1	mM	
+concentration		M_glyc3p_c	1	mM	
+concentration		M_glyc_c	1	mM	
+concentration		M_glyc_e	1	mM	
+concentration		M_gly_c	1	mM	
+concentration		M_gly_m	1	mM	
+concentration		M_gmp_c	1	mM	
+concentration		M_h2o_c	1	mM	
+concentration		M_h2o_e	1	mM	
+concentration		M_h2o_m	1	mM	
+concentration		M_h2s_c	1	mM	
+concentration		M_hcit_c	1	mM	
+concentration		M_hcit_m	1	mM	
+concentration		M_hcys_DASH_L_c	1	mM	
+concentration		M_hcyt_c	1	mM	
+concentration		M_hicit_m	1	mM	
+concentration		M_his_DASH_L_c	1	mM	
+concentration		M_hisp_c	1	mM	
+concentration		M_histd_c	1	mM	
+concentration		M_hom_DASH_L_c	1	mM	
+concentration		M_h_c	1	mM	
+concentration		M_h_e	1	mM	
+concentration		M_h_m	1	mM	
+concentration		M_icit_c	1	mM	
+concentration		M_icit_m	1	mM	
+concentration		M_ile_DASH_L_c	1	mM	
+concentration		M_imacp_c	1	mM	
+concentration		M_L2aadp6sa_c	1	mM	
+concentration		M_L2aadp_c	1	mM	
+concentration		M_leu_DASH_L_c	1	mM	
+concentration		M_lys_DASH_L_c	1	mM	
+concentration		M_mal_DASH_L_c	1	mM	
+concentration		M_mal_DASH_L_m	1	mM	
+concentration		M_mannan_c	1	mM	
+concentration		M_met_DASH_L_c	1	mM	
+concentration		M_methf_c	1	mM	
+concentration		M_mlthf_c	1	mM	
+concentration		M_nadh_c	1	mM	
+concentration		M_nadh_m	1	mM	
+concentration		M_nadph_c	1	mM	
+concentration		M_nadph_m	1	mM	
+concentration		M_nadp_c	1	mM	
+concentration		M_nadp_m	1	mM	
+concentration		M_nad_c	1	mM	
+concentration		M_nad_m	1	mM	
+concentration		M_nh4_c	1	mM	
+concentration		M_nh4_e	1	mM	
+concentration		M_nh4_m	1	mM	
+concentration		M_o2_c	1	mM	
+concentration		M_o2_e	1	mM	
+concentration		M_o2_m	1	mM	
+concentration		M_oaa_c	1	mM	
+concentration		M_oaa_m	1	mM	
+concentration		M_orn_c	1	mM	
+concentration		M_orn_m	1	mM	
+concentration		M_oxag_m	1	mM	
+concentration		M_paps_c	1	mM	
+concentration		M_pap_c	1	mM	
+concentration		M_pa_SC_c	1	mM	
+concentration		M_pc_SC_c	1	mM	
+concentration		M_pep_c	1	mM	
+concentration		M_pe_SC_c	1	mM	
+concentration		M_phe_DASH_L_c	1	mM	
+concentration		M_phom_c	1	mM	
+concentration		M_phpyr_c	1	mM	
+concentration		M_pi_c	1	mM	
+concentration		M_pi_e	1	mM	
+concentration		M_pi_m	1	mM	
+concentration		M_pphn_c	1	mM	
+concentration		M_ppi_c	1	mM	
+concentration		M_ppi_m	1	mM	
+concentration		M_pran_c	1	mM	
+concentration		M_prbamp_c	1	mM	
+concentration		M_prbatp_c	1	mM	
+concentration		M_prfp_c	1	mM	
+concentration		M_prlp_c	1	mM	
+concentration		M_pro_DASH_L_c	1	mM	
+concentration		M_prpp_c	1	mM	
+concentration		M_pser_DASH_L_c	1	mM	
+concentration		M_ps_SC_c	1	mM	
+concentration		M_ptd1ino_SC_c	1	mM	
+concentration		M_pyr_c	1	mM	
+concentration		M_pyr_e	1	mM	
+concentration		M_pyr_m	1	mM	
+concentration		M_q6h2_m	1	mM	
+concentration		M_q6_m	1	mM	
+concentration		M_r5p_c	1	mM	
+concentration		M_ru5p_DASH_D_c	1	mM	
+concentration		M_s7p_c	1	mM	
+concentration		M_saccrp_DASH_L_c	1	mM	
+concentration		M_ser_DASH_L_c	1	mM	
+concentration		M_skm5p_c	1	mM	
+concentration		M_skm_c	1	mM	
+concentration		M_so3_c	1	mM	
+concentration		M_so4_c	1	mM	
+concentration		M_so4_e	1	mM	
+concentration		M_succoa_m	1	mM	
+concentration		M_succ_c	1	mM	
+concentration		M_succ_e	1	mM	
+concentration		M_succ_m	1	mM	
+concentration		M_thf_c	1	mM	
+concentration		M_thr_DASH_L_c	1	mM	
+concentration		M_thr_DASH_L_m	1	mM	
+concentration		M_triglyc_SC_c	1	mM	
+concentration		M_trp_DASH_L_c	1	mM	
+concentration		M_tyr_DASH_L_c	1	mM	
+concentration		M_ump_c	1	mM	
+concentration		M_val_DASH_L_c	1	mM	
+concentration		M_xu5p_DASH_D_c	1	mM	
+concentration		M_zymst_c	1	mM	
+concentration of enzyme	R_ASPTA		1	mM	
+concentration of enzyme	R_ASPKi		1	mM	
+concentration of enzyme	R_ASNS1		1	mM	
+concentration of enzyme	R_ASADi		1	mM	
+concentration of enzyme	R_ALATA_Lm		1	mM	
+concentration of enzyme	R_ALATA_L		1	mM	
+concentration of enzyme	R_PPCK		1	mM	
+concentration of enzyme	R_PC		1	mM	
+concentration of enzyme	R_ME2m		1	mM	
+concentration of enzyme	R_ICL		1	mM	
+concentration of enzyme	R_FBP		1	mM	
+concentration of enzyme	R_P5CR		1	mM	
+concentration of enzyme	R_ORNTACim		1	mM	
+concentration of enzyme	R_OCBTi		1	mM	
+concentration of enzyme	R_GLU5K		1	mM	
+concentration of enzyme	R_G5SD		1	mM	
+concentration of enzyme	R_G5SADr		1	mM	
+concentration of enzyme	R_CBPS		1	mM	
+concentration of enzyme	R_ARGSSr		1	mM	
+concentration of enzyme	R_ARGSL		1	mM	
+concentration of enzyme	R_AGPRim		1	mM	
+concentration of enzyme	R_ACOTAim		1	mM	
+concentration of enzyme	R_ACGKm		1	mM	
+concentration of enzyme	R_SUCOAS1m		1	mM	
+concentration of enzyme	R_SUCD2_u6m		1	mM	
+concentration of enzyme	R_ICDHy		1	mM	
+concentration of enzyme	R_ICDHxm		1	mM	
+concentration of enzyme	R_CSm		1	mM	
+concentration of enzyme	R_AKGDam		1	mM	
+concentration of enzyme	R_ACONTm		1	mM	
+concentration of enzyme	R_ACONT		1	mM	
+concentration of enzyme	R_SULR		1	mM	
+concentration of enzyme	R_SLFAT		1	mM	
+concentration of enzyme	R_PAPSR		1	mM	
+concentration of enzyme	R_BPNT		1	mM	
+concentration of enzyme	R_ADSK		1	mM	
+concentration of enzyme	R_MTHFR3		1	mM	
+concentration of enzyme	R_MTHFD		1	mM	
+concentration of enzyme	R_MTHFC		1	mM	
+concentration of enzyme	R_FTHFL		1	mM	
+concentration of enzyme	R_GLUDy		1	mM	
+concentration of enzyme	R_GLNS		1	mM	
+concentration of enzyme	R_ANS		1	mM	
+concentration of enzyme	R_GLYK		1	mM	
+concentration of enzyme	R_G3PT		1	mM	
+concentration of enzyme	R_G3PD1ir		1	mM	
+concentration of enzyme	R_ALCD2m		1	mM	
+concentration of enzyme	R_PSP_L		1	mM	
+concentration of enzyme	R_PSERT		1	mM	
+concentration of enzyme	R_PGCD		1	mM	
+concentration of enzyme	R_HSK		1	mM	
+concentration of enzyme	R_HSDyi		1	mM	
+concentration of enzyme	R_GHMT2r		1	mM	
+concentration of enzyme	R_CYSTS		1	mM	
+concentration of enzyme	R_TPI		1	mM	
+concentration of enzyme	R_PYK		1	mM	
+concentration of enzyme	R_PGM		1	mM	
+concentration of enzyme	R_PGK		1	mM	
+concentration of enzyme	R_PGI		1	mM	
+concentration of enzyme	R_PFK		1	mM	
+concentration of enzyme	R_PDHm		1	mM	
+concentration of enzyme	R_HEX1		1	mM	
+concentration of enzyme	R_GAPD		1	mM	
+concentration of enzyme	R_FBA		1	mM	
+concentration of enzyme	R_ENO		1	mM	
+concentration of enzyme	R_PRPPS		1	mM	
+concentration of enzyme	R_PRMICIi		1	mM	
+concentration of enzyme	R_PRATPP		1	mM	
+concentration of enzyme	R_PRAMPC		1	mM	
+concentration of enzyme	R_IGPDH		1	mM	
+concentration of enzyme	R_IG3PS		1	mM	
+concentration of enzyme	R_HSTPT		1	mM	
+concentration of enzyme	R_HISTP		1	mM	
+concentration of enzyme	R_HISTD		1	mM	
+concentration of enzyme	R_ATPPRT		1	mM	
+concentration of enzyme	R_FDH		1	mM	
+concentration of enzyme	R_METS		1	mM	
+concentration of enzyme	R_HSERTA		1	mM	
+concentration of enzyme	R_CYSTGL		1	mM	
+concentration of enzyme	R_AHSERL2		1	mM	
+concentration of enzyme	R_ADK1m		1	mM	
+concentration of enzyme	R_ADK1		1	mM	
+concentration of enzyme	R_PPAm		1	mM	
+concentration of enzyme	R_PPA		1	mM	
+concentration of enzyme	R_NADH2_DASH_u6m		1	mM	
+concentration of enzyme	R_NADH2_DASH_u6cm		1	mM	
+concentration of enzyme	R_MDHm		1	mM	
+concentration of enzyme	R_MDH		1	mM	
+concentration of enzyme	R_FUMm		1	mM	
+concentration of enzyme	R_FUM		1	mM	
+concentration of enzyme	R_CYOR_u6m		1	mM	
+concentration of enzyme	R_CYOOm		1	mM	
+concentration of enzyme	R_ATPS3m		1	mM	
+concentration of enzyme	R_TKT2		1	mM	
+concentration of enzyme	R_TKT1		1	mM	
+concentration of enzyme	R_TALA		1	mM	
+concentration of enzyme	R_RPI		1	mM	
+concentration of enzyme	R_RPE		1	mM	
+concentration of enzyme	R_PGL		1	mM	
+concentration of enzyme	R_GND		1	mM	
+concentration of enzyme	R_G6PDH2		1	mM	
+concentration of enzyme	R_PYRDC		1	mM	
+concentration of enzyme	R_ALCD2x		1	mM	
+concentration of enzyme	R_ACSm		1	mM	
+concentration of enzyme	R_ACS		1	mM	
+concentration of enzyme	R_ACOAH		1	mM	
+concentration of enzyme	R_THRS		1	mM	
+concentration of enzyme	R_THRD_Lm		1	mM	
+concentration of enzyme	R_THRA		1	mM	
+concentration of enzyme	R_SACCD2		1	mM	
+concentration of enzyme	R_SACCD1		1	mM	
+concentration of enzyme	R_OXAGm		1	mM	
+concentration of enzyme	R_MCITDm		1	mM	
+concentration of enzyme	R_HICITDm		1	mM	
+concentration of enzyme	R_HACNHm		1	mM	
+concentration of enzyme	R_AATA		1	mM	
+concentration of enzyme	R_AASAD1		1	mM	
+concentration of enzyme	R_TYRTA		1	mM	
+concentration of enzyme	R_TRPS1		1	mM	
+concentration of enzyme	R_SHKK		1	mM	
+concentration of enzyme	R_SHK3D		1	mM	
+concentration of enzyme	R_PSCVTi		1	mM	
+concentration of enzyme	R_PRAIi		1	mM	
+concentration of enzyme	R_PPNDH		1	mM	
+concentration of enzyme	R_PPND2		1	mM	
+concentration of enzyme	R_PHETA1		1	mM	
+concentration of enzyme	R_IGPS		1	mM	
+concentration of enzyme	R_DHQTi		1	mM	
+concentration of enzyme	R_DHQS		1	mM	
+concentration of enzyme	R_DDPA		1	mM	
+concentration of enzyme	R_CHORS		1	mM	
+concentration of enzyme	R_CHORM		1	mM	
+concentration of enzyme	R_ANPRT		1	mM	
+concentration of enzyme	R_ALDD2ym		1	mM	
+concentration of enzyme	R_ALDD2y		1	mM	
+concentration of enzyme	R_ALDD2xm		1	mM	
+concentration of enzyme	R_VALTA		1	mM	
+concentration of enzyme	R_OMCDC		1	mM	
+concentration of enzyme	R_LEUTA		1	mM	
+concentration of enzyme	R_KARA2im		1	mM	
+concentration of enzyme	R_KARA1im		1	mM	
+concentration of enzyme	R_IPPS		1	mM	
+concentration of enzyme	R_IPPMIb		1	mM	
+concentration of enzyme	R_IPPMIa		1	mM	
+concentration of enzyme	R_IPMD		1	mM	
+concentration of enzyme	R_ILETA		1	mM	
+concentration of enzyme	R_DHAD2m		1	mM	
+concentration of enzyme	R_DHAD1m		1	mM	
+concentration of enzyme	R_ACLSm		1	mM	
+concentration of enzyme	R_ACHBSm		1	mM	
+concentration of enzyme	R_GLUSxm		1	mM	
+concentration of enzyme	R_AGTm		1	mM	
+concentration of enzyme	R_HCITS		1	mM	
+concentration of enzyme	R_MALS		1	mM	
+concentration of enzyme	R_GLUDym		1	mM	
+concentration of enzyme	R_CSc		1	mM	
+concentration of enzyme	R_SUCCt2r		1	mM	
+concentration of enzyme	R_SO4ti		1	mM	
+concentration of enzyme	R_PYRt2		1	mM	
+concentration of enzyme	R_PIt2r		1	mM	
+concentration of enzyme	R_O2t		1	mM	
+concentration of enzyme	R_NH4t		1	mM	
+concentration of enzyme	R_H2Ot		1	mM	
+concentration of enzyme	R_GLYCt		1	mM	
+concentration of enzyme	R_GLCt1		1	mM	
+concentration of enzyme	R_ETOHt		1	mM	
+concentration of enzyme	R_CO2t		1	mM	
+concentration of enzyme	R_ATPS		1	mM	
+concentration of enzyme	R_ACt2r		1	mM	
+concentration of enzyme	R_THRt2m		1	mM	
+concentration of enzyme	R_SUCFUMtm		1	mM	
+concentration of enzyme	R_SUCCtm		1	mM	
+concentration of enzyme	R_PYRt2m		1	mM	
+concentration of enzyme	R_PIt2m		1	mM	
+concentration of enzyme	R_ORNt3m		1	mM	
+concentration of enzyme	R_OAAt2m		1	mM	
+concentration of enzyme	R_O2tm		1	mM	
+concentration of enzyme	R_NH4tm		1	mM	
+concentration of enzyme	R_MALtm		1	mM	
+concentration of enzyme	R_H2Otm		1	mM	
+concentration of enzyme	R_GLYt2m		1	mM	
+concentration of enzyme	R_GLUt2m		1	mM	
+concentration of enzyme	R_ETOHtm		1	mM	
+concentration of enzyme	R_CO2tm		1	mM	
+concentration of enzyme	R_CITtcm		1	mM	
+concentration of enzyme	R_CITtam		1	mM	
+concentration of enzyme	R_ATPtm_DASH_H		1	mM	
+concentration of enzyme	R_ACtm		1	mM	
+concentration of enzyme	R_3MOPtm		1	mM	
+concentration of enzyme	R_3MOBtm		1	mM	
+concentration of enzyme	R_2OXOADPtim		1	mM	
+concentration of enzyme	R_GLNt2m		1	mM	
+concentration of enzyme	R_2OBUTtm		1	mM	
+concentration of enzyme	R_ALAt2m		1	mM	
+concentration of enzyme	R_HCITtm		1	mM	
+concentration of enzyme	R_GLXtm		1	mM	
+concentration of enzyme	R_ACALDtm		1	mM	
+concentration of enzyme	R_ac_LSQBKT_e_RSQBKT__EX		1	mM	
+concentration of enzyme	R_co2_LSQBKT_e_RSQBKT__EX		1	mM	
+concentration of enzyme	R_etoh_LSQBKT_e_RSQBKT__EX		1	mM	
+concentration of enzyme	R_glc_DASH_D_LSQBKT_e_RSQBKT__EX		1	mM	
+concentration of enzyme	R_glyc_LSQBKT_e_RSQBKT__EX		1	mM	
+concentration of enzyme	R_h_LSQBKT_e_RSQBKT__EX		1	mM	
+concentration of enzyme	R_h2o_LSQBKT_e_RSQBKT__EX		1	mM	
+concentration of enzyme	R_nh4_LSQBKT_e_RSQBKT__EX		1	mM	
+concentration of enzyme	R_o2_LSQBKT_e_RSQBKT__EX		1	mM	
+concentration of enzyme	R_pi_LSQBKT_e_RSQBKT__EX		1	mM	
+concentration of enzyme	R_pyr_LSQBKT_e_RSQBKT__EX		1	mM	
+concentration of enzyme	R_so4_LSQBKT_e_RSQBKT__EX		1	mM	
+concentration of enzyme	R_succ_LSQBKT_e_RSQBKT__EX		1	mM	
+concentration of enzyme	R_aicarSYN		1	mM	
+concentration of enzyme	R_ampSYN		1	mM	
+concentration of enzyme	R_dampSYN		1	mM	
+concentration of enzyme	R_gmpSYN		1	mM	
+concentration of enzyme	R_dgmpSYN		1	mM	
+concentration of enzyme	R_umpSYN		1	mM	
+concentration of enzyme	R_cmpSYN		1	mM	
+concentration of enzyme	R_dcmpSYN		1	mM	
+concentration of enzyme	R_dtmpSYN		1	mM	
+concentration of enzyme	R_13BDglcnSYN		1	mM	
+concentration of enzyme	R_mannanSYN		1	mM	
+concentration of enzyme	R_zymstSYN		1	mM	
+concentration of enzyme	R_ergstSYN		1	mM	
+concentration of enzyme	R_paSYN		1	mM	
+concentration of enzyme	R_psSYN		1	mM	
+concentration of enzyme	R_peSYN		1	mM	
+concentration of enzyme	R_pcSYN		1	mM	
+concentration of enzyme	R_ptd1inoSYN		1	mM	
+concentration of enzyme	R_triglycSYN		1	mM	
+concentration of enzyme	R_biomass		1	mM	

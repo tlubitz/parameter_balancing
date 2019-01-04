@@ -67,6 +67,21 @@ def check_delimiter(sbtab_file):
     return sep
 
 
+def size_warning(sbml_file):
+    '''
+    check whether a given sbml file has more than 250 reactions and 
+    then yield a warning message for the online interface
+    '''
+    reader = libsbml.SBMLReader()
+    sbml = reader.readSBMLFromString(sbml_file)
+    sbml_model = sbml.getModel()
+    if sbml_model.getNumReactions() > 250:
+        return ('Warning: The model has more than 250 reactions, which may'\
+                ' slow down the computation time significantly. Proceed'\
+                ' with care.')
+    else: return False    
+
+
 def valid_prior(sbtab_prior):
     '''
     if the given SBtab file is a prior for parameter balancing, it needs to be
@@ -736,6 +751,7 @@ def tsv_to_html(sbtab, filename=None):
 	<!-- simple right aligned list-->
 	<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 	  <ul class="nav navbar-nav navbar-right">
+            <li> <a href="../../static/css/css_template/gettingstarted.html" title="Getting started">Getting Started</a></li>
 	    <li> <a href="../../default/balancing.html" title="Go to online balancing">Online Balancing</a></li>
 	    <li> <a href="../../static/css/css_template/documentation.html" title="Documentation and Manuals">Documentation</a></li>
 	    <li> <a href="../../static/css/css_template/download.html" title="Installation and Downloads">Download</a></li>
@@ -760,30 +776,30 @@ def tsv_to_html(sbtab, filename=None):
 
     sbtab_html += '''
     <main>
-    <div class="container-fluid bg-1 text-center" style="padding-top:50px">
-    <div class="row">
+    <div class="container-fluid bg-1c text-center">
+    <div class="row" style="background-color:#9d9d9d;">
     <div class="col-sm-1"></div>
     <div class="col-sm-10">
-    <table class="table-striped" style="font-size:13px">'''
+    <table class="table-striped" style="font-size:13px;background-color:#fff;padding:3px;">'''
         
     first = True
     for i, row in enumerate(ugly_sbtab):
         # declaration of first SBtab in document
         if row.startswith('!!') and first:
-            sbtab_html += '<tr><th colspan="%s">%s</th></tr>' % (len(ugly_sbtab[i+2]), row)
+            sbtab_html += '<tr><th colspan="%s" style="padding:3px;">%s</th></tr>' % (len(ugly_sbtab[i+2]), row)
             first = False
 
         # conclusion of SBtab and beginning of new SBtab (if there are more than one)
         elif row.startswith('!!'):
-            sbtab_html += '</table><br><table class="table-striped" style="font-size:13px">'
-            sbtab_html += '<tr><th colspan="%s">%s</th></tr>' % (len(ugly_sbtab[i+2]), row)
+            sbtab_html += '</table><br><table class="table-striped" style="font-size:13px;background-color:#fff;">'
+            sbtab_html += '<tr><th colspan="%s" style="padding:3px;">%s</th></tr>' % (len(ugly_sbtab[i+2]), row)
 
         # column header row
         elif row.startswith('!'):
             splitrow = row.split(delimiter)
             sbtab_html += '<tr>'
             for col in splitrow:
-                sbtab_html += '<th>%s</th>' % col
+                sbtab_html += '<th style="padding:3px;">%s</th>' % col
             sbtab_html += '</tr>'
 
         # comment row
@@ -799,7 +815,7 @@ def tsv_to_html(sbtab, filename=None):
             splitrow = row.split(delimiter)
             sbtab_html += '<tr>'
             for col in splitrow:
-                sbtab_html += '<td>%s</td>' % col
+                sbtab_html += '<td style="padding:3px;">%s</td>' % col
             sbtab_html += '</tr>'
 
         '''

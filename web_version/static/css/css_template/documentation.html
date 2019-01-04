@@ -2,13 +2,15 @@
   <head>
     <meta charset="utf-8">
     <meta name="author" content="Timo Lubitz">
-    <meta name="description"  content="Parameter Balancing Website">
+    <meta name="description"  content="Parameter Balancing Website: Documentation - Find useful knowledge and tips about parameter balancing. Also, FAQ are answered here.">
     
     <!-- this is required for responsiveness -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Parameter Balancing for Kinetic Models of Cell Metabolism</title>
+    <link rel="alternate" hreflang="en" href="https://www.parameterbalancing.net/static/css/css_template/documentation.html" />
+    
+    <title>Parameter Balancing - Documentation</title>
     <!--<link rel="stylesheet" type="text/css" href="css/pb.css">-->
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/custom.css" rel="stylesheet">
@@ -35,10 +37,11 @@
 	<!-- simple right aligned list-->
 	<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 	  <ul class="nav navbar-nav navbar-right">
-	    <li style="margin-bottom:8px;"> <a href="../../../default/balancing.html" title="Go to online balancing">Online Balancing</a></li>
-	    <li style="margin-bottom:8px;"> <a href="documentation.html" title="Documentation and Manuals">Documentation</a></li>
-	    <li style="margin-bottom:8px;"> <a href="download.html" title="Installation and Downloads">Download</a></li>
-	    <li style="margin-bottom:8px;"> <a href="contact.html" title="Contact the balancing team">Contact</a></li>
+	    <li> <a href="gettingstarted.html" title="Getting started">Getting Started</a></li>
+	    <li> <a href="../../../default/balancing.html" title="Go to online balancing">Online Balancing</a></li>
+	    <li> <a href="documentation.html" title="Documentation and Manuals">Documentation</a></li>
+	    <li> <a href="download.html" title="Installation and Downloads">Download</a></li>
+	    <li> <a href="contact.html" title="Contact the balancing team">Contact</a></li>
 	  </ul>
 	</div>
       </div>
@@ -50,7 +53,41 @@
       </div>
     </header>
 
-    <main>
+    <main style="line-height:2;">
+      <article>
+	<div class="container-fluid bg-3 text-center">
+	  <div class="row">
+	    <div class="col-sm-3"></div>
+	    <div class="col-sm-6">
+	      <header>
+		<h3>Introduction</h3>
+	      </header>
+	      <p align="left" style="border:1px;border-style:solid;padding:10px;background:#eee;">
+		<strong>Welcome to the parameter balancing documentation.</strong> <br>
+		In the leading <a href="documentation.html#ov"><strong>Overview</strong></a> you
+		will find information on what parameter balancing is and how it can be used.<br>
+		For a quick start on the usage of our Online Balancing, please refer to our
+		<a href="gettingstarted.html"><strong>Getting Started Section</strong></a>.<br>
+		You can find the underlying Python3 source code on our
+		<a href="https://github.com/tlubitz/parameter_balancing" target="_blank"><strong>parameter balancing Github</strong></a> page.
+		There, you will also find information on how to embed parameter balancing in your programming workflows
+		or how to use it via Linux commandline. The information is also found in our <a href="documentation.html#software"><strong>Software Section</strong></a>.<br>
+		Also on this page, you can find detailled information on the
+		<a href="documentation.html#quant"><strong>biochemical quantities</strong></a> employed in parameter balancing
+		and have a look at <a href="documentation.html#faq"><strong>Frequently Asked Questions</strong></a> on parameter balancing.<br>
+		Finally, have a look into our <a href="/pb/static/files/manual.pdf"><strong>parameter balancing User Manual</strong></a>
+		to have a summary on the method and its applications.
+	      </p>
+	    </div>
+	    <div class="col-sm-3"></div>
+	  </div>
+	</div>
+      </article>
+
+
+
+
+      <!--
       <article>
 	<div class="container-fluid bg-3 text-center">
 	  <div class="row">
@@ -65,8 +102,9 @@
 	  </div>
 	</div>
       </article>
+      -->
 
-      <article>
+      <article id="ov">
 	<div class="container-fluid bg-3 text-center">
 	  <div class="row">
 	    <div class="col-sm-2"></div>
@@ -86,11 +124,14 @@
 
 	      <p align="left">
 		<strong>How can I run parameter balancing?</strong>
-		  After preparing your model and data files, you can run
-		  parameter balancing interactively on this website.  If you
-		  prefer working in the commandline, or if you would like to
-		  include parameter balancing in your programs, you may check
-		  out the various opportunities based on <a href="/pb/static/css/css_template/download.html">Python3 and Matlab code</a>.
+		After preparing your model and data files, you can run
+		parameter balancing interactively on this website.
+		The <a href="gettingstarted.html">Getting Started Section</a>
+		will give a good quick start on that. <br>
+		If you prefer working in the commandline, or if you would like to
+		include parameter balancing in your programs and are interested in
+		the source code, the <a href="https://github.com/tlubitz/parameter_balancing" target="_blank">parameter balancing Github</a>
+		page and our <a href="documentation.html#software">Software Section</a> are of interest to you.
 	      </p>
 	      <p align="left">
 		<strong>Which parameters of a metabolic model can be balanced?</strong>
@@ -101,7 +142,7 @@
 		</p>
 		<ul class="list-group" align="left">
 		  <li class="list-group-item">Kinetic constants, where equilibrium constants are fixed and given</li>
-		  <div class="list-group-item-text">This can be done separately
+		  <div class="list-group-item-text" style="line-height:2;">This can be done separately
 		    for each individual reaction. If a network is large and equilibrium constants can be predefined (for instance,
 		    by parameter balancing), we suggest to split the network into single reactions and to run parameter balancing
 		    separately for every reaction.</div>
@@ -138,6 +179,7 @@
 	</div>
       </article>
 
+      <!--
       <article>
 	<div class="container-fluid bg-3 text-center">
 	  <div class="row">
@@ -156,16 +198,16 @@
 		  rate laws</a>.
 	      </p>
 	      <div class="list-group" align="left">
-		<div class="list-group-item-text"><strong>1. Prepare your SBML model.</strong> Please make sure that your SBML model is
+		<div class="list-group-item-text" style="line-height:2;"><strong>1. Prepare your SBML model.</strong> Please make sure that your SBML model is
 		  valid. You can use the official <a href="http://sbml.org/Facilities/Validator/">SBML online validator</a> for this.</div>
-		<div class="list-group-item-text"><strong>2. Prepare your data file.</strong> The SBtab Quantity table holds the kinetic parameters for the
+		<div class="list-group-item-text" style="line-height:2;"><strong>2. Prepare your data file.</strong> The SBtab Quantity table holds the kinetic parameters for the
 		  balancing.  Here again, make sure that the SBtab file is
 		  valid. You can use the
 		  official <a href="https://rumo.biologie.hu-berlin.de/SBtab/default/validator">SBtab
 		    online validator</a> for this. Please also keep in mind that
 		  the SBML species and reaction IDs need to comply with the IDs
 		  that are used in the SBtab file.</div>
-		<div class="list-group-item-text"><strong>3. Prepare your parameter prior file (optional).</strong>
+		<div class="list-group-item-text" style="line-height:2;"><strong>3. Prepare your parameter prior file (optional).</strong>
 		   This file holds information on the prior
 		  distributions on the parameter types
 		  (see <a href="/pb/static/css/css_template/download.html">Download area</a>
@@ -173,11 +215,11 @@
 		  prior table which is already loaded. If you want to use an
 		  alternative prior table, you can create your own prior table (keep in mind to adhere to
 		  the syntax of the prior tables).</div>
-		<div class="list-group-item-text"><strong>4. Prepare your options file (optional).</strong> 
+		<div class="list-group-item-text" style="line-height:2;"><strong>4. Prepare your options file (optional).</strong> 
 		  This file can be used to
 		  change settings of the parameter balancing algorithm (see <a href="/pb/static/css/css_template/download.html">Download area</a>
 		  for example files).</div>
-		<div class="list-group-item-text"><strong>5. Upload the files, run parameter balancing, and download the balanced parameters and model.</strong> 
+		<div class="list-group-item-text" style="line-height:2;"><strong>5. Upload the files, run parameter balancing, and download the balanced parameters and model.</strong> 
 		  If the balancing process was successful, you can download
 		  the SBML file with the balanced parameters and convenience
 		  kinetics. Analogously, you can download
@@ -196,26 +238,9 @@
 	  </div>
 	</div>
       </article>
+      -->
 
-      <article>
-	<div class="container-fluid bg-3 text-center">
-	  <div class="row">
-	    <div class="col-sm-2"></div>
-	    <div class="col-sm-8">
-	      <header>
-		<h3>Clearing the session</h3>
-	      </header>
-              <p align="left">
-		The variables of the browser session can be reset by clicking the 'Clear Session' button on bottom
-		of the online balancing page. This can be handy, if e.g. large files have caused proxy errors and
-		the tool shows random behaviour.
-	      </p>
-	    </div>
-	  </div>
-	  <div class="col-sm-2"></div>
-	</div>
-      </article>
-      
+      <!--      
       <article>
 	<div class="container-fluid bg-3 text-center">
 	  <div class="row">
@@ -252,14 +277,97 @@
 	  </div>
 	</div>
       </article>
+      -->
 
-      <article>
+      <article id="software">
+	<div class="container-fluid bg-3 text-center">
+	  <div class="row">
+	    <div class="col-sm-2"></div>
+	    <div class="col-sm-8" align="left">
+	      <header>
+		<h3 align="center">Software</h3>
+	      </header>
+	      <p>
+		Parameter balancing is a tool for metabolic modelling in systems biology.
+		It is implemented in Python3 and its code underlies the PEP8 guidelines.
+		These are the possible ways of employing parameter balancing for your project:
+	      </p>
+	      <ol>
+		<li>
+		  <strong>The online version </strong>
+		  The tool can be employed via www.parameterbalancing.net. All required knowledge can be found here on the webpage.
+		</li>
+		<li>
+		  <strong>Parameter balancing as Pypi package and commandline tool</strong>
+		  <p>
+		  To install parameter balancing as a Python3 package, first of all you need Python3.
+		  Next, you will need the pip3 installer. You can find information on how to do this
+		  here: https://pip.pypa.io/en/stable/installing/.
+		  Afterwards, install parameter balancing by typing in your command line:
+		  <pre>sudo pip3 install pbalancing</pre>
+		  This will also install libsbml and tablib on your computer if these libraries are missing.
+		  You can now employ parameter balancing as a Python3 package by, e.g., writing a script such as
+
+		  <pre>from pbalancing import parameter_balancing_core<br>parameter_balancing_core.parameter_balancing_wrapper('model.xml')</pre>
+
+		  In this example case, 'model.xml' is the file name of an SBML model. Further optional
+		  arguments are an SBtab parameter file, an SBtab prior distribution file, and an SBtab
+		  configuration file (example files can be found in the <a href="download.html" title="Installation and Downloads">Download Section</a>). 
+		  </p>
+		  <p>
+		    To run parameter balancing as a commandline tool, the package needs to be installed as explained above.
+		    Then, it can be executed in the commandline as follows:
+		    <pre> python3 -m pbalancing.parameter_balancing_core model.xml</pre>
+		    where model.xml corresponds to the path of your SBML model. It is also possible to provide further
+		    input files, such as an SBtab parameter files (.tsv), an SBtab prior information file (.tsv),
+		    and an SBtab options file (.tsv) for the configuration of parameter balancing. Providing complete
+		    file information would look like this:
+		    <pre> python3 -m pbalancing.parameter_balancing_core model.xml --sbtab_data data_file.tsv --sbtab_prior prior_file.tsv --sbtab_options options_file.tsv</pre>
+		    You can create a log file by setting the flag -l, you can use pseudo values to account for a lack
+		    of data by setting the flag -p, you can watch program outputs on your commandline by setting the
+		    flag -v. Information on the SBtab format can be found on www.sbtab.net, more information on the
+		    mentioned file types can be found in the <a href="../../files/manual.pdf">parameter balancing manual</a>, and example files can be found at the
+		    bottom of this page.
+		    If you do not want to install the pip package, you can still use the commandline modules from the standalone directory on Github.
+		    The usage works as a standard call of a Python module:
+		    <pre>python3 cl_balancing.py model.xml</pre>
+		    Here, as well, you can use the optional file provision like explained above. You will be required to install
+		    several Python packages, though. A list of these packages can be found in the requirements.txt at the root
+		    of the Github page.
+		  </p>
+	  	</li>
+		<li>
+		  <strong>Python code for parameter balancing</strong>
+		  <a href="https://github.com/tlubitz/parameter_balancing">Python3 source code</a>
+		  for parameter balancing can be freely downloaded. Please see
+		  the instructions that come with the code.
+		</li>
+		<li>		  
+		  <strong>Web2py application</strong>
+		  The web2py application for parameter balancing can be freely downloaded from the
+		  <a href="https://bitbucket.org/tlubitz/pb">Github repository</a>. Please see
+		  the instructions that come with the code.
+		</li>
+		<li>
+		  <strong>Matlab code for parameter balancing</strong>
+		  Matlab code for parameter balancing is included in the <a href="https://github.com/liebermeister/mnt/">Metabolic Networks
+		    Toolbox</a>. For more information, install the MNT toolbox and type 'help mnt_parameter_balancing'.
+		</li>
+	      </ol>
+	    </div>
+	    <div class="col-sm-2"></div>
+	  </div>
+	</div>
+      </article>
+
+      
+      <article id="quant">
 	<div class="container-fluid bg-3 text-center">
 	  <div class="row">
 	    <div class="col-sm-2"></div>
 	    <div class="col-sm-8">
 	      <header>
-		<h3 id="quant">Table of biochemical quantities</h3>
+		<h3>Table of biochemical quantities</h3>
 	      </header>
 	      <p align="left">
 		At the beginning of parameter balancing, a metabolic network structure is read from
@@ -268,8 +376,15 @@
 		the necessary kinetic constants and some dynamic quantities (referring to a specific metabolic state of
 		the system) are estimated from collected data. The relevant quantities are listed below.
 	      </p>
-    
-	      <table class="table-hover table-bordered table-condensed table-responsive" style="font-size:12" align="center">
+
+	      <div class="mobile-show">
+		<p align="left">
+		  The table is too large to be sensibly displayed on mobile. Please review on desktop or download
+		  the table in the <a href="download.html" title="Installation and Downloads">Download section</a>.
+		</p>
+	      </div>
+	      
+	      <table class="table-hover table-bordered table-condensed table-responsive mobile-hide" style="font-size:12" align="center">
 		<thead>
 		  <tr>
 		    <th>Quantity Type</th>
@@ -782,13 +897,13 @@
 	</div>
       </article>	
 
-      <article>
+      <article id="faq">
 	<div class="container-fluid bg-3 text-center">
 	  <div class="row">
 	    <div class="col-sm-2"></div>
 	    <div class="col-sm-8" align="left">
 	      <header>
-		<h3 id="faq" align="center">Frequently asked questions</h3>
+		<h3 align="center">Frequently asked questions (FAQ)</h3>
 	      </header>
 	      <ul align="left">
 		<li style="margin-bottom:8px;">
@@ -796,6 +911,12 @@
 		  Parameter balancing is described in <a href="http://pubs.acs.org/doi/abs/10.1021/jp108764b">Lubitz et al. (2010)</a>.
 		  If you use parameter balancing in your work, please refer to this article. A  modelling workflow based on parameter balancing is described
 		  in <a href="http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0079195">Stanford et al. (2013)</a>.
+		</li>
+		<li style="margin-bottom:8px;">
+		  <strong>Clearing the session</strong>
+		  The variables of the browser session can be reset by clicking the 'Clear Session' button on bottom
+		  of the online balancing page. This can be handy, if e.g. large files have caused proxy errors and
+		  the tool subsequently shows random behaviour.
 		</li>
 		<li style="margin-bottom:8px;">
 		  <b>How does parameter balancing work mathematically?</b>
@@ -962,10 +1083,10 @@
 		    and insert a more realistic kinetics instead (see, for instance, 
 		    the rate laws proposed in
 		    <a href="http://www.sciencedirect.com/science/article/pii/S0014579313005267">Hofmeyr et al., (2013))</a>.</li>
-		    <li style="margin-bottom:8px;"><b>Very large or small parameter values</b>Very large or small parameter values can lead to unrealistic models and
+		    <li style="margin-bottom:8px;"><b>Very large or small parameter values</b> Very large or small parameter values can lead to unrealistic models and
 		    numerical problems. Extreme values should be avoided by using proper bounds. In any case, we suggest to have a look at all
 		    balanced values and to see if they are in realistic ranges.</li>
-		    <li style="margin-bottom:8px;"><b>Large uncertainties and strongly shifted mean values</b>Each
+		    <li style="margin-bottom:8px;"><b>Large uncertainties and strongly shifted mean values</b> Each
 		    balanced parameter value comes with an uncertainty.
 		    The uncertainties are described by normal distributions for the 
 		    logarithmic parameter values, so median and mean value on
@@ -978,13 +1099,13 @@
 		    range - by providing more data that constraints the parameter 
 		    value, by using narrower priors or constraints, or by using "pseudo"
 		    values.</li>
-		    <li style="margin-bottom:8px;"><b>What if the model cannot be simulated?</b>Problems in 
+		    <li style="margin-bottom:8px;"><b>What if the model cannot be simulated?</b> Problems in 
 		    simulating the model (e.g., using COPASI) may be caused by
 		    unrealistically high or low parameter values. If you notice such 
 		    parameter values in your model and would like to avoid them, you
 		    may use tighter priors or pseudo values to exclude extreme 
 		    parameter values.</li>
-		    <li style="margin-bottom:8px;"><b>How are enzymes handled in the balancing?</b>In SBML, enzymes
+		    <li style="margin-bottom:8px;"><b>How are enzymes handled in the balancing?</b> In SBML, enzymes
 		      are sometimes treated as SBML species and sometimes as SBML parameters; this
 		      is mainly up to the modeller. In parameter balancing, enzymes need to be
 		      parameters. If they are provided as species, they cannot correctly be
@@ -996,7 +1117,7 @@ To recognise a reaction modifier, listed in an SBML model, as an activator or in
 		  </ul>
 		</li>
 		    <li style="margin-bottom:8px;"><b>Can I sample data sets from the posterior distribution?</b>
-		      The matlab version of parameter balancing allows for sampling parameter sets. To generate a sample, a parameter set is randomly sampled from the (multi-variate Gaussian) posterior. If the sample violates constraints, it is replaced by a parameter vector that satisfies all constraints and is closest to the initially sampled vector, where "closeness" is defined by a quadratic norm based on the posterior covariance matrix. The resulting constrained samples satisfy all constraints and give an impression about the posterior uncertainties, but they do not strictly represent the posterior distribution (which is defined as the multi-variate unconstrained Gaussian posterior, constrained to the feasible region).
+		      The Matlab version of parameter balancing allows for sampling parameter sets. To generate a sample, a parameter set is randomly sampled from the (multi-variate Gaussian) posterior. If the sample violates constraints, it is replaced by a parameter vector that satisfies all constraints and is closest to the initially sampled vector, where "closeness" is defined by a quadratic norm based on the posterior covariance matrix. The resulting constrained samples satisfy all constraints and give an impression about the posterior uncertainties, but they do not strictly represent the posterior distribution (which is defined as the multi-variate unconstrained Gaussian posterior, constrained to the feasible region).
 		    </li>
 		    <li style="margin-bottom:8px;"><b>What happens to reactions with many reactants?</b>
 		      Reactions with many reactants (e.g., biomass-producing reactions) are not properly described by modular rate laws, and parameters estimated for such reactions should at least be taken with care. We recommend to remove such reactions from the model before running parameter balancing.
@@ -1026,7 +1147,7 @@ In parameter balancing, some types of parameters are treated as "basic" (e.g., s
 		  changes are made in the following order. (i) If a zero value is given for a multiplicative quantitity, this value
 		  is ignored. (ii) If a data value is outside the allowed bound for this type of parameter, it is ignored. (iii) If
 		  a zero standard deviation is given for a value, this standard deviation is ignored. (iv) If a data value has no
-		  standard deviation, a default standard deviation (column DataStd from the prior file) is inserted. In the matlab
+		  standard deviation, a default standard deviation (column DataStd from the prior file) is inserted. In the Matlab
 		  version, it is also possible to use default geometric standard deviations (column DataGeomStd from the prior
 		  file) instead. (v) If several data values are given for the same parameter (e.g., several values for the same
 		  equilibrium constant), the arithmetic mean of these values is used as the final data value (both for additive
@@ -1035,6 +1156,38 @@ In parameter balancing, some types of parameters are treated as "basic" (e.g., s
 		  characterised by arithmetic mean and standard deviation). For multiplicative parameters, the arithmetic mean
 		  and standard deviation (for an assumed log-normal distribution) and then translated into the arithmetic mean
 		  and standard deviation of the logarithmic parameter values (assumed to follow a normal distribution).
+		</li>
+		<li style="margin-bottom:8px;">
+		  <strong>Is parameter balancing limited to metabolic models or could it be applied to other biological models?</strong>
+		  A specific problem in metabolic systems (which, in parameter balancing, is turned into an advantage) is the fact
+		  that kinetic constants are dependent through Wegscheider conditions (for equilibrium constants) and Haldane
+		  relationships (between equilibrium constants, turnover rates, and Michaelis-Menten constants); and, given the
+		  flux directions, equilibrium constants and metabolite concentrations are dependent as well. This is the reason
+		  why in parameter balancing those parameters (and also state variables such as metabolite concentrations) are not
+		  estimated or sampled independently, but using a linear dependence scheme in the background. Some parameters, e.g.
+		  the allosteric inhibition and activation constants, are independent of all other parameters and can be manually
+		  chosen by the modeller. The parameter balancing would not be necessary in this case, and they are only included
+		  in our software for convenience. Coming back to non-metabolic systems: even though the laws of thermodynamics
+		  apply to any biochemical network (including, for example, signalling pathways), thermodynamic constraints are
+		  usually not considered in these models: in particular, many reactions (e.g., phosphorylation by kinases) are
+		  described by irreversible kinetics, which renders Wegscheider conditions and Haldane relationships obsolete.
+		  As in the case of allosteric rate constants, applying parameter balancing is simply not necessary, and the
+		  different model parameters can be chosen at will, without having to care about (and without having the
+		  opportunity of exploiting) their interdependencies.<br>
+		  Aside from from these theoretical considerations, there is also a practical answer. The formalism of Parameter
+		  Balancing applies to any sorts of model parameters and to any sorts of dependencies between them, as long as
+		  these dependencies are linear (either between the model parameters themselves, or between their logarithms).
+		  The user can customise our software to handle any parameters that satisfy this condition by editing the “Prior
+		  distribution” file. The necessary steps are: (i) identify which new parameter types  should be used, and
+		  whether they are “additive” (satisfying linear relationships) or “multiplicative” (satisfying linear
+		  relationships on logarithmic scale).  (ii) Choose a subset of parameter types to be “independent”, and specify
+		  the dependencies of all other parameter types in the form of symbolic matrices (column “MatrixInfo” in the
+		  “Prior distribution” file). (iii) Modify the “Prior distribution” file by adding all the new information.
+		</li>
+		<li style="margin-bottom:8px;">
+		  <b>Is there a maximal model size?</b>
+		  In order to avoid long calculation times, models are currently limited to a maximal size of 250 reactions.
+		  You can bypass this on your own risk by modifying the code.
 		</li>
 		<li style="margin-bottom:8px;">
 		  <b>Who can answer my other questions?</b>

@@ -1,0 +1,868 @@
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="author" content="Timo Lubitz">
+    <meta name="description"  content="Parameter Balancing Website: Download Section - Find example files, default files, and details about the software code">
+    
+    <!-- this is required for responsiveness -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="alternate" hreflang="en" href="https://www.parameterbalancing.net/static/css/css_template/download.html" />
+    
+    <title>Parameter Balancing - Download Section</title>
+    <!--<link rel="stylesheet" type="text/css" href="css/pb.css">-->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/custom.css" rel="stylesheet">
+    <link rel="shortcut icon" href="/pb/static/css/css_template/img/pb-logo.png" type="image/icon">
+    <link rel="icon" href="/pb/static/css/css_template/img/pb-logo.png" type="image/icon">
+  </head>
+
+  <body>
+    <!-- navbar: this is a navbar; navbar-inverse: it's dark; navbar-static-top: it's always at the top -->
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <!-- setting a max-width by using a container -->
+      <div class="container">
+	<div class="navbar-header">
+	  <!-- button is hidden on desktop, becomes a hamburger on mobile! the span items are the hamburger lines --> 
+	  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+	    <span class="sr-only">Toggle navigation</span>
+	    <span class="icon-bar"></span>
+	    <span class="icon-bar"></span>
+	    <span class="icon-bar"></span>
+	  </button>
+	  <a class="navbar-brand" href="main.html" title="Take me home">Parameter Balancing Home</a>
+	</div>
+	
+	<!-- simple right aligned list-->
+	<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+	  <ul class="nav navbar-nav navbar-right">
+	    <li> <a href="gettingstarted.html" title="Getting started">Getting Started</a></li>
+	    <li> <a href="../../../default/balancing.html" title="Go to online balancing">Online Balancing</a></li>
+	    <li> <a href="documentation.html" title="Documentation and Manuals">Documentation</a></li>
+	    <li> <a href="download.html" title="Installation and Downloads">Download</a></li>
+	    <li> <a href="contact.html" title="Contact the balancing team">Contact</a></li>
+	  </ul>
+	</div>
+      </div>
+    </nav>
+
+    <header>
+      <div style="padding-top:100px" class="container-fluid bg-2 text-center">
+	<h2>Getting started with SBtab</h2>
+      </div>
+    </header>
+
+    <main>
+      <article>
+	<div class="container-fluid bg-3 text-center">
+	  <div class="row">
+	    <div class="col-sm-3"></div>
+	    <div class="col-sm-6" style="text-align:left;line-height:2;">
+	      <header>
+		<h3>1. What is parameter balancing? How and where can I employ it?</h3>
+	      </header>
+	      <p>
+		Parameter balancing is a computational method for obtaining consistent parameter
+		sets for kinetic metabolic models. Experimentally measured values, when inserted
+		into models directly, would be likely to yield incomplete and inconsistent parameter
+		sets. Balanced parameter sets, computed from measured kinetic constants and other
+		experimental data, respect constraints between biochemical quantities and assumptions
+		about typical ranges, represented by prior values and bounds.
+	      </p>
+	      <p>
+		You can employ parameter balancing on this website in the
+		<a href="../../../default/balancing.html" title="Go to online balancing">Online Balancing</a>
+		section. <i>How</i> it is employed is shown in this tutorial. First, we will show you what
+		<a href="#files">sorts of files (1)</a> you will need to provide. Next, you will see how the
+		<a href="#ob">online balancing (2)</a> is performed. Lastly, we will explain the
+		<a href="#op">output files (3)</a>.
+	      </p>
+	      <p>
+		If you are looking for an explanation on how to embed parameter balancing in your own
+		programming workflows or want to have a look at the underlying Python 3 source code,
+		please go to our <a href="https://github.com/tlubitz/parameter_balancing">parameter balancing Github</a> page.
+	      </p>
+	    </div>
+	    <div class="col-sm-3"></div>
+	  </div>
+	</div>
+      </article>
+
+      <article id="files">
+	<div class="container-fluid bg-3 text-center">
+	  <div class="row">
+	    <div class="col-sm-3"></div>
+	    <div class="col-sm-6" style="text-align:left;line-height:2;">
+	      <header>
+		<h3>2. What will I need in order to perform parameter balancing?</h3>
+	      </header>
+
+	      <p>
+		Your data for parameter balancing needs to be provided in the Systems Biology standard formats
+		SBML and/or SBtab. Please click on the buttons to read the details.
+	      </p>
+	      
+	      <p style="width:50%">
+		<a class="btn btn-primary" data-toggle="collapse" href="#model" role="button" aria-expanded="false" aria-controls="model">
+		  A: A kinetic metabolic model (obligatory)
+		</a>
+		<div class="collapse" id="model" style="line-height:2;">
+		  <strong>A: The model</strong> You can provide a kinetic metabolic model in either (a)
+		  <a href="http://sbml.org/Main_Page">SBML format</a> or the (b)
+		  <a href="https://www.sbtab.net">SBtab</a> format:
+		  <ul class="list-group">
+		    <li class="list-group-item">
+		      (a) <a href="http://sbml.org/Main_Page"><strong>SBML</strong></a> is an established Systems Biology standard format which comes in .xml format.
+		      Models in SBML can be generated with a multitude of
+		      <a href="http://sbml.org/SBML_Software_Guide/SBML_Software_Summary">SBML software tools</a>,
+		      the most commonly used ones probably being <a href="http://copasi.org/">COPASI</a> and
+		      <a href="https://de.mathworks.com/products/matlab.html">MATLAB</a>. The creation of an SBML
+		      model is beyond the scope of this website, but you will find good tutorials on the
+		      <a href="http://sbml.org/Software/libSBML/Tutorials">SBML tutorials page</a>. Furthermore,
+		      you can have a look at our SBML example files in our <a href="download.html#mds">Downloads</a> section.
+		      </li>
+		    <li class="list-group-item">
+		      (b) <a href="https://www.sbtab.net"><strong>SBtab</strong></a> is a spreadsheet-based Systems Biology standard format for the provision of
+		      various types of data. You can e.g. describe a kinetic metabolic model by building SBtabs for the inherent
+		      reactions, metabolites, compartments, and quantities. A small model of the phosphofructokinase reaction
+		      could be presented in SBtab format as such (the colors are not part of the format but only for the
+		      ease of display):
+		      <p style="text-align:center!important;">
+			<figure style="margin-bottom:30px;">
+			  <a href="img/sbtab_model_example.png" target="_blank">
+			    <img width="80%" src="img/sbtab_model_example.png" alt="Parameter Balancing Logo" style="margin-top:20px;border-style: solid;border-width: 2px;">
+			  </a>
+			  <figcaption style="font-style:italic;">
+			    Three SBtab tables describing one kinetic model (the colours are for visualisation purposes only, not part of the format)
+			  </figcaption>
+			</figure>
+		      </p>
+		      The minimalistic example above shows a spreadsheet file consisting of three SBtabs. Each SBtab begins with a
+		      declaration row (preceded with "!!SBtab", coloured in dark blue), which defines the required table attributes. Special focus is on
+		      the attribute TableType, which defines what kind of data are presented in the SBtab. After the declaration
+		      row follow the column headers (coloured in bright blue), each of which are preceded by a single exclamation mark (e.g. "!ID"). <br>
+		      The topmost SBtab has the
+		      TableType "Compartment" and defines a single compartment
+		      with the ID <strong>c</strong>, a name <strong>cytosol</strong> and the size <strong>1</strong>. Below that,
+		      the second SBtab of the TableType "Compound" provides a list of metabolites in the model including their IDs, names,
+		      localisations, charge, and if they are constant. The last SBtab in the example has the TableType "Reaction"
+		      and describes the Phosphofructokinase reaction. Note that this is only an excerpt of the many possibilities
+		      to define models and their entities in SBtab. You can find more information on the SBtab format and its capabilities in the
+		      <a href="https://www.sbtab.net/sbtab/default/specification.html">SBtab specificiation</a>.<br>
+		      In general, SBtab files are simple spreadsheet files that can be created with every text editor (such as Notepad) or spreadsheet tool (such
+		      as MS Office or LibreOffice). The allowed formats are .csv, .tsv, and .xls - we recommend the usage of the
+		      tab-separated value format .tsv. You can find example files in our <a href="download.html#mds">Downloads</a> section.
+		    </li>
+		  </ul>		  
+		</div>
+	      </p>
+	      
+	      <p style="width:50%">
+		<a class="btn btn-primary" data-toggle="collapse" href="#data" role="button" aria-expanded="false" aria-controls="data">
+		  B: A data file (optional, but strongly recommended)
+		</a>
+		<div class="collapse" id="data" style="line-height:2;">
+		  <p>
+		    Besides the obligatory kinetic model in SBML or SBtab format, you can provide an optional SBtab file with experimental
+		    data. While this feature is optional, we strongly recommend the provision of such a data file to improve the results
+		    of the parameter balancing. The SBtab TableType for these data is called "Quantity" and for the simple phosphofructokinase
+		    reaction above it could look as such:
+		  </p>
+	          <p style="text-align:center!important;">
+		    <figure style="margin-bottom:30px;">
+		      <a href="img/sbtab_data_example.png" target="_blank">
+			<img width="80%" src="img/sbtab_data_example.png" alt="Parameter Balancing Logo" style="margin-top:20px;border-style: solid;border-width: 2px;">
+		      </a>
+		      <figcaption style="font-style:italic;">
+			SBtab table "Quantity" with experimental data (the colours are for visualisation purposes only, not part of the format)
+		      </figcaption>
+		    </figure>
+		  </p>
+		  <p>
+		    The example file shows enzyme concentrations, inhibitory constants, concentrations (metabolites), standard chemical potentials,
+		    Michaelis constants, and an equilibrium constant for the phosphofructokinase reaction. These are collected from different
+		    sources (see column "Reference"). There may be multiple values for one parameter, which are averaged during the Parameter
+		    Balancing. It is important to link the data correctly to the model entities, which is realised via the columns
+		    "Reaction:SBML:reaction:id" and "Compound:SBML:species:id", which must hold the corresponding SBML identifiers of the reactions
+		    or species. Also note that some parameters (such as concentration) are only linked to an SBML species identifier, others (such
+		    as equilibrium constants) are only linked to SBML reaction identifiers, and finally some (such as Michaelis constants) are
+		    linked to both SBML species and reaction identifiers. Please make sure that the columns "Mean" and "Unit" are filled; if they
+		    are not, you can just as well omit the whole table row.
+		  </p>
+		  <p>
+		    The allowed quantity types for the first column are "standard chemical potential" (kJ/mol), "catalytic rate constant geometric mean" (1/s),
+		    "Michaelis constant" (mM), "activation constant" (mM), "inhibitory constant" (mM), "concentation" (mM), "concentration of enzyme" (mM),
+		    "equilibrium constant" (dimensionless), "substrate catalytic rate constant" (1/s), "product catalytic rate constant" (1/s),
+		    "chemical potential" (kJ/mol), "reaction affinity" (kJ/mol), "forward maximal velocity" (mM/s), and "reverse maximal velocity" (mM/s).
+		    Find more information on these quantities in the <a href="documentation.html#quant">Documentation section</a>.
+		  </p>
+		</div>
+	      </p>
+	      
+	      <p style="width:50%">
+		<a class="btn btn-primary" data-toggle="collapse" href="#config" role="button" aria-expanded="false" aria-controls="config" id="conf">
+		  C: A configuration file (optional, for experienced users)
+		</a>
+		<div class="collapse" id="config" style="line-height:2;">
+		  <p>
+		    Parameter balancing is a highly complex modelling tool that can be configured to match the user's individual
+		    requirements. Thus, users can provide an SBtab file of the TableType "PbConfig" which should look as follows:
+		  </p>
+
+	          <p style="text-align:center!important;">
+		    <figure style="margin-bottom:30px;">
+		      <a href="img/sbtab_config_example.png" target="_blank">
+			<img width="80%" src="img/sbtab_config_example.png" alt="Parameter Balancing Logo" style="margin-top:20px;border-style: solid;border-width: 2px;">
+		      </a>
+		      <figcaption style="font-style:italic;">
+			The SBtab table "PbConfig" defines configuration options for the parameter balancing (the colours are for visualisation purposes only, not part of the format)
+		      </figcaption>
+		    </figure>
+		  </p>
+		  <p>
+		    The configuration options are:
+		    <ul>
+		      <li><strong>use_pseudo_values</strong> (Bool; True or False): usage of pseudo values as substitute for missing parameter values
+to improve balancing (see <a href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0079195" target="_blank">Stanford et al.</a> for details)</li>
+		      <li><strong>pH</strong> (float; 1-14): pH value that allows parameter balancing for correction of parameter values that do not
+correspond to the systems target pH value (see <a href="https://pubs.acs.org/doi/abs/10.1021/jp108764b" target="_blank">Lubitz et al.</a> for details)</li>
+		      <li><strong>Temperature</strong> (float, in Kelvin): temperature that allows parameter balancing for correction of parameter
+values that do not correspond to the systems target temperature (see <a href="https://pubs.acs.org/doi/abs/10.1021/jp108764b" target="_blank">Lubitz et al.</a> for details)</li>
+		      <li><strong>overwrite_kinetics</strong> (Bool; True or False): should existing kinetic laws in the SBML file be overwritten?</li>
+		      <li><strong>cell volume</strong> (float; in µm3): volume of the cell</li>
+		      <li><strong>parametrisation</strong> (string; hal or cat or weg): different parametrisation types for the convenience kinetics. See
+<a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC1781438/" target="_blank">Liebermeister et al.</a> for details.</li>
+		      <li><strong>enzyme_prefactor</strong> (Bool; True or False): should a prefactor for the enzyme concentration be set in the rate
+law?</li>
+		      <li><strong>default_inhibition</strong> (string; complete, partial, or specific): type of enzyme inhibition</li>
+		      <li><strong>default_activation</strong> (string; complete, partial, or specific): type of enzyme activation</li>
+		      <li><strong>model_name</strong> (string): name that is used for the result files</li>
+		      <li><strong>boundary_values</strong> (string; ignore): ignore boundary values (temporary feature)</li>
+		    </ul>
+		    <p>
+		      As noted in the brackets for each of the items, some of the configuration options require further reading. Changing them
+		      is only recommended for experienced users. You will find the default configuration file in our
+		      <a href="download.html#config">Downloads section</a> and can use it for alterations.
+		    </p>
+		  </p>
+		  	  
+		</div>
+	      </p>
+	      
+	      <p style="width:50%">
+		<a class="btn btn-primary" data-toggle="collapse" href="#prior" role="button" aria-expanded="false" aria-controls="prior">
+		  D: An alternate prior distribution file (optional, for experienced users)
+		</a>
+		<div class="collapse" id="prior" style="line-height:2;">
+		  <p>
+		    Since parameter balancing is a Bayesian estimation, it relies on a prior distribution of the quantity types. The default
+		    prior distribution has been chosen carefully for each quantity type and looks as such:
+		  </p>
+		  
+		  <div class="mobile-show">
+		    <p align="left">
+		      The table is too large to be sensibly displayed on mobile. Please review on desktop or download
+		      the table in the <a href="download.html" title="Installation and Downloads">Download section</a>.
+		    </p>
+		  </div>
+
+		  <table class="table-hover table-bordered table-condensed table-responsive mobile-hide" style="font-size:12" align="center">
+		    <thead>
+		      <tr>
+			<th>Quantity Type</th>
+			<th> Symbol           </th>
+			<th>Unit</th>
+			<th>BiologicalElement</th>
+			<th>MathematicalType</th>
+			<th>PhysicalType     </th>
+			<th>Dependence</th>
+			<th>PriorMedian</th>
+			<th>PriorStd</th>
+			<th>PriorGeometricStd</th>
+			<th>LowerBound</th>
+			<th>UpperBound</th>
+			<th>DataStd</th>
+			<th>DataGeometricStd</th>
+			<th>SBML element    </th>
+			<th>UseAsPriorInformation</th>
+			<th>MatrixInfo</th>
+		      </tr>
+		    </thead>
+		    <tbody>
+		      <tr>
+			<td>Standard chemical potential</td>
+			<td> μ<sup>0</sup> </td>
+			<td>kJ/mol</td>
+			<td>Species</td>
+			<td>Additive</td>
+			<td>Thermodynamic</td>
+			<td>Basic     </td>
+			<td> 0         </td>
+			<td> 500            </td>
+			<td></td>
+			<td>-500</td>
+			<td>500</td>
+			<td>10</td>
+			<td></td>
+			<td>Global parameter</td>
+			<td>1</td>
+			<td>[I_species, 0, 0, 0, 0, 0, 0, 0]</td>
+		      </tr>
+		      <tr>
+			<td>Catalytic rate constant geometric mean</td>
+			<td> k<sup>V</sup>    </td>
+			<td>1/s</td>
+			<td>Reaction</td>
+			<td>Multiplicative</td>
+			<td>Kinetic      </td>
+			<td>Basic     </td>
+			<td> 10              </td>
+			<td>        </td>
+			<td>100</td>
+			<td>0.00000001</td>
+			<td>10000</td>
+			<td>10</td>
+			<td>1.2</td>
+			<td>Local parameter </td>
+			<td>1</td>
+			<td>[0, I_reaction, 0, 0, 0, 0, 0, 0]</td>
+		      </tr>
+		      <tr>
+			<td>Michaelis constant</td>
+			<td> k<sup>M</sup>    </td>
+			<td>mM</td>
+			<td>Reaction/Species</td>
+			<td>Multiplicative</td>
+			<td>Kinetic      </td>
+			<td>Basic     </td>
+			<td> 0.1              </td>
+			<td>        </td>
+			<td>10</td>
+			<td>0.0000001</td>
+			<td>1000</td>
+			<td>1</td>
+			<td>1.2</td>
+			<td>Local parameter </td>
+			<td>1</td>
+			<td>[0, 0, I_KM, 0, 0, 0, 0, 0]</td>
+		      </tr>
+		      <tr>
+			<td>Activation constant</td>
+			<td> k<sup>A</sup>    </td>
+			<td>mM</td>
+			<td>Reaction/Species</td>
+			<td>Multiplicative</td>
+			<td>Kinetic      </td>
+			<td>Basic     </td>
+			<td> 0.1               </td>
+			<td>        </td>
+			<td>10</td>
+			<td>0.0001</td>
+			<td>100</td>
+			<td>1</td>
+			<td>1.2</td>
+			<td>Local parameter </td>
+			<td>1</td>
+			<td>[0, 0, 0, I_KA, 0, 0, 0, 0]</td>
+		      </tr>
+		      <tr>
+			<td>Inhibitory constant</td>
+			<td> k<sup>I</sup>    </td>
+			<td>mM</td>
+			<td>Reaction/Species</td>
+			<td>Multiplicative</td>
+			<td>Kinetic      </td>
+			<td>Basic     </td>
+			<td> 0.1               </td>
+			<td>        </td>
+			<td>10</td>
+			<td>0.0001</td>
+			<td>100</td>
+			<td>1</td>
+			<td>1.2</td>
+			<td>Local parameter </td>
+			<td>1</td>
+			<td>[0, 0, 0, 0, I_KI, 0, 0, 0]</td>
+		      </tr>
+		      <tr>
+			<td>Concentration</td>
+			<td> c                </td>
+			<td>mM</td>
+			<td>Species</td>
+			<td>Multiplicative</td>
+			<td>Dynamic      </td>
+			<td>Basic     </td>
+			<td> 0.1               </td>
+			<td>        </td>
+			<td>10</td>
+			<td>0.0000001</td>
+			<td>1000</td>
+			<td>1</td>
+			<td>1.2</td>
+			<td>Species (conc.) </td>
+			<td>1</td>
+			<td>[0, 0, 0, 0, 0, I_species, 0, 0]</td>
+		      </tr>
+		      <tr>
+			<td>Concentration of enzyme</td>
+			<td> u                </td>
+			<td>mM</td>
+			<td>Reaction</td>
+			<td>Multiplicative</td>
+			<td>Dynamic      </td>
+			<td>Basic     </td>
+			<td> 0.001            </td>
+			<td>        </td>
+			<td>100</td>
+			<td>0.0000001</td>
+			<td>0.5</td>
+			<td>0.05</td>
+			<td>1.2</td>
+			<td>Local parameter </td>
+			<td>1</td>
+			<td>[[-1/RT * Nt], 0, 0, 0, 0, 0, 0, 0]</td>
+		      </tr>	
+		      <tr>
+			<td>pH</td>
+			<td>pH</td>
+			<td>dimensionless</td>
+			<td>None</td>
+			<td>Additive</td>
+			<td>Dynamic</td>
+			<td>Basic</td>
+			<td>7</td>
+			<td>1</td>
+			<td></td>
+			<td>0</td>
+			<td>14</td>
+			<td>1</td>
+			<td></td>
+			<td>Global parameter</td>
+			<td>1</td>
+			<td>[0, 0, 0, 0, 0, 0, 0, 1]</td>
+		      </tr>
+		      <tr>
+			<td>Standard Gibbs energy of reaction</td>
+			<td>dmuO</td>
+			<td>kJ/mol</td>
+			<td>Reaction</td>
+			<td>Additive</td>
+			<td>Thermodynamic</td>
+			<td>Derived</td>
+			<td>0</td>
+			<td>500</td>
+			<td></td>
+			<td>-1000</td>
+			<td>1000</td>
+			<td>10</td>
+			<td></td>
+			<td>Global parameter</td>
+			<td>0</td>
+			<td>[Nt, 0, 0, 0, 0, 0, 0, 0]</td>
+		      </tr>
+		      <tr>
+			<td>Equilibrium constant</td>
+			<td> k<sup>eq</sup> </td>
+			<td>dimensionless</td>
+			<td>Reaction</td>
+			<td>Multiplicative</td>
+			<td>Thermodynamic      </td>
+			<td>Derived   </td>
+			<td> 1   </td>
+			<td>       </td>
+			<td>100</td>
+			<td>0.00000000001</td>
+			<td>10000000000</td>
+			<td>10</td>
+			<td>1.2</td>
+			<td>Local parameter </td>
+			<td>1</td>
+			<td>[[-1/RT * Nt], 0, 0, 0, 0, 0, 0, 0]</td>
+		      </tr>
+		      <tr>
+			<td>Substrate catalytic rate constant</td>
+			<td> k<sup>cat+</sup> </td>
+			<td>1/s</td>
+			<td>Reaction</td>
+			<td>Multiplicative</td>
+			<td>Kinetic      </td>
+			<td>Derived   </td>
+			<td> 10    </td>
+			<td>        </td>
+			<td>100</td>
+			<td>0.01</td>
+			<td>1000000000</td>
+			<td>10</td>
+			<td>1.2</td>
+			<td>Local parameter </td>
+			<td>1</td>
+			<td>[[-0.5/RT * Nt], I_reaction, [-0.5 * Nkm], 0, 0, 0, 0, 0]</td>
+		      </tr>
+		      <tr>
+			<td>Product catalytic rate constant</td>
+			<td> k<sup>cat-</sup> </td>
+			<td>1/s</td>
+			<td>Reaction</td>
+			<td>Multiplicative</td>
+			<td>Kinetic      </td>
+			<td>Derived   </td>
+			<td> 10    </td>
+			<td>        </td>
+			<td>100</td>
+			<td>0.00000000001</td>
+			<td>1000000000</td>
+			<td>10</td>
+			<td>1.2</td>
+			<td>Local parameter </td>
+			<td>1</td>
+			<td>[[0.5/RT * Nt], I_reaction, [0.5 * Nkm], 0, 0, 0, 0, 0]</td>
+		      </tr>
+		      <tr>
+			<td>Chemical potential</td>
+			<td> μ             </td>
+			<td>kJ/mol</td>
+			<td>Species</td>
+			<td>Additive</td>
+			<td>Dynamic      </td>
+			<td>Derived   </td>
+			<td> 0        </td>
+			<td> 500            </td>
+			<td></td>
+			<td>-500</td>
+			<td>500</td>
+			<td>10</td>
+			<td></td>
+			<td>                </td>
+			<td>0</td>
+			<td>[I_species, 0, 0, 0, 0, [RT * I_species], 0, 0]</td>
+		      </tr>
+		      <tr>
+			<td>Reaction affinity</td>
+			<td> A                </td>
+			<td>kJ/mol</td>
+			<td>Reaction</td>
+			<td>Additive</td>
+			<td>Dynamic      </td>
+			<td>Derived   </td>
+			<td> 0        </td>
+			<td> 500           </td>
+			<td></td>
+			<td>-100</td>
+			<td>100</td>
+			<td>10</td>
+			<td></td>
+			<td>                </td>
+			<td>0</td>
+			<td>[[-1 * Nt], 0, 0, 0, 0, [-RT * Nt], 0, 0]</td>
+		      </tr>
+		      <tr>
+			<td>Forward maximal velocity</td>
+			<td> v<sup>max+</sup> </td>
+			<td>mM/s</td>
+			<td>Reaction</td>
+			<td>Multiplicative</td>
+			<td>Dynamic      </td>
+			<td>Derived   </td>
+			<td> 0.01          </td>
+			<td>       </td>
+			<td>100</td>
+			<td>0.000000001</td>
+			<td>10000000</td>
+			<td>0.1</td>
+			<td>2</td>
+			<td>Local parameter </td>
+			<td>0</td>
+			<td>[[-0.5/RT * Nt], I_reaction, [-0.5 * Nkm], 0, 0, 0, I_reaction, 0]</td>
+		      </tr>
+		      <tr>
+			<td>Reverse maximal velocity</td>
+			<td> v<sup>max-</sup> </td>
+			<td>mM/s</td>
+			<td>Reaction</td>
+			<td>Multiplicative</td>
+			<td>Dynamic      </td>
+			<td>Derived   </td>
+			<td> 0.01           </td>
+			<td>       </td>
+			<td>100</td>
+			<td>0.000000001</td>
+			<td>10000000</td>
+			<td>0.1</td>
+			<td>2</td>
+			<td>Local parameter </td>
+			<td>0</td>
+			<td>[[0.5/RT * Nt], I_reaction, [0.5 * Nkm], 0, 0, 0, I_reaction, 0]</td>
+		      </tr>
+		      <tr>
+			<td>Forward mass action term</td>
+			<td>thetaf</td>
+			<td>1/s</td>
+			<td>Reaction</td>
+			<td>Multiplicative</td>
+			<td>Dynamic</td>
+			<td>Derived</td>
+			<td>1</td>
+			<td></td>
+			<td>1000</td>
+			<td>0.000000001</td>
+			<td>100000000</td>
+			<td>1</td>
+			<td>2</td>
+			<td></td>
+			<td>0</td>
+			<td>[[-1/(2*RT) * h * Nt], I_reaction, - 1/2 * h * abs(Nkm), 0, 0, h * Nft, 0, 0]</td>
+		      </tr>
+		      <tr>
+			<td>Reverse mass action term</td>
+			<td>thetar</td>
+			<td>1/s</td>
+			<td>Reaction</td>
+			<td>Multiplicative</td>
+			<td>Dynamic</td>
+			<td>Derived</td>
+			<td>1</td>
+			<td></td>
+			<td>1000</td>
+			<td>0.000000001</td>
+			<td>100000000</td>
+			<td>1</td>
+			<td>2</td>
+			<td></td>
+			<td>0</td>
+			<td>[[ 1/(2*RT) * h * Nt], I_reaction, - 1/2 * h * abs(Nkm), 0, 0, h * Nrt, 0, 0]</td>
+		      </tr>
+		      <tr>
+			<td>Forward enzyme mass action term</td>
+			<td>tauf</td>
+			<td>mM/s</td>
+			<td>Reaction</td>
+			<td>Multiplicative</td>
+			<td>Dynamic</td>
+			<td>Derived</td>
+			<td>1</td>
+			<td></td>
+			<td>1000</td>
+			<td>0.000000001</td>
+			<td>100000000</td>
+			<td>1</td>
+			<td>2</td>
+			<td></td>
+			<td>0</td>
+			<td>[[-1/(2*RT) * h * Nt], I_reaction, - 1/2 * h * abs(Nkm), 0, 0, h * Nft, I_reaction, 0]</td>
+		      </tr>
+		      <tr>
+			<td>Reverse enzyme mass action term</td>
+			<td>taur</td>
+			<td>mM/s</td>
+			<td>Reaction</td>
+			<td>Multiplicative</td>
+			<td>Dynamic</td>
+			<td>Derived</td>
+			<td>1</td>
+			<td></td>
+			<td>1000</td>
+			<td>0.000000001</td>
+			<td>100000000</td>
+			<td>1</td>
+			<td>2</td>
+			<td></td>
+			<td>0</td>
+			<td>[[ 1/(2*RT) * h * Nt], I_reaction, - 1/2 * h * abs(Nkm), 0, 0, h * Nrt, I_reaction, 0]</td>
+		      </tr>
+		      <tr>
+			<td>Michaelis constant product</td>
+			<td>KMprod</td>
+			<td>mM</td>
+			<td>Reaction</td>
+			<td>Multiplicative</td>
+			<td>Kinetic</td>
+			<td>Derived</td>
+			<td>1</td>
+			<td>1000</td>
+			<td></td>
+			<td>0.001</td>
+			<td>1000</td>
+			<td>1</td>
+			<td>2</td>
+			<td>Local parameter</td>
+			<td>0</td>
+			<td>[0, 0, Nkm, 0, 0, 0, 0, 0]</td>
+		      </tr>
+		      <tr>
+			<td>Catalytic constant ratio</td>
+			<td>Kcatratio</td>
+			<td>dimensionless</td>
+			<td>Reaction</td>
+			<td>Multiplicative</td>
+			<td>Kinetic</td>
+			<td>Derived</td>
+			<td>1</td>
+			<td></td>
+			<td>10</td>
+			<td>0.00000000001</td>
+			<td>10000000000</td>
+			<td>1</td>
+			<td>2</td>
+			<td>Local parameter</td>
+			<td>0</td>
+			<td>[-1/RT * Nt], I_reaction, [-1 * Nkm], 0, 0, 0, 0, 0]</td>
+		      </tr>
+
+		    </tbody>
+		  </table>		  
+
+		  <p>
+		    Experienced users may choose to change the prior distribution to make it match their
+		    individual requirements. Please only do so carefully as it has significant effects on
+		    the parameter balancing. Also, read the corresponding section 2.1.2 from the
+		    <a href="https://www.parameterbalancing.net/pb/static/files/manual.pdf" target="_blank">Parameter
+		    Balancing manual</a> and the <a href="documentation.html#quant">Chapter on Biochemical Quantities</a> in the Documentation Section.
+		    Users can provide an alternative table for the prior distributions in SBtab format. We
+		    recommend to use the <a href="download.html">Default Prior SBtab</a> as a starting point for making alterations.
+		  </p>		  
+		</div>
+	      </p>
+	    </div>
+	    <div class="col-sm-3"></div>
+	  </div>
+	</div>
+      </article>
+
+      <article id="ob">
+	<div class="container-fluid bg-3 text-center">
+	  <div class="row">
+	    <div class="col-sm-3"></div>
+	    <div class="col-sm-6" style="text-align:left;line-height:2;">
+	      <header>
+		<h3>3. How is Online Balancing performed?</h3>
+	      </header>
+	      
+	      <p>
+		If you have the file/s explained in Part 1 of this tutorial in place, the online balancing
+		is performed easily. Start by clicking the "Online Balancing" link in the navigation bar on
+		this page:
+	      </p>
+	      <p style="text-align:center!important;">
+		<img width="80%" src="img/online_balancing_01.png" alt="Parameter Balancing Logo" style="margin-top:50px;margin-bottom:50px;border-style: solid;border-width: 2px;">
+	      </p>
+	      <p>
+		You will be directed to the Online Balancing page, where you can upload your prepared input files.
+		There are two alternative options how to do this: (a) Left column: Provide your kinetic metabolic model in SBML format
+		accompanied by optional SBtab files. (b) Right column: Provide your kinetic metabolic model and all other optional
+		files in a single large SBtab file. Here, we explain the two options:
+	      </p>
+	      <strong>Option 1: Separate Input Files</strong>
+	      <p style="text-align:center!important;">
+		<img width="80%" src="img/online_balancing_02.png" alt="Parameter Balancing Logo" style="margin-top:50px;margin-bottom:50px;border-style: solid;border-width: 2px;">
+	      </p>
+	      <p>
+		In this option, you can upload separate input files for the parameter balancing. The SBML file for the
+		kinetic model is obligatory, all other files are optional. All file formats and contents are
+		described in Part 1 of this tutorial. After you have uploaded your SBML file, you can simply
+		click on the "Balance Parameters" button on the bottom of the column. The software will
+		read all your submitted files automatically, perform the parameter balancing and redirect you to the download area.
+	      </p>
+	      <strong>Option 2: Single Input File</strong>
+	      <p style="text-align:center!important;">
+		<img width="80%" src="img/online_balancing_03.png" alt="Parameter Balancing Logo" style="margin-top:50px;margin-bottom:50px;border-style: solid;border-width: 2px;">
+	      </p>	      
+	      <p>
+
+		Instead of uploading all files separately, you can also upload all required data as one single SBtab
+		file. In Part 1 of this tutorial we have shown how a kinetic metabolic model can look like in the
+		SBtab format. You can simply add all optional SBtab files (such as the data, configurations, or
+		prior distribution files) to the end of the model SBtab (be aware: do not add them as separate
+		work sheets, but add them below the other SBtabs in the spreadsheet file). You can have a look at
+		our example files in the <a href="download.html" title="Installation and Downloads">Download section</a>
+		(focus on the files that say "SBtab format, single input file"). <br>
+		If you are interested in how you can
+		automatically translate your SBML file into the SBtab format (and vice versa), you can have a look at the
+		<a href="https://www.sbtab.net/sbtab/default/converter.html">SBML <-> SBtab</a> converter
+		on the SBtab homepage. We want to remind you that we recommend .tsv files as preferred SBtab format. <br>
+		After the file is uploaded you can start the parameter balancing by clicking the "Balance Parameters" button
+		on the bottom of the column. Parameter balancing is performed and you will be redirected to the Download area.
+	      </p>
+	    </div>
+	    <div class="col-sm-3"></div>
+	  </div>
+	</div>
+      </article>
+
+      <article id="op">
+	<div class="container-fluid bg-3 text-center">
+	  <div class="row">
+	    <div class="col-sm-3"></div>
+	    <div class="col-sm-6" style="text-align:left;line-height:2;">
+	      <header>
+		<h3>4. The Download Area</h3>
+	      </header>
+	      <p>
+		The download area will appear after you have clicked the "Balance Parameters" button. Please be
+		aware that this might take some time, depending on the size of your input data.
+	      </p>
+	      <p style="text-align:center!important;">
+		<img width="80%" src="img/online_balancing_04.png" alt="Parameter Balancing Logo" style="margin-top:50px;margin-bottom:50px;border-style: solid;border-width: 2px;">
+	      </p>
+	      <p>
+		You can download your SBML model with inserted balanced parameters in the "Download area SBML" on the top
+		of the page. The default behaviour will cause the old kinetic rate laws of the model to be overwritten with
+		common modular rate laws sporting the balanced parameter set. This behaviour can be influenced in several
+		ways by using an options file in the parameter balancing. You can choose the parametrisation, enzyme
+		behaviour, and more (see <a href="gettingstarted.html#conf">Part 1C of this tutorial</a>). By clicking on the name of the file you can display
+		the SBML source code in a new tab.
+	      </p>
+	      <p>
+		In the "Download area SBtab" you can download the full balanced parameter set for your model in SBtab format.
+		By clicking on the file name you can display the SBtab file in a new tab. The values that are employed in the
+		balanced model can be found in the column "Mode", which are point estimates from the computed posterior
+		distribution. In order to understand the full scope of the output file we would like to refer you to Section
+		2.2.3 of the <a href="https://www.parameterbalancing.net/pb/static/files/manual.pdf" target="_blank">parameter balancing manual</a>.
+	      </p>
+	      <p>
+		Finally, you can download the whole bundle of output information in one single SBtab file: The kinetic model, the quantities, the
+		balanced parameter set and the employed prior distribution. This is provided as <i>modelname</i>_balanced_model.tsv.
+	      </p>
+	    </div>
+	    <div class="col-sm-3"></div>
+	  </div>
+	</div>
+      </article>
+      
+      <article id="cr">
+	<div class="container-fluid bg-3 text-center">
+	  <div class="row">
+	    <div class="col-sm-3"></div>
+	    <div class="col-sm-6" style="text-align:left;line-height:2;">
+	      <header>
+		<h3>5. Closing Remarks</h3>
+	      </header>
+	      <p>
+		This tutorial is describing the Online Balancing only superficially. You can find more and deeper information
+		as well as FAQ in the <a href="documentation.html" title="Installation and Downloads">Documentation Section</a>
+		and the <a href="https://www.parameterbalancing.net/pb/static/files/manual.pdf" target="_blank">Parameter
+		Balancing Manual</a>. Here, you can also find details about employing parameter balancing in your programming
+		scripts, workflows, or via Linux commandline. Parameter balancing can also be installed as a pip package.
+		All required file formats and exemplary file contents can be found in the
+		<a href="download.html" title="Installation and Downloads">Download Section</a>. And finally, please do
+		not hesitate to contact <a href="contact.html" title="Contact">Wolfram Liebermeister
+		and Timo Lubitz</a> in case of questions, bugs, or feature requests. We are always happy to hear user feedback.
+	      </p>
+	    </div>
+	    <div class="col-sm-3"></div>
+	  </div>
+	</div>
+      </article>
+
+
+      
+    </main>
+    <hr>
+    <footer class="container-fluid bg-3 text-center">
+      <p>Thanks to <a href="https://getbootstrap.com/" target="_blank">Bootstrap</a> and <a href="http://web2py.com/" target="_blank">Web2py</a>. Code and further information on <a href="https://github.com/tlubitz/parameter_balancing" target="_blank">Github</a>.</p> 
+    </footer>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    
+  </body>
+</html>
