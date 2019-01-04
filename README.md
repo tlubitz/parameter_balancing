@@ -1,4 +1,4 @@
-# Parameter Balancing
+# Parameter Balancing, v2.1
 
 Parameter balancing is a tool for metabolic modelling in systems biology. It is implemented in Python3 and its code underlies the PEP8 guidelines. There are 5 major ways of employing parameter balancing for your project:
 
