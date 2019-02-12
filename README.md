@@ -1,4 +1,4 @@
-# Parameter Balancing
+# Parameter Balancing, v2.1
 
 Parameter balancing is a tool for metabolic modelling in systems biology. It is implemented in Python3 and its code underlies the PEP8 guidelines. There are 5 major ways of employing parameter balancing for your project:
 
@@ -54,7 +54,7 @@ If you do not want to install the pip package, you can still use the commandline
 The usage works as a standard call of a Python module:
 
 ```python
-python3 cl_balancing.py model.xml
+python3 parameter_balancing.py model.xml
 ```
 
 Here, as well, you can use the optional file provision like explained above. You will be required to install several Python packages, though. A list of these packages can be found in parameter_balancing/requirements.txt.
