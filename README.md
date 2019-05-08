@@ -20,8 +20,8 @@ This will also install libsbml and tablib on your computer if these libraries ar
 parameter balancing as a Python3 package by, e.g., writing a script such as
 
 ```python
-from pbalancing import parameter_balancing
-parameter_balancing.parameter_balancing_wrapper('model.xml')
+from pbalancing import parameter_balancing_core
+parameter_balancing_core.parameter_balancing_wrapper('model.xml')
 ```
 
 In this example case, 'model.xml' is the file name of an SBML model. Further optional arguments are an SBtab parameter
@@ -34,7 +34,7 @@ To run parameter balancing as a commandline tool, the package needs to be instal
 it can be executed in the commandline as follows:
 
 ```python
-python3 -m pbalancing.parameter_balancing model.xml
+python3 -m pbalancing.parameter_balancing_core model.xml
 ```
 
 where model.xml corresponds to the path of your SBML model. It is also possible to provide further input files, such as
@@ -42,7 +42,7 @@ an SBtab parameter files (.tsv), an SBtab prior information file (.tsv), and an 
 configuration of parameter balancing. Providing complete file information would look like this:
 
 ```python
-python3 -m pbalancing.parameter_balancing model.xml --sbtab_data data_file.tsv --sbtab_prior prior_file.tsv --sbtab_options options_file.tsv
+python3 -m pbalancing.parameter_balancing_core model.xml --sbtab_data data_file.tsv --sbtab_prior prior_file.tsv --sbtab_options options_file.tsv
 ```
 
 You can create a log file by setting the flag -l, you can use pseudo values to account for a lack of data by setting the flag -p, you can
