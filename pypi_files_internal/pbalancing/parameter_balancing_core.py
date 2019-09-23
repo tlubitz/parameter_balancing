@@ -85,8 +85,7 @@ def parameter_balancing_wrapper(sbml, sbtab_data_name=None, sbtab_prior_name=Non
         except: sbtab_delimiter = '\t'
 
         sbtab_data = SBtab.SBtabTable(f_content, sbtab_data_name)
-        sbtab_data_validate = validatorSBtab.ValidateTable(sbtab_data,
-                                                           sbtab_data_name)
+        sbtab_data_validate = validatorSBtab.ValidateTable(sbtab_data)
 
         warnings = sbtab_data_validate.return_output()
         if warnings != []:
@@ -118,8 +117,7 @@ def parameter_balancing_wrapper(sbml, sbtab_data_name=None, sbtab_prior_name=Non
         # initialise an SBtab object with the content and check its validity
         sbtab_prior = SBtab.SBtabTable(f_content, sbtab_prior_name)
         pb.get_parameter_information(sbtab_prior)
-        sbtab_prior_validate = validatorSBtab.ValidateTable(sbtab_prior,
-                                                            sbtab_prior_name)
+        sbtab_prior_validate = validatorSBtab.ValidateTable(sbtab_prior)
 
         # register warnings
         warnings = sbtab_prior_validate.return_output()
@@ -153,8 +151,7 @@ def parameter_balancing_wrapper(sbml, sbtab_data_name=None, sbtab_prior_name=Non
             sys.exit()
 
         sbtab_prior = SBtab.SBtabTable(prior, 'pb_prior.tsv')
-        sbtab_prior_validate = validatorSBtab.ValidateTable(sbtab_prior,
-                                                            'pb_prior.tsv')
+        sbtab_prior_validate = validatorSBtab.ValidateTable(sbtab_prior)
 
         # register warnings
         warnings = sbtab_prior_validate.return_output()
@@ -193,8 +190,7 @@ def parameter_balancing_wrapper(sbml, sbtab_data_name=None, sbtab_prior_name=Non
                   'read.' % sbtab_options_name)
 
         sbtab_options = SBtab.SBtabTable(f_content, sbtab_options_name)
-        sbtab_options_validate = validatorSBtab.ValidateTable(sbtab_options,
-                                                              sbtab_options_name)
+        sbtab_options_validate = validatorSBtab.ValidateTable(sbtab_options)
 
         # register warnings
         warnings = sbtab_options_validate.return_output()
@@ -224,8 +220,7 @@ def parameter_balancing_wrapper(sbml, sbtab_data_name=None, sbtab_prior_name=Non
             sys.exit()
 
         sbtab_options = SBtab.SBtabTable(f_content, 'pb_options.tsv')
-        sbtab_options_validate = validatorSBtab.ValidateTable(sbtab_options,
-                                                              'pb_options.tsv')
+        sbtab_options_validate = validatorSBtab.ValidateTable(sbtab_options)
 
         # register warnings
         warnings = sbtab_options_validate.return_output()
@@ -370,7 +365,7 @@ def parameter_balancing_wrapper(sbml, sbtab_data_name=None, sbtab_prior_name=Non
 
     # 6: Write SBtab and SBML model
     sbtab_file_new = open(output_name + '.tsv', 'w')
-    sbtab_file_new.write(sbtab_final.return_table_string())
+    sbtab_file_new.write(sbtab_final.to_str())
     sbtab_file_new.close()
     if verbose:
         print('The SBtab file %s has been written.' % (output_name + '.tsv'))
