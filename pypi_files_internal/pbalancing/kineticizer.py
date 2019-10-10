@@ -351,11 +351,10 @@ SBO Terms not supported for this document.\n')
         @rtype:             float or None
         @return:            return value of None if not found
         '''
-
         def get_sbtab_entry(sbtab, **arg_dict):
             # generic function to get any sbtab entry
             # iterates over all rows in the sbtab and checks wehter all given
-            # keys are right
+            # keys are right            
             for row in sbtab.value_rows:
                 if len(row) == len(sbtab.columns):
                     r_column = ''
@@ -370,20 +369,21 @@ SBO Terms not supported for this document.\n')
                             c_column = sbtab.columns_dict['!Compound:SBML:species:id']
                         m_column = sbtab.columns_dict['!Mode']
 
-                    if len(arg_dict) > 2 \
-                       and row[qt_column] == arg_dict['QuantityType']:
+                        
+                    if len(arg_dict) > 2 and row[qt_column] == arg_dict['QuantityType']:
                         if row[r_column] == arg_dict['Reaction']:
                             if row[c_column] == arg_dict['Compound']:
                                 return row[m_column]
-                            elif row[qt_column] == 'inhibitory constant' \
-                                 or row[qt_column] == 'activation constant':
+                            '''
+                            # this here turned out to mess up reactions with multiple modifiers
+                            elif row[qt_column] == 'inhibitory constant' or row[qt_column] == 'activation constant':
                                 return row[m_column]
+                            '''
                         elif arg_dict['Reaction'] is None:
                             if row[c_column] == arg_dict['Compound']:
                                 return row[m_column]
                     else:
-                        if row[qt_column] == arg_dict['QuantityType'] \
-                           and row[r_column] == arg_dict['Reaction']:
+                        if row[qt_column] == arg_dict['QuantityType'] and row[r_column] == arg_dict['Reaction']:
                             return row[m_column]
 
         # get the reaction and species IDs
@@ -395,7 +395,7 @@ SBO Terms not supported for this document.\n')
 
         # check whether this parameter is required
         required = self.param2options[param_type][-1] == 'req'
-
+        
         # get the parameter value
         if param_type == 'hill_coeff': return 1
         elif param_type == 'act_ratio_vec' or param_type == 'inh_ratio_vec':
@@ -477,6 +477,8 @@ SBO Terms not supported for this document.\n')
                 elif deps == 'k':
                     p_vec = []
                     for s in misc.get_modifiers(r):
+
+                                            
                         p_value = self._get_sbtab_entry(p_type, reaction=r,
                                                         species=self._model.getSpecies(s.getSpecies()))
                         p_vec.append(p_value)
@@ -488,6 +490,7 @@ SBO Terms not supported for this document.\n')
                         p_vec.append(p_value)
                 reaction_params.append(p_vec)
             local_params.append(reaction_params)
+            
         return (global_params, local_params)
 
     def _default_parameters(self, mode):
@@ -851,6 +854,7 @@ class KineticizerFD(Kineticizer):
 class KineticizerRP(Kineticizer):
     ''' mass action implementation '''
     _kinetic_law_sbo = 531
+
 
     def _get_denominator(self, reaction, mode):
         return '(1)'
