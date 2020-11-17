@@ -1,326 +1,409 @@
-!!SBtab SBtabVersion='1.0' TableType='Definition' TableName='Allowed_types'
-!ComponentName	!ComponentType	!IsPartOf	!Format	!Description
-Comment	Column	Reaction	string	Comment
-ReferenceName	Column	Reaction	string	Reference title, authors, etc. (as free text)
-ReferencePubMed	Column	Reaction	string	Reference PubMed ID
-ReferenceDOI	Column	Reaction	string	Reference DOI
-Description	Column	Reaction	string	Description of the row element
-Modifier	Column	Reaction	string	Modifier of this reaction
-Name	Column	Reaction	string	Entity name
-MiriamAnnotations	Column	Reaction	string	Entity ID
-Type	Column	Reaction	string	Biochemical type of entity
-Symbol	Column	Reaction	string	Short symbol (e.g. gene symbol)
-PositionX	Column	Reaction	float	x coordinate for graphical display
-PositionY	Column	Reaction	float	y coordinate for graphical display
-ID	Column	Reaction	string	Reaction shortname
-SBML:reaction:id	Column	Reaction	string	SBML ID of reaction
-ReactionFormula	Column	Reaction	string	Reaction formula
-Location	Column	Reaction	string	Compartment for localised reaction
-Enzyme	Column	Reaction	string	Enzyme catalysing the reaction
-Model	Column	Reaction	string	Model(s) in which the reaction is involved
-Pathway	Column	Reaction	string	Pathway(s) in which the reaction is involved
-SubreactionOf	Column	Reaction	string	Mark as subreaction of a (lumped) reaction
-IsComplete	Column	Reaction	Boolean	Reaction formula includes all cofactors etc.
-IsReversible	Column	Reaction	Boolean	Reaction should be treated as irreversible
-IsInEquilibrium	Column	Reaction	Boolean	Reaction approximately in equilibrium
-IsExchangeReaction	Column	Reaction	Boolean	Some reactants are left out
-Flux	Column	Reaction	float	Metabolic flux through the reaction
-IsNonEnzymatic	Column	Reaction	Boolean	Non-catalysed reaction
-KineticLaw	Column	Reaction	string	Kinetic law of the reaction
-KineticLaw:Name	Column	Reaction	string	Name of the kinetic law
-KineticLaw:Formula	Column	Reaction	string	Rate law formula
-Gene	Column	Reaction	string	Name of the gene for the catalysing enzyme
-Gene:Symbol	Column	Reaction	string	Name of the gene for the catalysing enzyme
-Operon	Column	Reaction	string	Operon for the gene of the catalysing enzyme
-Enzyme:SBML:species:id	Column	Reaction	string	SBML ID of enzyme
-Enzyme:SBML:parameter:id	Column	Reaction	string	SBML ID of enzyme
-BuildReaction	Column	Reaction	Boolean	Include reaction in SBML model
-BuildEnzyme	Column	Reaction	Boolean	Include enzyme in SBML model
-BuildEnzymeProduction	Column	Reaction	Boolean	Describe enzyme production in SBML model
-SBOTerm	Column	Reaction	string	SBO term of the entity
-Identifiers	Column	Reaction	string	Annotation of the entity
-Comment	Column	Compound	string	Comment
-ReferenceName	Column	Compound	string	Reference title, authors, etc. (as free text)
-ReferencePubMed	Column	Compound	string	Reference PubMed ID
-ReferenceDOI	Column	Compound	string	Reference DOI
-Description	Column	Compound	string	Description of the row element
-Name	Column	Compound	string	Entity name
-MiriamAnnotations	Column	Compound	string	Entity ID
-Type	Column	Compound	string	Biochemical type of entity
-Symbol	Column	Compound	string	Short symbol (e.g. gene symbol)
-PositionX	Column	Compound	float	x coordinate for graphical display
-PositionY	Column	Compound	float	y coordinate for graphical display
-CompoundReactionFormula	Column	Compound	string	Chemical reaction formula
-ID	Column	Compound	string	Compound shortname
-SBML:species:id	Column	Compound	string	SBML species ID of the entity
-SBML:speciestype:id	Column	Compound	string	SBML speciestype ID of the entity
-InitialValue	Column	Compound	float	Initial amount or concentration
-Unit	Column	Compound	string	Unit for initial value
-Location	Column	Compound	string	Compartment for localised entities
-State	Column	Compound	string	State of the entity
-CompoundSumFormula	Column	Compound	string	Chemical sum formula
-StructureFormula	Column	Compound	string	Chemical structure formula
-Charge	Column	Compound	integer	Electrical charge number
-Mass	Column	Compound	float	Molecular mass
-IsConstant	Column	Compound	Boolean	Substance with fixed concentrations
-EnzymeRole	Column	Compound	string	Enzymatic activity
-RegulatorRole	Column	Compound	string	Regulatory activity
-SBOTerm	Column	Compound	string	SBO term of the entity
-Identifiers	Column	Compound	string	Annotation of the entity
-Comment	Column	Enzyme	string	Comment
-ReferenceName	Column	Enzyme	string	Reference title, authors, etc. (as free text)
-ReferencePubMed	Column	Enzyme	string	Reference PubMed ID
-ReferenceDOI	Column	Enzyme	string	Reference DOI
-Description	Column	Enzyme	string	Description of the row element
-Name	Column	Enzyme	string	Entity name
-MiriamAnnotations	Column	Enzyme	string	Entity ID
-Type	Column	Enzyme	string	Biochemical type of entity
-Symbol	Column	Enzyme	string	Short symbol (e.g. gene symbol)
-PositionX	Column	Enzyme	float	x coordinate for graphical display
-PositionY	Column	Enzyme	float	y coordinate for graphical display
-ID	Column	Enzyme	string	Enzyme shortname
-CatalysedReaction	Column	Enzyme	string	Catalysed reaction
-KineticLaw	Column	Enzyme	string	Catalysed reaction
-KineticLaw:Name	Column	Enzyme	string	Name of the kinetic law
-KineticLaw:Formula	Column	Enzyme	string	Rate law formula
-Pathway	Column	Enzyme	string	Pathway name (free text)
-Gene	Column	Enzyme	string	Gene coding for enzyme (shortname)
-Identifiers	Column	Enzyme	string	Annotation of the entity
-Comment	Column	Protein	string	Comment
-ReferenceName	Column	Protein	string	Reference title, authors, etc. (as free text)
-ReferencePubMed	Column	Protein	string	Reference PubMed ID
-ReferenceDOI	Column	Protein	string	Reference DOI
-Description	Column	Protein	string	Description of the row element
-Name	Column	Protein	string	Entity name
-MiriamAnnotations	Column	Protein	string	Entity ID
-Type	Column	Protein	string	Biochemical type of entity
-Symbol	Column	Protein	string	Short symbol (e.g. gene symbol)
-PositionX	Column	Protein	float	x coordinate for graphical display
-PositionY	Column	Protein	float	y coordinate for graphical display
-ID	Column	Protein	string	Protein shortname
-Gene	Column	Protein	string	Gene shortname
-Mass	Column	Protein	float	Protein mass
-Size	Column	Protein	float	Protein size
-Comment	Column	Compartment	string	Comment
-ReferenceName	Column	Compartment	string	Reference title, authors, etc. (as free text)
-ReferencePubMed	Column	Compartment	string	Reference PubMed ID
-ReferenceDOI	Column	Compartment	string	Reference DOI
-Description	Column	Compartment	string	Description of the row element
-Name	Column	Compartment	string	Entity name
-MiriamAnnotations	Column	Compartment	string	Entity ID
-Type	Column	Compartment	string	Biochemical type of entity
-Symbol	Column	Compartment	string	Short symbol (e.g. gene symbol)
-PositionX	Column	Compartment	float	x coordinate for graphical display
-PositionY	Column	Compartment	float	y coordinate for graphical display
-ID	Column	Compartment	string	Compartment shortname
-SBML:compartment:id	Column	Compartment	string	SBML compartment ID
-OuterCompartment	Column	Compartment	string	Surrounding compartment (short)
-OuterCompartment:SBML:compartment:id	Column	Compartment	string	Surrounding compartment (name)
-Size	Column	Compartment	float	Compartment size
-Unit	Column	Compartment	string	Physical unit
-SBOTerm	Column	Compartment	string	SBO term of the entity
-Identifiers	Column	Compartment	string	Annotation of the entity
-Comment	Column	Quantity	string	Comment
-ReferenceName	Column	Quantity	string	Reference title, authors, etc. (as free text)
-ReferencePubMed	Column	Quantity	string	Reference PubMed ID
-ReferenceDOI	Column	Quantity	string	Reference DOI
-Description	Column	Quantity	string	Description of the row element
-Name	Column	Quantity	string	Entity name
-MiriamAnnotations	Column	Quantity	string	Entity ID
-Type	Column	Quantity	string	Biochemical type of entity
-Symbol	Column	Quantity	string	Short symbol (e.g. gene symbol)
-PositionX	Column	Quantity	float	x coordinate for graphical display
-PositionY	Column	Quantity	float	y coordinate for graphical display
-ID	Column	Quantity	string	Quantity shortname
-Quantity	Column	Quantity	string	Quantity name
-Reference	Column	Quantity	string	Reference name
-QuantityName	Column	Quantity	string	Quantity (name)
-QuantityType	Column	Quantity	string	Quantity type (e.g. from SBO)
-Value	Column	Quantity	float	Simple value
-Mean	Column	Quantity	float	Algebraic mean
-Std	Column	Quantity	float	Standard deviation (positive)
-Min	Column	Quantity	float	Lower bound
-Max	Column	Quantity	float	Upper bound
-Median	Column	Quantity	float	Median
-GeometricMean	Column	Quantity	float	Geometric mean
-Sign	Column	Quantity	{+,-,0}	Sign
-ProbDist	Column	Quantity	string	Probability distribution
-SBML:parameter:id	Column	Quantity	string	Parameter ID in SBML file
-Unit	Column	Quantity	string	Physical unit
-Scale	Column	Quantity	string	Scale (e.g. logarithm)
-Time	Column	Quantity	float	Time value
-TimePoint	Column	Quantity	string	Time point name or identifier
-Condition	Column	Quantity	string	experimental condition name (free text)
-pH	Column	Quantity	float	pH value in measurement
-Temperature	Column	Quantity	float	Temperature in measurement
-Location	Column	Quantity	string	Compartment (shortname)
-Location:SBML:compartment:id	Column	Quantity	string	SBML ID of compartment
-Compound	Column	Quantity	string	Related compound (shortname)
-Compound:SBML:species:id	Column	Quantity	string	SBML ID of compound
-Reaction	Column	Quantity	string	Related reaction (shortname)
-Reaction:SBML:reaction:id	Column	Quantity	string	SBML ID of reaction
-Enyzme	Column	Quantity	string	Related enzyme (shortname)
-Enyzme:SBML:species:id	Column	Quantity	string	SBML ID of enzyme
-Enyzme:SBML:parameter:id	Column	Quantity	string	SBML ID of enzyme
-Gene	Column	Quantity	string	Related gene
-Organism	Column	Quantity	string	Organism
-Provenance	Column	Quantity	string	Provenance of the entity
-SBOTerm	Column	Quantity	string	SBO term of the entity
-Identifiers	Column	Quantity	string	Annotation of the entity
-BiologicalElement	Column	Quantity	string	Biological element
-MathematicalType	Column	Quantity	string	Mathematical type
-DataGeometricStd	Column	Quantity	float	Data geometric standard error
-PriorMedian	Column	Quantity	float	Prior Median
-PriorStd	Column	Quantity	float	Prior Std
-PriorGeometricStd	Column	Quantity	float	Prior Geometric Std
-LowerBound	Column	Quantity	float	Lower bound
-UpperBound	Column	Quantity	float	Lower bound
-DataStd	Column	Quantity	float	Data Standard Error
-PhysicalType	Column	Quantity	string	Physical Type
-Dependence	Column	Quantity	string	Dependence
-UseAsPriorInformation	Column	Quantity	Boolean	Use as prior information
-SBMLElement	Column	Quantity	string	SBML element
-Abbreviation	Column	Quantity	string	Abbreviation
-MatrixInfo	Column	Quantity	string	Matrix build up information
-Comment	Column	Regulator	string	Comment
-ReferenceName	Column	Regulator	string	Reference title, authors, etc. (as free text)
-ReferencePubMed	Column	Regulator	string	Reference PubMed ID
-ReferenceDOI	Column	Regulator	string	Reference DOI
-Description	Column	Regulator	string	Description of the row element
-Name	Column	Regulator	string	Entity name
-MiriamAnnotations	Column	Regulator	string	Entity ID
-Type	Column	Regulator	string	Biochemical type of entity
-Symbol	Column	Regulator	string	Short symbol (e.g. gene symbol)
-PositionX	Column	Regulator	float	x coordinate for graphical display
-PositionY	Column	Regulator	float	y coordinate for graphical display
-ID	Column	Regulator	string	Regulator shortname
-State	Column	Regulator	string	State of the regulator
-TargetGene	Column	Regulator	string	Target gene
-TargetOperon	Column	Regulator	string	Target operon
-TargetPromoter	Column	Regulator	string	Target promoter
-Identifiers	Column	Regulator	string	Annotation of the entity
-Comment	Column	Gene	string	Comment
-ReferenceName	Column	Gene	string	Reference title, authors, etc. (as free text)
-ReferencePubMed	Column	Gene	string	Reference PubMed ID
-ReferenceDOI	Column	Gene	string	Reference DOI
-Description	Column	Gene	string	Description of the row element
-Name	Column	Gene	string	Entity name
-MiriamAnnotations	Column	Gene	string	Entity ID
-Type	Column	Gene	string	Biochemical type of entity
-Symbol	Column	Gene	string	Short symbol (e.g. gene symbol)
-PositionX	Column	Gene	float	x coordinate for graphical display
-PositionY	Column	Gene	float	y coordinate for graphical display
-ID	Column	Gene	string	Gene shortname
-LocusName	Column	Gene	string	Gene locus name
-GeneProduct	Column	Gene	string	Gene product shortname
-GeneProduct:SBML:species:id	Column	Gene	string	SBML ID of protein
-Operon	Column	Gene	string	Operon in which gene is located
-Identifiers	Column	Gene	string	Annotation of the entity
-Comment	Column	Relation	string	Comment
-ReferenceName	Column	Relation	string	Reference title, authors, etc. (as free text)
-ReferencePubMed	Column	Relation	string	Reference PubMed ID
-ReferenceDOI	Column	Relation	string	Reference DOI
-Description	Column	Relation	string	Description of the row element
-ID	Column	Relation	string	Type of quantitative relation
-From	Column	Relation	string	Element at beginning of arrow
-To	Column	Relation	string	Element at arrowhead
-IsSymmetric	Column	Relation	Boolean	Flag indicating non-symmetric relations
-Value:QuantityType	Column	Relation	float	Numerical value assigned to the relation
-ComponentName	Column	Definition	string	Name of component (table, column, attribute to be defined)
-ComponentType	Column	Definition	string	Type of component
-IsPartOf	Column	Definition	string	Name of parent component
-Format	Column	Definition	string	Format
-Description	Column	Definition	string	Free text description of component
-Comment	Column	QuantityMatrix	string	Comment
-ReferenceName	Column	QuantityMatrix	string	Reference title, authors, etc. (as free text)
-ReferencePubMed	Column	QuantityMatrix	string	Reference PubMed ID
-ReferenceDOI	Column	QuantityMatrix	string	Reference DOI
-Description	Column	QuantityMatrix	string	Description of the row element
-Name	Column	QuantityMatrix	string	Entity name
-MiriamAnnotations	Column	QuantityMatrix	string	Entity ID
-Type	Column	QuantityMatrix	string	Biochemical type of entity
-Symbol	Column	QuantityMatrix	string	Short symbol (e.g. gene symbol)
-PositionX	Column	QuantityMatrix	float	x coordinate for graphical display
-PositionY	Column	QuantityMatrix	float	y coordinate for graphical display
-Time	Column	QuantityMatrix	float	Time value
-TimePoint	Column	QuantityMatrix	string	Time point name or identifier
->Table:Column	Column	QuantityMatrix	string	Pointer to column in another table
->Document:Table:Column	Column	QuantityMatrix	string	Pointer to column in another document
-ID	Column	QuantityMatrix	string	Quantity shortname
-QuantityName	Column	QuantityMatrix	string	Quantity (name)
-QuantityType	Column	QuantityMatrix	string	Quantity type (e.g. from SBO)
-Value	Column	QuantityMatrix	float	Simple value
-Mean	Column	QuantityMatrix	float	Algebraic mean
-Std	Column	QuantityMatrix	float	Standard deviation (positive)
-Min	Column	QuantityMatrix	float	Lower bound
-Max	Column	QuantityMatrix	float	Upper bound
-Median	Column	QuantityMatrix	float	Median
-GeometricMean	Column	QuantityMatrix	float	Geometric mean
-Sign	Column	QuantityMatrix	{+,-,0}	Sign
-ProbDist	Column	QuantityMatrix	string	Probability distribution
-SBML:parameter:id	Column	QuantityMatrix	string	Parameter ID in SBML file
-Unit	Column	QuantityMatrix	string	Physical unit
-Scale	Column	QuantityMatrix	string	Scale (e.g. logarithm)
-Compound	Column	QuantityMatrix	string	Related compound (shortname)
-Compound:SBML:species:id	Column	QuantityMatrix	string	SBML ID of compound
-Reaction	Column	QuantityMatrix	string	Related reaction (shortname)
-Reaction:SBML:reaction:id	Column	QuantityMatrix	string	SBML ID of reaction
-Enyzme	Column	QuantityMatrix	string	Related enzyme (shortname)
-Enyzme:SBML:species:id	Column	QuantityMatrix	string	SBML ID of enzyme
-Enyzme:SBML:parameter:id	Column	QuantityMatrix	string	SBML ID of enzyme
-Protein	Column	QuantityMatrix	string	Related enzyme (shortname)
-Protein:SBML:species:id	Column	QuantityMatrix	string	SBML ID of enzyme
-Enyzme:SBML:parameter:id	Column	QuantityMatrix	string	SBML ID of enzyme
-Gene	Column	QuantityMatrix	string	Related gene
-ReactionID	Column	StoichiometricMatrix	string	Reaction shortname
-Stoichiometry	Column	StoichiometricMatrix	string	Stoichiometric coefficient of the reactant
-Substrate	Column	StoichiometricMatrix	string	Substrate of the reaction
-Product	Column	StoichiometricMatrix	string	Product of the reaction
-Location	Column	StoichiometricMatrix	string	Compartment for localised reaction
-Sample	Column	Measurement	string	Measurement value shortname
-Time	Column	Measurement	string	Time at which measurement was taken
-Unit	Column	Measurement	string	Measurement unit
-ValueType	Column	Measurement	string	Type of value (mean, standard deviation, etc)
-Description	Column	Measurement	string	Description of data value
-QuantityType	Column	QuantityInfo	string	QuantityType (e.g. from SBO)
-Symbol	Column	QuantityInfo	symbol	Symbol for the quantity type
-Unit	Column	QuantityInfo	string	Unit for the Median value
-Constant	Column	QuantityInfo	str	Is this value constant
-Element	Column	QuantityInfo	string	A related element
-RelatedElement	Column	QuantityInfo	string	A related element
-Scaling	Column	QuantityInfo	str	A scaling factor
-Dependence	Column	QuantityInfo	string	Is this value dependent on something
-PriorMedian	Column	QuantityInfo	float	Prior median value
-PriorStd	Column	QuantityInfo	float	Prior median standard deviation
-LowerBound	Column	QuantityInfo	float	Lower bound for this quantity type
-UpperBound	Column	QuantityInfo	float	Upper bound for this quantity type
-ErrorStd	Column	QuantityInfo	float	Error of standard deviation
-DataStd	Column	QuantityInfo	float	Error of standard deviation
-SBMLElement	Column	QuantityInfo	string	Corresponding SBML element
-SBMLElementType	Column	QuantityInfo	string	Corresponding SBML element
-Abbreviation	Column	QuantityInfo	string	Abbreviation of quantity type
-ID	Column	QuantityInfo	string	Abbreviation of quantity type
-MatrixInfo	Column	QuantityInfo	string	Information on the matrix production
-Option	Column	PbConfig	string	Which option is addressed
-Value	Column	PbConfig	string	What value is the option set to
-UID:Contingency	Column	rxnconContingencyList	integer	ID for contingency
-Target	Column	rxnconContingencyList	string	Contingency target
-Contingency	Column	rxnconContingencyList	string	Contingency type
-Modifier	Column	rxnconContingencyList	string	Target modifier
-Reference:Identifiers:pubmed	Column	rxnconContingencyList	string	Pubmed ID
-Quality	Column	rxnconContingencyList	string	Contingency quality
-Comment	Column	rxnconContingencyList	string	Comment
-InternalComplexID	Column	rxnconContingencyList	string	Internal ID for processing
-ID	Column	rxnconReactionList	integer	ID for reaction
-UID:Reaction	Column	rxnconReactionList	string	Reaction string
-ComponentA:Name	Column	rxnconReactionList	string	Name for Component A
-ComponentA:Domain	Column	rxnconReactionList	string	Domain of Component A
-ComponentA:Residue	Column	rxnconReactionList	string	Residue of Component A
-Reaction	Column	rxnconReactionList	string	Reaction type
-ComponentB:Name	Column	rxnconReactionList	string	Name for Component B
-ComponentB:Domain	Column	rxnconReactionList	string	Domain of Component B
-ComponentB:Residue	Column	rxnconReactionList	string	Residue of Component B
-Quality	Column	rxnconReactionList	string	Quality of reaction
-Literature:Identifiers:pubmed	Column	rxnconReactionList	string	Pubmed ID
-Comment	Column	rxnconReactionList	string	Comment
-
+!!SBtab TableID='def_table' SBtabVersion='1.0' TableType='Definition' TableName='Allowed_types'					
+!Name	!Type	!Parent	!isShortname	!Format	!Description
+Reaction	Table	SBtab	False	Table	SBtab Reaction Table
+Comment	Column	Reaction	False	String	Comment
+ReferenceName	Column	Reaction	False	String	Reference title, authors, etc. (as free text)
+ReferencePubMed	Column	Reaction	False	String	Reference PubMed ID
+ReferenceDOI	Column	Reaction	False	String	Reference DOI
+Description	Column	Reaction	False	String	Description of the row element
+Modifier	Column	Reaction	True	String	Modifier of this reaction
+Name	Column	Reaction	False	String	Entity name
+MiriamAnnotation	Column	Reaction	False	String	Entity ID
+Type	Column	Reaction	False	String	Biochemical type of entity
+Symbol	Column	Reaction	False	String	Short symbol (e.g. gene symbol)
+PositionX	Column	Reaction	False	Float	x coordinate for graphical display
+PositionY	Column	Reaction	False	Float	y coordinate for graphical display
+ID	Column	Reaction	False	String	Reaction shortname
+SBML:reaction:id	Column	Reaction	False	String	SBML ID of reaction
+Reaction	Column	Reaction	False	String	SBML ID of reaction
+ReactionFormula	Column	Reaction	True	String	Reaction formula
+Location	Column	Reaction	True	String	Compartment for localised reaction
+Enzyme	Column	Reaction	True	String	Enzyme catalysing the reaction
+Regulator	Column	Reaction	True	String	Regulator controlling the reaction
+Model	Column	Reaction	False	String	Model(s) in which the reaction is involved
+Pathway	Column	Reaction	False	String	Pathway(s) in which the reaction is involved
+SubreactionOf	Column	Reaction	True	String	Mark as subreaction of a (lumped) reaction
+IsComplete	Column	Reaction	False	Boolean	Reaction formula includes all cofactors etc.
+IsReversible	Column	Reaction	False	Boolean	Reaction should be treated as irreversible
+IsInEquilibrium	Column	Reaction	False	Boolean	Reaction approximately in equilibrium
+IsExchangeReaction	Column	Reaction	False	Boolean	Some reactants are left out
+Flux	Column	Reaction	False	Float	Metabolic flux through the reaction
+IsNonEnzymatic	Column	Reaction	False	Boolean	Non-catalysed reaction
+KineticLaw	Column	Reaction	False	String	Kinetic law of the reaction
+KineticLaw:Name	Column	Reaction	False	String	Name of the kinetic law
+KineticLaw:Formula	Column	Reaction	False	String	Rate law formula
+Gene	Column	Reaction	True	String	Name of the gene for the catalysing enzyme
+Gene:Symbol	Column	Reaction	False	String	Name of the gene for the catalysing enzyme
+Operon	Column	Reaction	False	String	Operon for the gene of the catalysing enzyme
+Enzyme:SBML:species:id	Column	Reaction	False	String	SBML ID of enzyme
+Enzyme:SBML:parameter:id	Column	Reaction	False	String	SBML ID of enzyme
+BuildReaction	Column	Reaction	False	Boolean	Include reaction in SBML model
+BuildEnzyme	Column	Reaction	False	Boolean	Include enzyme in SBML model
+BuildEnzymeProduction	Column	Reaction	False	Boolean	Describe enzyme production in SBML model
+SBOTerm	Column	Reaction	False	String	SBO term of the entity
+Identifiers	Column	Reaction	False	String	Annotation of the entity
+SBML:fbc:GeneAssociation	Column	Reaction	True	String	Gene Association from the FBC package
+SBML:fbc:LowerBound	Column	Reaction	False	String	Reactions Lower Bound of the FBC package
+SBML:fbc:UpperBound	Column	Reaction	False	String	Reactions Upper Bound of the FBC package
+Compound	Table	SBtab	False	Table	SBtab Compound Table
+Comment	Column	Compound	False	String	Comment
+ReferenceName	Column	Compound	False	String	Reference title, authors, etc. (as free text)
+ReferencePubMed	Column	Compound	False	String	Reference PubMed ID
+ReferenceDOI	Column	Compound	False	String	Reference DOI
+Description	Column	Compound	False	String	Description of the row element
+Name	Column	Compound	False	String	Entity name
+MiriamAnnotation	Column	Compound	False	String	Entity ID
+Type	Column	Compound	False	String	Biochemical type of entity
+Symbol	Column	Compound	False	String	Short symbol (e.g. gene symbol)
+PositionX	Column	Compound	False	Float	x coordinate for graphical display
+PositionY	Column	Compound	False	Float	y coordinate for graphical display
+ID	Column	Compound	False	String	Compound shortname
+SBML:species:id	Column	Compound	False	String	SBML species ID of the entity
+Compound	Column	Compound	False	String	SBML species ID of the entity
+SBML:speciestype:id	Column	Compound	False	String	SBML speciestype ID of the entity
+InitialValue	Column	Compound	False	Float	Initial amount or concentration
+InitialConcentration	Column	Compound	False	Float	Initial amount or concentration
+HasOnlySubstanceUnits	Column	Compound	False	Boolean	SBML species attribute hasOnlySubstanceUnits
+BoundaryCondition	Column	Compound	False	Boolean	SBML species attribute boundaryCondition
+Unit	Column	Compound	False	String	Unit for initial value
+Location	Column	Compound	True	String	Compartment for localised entities
+State	Column	Compound	False	String	State of the entity
+CompoundSumFormula	Column	Compound	False	String	Chemical sum formula
+StructureFormula	Column	Compound	False	String	Chemical structure formula
+Charge	Column	Compound	False	Integer	Electrical charge number
+Mass	Column	Compound	False	Float	Molecular mass
+IsConstant	Column	Compound	False	Boolean	Substance with fixed concentrations
+EnzymeRole	Column	Compound	False	String	Enzymatic activity
+RegulatorRole	Column	Compound	False	String	Regulatory activity
+SBOTerm	Column	Compound	False	String	SBO term of the entity
+Identifiers	Column	Compound	False	String	Annotation of the entity
+SBML:fbc:ChemicalFormula	Column	Compound	False	String	Compounds chemical formula for the FBC package
+SBML:fbc:Charge	Column	Compound	False	Float	Compounds charge for the FBC package
+Enzyme	Table	SBtab	False	Table	SBtab Enzyme Table
+Comment	Column	Enzyme	False	String	Comment
+ReferenceName	Column	Enzyme	False	String	Reference title, authors, etc. (as free text)
+ReferencePubMed	Column	Enzyme	False	String	Reference PubMed ID
+ReferenceDOI	Column	Enzyme	False	String	Reference DOI
+Description	Column	Enzyme	False	String	Description of the row element
+Name	Column	Enzyme	False	String	Entity name
+MiriamAnnotation	Column	Enzyme	False	String	Entity ID
+Type	Column	Enzyme	False	String	Biochemical type of entity
+Symbol	Column	Enzyme	False	String	Short symbol (e.g. gene symbol)
+PositionX	Column	Enzyme	False	Float	x coordinate for graphical display
+PositionY	Column	Enzyme	False	Float	y coordinate for graphical display
+ID	Column	Enzyme	False	String	Enzyme shortname
+CatalysedReaction	Column	Enzyme	True	String	Catalysed reaction
+KineticLaw	Column	Enzyme	False	String	Catalysed reaction
+KineticLaw:Name	Column	Enzyme	False	String	Name of the kinetic law
+KineticLaw:Formula	Column	Enzyme	False	String	Rate law formula
+Pathway	Column	Enzyme	False	String	Pathway name (free text)
+Gene	Column	Enzyme	True	String	Gene coding for enzyme (shortname)
+Identifiers	Column	Enzyme	False	String	Annotation of the entity
+Protein	Table	SBtab	False	Table	SBtab Protein Table
+Comment	Column	Protein	False	String	Comment
+ReferenceName	Column	Protein	False	String	Reference title, authors, etc. (as free text)
+ReferencePubMed	Column	Protein	False	String	Reference PubMed ID
+ReferenceDOI	Column	Protein	False	String	Reference DOI
+Description	Column	Protein	False	String	Description of the row element
+Name	Column	Protein	False	String	Entity name
+MiriamAnnotation	Column	Protein	False	String	Entity ID
+Type	Column	Protein	False	String	Biochemical type of entity
+Symbol	Column	Protein	False	String	Short symbol (e.g. gene symbol)
+PositionX	Column	Protein	False	Float	x coordinate for graphical display
+PositionY	Column	Protein	False	Float	y coordinate for graphical display
+ID	Column	Protein	False	String	Protein shortname
+Gene	Column	Protein	True	String	Gene shortname
+Mass	Column	Protein	False	Float	Protein mass
+Size	Column	Protein	False	Float	Protein size
+Compartment	Table	SBtab	False	Table	SBtab Compartment Table
+Comment	Column	Compartment	False	String	Comment
+ReferenceName	Column	Compartment	False	String	Reference title, authors, etc. (as free text)
+ReferencePubMed	Column	Compartment	False	String	Reference PubMed ID
+ReferenceDOI	Column	Compartment	False	String	Reference DOI
+Description	Column	Compartment	False	String	Description of the row element
+Name	Column	Compartment	False	String	Entity name
+MiriamAnnotation	Column	Compartment	False	String	Entity ID
+Type	Column	Compartment	False	String	Biochemical type of entity
+Symbol	Column	Compartment	False	String	Short symbol (e.g. gene symbol)
+PositionX	Column	Compartment	False	Float	x coordinate for graphical display
+PositionY	Column	Compartment	False	Float	y coordinate for graphical display
+ID	Column	Compartment	False	String	Compartment shortname
+SBML:compartment:id	Column	Compartment	False	String	SBML compartment ID
+OuterCompartment	Column	Compartment	True	String	Surrounding compartment (short)
+OuterCompartment:SBML:compartment:id	Column	Compartment	False	String	Surrounding compartment (name)
+IsConstant	Column	Compartment	False	Boolean	Compartment fixed size
+Size	Column	Compartment	False	Float	Compartment size
+Unit	Column	Compartment	False	String	Physical unit
+SBOTerm	Column	Compartment	False	String	SBO term of the entity
+Identifiers	Column	Compartment	False	String	Annotation of the entity
+Quantity	Table	SBtab	False	Table	SBtab Quantity Table
+Comment	Column	Quantity	False	String	Comment
+ReferenceName	Column	Quantity	False	String	Reference title, authors, etc. (as free text)
+ReferencePubMed	Column	Quantity	False	String	Reference PubMed ID
+ReferenceDOI	Column	Quantity	False	String	Reference DOI
+Description	Column	Quantity	False	String	Description of the row element
+Name	Column	Quantity	False	String	Entity name
+MiriamAnnotation	Column	Quantity	False	String	Entity ID
+Type	Column	Quantity	False	String	Biochemical type of entity
+Symbol	Column	Quantity	False	String	Short symbol (e.g. gene symbol)
+PositionX	Column	Quantity	False	Float	x coordinate for graphical display
+PositionY	Column	Quantity	False	Float	y coordinate for graphical display
+ID	Column	Quantity	False	String	Quantity shortname
+Quantity	Column	Quantity	False	String	Quantity name
+Reference	Column	Quantity	False	String	Reference name
+QuantityName	Column	Quantity	False	String	Quantity (name)
+QuantityType	Column	Quantity	False	String	Quantity type (e.g. from SBO)
+Value	Column	Quantity	False	Float	Simple value
+Mean	Column	Quantity	False	Float	Algebraic mean
+Std	Column	Quantity	False	Float	Standard deviation (positive)
+Min	Column	Quantity	False	Float	Lower bound
+Max	Column	Quantity	False	Float	Upper bound
+Median	Column	Quantity	False	Float	Median
+GeometricMean	Column	Quantity	False	Float	Geometric mean
+Sign	Column	Quantity	False	Enum('+','-','0')	Sign
+ProbDist	Column	Quantity	False	String	Probability distribution
+SBML:parameter:id	Column	Quantity	True	String	Parameter ID in SBML file
+Unit	Column	Quantity	False	String	Physical unit
+IsConstant	Column	Quantity	True	Boolean	Parameter with constant value
+Scale	Column	Quantity	False	String	Scale (e.g. logarithm)
+Time	Column	Quantity	False	Float	Time value
+TimePoint	Column	Quantity	False	String	Time point name or identifier
+Condition	Column	Quantity	False	String	experimental condition name (free text)
+pH	Column	Quantity	False	Float	pH value in measurement
+Temperature	Column	Quantity	False	Float	Temperature in measurement
+Location	Column	Quantity	True	String	Compartment (shortname)
+Location:SBML:compartment:id	Column	Quantity	False	String	SBML ID of compartment
+Compound	Column	Quantity	True	String	Related compound (shortname)
+Compound:SBML:species:id	Column	Quantity	False	String	SBML ID of compound
+Compound:Identifiers:kegg:compound	Column	Quantity	False	String	KEGG ID of compound
+Reaction	Column	Quantity	True	String	Related reaction (shortname)
+Reaction:SBML:reaction:id	Column	Quantity	False	String	SBML ID of reaction
+Reaction:Identifiers:kegg:reaction	Column	Quantity	False	String	KEGG ID of reaction
+Enyzme	Column	Quantity	True	String	Related enzyme (shortname)
+Enyzme:SBML:species:id	Column	Quantity	False	String	SBML ID of enzyme
+Enyzme:SBML:parameter:id	Column	Quantity	False	String	SBML ID of enzyme
+Gene	Column	Quantity	True	String	Related gene
+Organism	Column	Quantity	False	String	Organism
+Provenance	Column	Quantity	False	String	Provenance of the entity
+SBOTerm	Column	Quantity	False	String	SBO term of the entity
+Identifiers	Column	Quantity	False	String	Annotation of the entity
+BiologicalElement	Column	Quantity	False	String	Biological element
+MathematicalType	Column	Quantity	False	String	Mathematical type
+DataGeometricStd	Column	Quantity	False	Float	Data geometric standard error
+GeometricStd	Column	Quantity	False	Float	Data geometric standard error
+PriorMedian	Column	Quantity	False	Float	Prior Median
+PriorStd	Column	Quantity	False	Float	Prior Std
+PriorGeometricStd	Column	Quantity	False	Float	Prior Geometric Std
+LowerBound	Column	Quantity	False	Float	Lower bound
+UpperBound	Column	Quantity	False	Float	Lower bound
+DataStd	Column	Quantity	False	Float	Data Standard Error
+PhysicalType	Column	Quantity	False	String	Physical Type
+Dependence	Column	Quantity	False	String	Dependence
+UseAsPriorInformation	Column	Quantity	False	Boolean	Use as prior information
+SBMLElement	Column	Quantity	False	String	SBML element
+Abbreviation	Column	Quantity	False	String	Abbreviation
+MatrixInfo	Column	Quantity	False	String	Matrix build up information
+Regulator	Table	SBtab	False	Table	SBtab Regulator Table
+Comment	Column	Regulator	False	String	Comment
+ReferenceName	Column	Regulator	False	String	Reference title, authors, etc. (as free text)
+ReferencePubMed	Column	Regulator	False	String	Reference PubMed ID
+ReferenceDOI	Column	Regulator	False	String	Reference DOI
+Description	Column	Regulator	False	String	Description of the row element
+Name	Column	Regulator	False	String	Entity name
+MiriamAnnotation	Column	Regulator	False	String	Entity ID
+Type	Column	Regulator	False	String	Biochemical type of entity
+Symbol	Column	Regulator	False	String	Short symbol (e.g. gene symbol)
+PositionX	Column	Regulator	False	Float	x coordinate for graphical display
+PositionY	Column	Regulator	False	Float	y coordinate for graphical display
+ID	Column	Regulator	False	String	Regulator shortname
+State	Column	Regulator	False	String	State of the regulator
+TargetGene	Column	Regulator	True	String	Target gene
+TargetOperon	Column	Regulator	False	String	Target operon
+TargetPromoter	Column	Regulator	False	String	Target promoter
+Identifiers	Column	Regulator	False	String	Annotation of the entity
+Gene	Table	SBtab	False	Table	SBtab Gene Table
+Comment	Column	Gene	False	String	Comment
+ReferenceName	Column	Gene	False	String	Reference title, authors, etc. (as free text)
+ReferencePubMed	Column	Gene	False	String	Reference PubMed ID
+ReferenceDOI	Column	Gene	False	String	Reference DOI
+Description	Column	Gene	False	String	Description of the row element
+Name	Column	Gene	False	String	Entity name
+MiriamAnnotation	Column	Gene	False	String	Entity ID
+Type	Column	Gene	False	String	Biochemical type of entity
+Symbol	Column	Gene	False	String	Short symbol (e.g. gene symbol)
+PositionX	Column	Gene	False	Float	x coordinate for graphical display
+PositionY	Column	Gene	False	Float	y coordinate for graphical display
+ID	Column	Gene	False	String	Gene shortname
+LocusName	Column	Gene	False	String	Gene locus name
+GeneProduct	Column	Gene	True	String	Gene product shortname
+GeneProduct:SBML:species:id	Column	Gene	False	String	SBML ID of protein
+Operon	Column	Gene	False	String	Operon in which gene is located
+Identifiers	Column	Gene	False	String	Annotation of the entity
+SBML:fbc:ID	Column	Gene	False	String	Unique identifier of the gene in the FBC package
+SBML:fbc:Name	Column	Gene	False	String	Name of the gene in the FBC package
+SBML:fbc:GeneProduct	Column	Gene	False	Boolean	Flag indicating if the gene is an FBC gene product
+SBML:fbc:GeneAssociation	Column	Gene	False	Boolean	Flag indicating if the gene is an FBC gene association
+SBML:fbc:Label	Column	Gene	False	String	Label of the gene in the FBC package
+Relation	Table	SBtab	False	Table	SBtab Relation Table
+Comment	Column	Relation	False	String	Comment
+ReferenceName	Column	Relation	False	String	Reference title, authors, etc. (as free text)
+ReferencePubMed	Column	Relation	False	String	Reference PubMed ID
+ReferenceDOI	Column	Relation	False	String	Reference DOI
+Description	Column	Relation	False	String	Description of the row element
+ID	Column	Relation	False	String	Type of quantitative relation
+From	Column	Relation	False	String	Element at beginning of arrow
+To	Column	Relation	False	String	Element at arrowhead
+IsSymmetric	Column	Relation	False	Boolean	Flag indicating non-symmetric relations
+Value:QuantityType	Column	Relation	False	Float	Numerical value assigned to the relation
+Definition	Table	SBtab	False	Table	SBtab Definition Table
+Name	Column	Definition	False	String	Name of component (table, column, attribute to be defined)
+Type	Column	Definition	False	String	Type of component
+Parent	Column	Definition	False	String	Name of parent component
+Format	Column	Definition	False	String	Format
+Description	Column	Definition	False	String	Free text description of component
+QuantityMatrix	Table	SBtab	False	Table	SBtab QuantityMatrix Table
+Comment	Column	QuantityMatrix	False	String	Comment
+ReferenceName	Column	QuantityMatrix	False	String	Reference title, authors, etc. (as free text)
+ReferencePubMed	Column	QuantityMatrix	False	String	Reference PubMed ID
+ReferenceDOI	Column	QuantityMatrix	False	String	Reference DOI
+Description	Column	QuantityMatrix	False	String	Description of the row element
+Name	Column	QuantityMatrix	False	String	Entity name
+MiriamAnnotation	Column	QuantityMatrix	False	String	Entity ID
+Type	Column	QuantityMatrix	False	String	Biochemical type of entity
+Symbol	Column	QuantityMatrix	False	String	Short symbol (e.g. gene symbol)
+PositionX	Column	QuantityMatrix	False	Float	x coordinate for graphical display
+PositionY	Column	QuantityMatrix	False	Float	y coordinate for graphical display
+Time	Column	QuantityMatrix	False	Float	Time value
+TimePoint	Column	QuantityMatrix	False	String	Time point name or identifier
+>Table:Column	Column	QuantityMatrix	False	String	Pointer to column in another table
+>Document:Table:Column	Column	QuantityMatrix	False	String	Pointer to column in another document
+ID	Column	QuantityMatrix	False	String	Quantity shortname
+QuantityName	Column	QuantityMatrix	False	String	Quantity (name)
+QuantityType	Column	QuantityMatrix	False	String	Quantity type (e.g. from SBO)
+Value	Column	QuantityMatrix	False	Float	Simple value
+Mean	Column	QuantityMatrix	False	Float	Algebraic mean
+Std	Column	QuantityMatrix	False	Float	Standard deviation (positive)
+Min	Column	QuantityMatrix	False	Float	Lower bound
+Max	Column	QuantityMatrix	False	Float	Upper bound
+Median	Column	QuantityMatrix	False	Float	Median
+GeometricMean	Column	QuantityMatrix	False	Float	Geometric mean
+Sign	Column	QuantityMatrix	False	Enum('+','-','0')	Sign
+ProbDist	Column	QuantityMatrix	False	String	Probability distribution
+SBML:parameter:id	Column	QuantityMatrix	True	String	Parameter ID in SBML file
+Unit	Column	QuantityMatrix	False	String	Physical unit
+Scale	Column	QuantityMatrix	False	String	Scale (e.g. logarithm)
+Compound	Column	QuantityMatrix	True	String	Related compound (shortname)
+Compound:SBML:species:id	Column	QuantityMatrix	False	String	SBML ID of compound
+Reaction	Column	QuantityMatrix	True	String	Related reaction (shortname)
+Reaction:SBML:reaction:id	Column	QuantityMatrix	False	String	SBML ID of reaction
+Enyzme	Column	QuantityMatrix	True	String	Related enzyme (shortname)
+Enyzme:SBML:species:id	Column	QuantityMatrix	False	String	SBML ID of enzyme
+Enyzme:SBML:parameter:id	Column	QuantityMatrix	False	String	SBML ID of enzyme
+Protein	Column	QuantityMatrix	False	String	Related enzyme (shortname)
+Protein:SBML:species:id	Column	QuantityMatrix	False	String	SBML ID of enzyme
+Enyzme:SBML:parameter:id	Column	QuantityMatrix	False	String	SBML ID of enzyme
+Gene	Column	QuantityMatrix	True	String	Related gene
+StoichiometricMatrix	Table	SBtab	False	Table	SBtab StoichiometricMatrix Table
+ReactionID	Column	StoichiometricMatrix	False	String	Reaction shortname
+Stoichiometry	Column	StoichiometricMatrix	False	String	Stoichiometric coefficient of the reactant
+Substrate	Column	StoichiometricMatrix	True	String	Substrate of the reaction
+Product	Column	StoichiometricMatrix	True	String	Product of the reaction
+Location	Column	StoichiometricMatrix	True	String	Compartment for localised reaction
+Position	Table	SBtab	False	Table	SBtab Position Table
+Element	Column	Position	False	String	Element displayed
+PositionX	Column	Position	False	Float	x coordinate for graphical display
+PositionY	Column	Position	False	Float	y coordinate for graphical display
+Measurement	Table	SBtab	False	Table	SBtab Measurement Table
+Sample	Column	Measurement	False	String	Measurement value shortname
+Time	Column	Measurement	False	String	Time at which measurement was taken
+Unit	Column	Measurement	False	String	Measurement unit
+ValueType	Column	Measurement	False	String	Type of value (mean, standard deviation, etc)
+Description	Column	Measurement	False	String	Description of data value
+QuantityInfo	Table	SBtab	False	Table	SBtab QuantityInfo Table
+QuantityType	Column	QuantityInfo	False	String	QuantityType (e.g. from SBO)
+Symbol	Column	QuantityInfo	False	String	Symbol for the quantity type
+Unit	Column	QuantityInfo	False	String	Unit for the Median value
+Constant	Column	QuantityInfo	False	String	Is this value constant
+Element	Column	QuantityInfo	False	String	A related element
+RelatedElement	Column	QuantityInfo	False	String	A related element
+Scaling	Column	QuantityInfo	False	String	A scaling factor
+Dependence	Column	QuantityInfo	False	String	Is this value dependent on something
+PriorMedian	Column	QuantityInfo	False	Float	Prior median value
+PriorStd	Column	QuantityInfo	False	Float	Prior median standard deviation
+LowerBound	Column	QuantityInfo	False	Float	Lower bound for this quantity type
+UpperBound	Column	QuantityInfo	False	Float	Upper bound for this quantity type
+ErrorStd	Column	QuantityInfo	False	Float	Error of standard deviation
+DataStd	Column	QuantityInfo	False	Float	Error of standard deviation
+SBMLElement	Column	QuantityInfo	False	String	Corresponding SBML element
+SBMLElementType	Column	QuantityInfo	False	String	Corresponding SBML element
+Abbreviation	Column	QuantityInfo	False	String	Abbreviation of quantity type
+ID	Column	QuantityInfo	False	String	Abbreviation of quantity type
+MatrixInfo	Column	QuantityInfo	False	String	Information on the matrix production
+Options	Table	SBtab	False	Table	SBtab Options Table
+Option	Column	Options	False	String	Which option is addressed
+Value	Column	Options	False	String	What value is the option set to
+rxnconContingencyList	Table	SBtab	False	Table	SBtab rxnconContingencyList Table
+UID:Contingency	Column	rxnconContingencyList	False	Integer	ID for contingency
+Target	Column	rxnconContingencyList	True	String	Contingency target
+Contingency	Column	rxnconContingencyList	True	String	Contingency type
+Modifier	Column	rxnconContingencyList	True	String	Target modifier
+Reference:Identifiers:pubmed	Column	rxnconContingencyList	False	String	Pubmed ID
+Quality	Column	rxnconContingencyList	False	String	Contingency quality
+Comment	Column	rxnconContingencyList	False	String	Comment
+InternalComplexID	Column	rxnconContingencyList	False	String	Internal ID for processing
+rxnconReactionList	Table	SBtab	False	Table	SBtab rxnconReactionList Table
+ID	Column	rxnconReactionList	False	Integer	ID for reaction
+UID:Reaction	Column	rxnconReactionList	True	String	Reaction String
+ComponentA:Name	Column	rxnconReactionList	True	String	Name for Component A
+ComponentA:Domain	Column	rxnconReactionList	False	String	Domain of Component A
+ComponentA:Residue	Column	rxnconReactionList	False	String	Residue of Component A
+Reaction	Column	rxnconReactionList	True	String	Reaction type
+ComponentB:Name	Column	rxnconReactionList	True	String	Name for Component B
+ComponentB:Domain	Column	rxnconReactionList	False	String	Domain of Component B
+ComponentB:Residue	Column	rxnconReactionList	False	String	Residue of Component B
+Quality	Column	rxnconReactionList	False	String	Quality of reaction
+Literature:Identifiers:pubmed	Column	rxnconReactionList	False	String	Pubmed ID
+Comment	Column	rxnconReactionList	False	String	Comment
+FbcObjective	Table	SBtab	False	Table	SBtab FbcObjective Table
+ID	Column	FbcObjective	False	String	Unique identifier of objective in FBC package
+Name	Column	FbcObjective	False	String	Name of objective in FBC package
+SBML:fbc:type	Column	FbcObjective	False	String	Type of objective in FBC package
+SBML:fbc:active	Column	FbcObjective	False	Boolean	Flag indicating if the objective is active
+SBML:fbc:objective	Column	FbcObjective	False	String	FBC objective as sum of coefficients times reaction IDs
+Layout	Table	SBtab	False	Table	SBtab Layout Table
+ID	Column	Layout	False	String	Unique identifier of layout package
+Name	Column	Layout	False	String	Name of layout in plugin
+SBML:layout:modelEntity	Column	Layout	False	String	Declares the SBML model entity
+SBML:layout:compartment:id	Column	Layout	False	String	SBML identifier of the compartment
+SBML:layout:reaction:id	Column	Layout	False	String	SBML identifier of the reaction
+SBML:layout:species:id	Column	Layout	False	String	SBML identifier of the species
+SBML:layout:curveSegment	Column	Layout	False	String	Type of curve segment (Start, End, BasePoints)
+SBML:layout:X	Column	Layout	False	Float	Coordinate on X axis
+SBML:layout:Y	Column	Layout	False	Float	Coordinate on Y axis
+SBML:layout:width	Column	Layout	False	Float	Width of the element
+SBML:layout:height	Column	Layout	False	Float	Height of the element
+SBML:layout:text	Column	Layout	False	String	Text label of the element
+SBML:layout:speciesRole	Column	Layout	False	String	Role of the species in the reaction (Reactant, Product)
+ReactionStoichiometry	Table	SBtab	False	Table	SBtab ReactionStoichiometry Table
+ID	Column	ReactionStoichiometry	True	String	Identifier shortname of the reaction
+Reaction	Column	ReactionStoichiometry	False	String	Reaction ID
+Stoichiometry	Column	ReactionStoichiometry	False	String	Stoichiometry of the reaction
+Substrate	Column	ReactionStoichiometry	True	String	Identifier shortname of a substrate
+Product	Column	ReactionStoichiometry	True	String	Identifier shortname of a product
+Location	Column	ReactionStoichiometry	True	String	Compartment in which the reaction occurs
+SparseMatrixOrdered	Table	SBtab	False	Table	SBtab SparseMatrixOrdered Table
+RowNumber	Column	SparseMatrixOrdered	False	Integer	Number of row
+ColumnNumber	Column	SparseMatrixOrdered	False	Integer	Number of column
+Value	Column	SparseMatrixOrdered	False	Float	Value
+SparseMatrix	Table	SBtab	False	Table	SBtab SparseMatrix Table
+RowID	Column	SparseMatrix	False	String	Row identifier
+ColumnID	Column	SparseMatrix	False	String	Column identifier
+Value	Column	SparseMatrix	False	Float	Value
+SparseMatrixRow	Table	SBtab	False	Table	SBtab SparseMatrixRow Table
+RowID	Column	SparseMatrixRow	False	String	Row identifier
+RowString	Column	SparseMatrixRow	False	String	JSON String describing all elements in the row
+SparseMatrixColumn	Table	SBtab	False	Table	SBtab SparseMatrixColumn Table
+ColumnID	Column	SparseMatrixColumn	False	String	Column identifier
+ColumnString	Column	SparseMatrixColumn	False	String	JSON String describing all elements in the column
+ID	Column	Config	False	string	Which option is addressed
+Value	Column	Config	False	string	What value is the option set to

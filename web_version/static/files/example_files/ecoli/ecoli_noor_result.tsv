@@ -1,4 +1,4 @@
-!!SBtab SBtabVersion='1.0' TableType='Quantity' TableName='Parameter' Document='ecoli_noor_2016_data.tsv' Date='2018-11-28'
+!!SBtab TableID='ParameterBalanced' SBtabVersion='1.0' TableType='Quantity' TableName='Parameter' Document='ecoli_noor_2016_data.tsv' Date='2018-11-28'
 !QuantityType	!Reaction:SBML:reaction:id	!Compound:SBML:species:id	!Mode	!Unit	!UnconstrainedGeometricMean	!UnconstrainedGeometricStd	!UnconstrainedMean	!UnconstrainedStd
 standard chemical potential		_S__Malate	-46.3871	kJ/mol	NaN	NaN	-46.3871	171.0141
 concentration		_S__Malate	0.1	mM	0.1	10.0	1.4167	20.0217

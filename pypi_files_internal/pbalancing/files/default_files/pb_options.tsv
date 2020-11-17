@@ -1,5 +1,5 @@
-!!SBtab TableName="Parameter balancing configuration file" TableType="PbConfig" Date="2018-03-16"
-!Option	!Value
+!!SBtab TableName="Parameter balancing configuration file" TableType="Config" Date="2018-03-16" TableID="ConfigurePB"
+!ID	!Value
 use_pseudo_values	True
 ph	7
 temperature	298.15
@@ -11,3 +11,4 @@ default_inhibition	complete
 default_activation	complete
 model_name	outputname
 boundary_values	ignore
+size_limit	300

@@ -1,4 +1,4 @@
-!!SBtab Document='Model' TableName='Parameter' TableType='Quantity' SBtabVersion='1.0' Date='2018-12-21'				
+!!SBtab TableID='ParameterData' Document='Model' TableName='Parameter' TableType='Quantity' SBtabVersion='1.0' Date='2018-12-21'				
 !QuantityType	!Reaction:SBML:reaction:id	!Compound:SBML:species:id	!Mean	!Unit	!Std
 equilibrium constant	R_ASPTA		1	dimensionless	
 equilibrium constant	R_ASPKi		1	dimensionless	

@@ -1,4 +1,4 @@
-!!SBtab TableName='Quantity info' TableType='QuantityInfo'
+!!SBtab TableName='Quantity info' TableType='QuantityInfo' TableID='QuantityInfo'
 !QuantityType	!Symbol	!Unit	!Constant	!RelatedElement	!Scaling	!Dependence	!PriorMode	!PriorStd	!LowerBound	!UpperBound	!ErrorStd	!SBMLElement 	!Abbreviation	!MatrixInfo
 standard chemical potential	mu0	kJ/mol	Thermodynamic	Species	Original	Basic	-880	1500	-3000	2000	10	Global parameter 	scp	[I_species, 0, 0, 0, 0, 0, 0]
 standard Gibbs energy of reaction	dmu0	kJ/mol	Thermodynamic	Reaction	Original	Derived	0	1500	-1000	1000	10	Global parameter 	dscp	[Nt, 0, 0, 0, 0, 0, 0]

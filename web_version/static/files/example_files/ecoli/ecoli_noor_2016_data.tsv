@@ -1,4 +1,4 @@
-!!SBtab TableName='Parameter' TableType='Quantity' Document='E. coli central carbon metabolism - unbalanced kinetic data' SBtabVersion='1.0'							
+!!SBtab TableID='ParameterData' TableName='Parameter' TableType='Quantity' Document='E. coli central carbon metabolism - unbalanced kinetic data' SBtabVersion='1.0'							
 !QuantityType	!Reaction:SBML:reaction:id	!Compound:SBML:species:id	!Mean	!Std	!Unit	!Reaction:Identifiers:kegg.reaction	!Compound:Identifiers:kegg.compound
 equilibrium constant	PTS_RPTSsy		57262184	57262184	dimensionless	RPTSsy	
 equilibrium constant	PGI_R02740		0.36350845	0.36350845	dimensionless	R02740	

@@ -1,9 +1,9 @@
-!!SBtab SBtabVersion="1.0" Document="BIOMD0000000061" TableType="Compartment" TableName="Compartment"														
+!!SBtab SBtabVersion="1.0" Document="BIOMD0000000061" TableType="Compartment" TableName="Compartment" TableID="Compartment"														
 !ID	!Size													
 extracellular	1													
 cytosol	1													
 														
-!!SBtab SBtabVersion="1.0" Document="BIOMD0000000061" TableType="Compound" TableName="Compound"														
+!!SBtab SBtabVersion="1.0" Document="BIOMD0000000061" TableType="Compound" TableName="Compound" TableID="Compound"														
 !ID	!Name	!Location	!Charge	!IsConstant	!InitialConcentration	!hasOnlySubstanceUnits	!Identifiers:kegg.compound							
 GlcX	Extracellular glucose	extracellular	0	False	6.7	False	C00293							
 Glc	Cytosolic glucose	cytosol	0	False	0.6	False	C00293							
@@ -31,7 +31,7 @@ P		extracellular	0	False	0	False
 CNX0	Mixed flow cyanide 	extracellular	0	False	5.6	False	C00177							
 GlcX0	Mixed flow glucose	extracellular	0	False	24	False	C00293							
 														
-!!SBtab SBtabVersion="1.0" Document="BIOMD0000000061" TableType="Reaction" TableName="Reaction"														
+!!SBtab SBtabVersion="1.0" Document="BIOMD0000000061" TableType="Reaction" TableName="Reaction" TableID="Reaction"														
 !ID	!Name	!ReactionFormula	!Regulator	!KineticLaw	!IsReversible	!Identifiers:ec-code								
 vinGlc	Glucose Mixed flow to extracellular medium	GlcX0 <=> GlcX		extracellular * k0 * (GlcX0 - GlcX)	True									
 vGlcTrans	Glucose uptake	GlcX <=> 59.0 Glc	G6P	extracellular * V2f / Yvol * (GlcX / K2Glc / (1 + GlcX / K2Glc + (P2 * (GlcX / K2Glc) + 1) / (P2 * (Glc / K2Glc) + 1) * (1 + Glc / K2Glc + G6P / K2IG6P + Glc * G6P / (K2Glc * K2IIG6P)))) - cytosol * V2r / Yvol * (Glc / K2Glc / (1 + Glc / K2Glc + (P2 * (Glc / K2Glc) + 1) / (P2 * (GlcX / K2Glc) + 1) * (1 + GlcX / K2Glc) + G6P / K2IG6P + Glc * G6P / (K2Glc * K2IIG6P)))	True									
@@ -58,8 +58,8 @@ vstorage	Storage	ATP + G6P <=> ADP		cytosol * k22 * ATP * G6P	True
 vconsum	ATP consumption	ATP <=> ADP		cytosol * k23 * ATP	True									
 vAK	Adenylate kinase	ATP + AMP <=> 2.0 ADP		cytosol * (k24f * AMP * ATP - k24r * pow(ADP, 2))	True	2.7.4.3								
 														
-!!SBtab TableName='Parameter balancing configuration file' TableType='PbConfig'														
-!Option	!Value													
+!!SBtab TableName='Parameter balancing configuration file' TableType='Config' TableID='ConfigurePB'														
+!ID	!Value													
 use_pseudos	True													
 pH	7													
 Temperature	300													
@@ -72,7 +72,7 @@ default_activation	complete_act
 model_name	outputname													
 boundary_values	ignore													
 														
-!!SBtab TableName='Quantity info' TableType='QuantityInfo'														
+!!SBtab TableID='ParameterData' TableName='Quantity info' TableType='QuantityInfo'														
 !QuantityType	!Symbol	!Unit	!Constant	!RelatedElement	!Scaling	!Dependence	!PriorMode	!PriorStd	!LowerBound	!UpperBound	!ErrorStd	!SBMLElement 	!Abbreviation	!MatrixInfo
 standard chemical potential	mu0	kJ/mol	Thermodynamic	Species	Original	Basic	-880	1500	-3000	2000	10	Global parameter 	scp	[I_species, 0, 0, 0, 0, 0, 0]
 standard Gibbs energy of reaction	dmu0	kJ/mol	Thermodynamic	Reaction	Original	Derived	0	1500	-1000	1000	10	Global parameter 	dscp	[Nt, 0, 0, 0, 0, 0, 0]

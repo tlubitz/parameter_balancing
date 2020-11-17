@@ -1,4 +1,4 @@
-!!SBtab TableType="Quantity"
+!!SBtab TableID="ParameterData" TableType="Quantity"
 !QuantityType	!Reaction:SBML:reaction:id	!Compound:SBML:species:id	!Mean	!Std	!Unit	!Min	!Max	!Description
 Michaelis constant	R1	GLU_ext	0.12	0.141421	mM			
 Michaelis constant	R10a	GLU_6_P	0.4085	0.559386	mM			

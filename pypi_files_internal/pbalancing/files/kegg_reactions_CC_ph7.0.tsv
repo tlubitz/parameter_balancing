@@ -1,4 +1,4 @@
-!!SBtab	SBtabVersion='0.9.1' TableType='Reaction' TableName='transformed standard Gibbs free energies of reaction, dG0_prime' QuantityType='standard Gibbs free energy of reaction' Unit='kJ/mol' pH='7.0' Temperature='298.15' TemperatureUnit='kelvin' 'IonicStrength='0.1' IoniStrengthUnit='mM' UniqueKeys='False'			
+!!SBtab	SBtabVersion='0.9.1' TableID='Reaction' TableType='Reaction' TableName='transformed standard Gibbs free energies of reaction, dG0_prime' QuantityType='standard Gibbs free energy of reaction' Unit='kJ/mol' pH='7.0' Temperature='298.15' TemperatureUnit='kelvin' 'IonicStrength='0.1' IoniStrengthUnit='mM' UniqueKeys='False'			
 !Identifiers:kegg.reaction	!Mean	   !Std	!Comment
 R00002	-766.9	47.4	
 R00004	-15.8	0.4	

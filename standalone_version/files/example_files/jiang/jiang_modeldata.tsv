@@ -1,11 +1,11 @@
-!!SBtab SBtabVersion='1.0' Document='BIOMD0000000239' TableType='Compartment' TableName='Compartment'														
+!!SBtab SBtabVersion='1.0' Document='BIOMD0000000239' TableType='Compartment' TableName='Compartment' TableID='Compartment'														
 !ID	!Name	!Size												
 CYTOPLASM	cytoplasm	1												
 MT_IMS	mitochondrial intermembrane space	1												
 MT_IM	mitochondrial inner membrane	1												
 MATRIX	mitochondrial matrix	1												
 														
-!!SBtab SBtabVersion='1.0' Document='BIOMD0000000239' TableType='Compound' TableName='Compound'														
+!!SBtab SBtabVersion='1.0' Document='BIOMD0000000239' TableType='Compound' TableName='Compound' TableID='Compound'														
 !ID	!Name	!Location	!Charge	!IsConstant	!InitialConcentration	!hasOnlySubstanceUnits	!Identifiers:kegg.compound							
 GLC	glucose	CYTOPLASM	0	False	0	False	C00267							
 F6P	fructose-6-phosphate	CYTOPLASM	0	False	0	False	C00085							
@@ -67,7 +67,7 @@ QH2	ubiquinol	MT_IMS	0	False	0	False	C00390
 Cytc3p	ferrocytochrome c	MT_IMS	0	False	0	False	C00126							
 Cytc2p	ferricytochrome c	MT_IMS	0	False	0	False	C00125							
 														
-!!SBtab SBtabVersion='1.0' Document='BIOMD0000000239' TableType='Reaction' TableName='Reaction'														
+!!SBtab SBtabVersion='1.0' Document='BIOMD0000000239' TableType='Reaction' TableName='Reaction' TableID='Reaction'														
 !ID	!Name	!ReactionFormula	!Regulator	!KineticLaw	!IsReversible	!Identifiers:ec-code								
 GLCflow		 <=> GLC		CYTOPLASM * (Glc_F * pow(10, -3) - GLC) * flow	True									
 LACflow		LAC <=>		CYTOPLASM * LAC * flow	False									
@@ -115,8 +115,8 @@ v43	ATP/ADP carrier	ATP <=> ATP_cyt		MATRIX * (V * v43_AAC * ATP / (K + ATP))	Fa
 v39	malate dehydrogenase (oxaloacetate-decarboxylating) (NADP+)	Mal_cyt + NADP_cyt <=> NADPH_cyt + PYR_cyt		CYTOPLASM * (v39_MDH * Kcat * Mal_cyt * NADP_cyt / ((Kmal + Mal_cyt) * (Knadp + NADP_cyt)))	True	1.1.1.40								
 v44	malate dehydrogenase (oxaloacetate-decarboxylating) (NADP+)	Mal + NADP_p <=> NADPH + Pyr		MATRIX * (v44_MDH * Kcat * Mal / (Km + Mal))	True	1.1.1.40								
 														
-!!SBtab TableName='Parameter balancing configuration file' TableType='PbConfig'														
-!Option	!Value													
+!!SBtab TableName='Parameter balancing configuration file' TableType='Config' TableID='ConfigurePB'														
+!ID	!Value													
 use_pseudos	True													
 pH	7													
 Temperature	300													
@@ -129,7 +129,7 @@ default_activation	complete_act
 model_name	outputname													
 boundary_values	ignore													
 														
-!!SBtab TableName='Quantity info' TableType='QuantityInfo'														
+!!SBtab TableName='Quantity info' TableType='QuantityInfo' TableID='QuantityInfo'														
 !QuantityType	!Symbol	!Unit	!Constant	!RelatedElement	!Scaling	!Dependence	!PriorMode	!PriorStd	!LowerBound	!UpperBound	!ErrorStd	!SBMLElement 	!Abbreviation	!MatrixInfo
 standard chemical potential	mu0	kJ/mol	Thermodynamic	Species	Original	Basic	-880	1500	-3000	2000	10	Global parameter 	scp	[I_species, 0, 0, 0, 0, 0, 0]
 standard Gibbs energy of reaction	dmu0	kJ/mol	Thermodynamic	Reaction	Original	Derived	0	1500	-1000	1000	10	Global parameter 	dscp	[Nt, 0, 0, 0, 0, 0, 0]

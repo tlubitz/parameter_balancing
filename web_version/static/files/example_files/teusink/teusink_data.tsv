@@ -1,4 +1,4 @@
-!!SBtab TableType="Quantity" Version="0.1" Level="1.0" TableName="Teusink Data"									
+!!SBtab TableID="ParameterData" TableType="Quantity" Version="0.1" Level="1.0" TableName="Teusink Data"									
 !QuantityType	!Reaction:SBML:reaction:id	!Compound:SBML:species:id	!Mean	!Std	!Unit	!Organism	!Reaction:Identifiers:kegg.reaction	!Compound:Identifiers:kegg.compound	!Reference
 concentration of enzyme	vGAPDH	nan	169000	nan	molecules/cell	Saccharomyces cerevisiae	R01061	nan	yeastGFP
 concentration of enzyme	vGAPDH	nan	120000	nan	molecules/cell	Saccharomyces cerevisiae	R01061	nan	yeastGFP

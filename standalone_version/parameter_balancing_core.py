@@ -19,7 +19,7 @@ except:
     import validatorSBtab
 
 
-def parameter_balancing_wrapper(sbml, sbtab_data_name=None, sbtab_prior_name=None, sbtab_options_name=None, verbose=False, no_pseudo_values=False, output_name=None, pb_log=False):
+def parameter_balancing_wrapper(sbml, sbtab_data_name=None, sbtab_prior_name=None, sbtab_options_name=None, verbose=False, no_pseudo_values=False, output_name=None, pb_log=False, concat=False):
     '''
     wrapper for parameter balancing.
 
@@ -33,6 +33,7 @@ def parameter_balancing_wrapper(sbml, sbtab_data_name=None, sbtab_prior_name=Non
     no_pseudo_values: Boolean (disable usage of pseudo values)
     output_name: string (name for the output files)
     pb_log: Boolean (enable writing of a log file)
+    concat: Boolean (enable writing of concatenation input/output file)
     '''
     model_name = sbml
     parameter_dict = {}
@@ -62,7 +63,7 @@ def parameter_balancing_wrapper(sbml, sbtab_data_name=None, sbtab_prior_name=Non
               'do not recommend employing models that large for '\
               'parameter balancing.')
         sys.exit()
-        
+
     pb = balancer.ParameterBalancing(sbml_model)
 
     ###########################
@@ -96,7 +97,7 @@ def parameter_balancing_wrapper(sbml, sbtab_data_name=None, sbtab_prior_name=Non
                 log_file += warning + '\n'
 
         #print(sbtab_data.value_rows)
-
+    
     ###########################
     # 1.3: open and prepare an optional SBtab prior file;
     #      if this is not provided, open the default prior file
@@ -173,7 +174,6 @@ def parameter_balancing_wrapper(sbml, sbtab_data_name=None, sbtab_prior_name=Non
         # extract crucial information from prior
         (pseudos, priors, pmin, pmax) = misc.extract_pseudos_priors(sbtab_prior)
 
-        
     ###########################
     # 1.4: open and prepare an optional SBtab options file;
     #      if this is not provided, open the default options file
@@ -309,7 +309,7 @@ def parameter_balancing_wrapper(sbml, sbtab_data_name=None, sbtab_prior_name=Non
             print('Parameter balancing is not using pseudo values.')
             
     (sbtab_final, mean_vector, mean_vector_inc, c_post, c_post_inc,
-     r_matrix, shannon, log) = pb.make_balancing(sbtab_new,
+     r_matrix, shannon, log, concat_file) = pb.make_balancing(sbtab_new,
                                                  sbtab, pmin,
                                                  pmax,
                                                  parameter_dict)
@@ -362,6 +362,14 @@ def parameter_balancing_wrapper(sbml, sbtab_data_name=None, sbtab_prior_name=Non
         log.close()
         if verbose:
             print('The log file %s has been written.' % (output_name + '_log.txt'))
+    
+    # 5b: If requested write output file with concatenated input/output files
+    if concat:
+        c_file = open(output_name + '_concat.tsv', 'w')
+        c_file.write(concat_file)
+        c_file.close()
+        if verbose:
+            print('The concat file %s has been written.' % (output_name + '_concat.tsv'))
 
     # 6: Write SBtab and SBML model
     sbtab_file_new = open(output_name + '.tsv', 'w')

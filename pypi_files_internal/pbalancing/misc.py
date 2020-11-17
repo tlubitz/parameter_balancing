@@ -46,7 +46,7 @@ def count_tabs(sbtab_string):
     '''
     counter = 0
     for row in sbtab_string.split('\n'):
-        if row.startswith('!!SBtab'):
+        if row.startswith('!!SBtab') or row.startswith('!!ObjTables'):
             counter += 1
     return counter
 
@@ -119,10 +119,10 @@ def valid_prior(sbtab_prior):
     validity = []
 
     # check table type
-    if sbtab_prior.table_type != 'Quantity':
+    if sbtab_prior.table_type != 'QuantityInfo':
         validity.append('Error: The TableType of the prior file is not '\
                         'correct: %s. '\
-                        'It should be Quantity' % sbtab_prior.table_type)
+                        'It should be QuantityInfo' % sbtab_prior.table_type)
 
     # check for required columns
     required_columns = ['!QuantityType', '!Unit', '!MathematicalType',
@@ -198,26 +198,26 @@ def readout_config(sbtab_options):
                        'overwrite_kinetics', 'cell_volume', 'parametrisation',
                        'enzyme_prefactor', 'default_inhibition',
                        'default_activation', 'model_name', 'boundary_values',
-                       'samples']
+                       'samples', 'size_limit']
 
 
-    if '!Option' not in sbtab_options.columns_dict:
-        log.append('Error: The crucial option column is missing from the'\
+    if '!ID' not in sbtab_options.columns_dict:
+        log.append('Error: The crucial option (ID) column is missing from the'\
                    'options file')
     if '!Value' not in sbtab_options.columns_dict:
             log.append('Error: The crucial value column is missing from the'\
                        'options file')
 
     for row in sbtab_options.value_rows:
-        if row[sbtab_options.columns_dict['!Option']] not in allowed_options:
+        if row[sbtab_options.columns_dict['!ID']] not in allowed_options:
             log.append('There was an irregular option in the options file:'\
-                       '%s' % row[sbtab_options.columns_dict['!Option']])
+                       '%s' % row[sbtab_options.columns_dict['!ID']])
         else:
             if row[sbtab_options.columns_dict['!Value']] == '':
                 log.append('There is no value set for option:'\
-                           '%s' % row[sbtab_options.columns_dict['!Option']])
+                           '%s' % row[sbtab_options.columns_dict['!ID']])
     
-        parameter_dict[row[sbtab_options.columns_dict['!Option']]] = row[sbtab_options.columns_dict['!Value']]
+        parameter_dict[row[sbtab_options.columns_dict['!ID']]] = row[sbtab_options.columns_dict['!Value']]
 
     return parameter_dict, log
 
@@ -664,7 +664,7 @@ def split_sbtabs(sbtab_strings):
                 continue
             else:
                 try:
-                    if sbtab_string.startswith('!!SBtab'):
+                    if sbtab_string.startswith('!!SBtab') or sbtab_string.startswith('!!ObjTables'):
                         sbtabs.append(sbtab_string)
                         counter += 1
                     sbtab_string = row + '\n'
@@ -674,13 +674,13 @@ def split_sbtabs(sbtab_strings):
         else:
             sbtab_string += row + '\n'
 
-    if sbtab_string.startswith('!!SBtab'):
+    if sbtab_string.startswith('!!SBtab') or sbtab_string.startswith('!!ObjTables'):
         sbtabs.append(sbtab_string)
                     
     return sbtabs
 
 
-def sbtab_to_html(sbtab, filename=None, mode='sbtab_online'):
+def sbtab_to_html(sbtab, filename=None, mode='sbtab_online', template = [], put_links = True, title_string='', show_header_row = True, show_table_name = False, show_table_text = False, definitions_file=''):
     '''
     Generates html view out of SBtab table or SBtab document object.
 
@@ -721,17 +721,29 @@ def sbtab_to_html(sbtab, filename=None, mode='sbtab_online'):
         # start main
         html = '<table class="table-striped">'
 
+        # table name
+        if show_table_name:
+            html += '<center><h2>%s</h2></center>' % (sbtab.get_attribute('TableName'))
+
+        if show_table_text:
+            if len(sbtab.get_attribute('Text')):
+                html += '<center><p>%s</p></center>' % (sbtab.get_attribute('Text'))
+
         # header row
-        html += '<thead><tr><th colspan="%s">%s</th></tr></thead>' % (len(sbtab.columns), sbtab.header_row)
+        #html += '<thead><tr><th colspan="%s">%s</th></tr></thead>' % (len(sbtab.columns), sbtab.header_row)
+        if show_header_row:
+            html += '<h4>%s</h4>' % (sbtab.header_row)
 
         # columns
-        html += '<tbody>'
+        html += '<thead>'
         html += '<tr style="line-height:2;">'
         for col in sbtab.columns:
             try: title = col2description[col[1:]]
             except: title = ''
             html += '<th title="%s">%s</th>' % (title, col)
         html += '</tr>'
+        html += '</thead>'
+        html += '<tbody>'
 
         # value rows
         for row in sbtab.value_rows:
@@ -747,8 +759,9 @@ def sbtab_to_html(sbtab, filename=None, mode='sbtab_online'):
                             html += '<td>'
                             split_column = col.split(' ')
                             for element in split_column:
-                                if element not in no_link and not _is_float(element):
-                                    html += '<a href="#%s">%s</a> ' % (element, element)
+                                if element not in no_link and not _is_float(element) and put_links:
+                                    #html += '<a href="#%s">%s</a> ' % (element, element)    #internal links
+                                    html += element
                                 else:
                                     html += element + ' '
                             html += '</td>'
@@ -793,7 +806,8 @@ def sbtab_to_html(sbtab, filename=None, mode='sbtab_online'):
         html_template = False
         try_paths = ['html_templates/template_standalone.html',                     
                      os.path.join(os.path.dirname(__file__), '../html_templates/template_standalone.html'),
-                     os.path.join(os.path.dirname(__file__), 'html_templates/template_standalone.html')]
+                     os.path.join(os.path.dirname(__file__), 'html_templates/template_standalone.html'),
+                     template]
         for path in try_paths:
             try:
                 html = open(path, 'r')
@@ -823,11 +837,17 @@ def sbtab_to_html(sbtab, filename=None, mode='sbtab_online'):
         return False
     
     # replace title placeholder with actual title
-    html = html.replace('TitlePlaceholder',sbtab.filename)
+    if len(title_string):
+        html = html.replace('TitlePlaceholder',title_string)
+    else:
+        html = html.replace('TitlePlaceholder',sbtab.filename)
 
     # read in definitions file for nice mouse over
-    sbtab_def = open_definitions_file()
-   
+    if mode == 'standalone' and len(definitions_file):
+        sbtab_def = open_definitions_file(definitions_file)
+    else:
+        sbtab_def = open_definitions_file()
+        
     # now build the html file
     if sbtab.object_type == 'table':
         html += _build_main(sbtab, sbtab_def)
@@ -862,20 +882,21 @@ def open_definitions_file(_path=None):
         try_paths = ['definitions.tsv',
                      os.path.join(os.path.dirname(__file__), '../static/files/default_files/definitions.tsv'),
                      os.path.join(os.path.dirname(__file__), '../definition_table/definitions.tsv'),
-                     os.path.join(os.path.dirname(__file__), 'files/default_files/definitions.tsv'),
-                     os.path.join(os.path.dirname(__file__), 'definitions.tsv')]
-    
+                     os.path.join(os.path.dirname(__file__), 'definitions.tsv'),
+                     os.path.join(os.path.dirname(__file__), 'files/default_files/definitions.tsv')]
+
     for path in try_paths:
         try:
             def_file = open(path, 'r')
-            sbtab_def = SBtab.SBtabTable(def_file.read(), 'definitions.tsv')
+            file_content = def_file.read()
+            sbtab_def = SBtab.SBtabTable(file_content, 'definitions.tsv')
             def_file.close()
             break
         except: pass
 
     return sbtab_def
 
-            
+
 def extract_supported_table_types():
     '''
     Extracts all allowed SBtab table types from the definitions file.
@@ -887,8 +908,8 @@ def extract_supported_table_types():
     
     supported_types = []
     for row in sbtab_def.value_rows:
-        t = row[sbtab_def.columns_dict['!IsPartOf']]
-        if t not in supported_types:
+        t = row[sbtab_def.columns_dict['!Parent']]
+        if t not in supported_types and t != 'SBtab':
             supported_types.append(t)
 
     return supported_types
@@ -913,9 +934,9 @@ def find_descriptions(def_file, table_type):
     col2link = {}
 
     for row in def_file.value_rows:
-        if row[def_file.columns_dict['!IsPartOf']] == table_type:
-            col2description[row[def_file.columns_dict['!ComponentName']]] = row[def_file.columns_dict['!Description']]
-            col2link['!'+row[def_file.columns_dict['!ComponentName']]] = row[def_file.columns_dict['!isShortname']]
+        if row[def_file.columns_dict['!Parent']] == table_type:
+            col2description[row[def_file.columns_dict['!Name']]] = row[def_file.columns_dict['!Description']]
+            col2link['!'+row[def_file.columns_dict['!Name']]] = row[def_file.columns_dict['!isShortname']]
 
     return (col2description, col2link)
 
@@ -1006,11 +1027,15 @@ def id_checker(sbtab, sbml):
 
     for row in sbtab.value_rows:
         if len(row) < 3: continue
-        try:
-            s_id = sbtab.columns_dict['!Compound:SBML:species:id']
-            r_id = sbtab.columns_dict['!Reaction:SBML:reaction:id']
+        try: s_id = sbtab.columns_dict['!Compound']
         except:
-            sbtabid2sbmlid.append('Error: The SBtab file lacks either of the obligatory columns "'"!Compound:SBML:species:id"'" or "'"!Reaction:SBML:reaction:id"'" to link the parameter entries to the SBML model species.')
+            try: s_id = sbtab.columns_dict['!Compound:SBML:species:id']
+            except: sbtabid2sbmlid.append('Error: The SBtab file lacks the obligatory column "'"!Compound"'"/"'"!Compound:SBML:species:id"'" to link the parameter entries to the SBML model species.')
+
+        try: r_id = sbtab.columns_dict['!Reaction']
+        except:
+            try: r_id = sbtab.columns_dict['!Reaction:SBML:reaction:id']
+            except: sbtabid2sbmlid.append('Error: The SBtab file lacks the obligatory column "'"!Reaction"'"/"'"!Reaction:SBML:reaction:id"'" to link the parameter entries to the SBML model species.')
         try:
             if row[s_id] != '' and row[s_id] not in species_ids_sbml and row[s_id] != 'nan' and row[s_id] != 'None':
                 sbtabid2sbmlid.append('Warning: The SBtab file holds a species ID which does not comply to any species ID in the SBML file: %s'%(row[s_id]))

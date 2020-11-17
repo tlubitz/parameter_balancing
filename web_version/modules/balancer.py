@@ -27,7 +27,8 @@ name2index = {'standard chemical potential': 0,
 header_names = ['!QuantityType', '!Reaction:SBML:reaction:id',
                 '!Compound:SBML:species:id', '!Mode', '!Unit',
                 '!UnconstrainedGeometricMean', '!UnconstrainedGeometricStd',
-                '!UnconstrainedMean', '!UnconstrainedStd']
+                '!UnconstrainedMean', '!UnconstrainedStd', '!Std', '!GeometricStd',
+                '!Organism', '!Reference']
 inhibitory_sbos = [20, 206, 207, 536, 537]
 activation_sbos = [13, 21, 459, 461, 462]
 
@@ -193,7 +194,7 @@ class ParameterBalancing:
         # add some information for the log file
         self.log += '### Model information ###\n'
         self.log += 'The SBML model has a total of %s Reaction/s and %s '\
-                    'Species.\n' % (self.model.getNumReactions(),
+                    'Species.\n\n' % (self.model.getNumReactions(),
                                     self.model.getNumSpecies())
 
     def get_parameter_information(self, alternate_prior = None):
@@ -233,6 +234,9 @@ class ParameterBalancing:
         self.thermodynamics = []
         self.matrix_info = {}
         self.data_std = {}
+        self.geom_data_std = {}
+        self.additives = []
+        self.multiplicatives = []
         prior_list = []
         pseudo_list = []
 
@@ -251,10 +255,12 @@ class ParameterBalancing:
                     self.quantity_type2mean_std[row[sbtab_prior.columns_dict['!QuantityType']]] = \
                          [float(row[sbtab_prior.columns_dict['!PriorMedian']]),
                           float(row[sbtab_prior.columns_dict['!PriorStd']])]
+                    self.additives.append(row[sbtab_prior.columns_dict['!QuantityType']])
                 elif row[sbtab_prior.columns_dict['!MathematicalType']] == 'Multiplicative':
                     self.quantity_type2median_std[row[sbtab_prior.columns_dict['!QuantityType']]] = \
                          [float(row[sbtab_prior.columns_dict['!PriorMedian']]),
                           float(row[sbtab_prior.columns_dict['!PriorGeometricStd']])]
+                    self.multiplicatives.append(row[sbtab_prior.columns_dict['!QuantityType']])
 
                 if row[sbtab_prior.columns_dict['!Dependence']] == 'Basic':
                     prior_list.append(row[sbtab_prior.columns_dict['!QuantityType']])
@@ -275,6 +281,8 @@ class ParameterBalancing:
                                    row[sbtab_prior.columns_dict['!MatrixInfo']]
                 self.data_std[row[sbtab_prior.columns_dict['!QuantityType']]] = \
                                       row[sbtab_prior.columns_dict['!DataStd']]
+                self.geom_data_std[row[sbtab_prior.columns_dict['!QuantityType']]] = \
+                                      row[sbtab_prior.columns_dict['!DataGeometricStd']]
 
         self.prior_list = self.sort_list(prior_list)
         self.pseudo_list = self.sort_list(pseudo_list)
@@ -348,16 +356,25 @@ class ParameterBalancing:
                     this_stoich = 1
                 stoich.append(this_stoich)
             self.reactions_products[reaction.getId()] = (products, stoich)
+    
+    def _check_max_reactions(self):
+        '''
+        if a size limit is given for the model, check whether the model is
+        not too big. If it is too big, warn and exit.
+        '''
+        if self.model.getNumReactions() > int(self.parameter_dict['size_limit']):
+            print('The size limit parameter from the options file (%s) is smaller than the model size (%s). Exiting.' %(self.parameter_dict['size_limit'], self.model.getNumReactions()))
+            sys.exit()
 
     def make_empty_sbtab(self, pmin, pmax, parameter_dict):
         '''
         if no SBtab is given, create an empty SBtab for the model using
         function make_sbtab and some default parameters
         '''
-        sbtab_string = '!!SBtab TableType="Quantity" Version="0.1" Level="1.0"'\
+        sbtab_string = '!!SBtab TableID="ParameterData" TableType="Quantity" Version="0.1" Level="1.0"'\
                        ' TableName="EmptyParameterFile"\n'\
                        '!QuantityType\t!Reaction:SBML:reaction:id\t'\
-                       '!Compound:SBML:species:id\t!Mean\t!Std\t!Unit\n'
+                       '!Compound:SBML:species:id\t!Mean\t!Std\t!Unit\t!GeometricStd\n'
         empty_sbtab = SBtab.SBtabTable(sbtab_string, 'empty.csv')
         value_rows = self.make_sbtab(empty_sbtab, 'empty.csv',
                                      'All organisms', 43, pmin, pmax,
@@ -370,11 +387,15 @@ class ParameterBalancing:
         makes an insertable SBtab-file out of a possibly erraneous SBtab-File
         '''
         # set warning message for numerical problems in numpy
+        sbtab_complement = self.account_4_missing_columns(sbtab)
         numpy.seterrcall(self.print_warning)
         numpy.seterr(all='call')
         self.warned = True
-
-        self.sbtab = sbtab
+        self.sbtab = sbtab_complement
+        try: self.react_column = self.sbtab.columns_dict['!Reaction']
+        except: self.react_column = self.sbtab.columns_dict['!Reaction:SBML:reaction:id']
+        try: self.comp_column = self.sbtab.columns_dict['!Compound']
+        except: self.comp_column = self.sbtab.columns_dict['!Compound:SBML:species:id']
         self.organism = organism
         self.new_header = header_names
         self.new_rows = []
@@ -382,23 +403,26 @@ class ParameterBalancing:
         self.pmax = pmax
         self.parameter_dict = parameter_dict
 
+        if 'size_limit' in self.parameter_dict.keys():
+            self._check_max_reactions()
+
         # the possibly messy user file needs to be tidied before computation
         self.rows = self.tidy_up_sbtab(False)
 
         # build a list of all parameters provided by the user
         self.available_parameters = []
         for i, row in enumerate(self.rows):
-            if len(row) == len(sbtab.columns):
+            if len(row) == len(self.sbtab.columns):
                 if row[self.sbtab.columns_dict['!QuantityType']] in self.species_parameters:
                     self.available_parameters.append([row[self.sbtab.columns_dict['!QuantityType']],
-                                                      row[self.sbtab.columns_dict['!Compound:SBML:species:id']]])
+                                                      row[self.comp_column]])
                 elif row[self.sbtab.columns_dict['!QuantityType']] in self.reaction_parameters:
                     self.available_parameters.append([row[self.sbtab.columns_dict['!QuantityType']],
-                                                      row[self.sbtab.columns_dict['!Reaction:SBML:reaction:id']]])
+                                                      row[self.react_column]])
                 elif row[self.sbtab.columns_dict['!QuantityType']] in self.reaction_species_parameters:
                     self.available_parameters.append([row[self.sbtab.columns_dict['!QuantityType']],
-                                                      row[self.sbtab.columns_dict['!Reaction:SBML:reaction:id']],
-                                                      row[self.sbtab.columns_dict['!Compound:SBML:species:id']]])
+                                                      row[self.react_column],
+                                                      row[self.comp_column]])
 
         # build all required model parameters with respect to the
         # provided parameters: either collect or create the parameter
@@ -444,7 +468,7 @@ class ParameterBalancing:
                             self.model.getNumSpecies(), nr)
 
         # create new SBtab file from the collected information
-        sbtab_string = '!!SBtab TableType="Quantity" Version="0.1" Level="1.0" '\
+        sbtab_string = '!!SBtab TableID="ParameterData" TableType="Quantity" Version="0.1" Level="1.0" '\
                        'TableName="%s"\n' % (file_name) + \
                        '\t'.join(self.new_header) + '\n'
 
@@ -454,6 +478,17 @@ class ParameterBalancing:
 
         return new_sbtab
 
+    def account_4_missing_columns(self, sbtab):
+        # if there are crucial columns missing, add them
+        for col in ['!Std', '!GeometricStd', '!Organism', '!Reference']:
+            if not col in sbtab.columns_dict.keys():
+                new_c = [col] + [''] * len(sbtab.value_rows)
+                sbtab.add_column(new_c)
+        
+        return sbtab
+
+
+    
     def tidy_up_sbtab(self, ig_bounds):
         '''
         remove a lot of stuff from SBtab that is either cramping the
@@ -462,16 +497,33 @@ class ParameterBalancing:
         '''
         consistent_rows = []
         log_header = False
+        sc_warned = False
 
         try: mean_column = self.sbtab.columns_dict['!Mean']
-        except:
-            mean_column = self.sbtab.columns_dict['!UnconstrainedGeometricMean']
+        except: mean_column = self.sbtab.columns_dict['!UnconstrainedGeometricMean']
+
         try: std_column = self.sbtab.columns_dict['!Std']
-        except:
-            std_column = self.sbtab.columns_dict['!UnconstrainedGeometricStd']
+        except: std_column = self.sbtab.columns_dict['!UnconstrainedGeometricStd']
+
 
         for row in self.sbtab.value_rows:
             if len(row) == len(self.sbtab.value_rows[0]):
+                # check if the quantity type is thermodynamic, and if it is:
+                # we will need to see whether the standard concentration is
+                # given in the input SBtab;
+                if row[self.sbtab.columns_dict['!QuantityType']] == 'standard chemical potential' or row[self.sbtab.columns_dict['!QuantityType']] == 'equilibrium constant':
+                    if not sc_warned:
+                        if self.sbtab.standard_concentration == '1M':
+                            self.log += 'Please do not use 1M as standard concentration. Parameter Balancing will not work without standard concentration 1mM.\n\n'
+                        elif self.sbtab.standard_concentration == None:
+                            self.sbtab.standard_concentration = '1mM'
+                            self.log += 'Standard concentration was not set in the input file. Parameter Balancing will assume 1mM as default.\n\n'
+                        elif self.sbtab.standard_concentration == '1mM':
+                            self.log += 'Standard concentration is set to 1mM.\n\n'
+                        else:
+                            self.log += 'Please correct the standard concentration to 1mM.\n\n'
+                        sc_warned = True
+
                 # due to problems in reactions with a high discrepancy between
                 # amount of reactants and products, we need to omit the
                 # provision of Gibbs free energies:
@@ -511,9 +563,9 @@ class ParameterBalancing:
                 # Michaelis constants need reaction AND species
                 if row[self.sbtab.columns_dict['!QuantityType']] == \
                    'Michaelis constant':
-                    if row[self.sbtab.columns_dict['!Reaction:SBML:reaction:id']] not in self.reaction_list:
+                    if row[self.react_column] not in self.reaction_list:
                         continue
-                    elif row[self.sbtab.columns_dict['!Compound:SBML:species:id']] not in self.species_list:
+                    elif row[self.comp_column] not in self.species_list:
                         continue
 
                 # convert amount to concentration (for enzyme concentrations)
@@ -539,8 +591,8 @@ class ParameterBalancing:
                                                 'he requested minimum value of %s. It is ignor'\
                                                 'ed for the balancing.\n' % (row[mean_column],
                                                                              row[self.sbtab.columns_dict['!QuantityType']],
-                                                                             row[self.sbtab.columns_dict['!Reaction:SBML:reaction:id']],
-                                                                             row[self.sbtab.columns_dict['!Compound:SBML:species:id']],
+                                                                             row[self.react_column],
+                                                                             row[self.comp_column],
                                                                              self.pmin[row[self.sbtab.columns_dict['!QuantityType']]])
                                     continue
                         if row[self.sbtab.columns_dict['!QuantityType']] != '':
@@ -555,8 +607,8 @@ class ParameterBalancing:
                                                 'he requested maximum value of %s. It is ignor'\
                                                 'ed for the balancing.\n' % (row[mean_column],
                                                                              row[self.sbtab.columns_dict['!QuantityType']],
-                                                                             row[self.sbtab.columns_dict['!Reaction:SBML:reaction:id']],
-                                                                             row[self.sbtab.columns_dict['!Compound:SBML:species:id']],
+                                                                             row[self.react_column],
+                                                                             row[self.comp_column],
                                                                              self.pmax[row[self.sbtab.columns_dict['!QuantityType']]])
                                     continue
 
@@ -583,15 +635,21 @@ class ParameterBalancing:
                 # reaction entities must not have assigned species, just like
                 # species entities must not have assigned reaction
                 if row[self.sbtab.columns_dict['!QuantityType']] in self.species_parameters:
-                    row[self.sbtab.columns_dict['!Reaction:SBML:reaction:id']] = ''
+                    row[self.react_column] = ''
                 elif row[self.sbtab.columns_dict['!QuantityType']] in self.reaction_parameters:
-                    row[self.sbtab.columns_dict['!Compound:SBML:species:id']] = ''
+                    row[self.comp_column] = ''
 
-                # if the std is missing, use default std from prior file
-                if row[std_column] == '':
+                if row[self.sbtab.columns_dict['!Std']] == '' and row[self.sbtab.columns_dict['!QuantityType']] in self.additives:
                     try:
-                        row[std_column] = self.data_std[row[self.sbtab.columns_dict['!QuantityType']]]
-                    except: continue   # this is executed in case of unknown quantity types
+                        row[self.sbtab.columns_dict['!Std']] = 0#self.data_std[row[self.sbtab.columns_dict['!QuantityType']]]
+                    except:
+                        continue   # this is executed in case of unknown quantity types
+                
+                if row[self.sbtab.columns_dict['!GeometricStd']] == '' and row[self.sbtab.columns_dict['!QuantityType']] in self.multiplicatives:
+                    try:
+                        row[self.sbtab.columns_dict['!GeometricStd']] = self.geom_data_std[row[self.sbtab.columns_dict['!QuantityType']]]
+                    except:
+                        continue   # this is executed in case of unknown quantity types
 
                 consistent_rows.append(row)
 
@@ -625,7 +683,7 @@ class ParameterBalancing:
                 value_dict = self.mean_row(name, quantity)
         elif self.available_parameters.count([quantity, name]) > 1:
             value_dict = self.mean_row(name, quantity)
-            
+        
         # after the averaging, the row is built
         used_rows = []
         new_row = [''] * len(self.new_header)
@@ -633,30 +691,29 @@ class ParameterBalancing:
         ids = []
         for row in self.rows:
             p = [row[self.sbtab.columns_dict['!QuantityType']],
-                 row[self.sbtab.columns_dict['!Reaction:SBML:reaction:id']],
-                 row[self.sbtab.columns_dict['!Compound:SBML:species:id']]]
+                 row[self.react_column],
+                 row[self.comp_column]]
             if p in ids: continue
-            
             for i in range(0, amount):
                 further = False
                 if quantity in self.reaction_species_parameters:
                     if row[self.sbtab.columns_dict['!QuantityType']] == quantity \
-                       and row[self.sbtab.columns_dict['!Compound:SBML:species:id']] == name[2] \
-                       and row[self.sbtab.columns_dict['!Reaction:SBML:reaction:id']] == name[1]:
+                       and row[self.comp_column] == name[2] \
+                       and row[self.react_column] == name[1]:
                         new_row[1] = \
-                            row[self.sbtab.columns_dict['!Reaction:SBML:reaction:id']]
+                            row[self.react_column]
                         new_row[2] = \
-                            row[self.sbtab.columns_dict['!Compound:SBML:species:id']]
+                            row[self.comp_column]
                         further = True
                 else:
                     if row[self.sbtab.columns_dict['!QuantityType']] == quantity \
-                       and (row[self.sbtab.columns_dict['!Compound:SBML:species:id']] == name \
-                            or row[self.sbtab.columns_dict['!Reaction:SBML:reaction:id']] == name) \
+                       and (row[self.comp_column] == name \
+                            or row[self.react_column] == name) \
                             and row not in used_rows:
                         new_row[1] = \
-                            row[self.sbtab.columns_dict['!Reaction:SBML:reaction:id']]
+                            row[self.react_column]
                         new_row[2] = \
-                            row[self.sbtab.columns_dict['!Compound:SBML:species:id']]
+                            row[self.comp_column]
                         further = True
                 if further:
                     new_row[0] = row[self.sbtab.columns_dict['!QuantityType']]
@@ -666,7 +723,10 @@ class ParameterBalancing:
                         new_row[6] = str(value_dict['Std'])
                     else:
                         new_row[5] = str(row[self.sbtab.columns_dict['!Mean']])
-                        new_row[6] = str(row[self.sbtab.columns_dict['!Std']])
+                        if row[self.sbtab.columns_dict['!QuantityType']] in self.additives:
+                            new_row[6] = str(row[self.sbtab.columns_dict['!Std']])
+                        elif row[self.sbtab.columns_dict['!QuantityType']] in self.multiplicatives:
+                            new_row[6] = str(row[self.sbtab.columns_dict['!GeometricStd']])
                         new_row[3] = str(round(self.normal_to_log([float(new_row[5])],
                                                                   [float(new_row[6])],
                                                                   [new_row[0]])[0][0], 4))
@@ -703,16 +763,22 @@ class ParameterBalancing:
         for row in self.rows:
             if quantity in self.reaction_species_parameters:
                 if row[self.sbtab.columns_dict['!QuantityType']] == quantity \
-                   and row[self.sbtab.columns_dict['!Reaction:SBML:reaction:id']] == name[1] \
-                   and row[self.sbtab.columns_dict['!Compound:SBML:species:id']] == name[2]:
+                   and row[self.react_column] == name[1] \
+                   and row[self.comp_column] == name[2]:
                     means.append(float(row[self.sbtab.columns_dict['!Mean']]))
-                    stds.append(float(row[self.sbtab.columns_dict['!Std']]))
+                    if quantity in self.additives:
+                        stds.append(float(row[self.sbtab.columns_dict['!Std']]))
+                    elif quantity in self.multiplicatives:
+                        stds.append(float(row[self.sbtab.columns_dict['!GeometricStd']]))
             else:
                 if row[self.sbtab.columns_dict['!QuantityType']] == quantity \
-                   and (row[self.sbtab.columns_dict['!Compound:SBML:species:id']] == name \
-                        or row[self.sbtab.columns_dict['!Reaction:SBML:reaction:id']] == name):
+                   and (row[self.comp_column] == name \
+                        or row[self.react_column] == name):
                     means.append(float(row[self.sbtab.columns_dict['!Mean']]))
-                    stds.append(float(row[self.sbtab.columns_dict['!Std']]))
+                    if quantity in self.additives:
+                        stds.append(float(row[self.sbtab.columns_dict['!Std']]))
+                    elif quantity in self.multiplicatives:
+                        stds.append(float(row[self.sbtab.columns_dict['!GeometricStd']]))
 
         # build the mean
         if quantity in self.quantity_type2median_std:
@@ -1098,10 +1164,22 @@ class ParameterBalancing:
         shannons = self.get_shannons()
 
         self.compute_running_time()
+
+        concatenated_results = self.compute_concatenated_results(sbtab_new)
         
         return (sbtab_new, self.mean_post, self.q_post, C_string, self.C_post,
-                self.Q, shannons, self.log)
+                self.Q, shannons, self.log, concatenated_results)
 
+    def compute_concatenated_results(self, sbtab_new):
+        '''
+        computes a file with concatenated results
+        '''
+        concat = self.sbtab.to_str() + '\n\n'
+        concat += sbtab_new.to_str()
+
+        return concat
+
+    
     def compute_running_time(self):
         '''
         compute overall running time in seconds from __init__ to return of results
@@ -1190,8 +1268,8 @@ class ParameterBalancing:
                 if len(row) == len(self.sbtab.columns):
                     single_tuple = []
                     single_tuple.append(row[self.sbtab.columns_dict['!QuantityType']])
-                    single_tuple.append(row[self.sbtab.columns_dict['!Reaction:SBML:reaction:id']])
-                    single_tuple.append(row[self.sbtab.columns_dict['!Compound:SBML:species:id']])
+                    single_tuple.append(row[self.react_column])
+                    single_tuple.append(row[self.comp_column])
                     single_tuple.append(row[mean_column])
                     if not row[std_column] == '': single_tuple.append(row[std_column])
                     elif row[self.sbtab.columns_dict['!QuantityType']] in self.thermodynamics:
@@ -1201,52 +1279,52 @@ class ParameterBalancing:
                     self.quantities_x.append(row[self.sbtab.columns_dict['!QuantityType']])
 
                     # check, whether this parameter is really part of the model structure and store boundaries
-                    if not row[self.sbtab.columns_dict['!Reaction:SBML:reaction:id']] == '' and not \
-                       row[self.sbtab.columns_dict['!Compound:SBML:species:id']] == '':
+                    if not row[self.react_column] == '' and not \
+                       row[self.comp_column] == '':
                         row_identifier = (row[self.sbtab.columns_dict['!QuantityType']],
-                                          row[self.sbtab.columns_dict['!Reaction:SBML:reaction:id']],
-                                          row[self.sbtab.columns_dict['!Compound:SBML:species:id']])
+                                          row[self.react_column],
+                                          row[self.comp_column])
                         try:
                             if self.sbtab.columns_dict['!Min'] and self.sbtab.columns_dict['!Max']:
                                 self.parameter2bounds[row[self.sbtab.columns_dict['!QuantityType']],
-                                                      (row[self.sbtab.columns_dict['!Reaction:SBML:reaction:id']],
-                                                       row[self.sbtab.columns_dict['!Compound:SBML:species:id']])] = \
+                                                      (row[self.react_column],
+                                                       row[self.comp_column])] = \
                                                         (row[self.sbtab.columns_dict['!Min']],
                                                          row[self.sbtab.columns_dict['!Max']])
                             else:
                                 self.parameter2bounds[row[self.sbtab.columns_dict['!QuantityType']],
-                                                      (row[self.sbtab.columns_dict['!Reaction:SBML:reaction:id']],
-                                                       row[self.sbtab.columns_dict['!Compound:SBML:species:id']])] = \
+                                                      (row[self.react_column],
+                                                       row[self.comp_column])] = \
                                                         (None, None)
                         except: pass
-                    elif not row[self.sbtab.columns_dict['!Reaction:SBML:reaction:id']] == '':
+                    elif not row[self.react_column] == '':
                         row_identifier = (row[self.sbtab.columns_dict['!QuantityType']],
-                                          row[self.sbtab.columns_dict['!Reaction:SBML:reaction:id']])
+                                          row[self.react_column])
                         try:
                             if self.sbtab.columns_dict['!Min'] and \
                                self.sbtab.columns_dict['!Max']:
                                 self.parameter2bounds[row[self.sbtab.columns_dict['!QuantityType']],
-                                                      row[self.sbtab.columns_dict['!Reaction:SBML:reaction:id']]] = \
+                                                      row[self.react_column]] = \
                                                         (row[self.sbtab.columns_dict['!Min']],
                                                          row[self.sbtab.columns_dict['!Max']])
                             else:
                                 self.parameter2bounds[row[self.sbtab.columns_dict['!QuantityType']],
-                                                      (row[self.sbtab.columns_dict['!Reaction:SBML:reaction:id']])] = \
+                                                      (row[self.react_column])] = \
                                                         (None, None)
                         except: pass
                     else:
                         row_identifier = (row[self.sbtab.columns_dict['!QuantityType']],
-                                          row[self.sbtab.columns_dict['!Compound:SBML:species:id']])
+                                          row[self.comp_column])
                         try:
                             if self.sbtab.columns_dict['!Min'] and \
                                self.sbtab.columns_dict['!Max']:
                                 self.parameter2bounds[row[self.sbtab.columns_dict['!QuantityType']],
-                                                      row[self.sbtab.columns_dict['!Compound:SBML:species:id']]] = \
+                                                      row[self.comp_column]] = \
                                                         (row[self.sbtab.columns_dict['!Min']],
                                                          row[self.sbtab.columns_dict['!Max']])
                             else:
                                 self.parameter2bounds[row[self.sbtab.columns_dict['!QuantityType']],
-                                                      (row[self.sbtab.columns_dict['!Compound:SBML:species:id']])] = \
+                                                      (row[self.comp_column])] = \
                                                         (None, None)
                         except: pass
                     row_identifiers.append(row_identifier)
@@ -1357,12 +1435,12 @@ class ParameterBalancing:
         qidentifier = self.quantity2identifier[row[self.sbtab.columns_dict['!QuantityType']]]
         # qnumber: specific species and/or reaction number in the order of their appearance in SBML model
         if row[self.sbtab.columns_dict['!QuantityType']] in self.species_parameters:
-            qnumber = str(self.species2number[row[self.sbtab.columns_dict['!Compound:SBML:species:id']]])
+            qnumber = str(self.species2number[row[self.comp_column]])
         elif row[self.sbtab.columns_dict['!QuantityType']] in self.reaction_parameters:
-            qnumber = str(self.reaction2number[row[self.sbtab.columns_dict['!Reaction:SBML:reaction:id']]])
+            qnumber = str(self.reaction2number[row[self.react_column]])
         else:
-            qnumber = str(self.species2number[row[self.sbtab.columns_dict['!Compound:SBML:species:id']]]) + \
-                      '_' + str(self.reaction2number[row[self.sbtab.columns_dict['!Reaction:SBML:reaction:id']]])
+            qnumber = str(self.species2number[row[self.comp_column]]) + \
+                      '_' + str(self.reaction2number[row[self.react_column]])
         identifier = qidentifier + '_' + qnumber
 
         return identifier
@@ -1873,15 +1951,6 @@ class ParameterBalancing:
         self.C_xpost = numpy.dot((numpy.dot(self.Q,
                                             self.C_post)),
                                  self.Q.transpose())
-        #for i, row in enumerate(self.quantities_x):
-        #    print(row, ',', list(self.C_post[i]))
-
-        
-        # for i,row in enumerate(self.C_post):
-        #    print(list(row))
-
-        # for i, row in enumerate(self.C_xpost):
-        #    print(list(row))
 
         # posterior stds
         self.stds_log_inc = self.extract_cpost_inc()
@@ -1904,15 +1973,6 @@ class ParameterBalancing:
                                      numpy.dot(self.C_prior_inv,
                                                self.q_prior)))
         self.x_post = numpy.dot(self.Q, self.q_post)
-
-        # print(self.x_post)
-
-        # for elem in self.q_post:
-        #    print(elem)
-        # print('\n')
-
-        # for i,elem in enumerate(self.x_post):
-        #    print(elem, ',(', self.quantities[i], ')')
 
     def extract_cpost(self):
         '''
@@ -1949,7 +2009,7 @@ class ParameterBalancing:
         if self.optimized: means = self.mean_post_opt
         else: means = self.mean_post
 
-        finished_rows = [['!!SBtab SBtabVersion="1.0" TableType="Quantity" Ta'\
+        finished_rows = [['!!SBtab SBtabVersion="1.0" TableID="ParameterBalanced" TableType="Quantity" Ta'\
                           'bleName="Parameter" Document="%s" '\
                           'Date="%s"' % (self.sbtab.filename,
                                          datetime.date.today())]]

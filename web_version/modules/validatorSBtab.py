@@ -3,7 +3,7 @@
 SBtab Validator
 ===============
 
-Python script that validates SBtab files
+Validator for SBtab files.
 
 See specification for further information.
 """
@@ -32,8 +32,7 @@ class SBtabError(Exception):
 
 class ValidateTable:
     '''
-    Validator (version 0.9 06/10/2015).
-    Checks SBtab file and SBtab object.
+    Validates SBtabTable object.
     '''
     def __init__(self, sbtab, def_table=None):
         '''
@@ -41,31 +40,35 @@ class ValidateTable:
 
         Parameters
         ----------
-        table: SBtab object
-            SBtab data file as SBtab object
-        sbtab_name: str
-            File path of the SBtab data file
-        def_table: SBtab object
-            SBtab definition table as SBtab object
+        sbtab: SBtab.SBtabTable
+            SBtab data file as SBtab table object.
+        def_table: SBtab.SBtabTable
+            SBtab definition table as SBtab table object.
         '''
         # initialize warning string
         self.warnings = []
         # define self variables
         self.sbtab = sbtab
-        self.filename = sbtab.filename
+        try: self.filename = sbtab.filename
+        except: raise SBtabError('The SBtab object cannot be validated. Please set the filename first and try again.')
+
         # read definition table
         self.read_definition(def_table)
+
         # create set of valid table types
         self.allowed_table_types = list(set([row[2] for row in self.definitions[2:][0]]))
+
         # create dict of valid column names per table type
         self.allowed_columns = {}
         for table_type in self.allowed_table_types:
             self.allowed_columns[table_type] = [row[0] for row in self.definitions[2:][0] if row[2] == table_type]
+
         # check file format and header row
-        self.check_general_format()
+        try: self.check_general_format()
+        except: raise SBtabError('The SBtab object cannot be validated. Please add content to it first and try again.')
         self.column2format = {}
         defs = self.definitions[2]
-        
+
         for row in defs:
             if row[2] == self.sbtab.table_type:
                 self.column2format[row[0]] = row[3]
@@ -87,20 +90,17 @@ class ValidateTable:
         '''
         # read in provided definition table or open default
         if def_table:
-            try: self.definitions = def_table.sbtab_list
+            try:
+                self.sbtab_def = def_table
+                self.definitions = self.sbtab_def.create_list()
             except:
-                print('''Definition file could not be loaded, so the validation
-                could not be started. Please provide definition file
-                as argument''')
+                print('Provided definition file could not be read, so the validation'\
+                      'could not be started.')
                 sys.exit() 
         else:
             try:
-                d = os.path.dirname(os.path.abspath(__file__)) + '/files/default_'\
-                    'files/definitions.tsv'
-                def_file = open(d, 'r')
-                def_table = def_file.read()
-                sbtab_def = SBtab.SBtabTable(def_table, d)
-                self.definitions = sbtab_def.sbtab_list
+                self.sbtab_def = misc.open_definitions_file()
+                self.definitions = self.sbtab_def.create_list()
             except:
                 print('''Definition file could not be loaded, so the validation
                 could not be started. Please provide definition file
@@ -120,7 +120,8 @@ class ValidateTable:
                   '\xe2\x80\xb5', '\xe2\x80\xb6', '\xe2\x80\xb7']
 
         for quote in quotes:
-            try: header = header.replace(quote, "'")
+            try:
+                header = header.replace(quote, "'")
             except: pass
 
         # check for valid header row
@@ -150,9 +151,9 @@ class ValidateTable:
         # check if length of value rows correspond to amount of columns
         for vr in self.sbtab.value_rows:
             if len(vr) != len(self.sbtab.columns):
-                self.warnings.append('''Warning: The length of row %s does not
-                correspond to the amount of columns,
-                which is %s.''' % (vr, len(self.sbtab.columns)))
+                self.warnings.append('Warning: The length of row %s does not'\
+                                     'correspond to the amount of columns,'\
+                                     'which is %s.''' % (vr, len(self.sbtab.columns)))
 
 
     def check_table_content(self):
@@ -280,43 +281,52 @@ class ValidateTable:
     def return_output(self):
         '''
         Returns the warnings from the validation process.
+
+        Returns: list
+            List of warnings of the validator in string representation.
         '''
         return self.warnings
 
 
-if __name__ == '__main__':
-    try: sys.argv[1]
-    except:
-        print('''You have not provided input arguments. Please start the script
-               by also providing an SBtab file and the required definition f
-               ile: >python validatorSBtab.py SBtab.csv definition.tsv''')
-        sys.exit()
+class ValidateDocument:
+    '''
+    Validates SBtabDocument object
+    '''
+    def __init__(self, sbtab_doc, def_table=None):
+        '''
+        Initialises validator and starts check for file and table format.
 
-    file_name = sys.argv[1]
-    sbtab_file_o = open(file_name, 'r')
-    sbtab_file = sbtab_file_o.read()
-    sbtab_file_o.close()
-    delimiter = misc.getDelimiter(sbtab_file)
 
-    try:
-        default_def = sys.argv[2]
-        def_file = open(default_def, 'r')
-        def_tab = def_file.read()
-        def_file.close()
-    except:
-        def_tab = None
+        Parameters
+        ----------
+        sbtab_doc: SBtab.SBtabDocument
+            SBtab data file as SBtab table object.
+        def_table: SBtab.SBtabTable
+            SBtab definition table as SBtab table object.
+        '''
+        self.sbtab_doc = sbtab_doc
+        if len(self.sbtab_doc.sbtabs) == 0:
+            raise SBtabError('This SBtab Document cannot be validated. It is empty.')
+        self.sbtab_def = def_table
+        # self.validate_document()
 
-    validator_output = []
-    Validate_file_class = ValidateFile(sbtab_file, file_name)
-    validator_output.append(Validate_file_class.return_output())
-    Validate_table_class = ValidateTable(sbtab_file, file_name, def_tab)
-    validator_output.append(Validate_table_class.return_output())
+    def validate_document(self):
+        '''
+        Validates SBtabDocument.
 
-    warned = False
-    for warning in validator_output:
-        if warning != []:
-            print('WARNINGS: ', warning)
-            warned = True
+        Returns: list
+            List of lists with warnings for each of the SBtab tables comprised in the SBtab document.
+        '''
+        warnings = []
+        for sbtab in self.sbtab_doc.sbtabs:
+            warnings_s = ['Warnings for %s:\n' % sbtab.filename]
+            self.vt = ValidateTable(sbtab, self.sbtab_def)
+            try:
+                warnings_s.append(self.vt.return_output())
+            except:
+                raise SBtabError('SBtab %s cannot be validated.' % (sbtab.filename))
+            warnings.append(warnings_s)
+            
+        return warnings
 
-    if not warned:
-        print('The SBtab file is valid.')
+

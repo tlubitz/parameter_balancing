@@ -49,19 +49,23 @@ class ValidateTable:
         self.warnings = []
         # define self variables
         self.sbtab = sbtab
-        self.filename = sbtab.filename
+        try: self.filename = sbtab.filename
+        except: raise SBtabError('The SBtab object cannot be validated. Please set the filename first and try again.')
+
         # read definition table
         self.read_definition(def_table)
 
         # create set of valid table types
         self.allowed_table_types = list(set([row[2] for row in self.definitions[2:][0]]))
+
         # create dict of valid column names per table type
         self.allowed_columns = {}
         for table_type in self.allowed_table_types:
             self.allowed_columns[table_type] = [row[0] for row in self.definitions[2:][0] if row[2] == table_type]
 
         # check file format and header row
-        self.check_general_format()
+        try: self.check_general_format()
+        except: raise SBtabError('The SBtab object cannot be validated. Please add content to it first and try again.')
         self.column2format = {}
         defs = self.definitions[2]
 
@@ -301,8 +305,10 @@ class ValidateDocument:
             SBtab definition table as SBtab table object.
         '''
         self.sbtab_doc = sbtab_doc
+        if len(self.sbtab_doc.sbtabs) == 0:
+            raise SBtabError('This SBtab Document cannot be validated. It is empty.')
         self.sbtab_def = def_table
-        #self.validate_document()
+        # self.validate_document()
 
     def validate_document(self):
         '''
@@ -324,41 +330,3 @@ class ValidateDocument:
         return warnings
 
 
-if __name__ == '__main__':
-
-    # this main function is deprecated!    
-    try: sys.argv[1]
-    except:
-        print('''You have not provided input arguments. Please start the script
-               by also providing an SBtab file and the required definition f
-               ile: >python validatorSBtab.py SBtab.csv definition.tsv''')
-        sys.exit()
-
-    file_name = sys.argv[1]
-    sbtab_file_o = open(file_name, 'r')
-    sbtab_file = sbtab_file_o.read()
-    sbtab_file_o.close()
-    delimiter = misc.getDelimiter(sbtab_file)
-
-    try:
-        default_def = sys.argv[2]
-        def_file = open(default_def, 'r')
-        def_tab = def_file.read()
-        def_file.close()
-    except:
-        def_tab = None
-
-    validator_output = []
-    Validate_file_class = ValidateFile(sbtab_file, file_name)
-    validator_output.append(Validate_file_class.return_output())
-    Validate_table_class = ValidateTable(sbtab_file, file_name, def_tab)
-    validator_output.append(Validate_table_class.return_output())
-
-    warned = False
-    for warning in validator_output:
-        if warning != []:
-            print('WARNINGS: ', warning)
-            warned = True
-
-    if not warned:
-        print('The SBtab file is valid.')

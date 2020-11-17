@@ -1,8 +1,8 @@
-!!SBtab SBtabVersion='1.0' Document='pfk_reaction' TableType='Compartment' TableName='Compartment'														
+!!SBtab SBtabVersion='1.0' Document='pfk_reaction' TableType='Compartment' TableName='Compartment' TableID='Compartment'														
 !ID	!Name	!Size												
 c	c	1												
 														
-!!SBtab SBtabVersion='1.0' Document='pfk_reaction' TableType='Compound' TableName='Compound'														
+!!SBtab SBtabVersion='1.0' Document='pfk_reaction' TableType='Compound' TableName='Compound' TableID='Compound'														
 !ID	!Name	!Location	!Charge	!IsConstant	!SBOTerm	!InitialConcentration	!hasOnlySubstanceUnits	!Identifiers:kegg.compound						
 ATP_c	ATP	c	0	False	SBO:0000020	-435.1	False	C00002						
 beta_D_fructofuranose_6_phosphate_c	beta-D-fructofuranose 6-phosphate	c	0	False		-435.1	False	C05345						
@@ -10,7 +10,7 @@ ADP_c	ADP	c	0	False		-435.1	False	C00008
 beta_D_fructofuranose_1_6_bisphosphate_c	beta-D-fructofuranose 1_6-bisphosphate	c	0	False		-435.1	False	C05378						
 enzyme_R04779_c	enzyme_R04779	c	0	False		0	False							
 														
-!!SBtab SBtabVersion='1.0' Document='pfk_reaction' TableType='Quantity' TableName='Quantity'														
+!!SBtab SBtabVersion='1.0' Document='pfk_reaction' TableType='Quantity' TableName='Quantity' TableID='Quantity'														
 !ID	!QuantityType	!Reaction:SBML:reaction:id	!Compound:SBML:species:id	!Mean	!Std	!Unit	!pH	!Temperature	!Organism	!Reaction:Identifiers:kegg.reaction	!Compound:Identifiers:kegg.compound	!Reference		
 k_1	concentration of enzyme	R04779	nan	89800	nan	molecules/cell	nan	nan	Saccharomyces cerevisiae	R04779	nan	yeastGFP		
 k_2	concentration of enzyme	R04779	nan	90200	nan	molecules/cell	nan	nan	Saccharomyces cerevisiae	R04779	nan	yeastGFP		
@@ -32,12 +32,12 @@ k_17	Michaelis constant	R04779	ATP_c	0.1	nan	mM	nan	nan	nan	nan	C00002	Brenda
 k_18	Michaelis constant	R04779	ADP_c	0.9	nan	mM	nan	nan	nan	nan	C00008	Brenda		
 k_19	equilibrium constant	R04779	nan	0.1	nan	nan	7	298.2	nan	R04779	nan	Nissler et. al		
 														
-!!SBtab SBtabVersion='1.0' Document='pfk_reaction' TableType='Reaction' TableName='Reaction'														
+!!SBtab SBtabVersion='1.0' Document='pfk_reaction' TableType='Reaction' TableName='Reaction' TableID='Reaction'														
 !ID	!Name	!ReactionFormula	!Regulator	!KineticLaw	!IsReversible									
 R04779	_6_phosphofructokinase_activity	ATP_c + beta_D_fructofuranose_6_phosphate_c <=> ADP_c + beta_D_fructofuranose_1_6_bisphosphate_c	ATP_c	kcrg_R04779 * (exp(-hco_R04779 * (scp_ADP_c + scp_beta_D_fructofuranose_1_6_bisphosphate_c - (scp_ATP_c + scp_beta_D_fructofuranose_6_phosphate_c)) / (2 * R * temp)) * ATP_c * beta_D_fructofuranose_6_phosphate_c - exp(hco_R04779 * (scp_ADP_c + scp_beta_D_fructofuranose_1_6_bisphosphate_c - (scp_ATP_c + scp_beta_D_fructofuranose_6_phosphate_c)) / (2 * R * temp)) * ADP_c * beta_D_fructofuranose_1_6_bisphosphate_c) / sqrt(kmc_R04779_ATP_c * kmc_R04779_beta_D_fructofuranose_6_phosphate_c * kmc_R04779_ADP_c * kmc_R04779_beta_D_fructofuranose_1_6_bisphosphate_c) / ((1 + ATP_c / kmc_R04779_ATP_c) * (1 + beta_D_fructofuranose_6_phosphate_c / kmc_R04779_beta_D_fructofuranose_6_phosphate_c) + (1 + ADP_c / kmc_R04779_ADP_c) * (1 + beta_D_fructofuranose_1_6_bisphosphate_c / kmc_R04779_beta_D_fructofuranose_1_6_bisphosphate_c) - 1)	True									
 														
-!!SBtab TableName='Parameter balancing configuration file' TableType='PbConfig'														
-!Option	!Value													
+!!SBtab TableName='Parameter balancing configuration file' TableType='Config' TableID='ConfigurePB'
+!ID	!Value													
 use_pseudos	True													
 pH	7													
 Temperature	300													
@@ -50,7 +50,7 @@ default_activation	complete_act
 model_name	outputname													
 boundary_values	ignore													
 														
-!!SBtab TableName='Quantity info' TableType='QuantityInfo'														
+!!SBtab TableName='Quantity info' TableType='QuantityInfo' TableID='QuantityInfo'														
 !QuantityType	!Symbol	!Unit	!Constant	!RelatedElement	!Scaling	!Dependence	!PriorMode	!PriorStd	!LowerBound	!UpperBound	!ErrorStd	!SBMLElement 	!Abbreviation	!MatrixInfo
 standard chemical potential	mu0	kJ/mol	Thermodynamic	Species	Original	Basic	-880	1500	-3000	2000	10	Global parameter 	scp	[I_species, 0, 0, 0, 0, 0, 0]
 standard Gibbs energy of reaction	dmu0	kJ/mol	Thermodynamic	Reaction	Original	Derived	0	1500	-1000	1000	10	Global parameter 	dscp	[Nt, 0, 0, 0, 0, 0, 0]

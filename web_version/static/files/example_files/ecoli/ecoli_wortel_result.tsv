@@ -1,4 +1,4 @@
-!!SBtab SBtabVersion='1.0' TableType='Quantity' TableName='Parameter' Document='ecoli_wortel_2018_data.tsv' Date='2018-11-28'
+!!SBtab TableID='ParameterBalanced' SBtabVersion='1.0' TableType='Quantity' TableName='Parameter' Document='ecoli_wortel_2018_data.tsv' Date='2018-11-28'
 !QuantityType	!Reaction:SBML:reaction:id	!Compound:SBML:species:id	!Mode	!Unit	!UnconstrainedGeometricMean	!UnconstrainedGeometricStd	!UnconstrainedMean	!UnconstrainedStd
 standard chemical potential		ACETATE	0.0	kJ/mol	NaN	NaN	0.0	500.0
 concentration		ACETATE	0.1	mM	0.1	10.0	1.4167	20.0217
