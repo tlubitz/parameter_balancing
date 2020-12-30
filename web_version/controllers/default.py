@@ -13,7 +13,6 @@ import copy
 import balancer
 import kineticizer
 import SBtab
-import tablibIO
 import validatorSBtab
 import sbtab2sbml
 import sbml2sbtab

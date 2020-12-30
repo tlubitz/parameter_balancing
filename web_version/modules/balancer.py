@@ -391,6 +391,7 @@ class ParameterBalancing:
         numpy.seterrcall(self.print_warning)
         numpy.seterr(all='call')
         self.warned = True
+
         self.sbtab = sbtab_complement
         try: self.react_column = self.sbtab.columns_dict['!Reaction']
         except: self.react_column = self.sbtab.columns_dict['!Reaction:SBML:reaction:id']
@@ -480,8 +481,11 @@ class ParameterBalancing:
 
     def account_4_missing_columns(self, sbtab):
         # if there are crucial columns missing, add them
+
         for col in ['!Std', '!GeometricStd', '!Organism', '!Reference']:
-            if not col in sbtab.columns_dict.keys():
+            try:
+                sbtab.columns_dict[col]
+            except:
                 new_c = [col] + [''] * len(sbtab.value_rows)
                 sbtab.add_column(new_c)
         
